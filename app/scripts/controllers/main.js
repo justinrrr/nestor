@@ -8,10 +8,8 @@
  * Controller of the nestorApp
  */
 angular.module('nestorApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', ['$scope', 'AWSComponents',
+    function ($scope, AWSComponents) {
+
+      $scope.components = AWSComponents.components;
+    }]);

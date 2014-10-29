@@ -8,6 +8,10 @@
  *
  * Main module of the application.
  */
+
+angular
+  .module('nestorApp.services', []);
+
 angular
   .module('nestorApp', [
     'ngAnimate',
@@ -15,8 +19,11 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'pageslide-directive',
+    'nestorApp.services'
   ])
+
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
