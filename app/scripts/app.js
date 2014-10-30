@@ -21,6 +21,7 @@ angular
     'ngSanitize',
     'ngTouch',
     'pageslide-directive',
+    'ngDraggable',
     'nestorApp.services'
   ])
 

@@ -12,3 +12,27 @@ body {
   overflow: scroll;
 }
 
+.dragging {
+  background-color: rgba(245, 245, 245, 0.64);
+  -webkit-box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
+  -moz-box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
+  box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
+  width: 300px;
+  height: 161px;
+  color: black;
+  z-index: 1000;
+}
+
+img {
+  position: relative;
+}
+.title {
+  position: relative;
+}
+
+.fuck {
+  width: 300px;
+  height: 161px;
+  position: absolute;
+}
+

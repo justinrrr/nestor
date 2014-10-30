@@ -1,16 +1,32 @@
-
 <button ng-click="checked = !checked"> leftPanel</button>
-
 <div id="canvas">
 
 </div>
 
-  <pageslide ps-open="checked" ps-custom-height="900px" style="background-color: rgba(59, 59, 59, 0.80)">
-    <div>
-      <div ng-repeat="comp in components">
-        <img width="100" ng-src="{{comp.image}}">
-        {{comp.name}} : {{comp.description}}
-        <hr>
+<pageslide ps-open="checked" ps-custom-height="900px" style="background-color: rgba(59, 59, 59, 0.80)">
+  <div>
+    <div ng-repeat="comp in components">
+      <div
+        class="fuck"
+        ng-drag="true"
+        ng-drag-data="comp"
+        ng-center-anchor="false">
       </div>
+      <img class="image" width="100" ng-src="{{comp.image}}">
+
+      <div>
+        {{comp.name}} : {{comp.description}}
+      </div>
+      <hr>
     </div>
-  </pageslide>
+  </div>
+</pageslide>
+
+<div
+  ng-drag-clone="">
+  <img width="100" ng-src="{{clonedData.image}}">
+  <div class="title">
+    hi
+    {{clonedData.name}} : {{clonedData.description}}
+  </div>
+</div>
