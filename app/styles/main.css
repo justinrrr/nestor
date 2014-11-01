@@ -13,7 +13,7 @@ body {
 }
 
 .dragging {
-  background-color: rgba(245, 245, 245, 0.64);
+  background-color: rgba(245, 245, 245, 0.84);
   -webkit-box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
   -moz-box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
   box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
