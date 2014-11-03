@@ -5,7 +5,8 @@
 
 <pageslide ps-open="checked" ps-custom-height="900px" style="background-color: rgba(59, 59, 59, 0.80)">
   <div>
-    <div ng-repeat="comp in components">
+    Search: <input ng-model="searchText">
+    <div ng-repeat="comp in components | filter:searchText">
       <div
         class="fuck"
         ng-drag="true"
