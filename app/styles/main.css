@@ -145,3 +145,7 @@ img {
   -moz-transition:-moz-box-shadow 0.25s ease-in;
   transition:box-shadow 0.25s ease-in;
 }
+
+.ace_editor {
+  height: 100%;
+}

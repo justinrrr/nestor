@@ -27,6 +27,7 @@ angular
     'ngDraggable',
     'ui.bootstrap',
     'ui.layout',
+    'ui.ace',
     'nestorApp.services',
     'nestorApp.directives'
   ])

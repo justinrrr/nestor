@@ -10,50 +10,57 @@
            ng-style="{ 'left':component.x, 'top':component.y }"
            data-identifier="{{component.id}}">
         <img width="100" ng-src="{{component.image}}"/>
+
         <div class="title">{{component.title}}</div>
         <div plumb-connect class="ep"></div>
       </div>
     </div>
 
     <sidebar size="300px" class="west-back">
-      <hr/>
-      Search: <input ng-model="searchText">
-      <hr/>
-      <tabset>
-        <tab heading="Components">
-          <div ng-repeat="comp in components | filter:searchText">
-            <div
-              class="fuck"
-              ng-drag="true"
-              ng-drag-success="onDragComplete($data,$event)"
-              ng-drag-data="comp"
-              ng-center-anchor="false">
-            </div>
-            <img class="image" width="100" ng-src="{{comp.image}}">
+      <button ng-click="showJson = !showJson">Json</button>
+      <div ng-show="showJson" ui-ace="{
+        theme:'twilight',
+        mode: 'json'}"></div>
+      <div ng-show="!showJson">
+        <hr/>
+        Search: <input ng-model="searchText">
+        <hr/>
+        <tabset>
+          <tab heading="Components">
+            <div ng-repeat="comp in components | filter:searchText">
+              <div
+                class="fuck"
+                ng-drag="true"
+                ng-drag-success="onDragComplete($data,$event)"
+                ng-drag-data="comp"
+                ng-center-anchor="false">
+              </div>
+              <img class="image" width="100" ng-src="{{comp.image}}">
 
-            <div>
-              {{comp.name}} : {{comp.description}}
+              <div>
+                {{comp.name}} : {{comp.description}}
+              </div>
+              <hr>
             </div>
-            <hr>
-          </div>
-        </tab>
+          </tab>
 
-        <tab heading="Tasks">
-          <div ng-repeat="task in tasks | filter:searchText">
-            <div
-              class="fuck"
-              ng-drag="true"
-              ng-drag-data="task"
-              ng-center-anchor="false">
+          <tab heading="Tasks">
+            <div ng-repeat="task in tasks | filter:searchText">
+              <div
+                class="fuck"
+                ng-drag="true"
+                ng-drag-data="task"
+                ng-center-anchor="false">
+              </div>
+              <div>
+                <
+                {{task.name}}
+              </div>
+              <hr>
             </div>
-            <div>
-              <
-              {{task.name}}
-            </div>
-            <hr>
-          </div>
-        </tab>
-      </tabset>
+          </tab>
+        </tabset>
+      </div>
     </sidebar>
   </ui-layout>
   <footer class="south-back" size="200px">aa</footer>
