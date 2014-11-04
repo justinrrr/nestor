@@ -51,64 +51,6 @@ img {
   overflow: auto;
 }
 
-.layout-mock *:not(.ui-splitbar){
-    background : white no-repeat center;
-    padding-left: 5px;
-}
-
-div.layout-mock.stretch.ui-layout-row > .stretch.ui-layout-column > #canvas {
-    background-color: #202628;;
-}
-
-div.layout-mock.stretch.ui-layout-row > .stretch.ui-layout-column > .stretch.ui-splitbar {
-    background-color: white;
-
-}
-
-div.layout-mock.stretch.ui-layout-row > .stretch.ui-layout-column > .west-back.stretch {
-    background-color: #eee;
-    padding-left: 15px;
-}
-div.layout-mock.stretch.ui-layout-row > .stretch.ui-layout-column > .west-back.stretch > .ng-pristine.ng-valid {
-    padding-left: 10px;
-    margin: 40px 10px 40px 10px;
-}
-
-div.layout-mock.stretch.ui-layout-row > .stretch.ui-layout-column > .west-back.stretch > .ng-isolate-scope > .nav-tabs > .heading > li {
-    position: relative;
-    z-index: 1;
-    display: block;
-    margin: 0;
-    text-align: center;
-    flex: 1;
-    font-weight: 300;
-    font-size: 1.25em;
-    height: 6px;
-
-}
-
-div.layout-mock.stretch.ui-layout-row > .stretch.ui-layout-column > .west-back.stretch > .ng-isolate-scope > .nav-tabs > .heading > li > a {
-    padding: 0.25em 0 0.5em;
-    transition: color 0.2s;
-    background-color: white;
-    position: relative;
-    display: block;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    line-height: 2.5;
-    text-decoration: none;
-    outline: none;
-}
-
-div.layout-mock.stretch.ui-layout-row > .stretch.ui-layout-column > .west-back.stretch > .ng-isolate-scope > .nav-tabs > li.active > a, .nav-tabs > li.active > a:hover, .nav-tabs > li.active > a:focus {
-    border: none;
-    border-bottom: solid 3px #2CC185;
-    cursor: pointer;
-    background-color: white;
-
-}
-
 .ui-splitbar{
   display: block;
   background-color: #ffffff;
