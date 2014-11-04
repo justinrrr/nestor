@@ -1,9 +1,18 @@
-
-<div ui-layout class="layout-mock">
+<div ui-layout class="layout-mock" ng-init="init()">
 
   <ui-layout options="{ flow : 'column' }">
-    <div id="canvas" class="center-back">
-
+    <div ng-drop="true"
+         ng-drop-success="onDropComplete($data,$event)"
+         id="container"
+         class="center-back">
+      <div plumb-item class="item"
+           ng-repeat="component in addedComponenets"
+           ng-style="{ 'left':component.x, 'top':component.y }"
+           data-identifier="{{component.id}}">
+        <div class="title">{{component.title}}</div>
+        {{component.description}}
+        <div plumb-connect class="connect"></div>
+      </div>
     </div>
 
     <sidebar size="300px" class="west-back">
@@ -16,6 +25,7 @@
             <div
               class="fuck"
               ng-drag="true"
+              ng-drag-success="onDragComplete($data,$event)"
               ng-drag-data="comp"
               ng-center-anchor="false">
             </div>
