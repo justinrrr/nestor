@@ -12,8 +12,7 @@ app.directive('plumbItem', function () {
       console.log("Add plumbing for the 'item' element");
 
       jsPlumb.makeTarget(element, {
-        anchor: 'Continuous',
-        maxConnections: 2
+        anchor: 'Continuous'
       });
       jsPlumb.draggable(element, {
         containment: 'parent'
@@ -31,7 +30,7 @@ app.directive('plumbConnect', function () {
 
       jsPlumb.makeSource(element, {
         parent: $(element).parent(),
-//				anchor: 'Continuous',
+        anchor:["Continuous", { faces:[ "right", "left" , "top"] } ],
         paintStyle: {
           strokeStyle: "#225588",
           fillStyle: "transparent",

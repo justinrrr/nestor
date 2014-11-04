@@ -46,7 +46,7 @@ angular.module('nestorApp')
         //  }
         //}
         var m = new Component(
-          blueprint.title,
+          blueprint.name,
           blueprint.image,
           blueprint.description,
           posX,

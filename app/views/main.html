@@ -9,9 +9,9 @@
            ng-repeat="component in addedComponenets"
            ng-style="{ 'left':component.x, 'top':component.y }"
            data-identifier="{{component.id}}">
+        <img width="100" ng-src="{{component.image}}"/>
         <div class="title">{{component.title}}</div>
-        {{component.description}}
-        <div plumb-connect class="connect"></div>
+        <div plumb-connect class="ep"></div>
       </div>
     </div>
 
