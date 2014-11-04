@@ -22,6 +22,8 @@ angular
     'ngTouch',
     'pageslide-directive',
     'ngDraggable',
+    'ui.bootstrap',
+    'ui.layout',
     'nestorApp.services'
   ])
 

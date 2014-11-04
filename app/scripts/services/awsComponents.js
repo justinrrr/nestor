@@ -8,6 +8,21 @@
 var app = angular.module('nestorApp.services');
 app.service('AWSComponents', function () {
 
+  this.tasks = [
+    {
+      name: 'Setup a machine and connect it to a DNS Address'
+    },
+    {
+      name: 'Setup a VPC'
+    },
+    {
+      name: 'Setup a machine and connect it to dynamoDB databases'
+    },
+    {
+      name: 'Create a server cluster with ELBs'
+    }
+  ];
+
   this.components = [
     {
       name: 'Autoscaling Group',

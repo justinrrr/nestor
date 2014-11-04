@@ -1,31 +1,60 @@
-<button ng-click="checked = !checked"> leftPanel</button>
-<div id="canvas">
+<!--<nav class="navbar navbar-default" role="navigation">-->
+<!--</nav>-->
 
+<div ui-layout class="layout-mock">
+  <ui-layout options="{ flow : 'column' }">
+
+    <div id="canvas" class="center-back">
+
+    </div>
+
+    <sidebar size="300px" class="west-back">
+      <hr/>
+      Search: <input ng-model="searchText">
+      <hr/>
+      <tabset>
+        <tab heading="Components">
+          <div ng-repeat="comp in components | filter:searchText">
+            <div
+              class="fuck"
+              ng-drag="true"
+              ng-drag-data="comp"
+              ng-center-anchor="false">
+            </div>
+            <img class="image" width="100" ng-src="{{comp.image}}">
+
+            <div>
+              {{comp.name}} : {{comp.description}}
+            </div>
+            <hr>
+          </div>
+        </tab>
+
+        <tab heading="Tasks">
+          <div ng-repeat="task in tasks | filter:searchText">
+            <div
+              class="fuck"
+              ng-drag="true"
+              ng-drag-data="task"
+              ng-center-anchor="false">
+            </div>
+            <div>
+              {{task.name}}
+            </div>
+            <hr>
+          </div>
+        </tab>
+      </tabset>
+    </sidebar>
+  </ui-layout>
+  <footer class="south-back" size="200px">aa</footer>
 </div>
 
-<pageslide ps-open="checked" ps-custom-height="900px" style="background-color: rgba(59, 59, 59, 0.80)">
-  <div>
-    Search: <input ng-model="searchText">
-    <div ng-repeat="comp in components | filter:searchText">
-      <div
-        class="fuck"
-        ng-drag="true"
-        ng-drag-data="comp"
-        ng-center-anchor="false">
-      </div>
-      <img class="image" width="100" ng-src="{{comp.image}}">
-
-      <div>
-        {{comp.name}} : {{comp.description}}
-      </div>
-      <hr>
-    </div>
-  </div>
-</pageslide>
 
 <div
   ng-drag-clone="" class="dragging" style="background-color: white">
   <img width="100" ng-src="{{clonedData.image}}">
+
   <div class="title">
     {{clonedData.name}} : {{clonedData.description}}
   </div>
