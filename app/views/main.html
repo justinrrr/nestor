@@ -6,13 +6,12 @@
 
     </div>
 
-    <sidebar size="300px" class="west-back">
-      <hr/>
-      Search: <input ng-model="searchText">
-      <hr/>
+    <sidebar  class="west-back">
+        <input ng-model="searchText">
+
       <tabset>
-        <tab heading="Components">
-          <div ng-repeat="comp in components | filter:searchText">
+        <tab class="heading" heading="Components">
+          <div class="title" ng-repeat="comp in components | filter:searchText">
             <div
               class="fuck"
               ng-drag="true"
