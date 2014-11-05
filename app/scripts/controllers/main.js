@@ -56,7 +56,7 @@ angular.module('nestorApp')
 
         $scope.addedComponenets.push(m);
         $scope.template[blueprint.name] = blueprint.description;
-        $scope.templateString = JSON.stringify($scope.template);
+        $scope.templateString = JSON.stringify($scope.template, null, 4);
       };
 
        $scope.onDragComplete = function($data,$event) {
