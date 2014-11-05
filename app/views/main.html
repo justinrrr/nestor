@@ -1,20 +1,22 @@
 <div ui-layout class="layout-mock" ng-init="init()">
-
   <ui-layout options="{ flow : 'column' }">
 
-    <div id="left-column" size="300px">
+    <!--Json editor on the left-->
+    <div class="left-column" size="300px">
       <div ui-ace="{
         theme:'twilight',
         mode: 'json'}"></div>
     </div>
-    <!--Container on the left for the canvas-->
+
+    <!--Canvas in the middle -->
     <div ng-drop="true"
          ng-drop-success="onDropComplete($data,$event)"
          id="container"
-         class="center-back">
+         class="center-column">
 
-      <!--Placeholder for the dropped components-->
-      <div plumb-item class="item"
+      <!-- The actual components on the canvas -->
+      <div plumb-item
+           class="item"
            ng-repeat="component in addedComponenets"
            ng-style="{ 'left':component.x, 'top':component.y }"
            data-identifier="{{component.id}}">
@@ -22,69 +24,63 @@
 
         <div class="title">{{component.title}}</div>
         <div plumb-connect class="ep"></div>
-
       </div>
-
 
     </div>
 
     <!--Right side panel-->
-    <div ui-layout="{flow: 'row'}" size="300px" class="west-back">
+    <div
+      ui-layout="{flow: 'row'}"
+      size="300px"
+      class="right-column">
 
-      <div id="top-right">
-        <p> LALALALA </p>
-        <p> LALALALA </p>
-        <p> LALALALA </p>
+      <div class="right-column-top">
       </div>
-      <div id="bottom-right">
 
-        <div>
-          <hr/>
-          Search: <input ng-model="searchText">
-          <hr/>
-          <tabset>
-            <tab heading="Components">
-              <div ng-repeat="comp in components | filter:searchText">
-                <div
-                  class="fuck"
-                  ng-drag="true"
-                  ng-drag-success="onDragComplete($data,$event)"
-                  ng-drag-data="comp"
-                  ng-center-anchor="false">
-                </div>
-                <img class="image" width="100" ng-src="{{comp.image}}">
+      <div class="right-column-bottom">
+        Search: <input ng-model="searchText">
 
-                <div>
-                  {{comp.name}} : {{comp.description}}
-                </div>
-                <hr>
+        <tabset>
+
+          <tab heading="Components" class="components-tab">
+            <div ng-repeat="comp in components | filter:searchText">
+              <div
+                class="empty-container"
+                ng-drag="true"
+                ng-drag-success="onDragComplete($data,$event)"
+                ng-drag-data="comp"
+                ng-center-anchor="false">
               </div>
-            </tab>
 
-            <tab heading="Tasks">
-              <div ng-repeat="task in tasks | filter:searchText">
-                <div
-                  class="fuck"
-                  ng-drag="true"
-                  ng-drag-data="task"
-                  ng-center-anchor="false">
-                </div>
-                <div>
-                  <
-                  {{task.name}}
-                </div>
-                <hr>
+              <img class="component-image" width="100" ng-src="{{comp.image}}">
+              <p>
+                {{comp.name}} : {{comp.description}}
+              </p>
+            </div>
+          </tab>
+
+          <tab heading="Tasks" class="tasks-tab">
+            <div ng-repeat="task in tasks | filter:searchText">
+              <div
+                class="empty-container"
+                ng-drag="true"
+                ng-drag-data="task"
+                ng-center-anchor="false">
               </div>
-            </tab>
-          </tabset>
-        </div>
+              <p>
+                {{task.name}}
+              </p>
+            </div>
+          </tab>
+
+        </tabset>
       </div>
     </div>
   </ui-layout>
 </div>
 
 
-<!--Clone for drag and drop-->
+<!--This is the visual of the component card while its being dragged-->
 <div
   ng-drag-clone="" class="dragging" style="background-color: white">
   <img width="100" ng-src="{{clonedData.image}}">
