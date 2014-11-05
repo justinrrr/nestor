@@ -19,7 +19,7 @@
       <!-- The actual components on the canvas -->
       <div plumb-item
            class="item"
-           ng-repeat="component in addedComponenets"
+           ng-repeat="component in template.Resources"
            ng-style="{ 'left':component.x, 'top':component.y }"
            data-identifier="{{component.id}}">
         <img width="100" ng-src="{{component.image}}"/>
