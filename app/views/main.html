@@ -17,7 +17,7 @@
       <!-- The actual components on the canvas -->
       <div plumb-item
            class="item"
-           ng-repeat="component in template.Resources"
+           ng-repeat="component in addedComponents"
            ng-style="{ 'left':component.x, 'top':component.y }"
            data-identifier="{{component.id}}">
         <img width="100" ng-src="{{component.image}}"/>
@@ -82,10 +82,6 @@
 
 <!--This is the visual of the component card while its being dragged-->
 <div
-        ng-drag-clone="" class="dragging" style="background-color: white">
-    <img width="100" ng-src="{{clonedData.image}}">
-
-    <div class="title">
-        {{clonedData.name}} : {{clonedData.description}}
-    </div>
+        ng-drag-clone="" class="dragging">
+  <p><img class="component-image" width="100" ng-src="{{clonedData.image}}"/>{{clonedData.name}} : {{clonedData.description}}</p>
 </div>

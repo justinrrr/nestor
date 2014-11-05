@@ -32,6 +32,7 @@ angular.module('nestorApp')
         });
       };
 
+      $scope.addedComponents = [];
       //we use this to make sure that components are named
       //sequencially : Dynamo1, Dynamo2
       $scope.componentNameCounters = {};
@@ -79,6 +80,7 @@ angular.module('nestorApp')
           posY);
 
 
+        $scope.addedComponents.push(c);
         var componentName = generateComponentName(blueprint.name);
 
         var aMetadata = $scope.componentMetadata[blueprint.name];
