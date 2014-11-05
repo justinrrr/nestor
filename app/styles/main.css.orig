@@ -1,6 +1,6 @@
 /* Center column style */
 .layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > #container {
-    background-color: white;
+  background-color: white;
 }
 
 /**
@@ -10,8 +10,9 @@
   background-color: rgba(112, 100, 130, 0.78);
 }
 
-.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-top.stretch {
-    background-color: #F6F5F5;
+<<<<<<< HEAD
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch {
+  background-color: white;
 }
 
 .layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch > .ng-isolate-scope > .tab-content > .tab-pane > div.ng-scope > .empty-container {
@@ -25,6 +26,45 @@
   color: white;
   cursor: pointer;
   font-weight: 700;
+}
+
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch > .ng-isolate-scope > .tab-content > .tab-pane > div.ng-scope > div.component-item {
+  padding: 10px 15px 10px 0px;
+  display: block;
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  border-bottom: 1px dashed rgba(112, 100, 130, 0.78);
+  background-color: rgba(112, 100, 130, 0.78);
+  height: 100px;
+}
+
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch > .ng-isolate-scope > .tab-content > .tab-pane > div.ng-scope > div.component-item > p.ng-binding {
+  font-weight: 300;
+  font-size: 14px;
+}
+
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch > .ng-isolate-scope > .tab-content > .tab-pane > div.ng-scope > div.component-item > p.ng-binding > img {
+  float: left;
+  width: 80px;
+  height: 80px;
+=======
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-top.stretch {
+    background-color: #F6F5F5;
+}
+
+/*.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch {*/
+    /*padding: 20px;*/
+/*}*/
+
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch > .ng-isolate-scope > .tab-content > .tab-pane > div.ng-scope > .empty-container {
+    padding: 0 15px 0 0px;
+    display: block;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    border-bottom: 1px dashed rgba(112, 100, 130, 0.78);
+    height: 100px;
 }
 
 .layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch > .ng-isolate-scope > .tab-content > .tab-pane > div.ng-scope > div.component-item {
@@ -48,6 +88,7 @@
     float: left;
     width: 80px;
     height: 80px;
+>>>>>>> 30139952b974ca589091cea42a1cd5ad64a0bbaa
 }
 .nav-tabs.nav-justified > li > a {
     text-decoration: none;
@@ -133,6 +174,15 @@
   Resizable bar between each column & row
 *************************************/
 .stretch {
+<<<<<<< HEAD
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Can be changed by hand ;)*/
+  overflow: auto;
+=======
     position: absolute;
     top: 0;
     left: 0;
@@ -141,37 +191,38 @@
     /* Can be changed by hand ;)*/
     overflow: auto;
     background-color: rgba(112, 100, 130, 0.78);;
+>>>>>>> 30139952b974ca589091cea42a1cd5ad64a0bbaa
 }
 
 /* style for all splitbars*/
 .ui-splitbar {
-    display: block;
-    background-color: rgb(206, 199, 208);
-    right: auto;
-    position: absolute;
-    z-index: 99999;
+  display: block;
+  background-color: rgb(206, 199, 208);
+  right: auto;
+  position: absolute;
+  z-index: 99999;
 }
 
 /* horizontal splitbar style */
 .ui-layout-row > .ui-splitbar {
-    height: 6px !important;
-    width: 100%;
-    cursor: row-resize;
+  height: 6px !important;
+  width: 100%;
+  cursor: row-resize;
 }
 
 /* vertical splitbar style */
 .ui-layout-column > .ui-splitbar {
-    width: 6px !important;
-    height: 100%;
-    cursor: col-resize;
+  width: 6px !important;
+  height: 100%;
+  cursor: col-resize;
 }
 
 .ng-pageslide {
-    background-color: #f5f5f5;
-    -webkit-box-shadow: -9px 0px 5px -1px rgba(0, 0, 0, 0.28);
-    -moz-box-shadow: -9px 0px 5px -1px rgba(0, 0, 0, 0.28);
-    box-shadow: -9px 0px 5px -1px rgba(0, 0, 0, 0.28);
-    overflow: scroll;
+  background-color: #f5f5f5;
+  -webkit-box-shadow: -9px 0px 5px -1px rgba(0, 0, 0, 0.28);
+  -moz-box-shadow: -9px 0px 5px -1px rgba(0, 0, 0, 0.28);
+  box-shadow: -9px 0px 5px -1px rgba(0, 0, 0, 0.28);
+  overflow: scroll;
 }
 
 .dragging {
@@ -188,25 +239,25 @@
 }
 
 img {
-    position: relative;
+  position: relative;
 }
 
 .title {
-    position: relative;
+  position: relative;
 }
 
 .fuck {
-    width: 300px;
-    height: 161px;
-    position: absolute;
-    background-color: transparent !important;
+  width: 300px;
+  height: 161px;
+  position: absolute;
+  background-color: transparent !important;
 }
 
 .title {
-    padding: 10px;
-    cursor: move;
-    font-weight: bold;
-    font-size: 120%;
+  padding: 10px;
+  cursor: move;
+  font-weight: bold;
+  font-size: 120%;
 }
 
 .connect {
