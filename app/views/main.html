@@ -38,9 +38,13 @@
             </div>
 
             <div class="right-column-bottom">
-                <input ng-model="searchText">
-
-                <tabset>
+                <form id="searchbox">
+                    <input ng-model="searchText" type="text" placeholder="Search..." required class="search">
+                    <!--<button type="submit" class="button">-->
+                        <!--<i class="glyphicon glyphicon-search" visibility="hidden-xs"></i>-->
+                    <!--</button>-->
+                </form>
+                <tabset justified="true">
 
                     <tab heading="Components" class="components-tab">
                         <div ng-repeat="comp in components | filter:searchText">
@@ -52,7 +56,8 @@
                                     ng-center-anchor="false">
                             </div>
                             <div class="component-item">
-                                <p><img class="component-image" width="100" ng-src="{{comp.image}}"/>{{comp.name}} : {{comp.description}}</p>
+                                <p><img class="component-image" width="100" ng-src="{{comp.image}}"/>{{comp.name}} :
+                                    {{comp.description}}</p>
                             </div>
                         </div>
                     </tab>
