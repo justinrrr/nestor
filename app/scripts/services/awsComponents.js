@@ -49,11 +49,7 @@ app.service('AWSComponents', function () {
       image: 'images/aws/dynamo.png',
       description: 'NoSQL database service',
       properties: {
-        'AttributeDefinitions' : {
-          type: 'list',
-          typeDescription : 'DynamoDB Attribute Definitions',
-          description: 'A list of AttributeName and AttributeType objects that describe the key schema for the table and indexes.'
-        }
+        typeName:  'AWS::DynamoDB::Table'
 
       }
     },

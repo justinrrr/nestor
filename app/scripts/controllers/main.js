@@ -36,6 +36,8 @@ angular.module('nestorApp')
       //tasks can be and together
       $scope.tasks = AWSComponents.tasks;
 
+      $scope.template = {};
+
       // add a module to the schema
       var addComponent = function(blueprint, posX, posY) {
         console.log("Add module " + blueprint.name + " to schema, at position " + posX + "," + posY);
@@ -51,7 +53,10 @@ angular.module('nestorApp')
           blueprint.description,
           posX,
           posY);
+
         $scope.addedComponenets.push(m);
+        $scope.template[blueprint.name] = blueprint.description;
+        $scope.templateString = JSON.stringify($scope.template);
       };
 
        $scope.onDragComplete = function($data,$event) {
