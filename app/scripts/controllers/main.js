@@ -21,11 +21,11 @@ angular.module('nestorApp')
       }
 
       $scope.init = function() {
-        jsPlumb.bind("ready", function() {
-          console.log("Set up jsPlumb listeners (should be only done once)");
-          jsPlumb.bind("connection", function (info) {
+        jsPlumb.bind('ready', function() {
+          console.log('Set up jsPlumb listeners (should be only done once)');
+          jsPlumb.bind('connection', function () {
             $scope.$apply(function () {
-              console.log("Possibility to push connection into array");
+              console.log('Possibility to push connection into array');
             });
           });
         });
@@ -40,7 +40,7 @@ angular.module('nestorApp')
 
       // add a module to the schema
       var addComponent = function(blueprint, posX, posY) {
-        console.log("Add module " + blueprint.name + " to schema, at position " + posX + "," + posY);
+        console.log('Add module ' + blueprint.name + ' to schema, at position ' + posX + ',' + posY);
         //for (var i = 0; i < $scope.library.length; i++) {
         //  if ($scope.library[i].library_id == library_id) {
         //    title = $scope.library[i].title;
