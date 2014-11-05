@@ -45,8 +45,8 @@ module.exports = function (grunt) {
         tasks: ['newer:jshint:test', 'karma']
       },
       styles: {
-        files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
-        tasks: ['newer:copy:styles', 'autoprefixer']
+        files: ['<%= yeoman.app %>/styles/{,*/}*.less'],
+        tasks: ['less:development', 'newer:copy:styles', 'autoprefixer']
       },
       gruntfile: {
         files: ['Gruntfile.js']
@@ -69,7 +69,7 @@ module.exports = function (grunt) {
         port: 9000,
         // Change this to '0.0.0.0' to access the server from outside.
         hostname: 'localhost',
-        livereload: 35729
+        livereload: 35739
       },
       livereload: {
         options: {
@@ -165,6 +165,36 @@ module.exports = function (grunt) {
       app: {
         src: ['<%= yeoman.app %>/index.html'],
         ignorePath:  /\.\.\//
+      }
+    },
+
+    less: {
+      development: {
+        options: {
+          strictImports: true
+        },
+        files: {
+          './app/styles/main.css': './app/styles/main.less'
+        }
+      },
+      production: {
+        options: {
+          //paths to lok for for @import directives
+          //default value is the directory of the source
+          //                    paths: ["app"],
+          //compress output by removing whitespace
+          compress: true,
+          //uses a plugin to minify CSS
+          cleancss: true,
+          //et the parser's optimization level. The lower the number, the less nodes it will create in the tree.
+          //This could matter for debugging, or if you want to access the individual nodes in the tree.
+          optimization: 2,
+          //evaluates imports
+          strictImports: true
+        },
+        files: {
+          './app/styles/main.css': './app/styles/main.less'
+        }
       }
     },
 
@@ -333,12 +363,15 @@ module.exports = function (grunt) {
     // Run some tasks in parallel to speed up the build process
     concurrent: {
       server: [
+        'less:development',
         'copy:styles'
       ],
       test: [
+        'less:development',
         'copy:styles'
       ],
       dist: [
+        'less:development',
         'copy:styles',
         'imagemin',
         'svgmin'
