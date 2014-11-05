@@ -1,20 +1,18 @@
 <div ui-layout class="layout-mock" ng-init="init()">
-  <ui-layout options="{ flow : 'column' }">
+    <ui-layout options="{ flow : 'column' }">
 
-    <!--Json editor on the left-->
-    <div class="left-column" size="300px">
-      <div ui-ace="{
-        theme:'twilight',
-        mode: 'json'}"
-        ng-model="templateString">
+        <!--Json editor on the left-->
+        <div class="left-column" size="300px">
+            <div ui-ace="{
+        theme:'ambiance',
+        mode: 'json'}"></div>
         </div>
-    </div>
 
-    <!--Canvas in the middle -->
-    <div ng-drop="true"
-         ng-drop-success="onDropComplete($data,$event)"
-         id="container"
-         class="center-column">
+        <!--Canvas in the middle -->
+        <div ng-drop="true"
+             ng-drop-success="onDropComplete($data,$event)"
+             id="container"
+             class="center-column">
 
       <!-- The actual components on the canvas -->
       <div plumb-item
@@ -24,72 +22,70 @@
            data-identifier="{{component.id}}">
         <img width="100" ng-src="{{component.image}}"/>
 
-        <div class="title">{{component.title}}</div>
-        <div plumb-connect class="ep"></div>
-      </div>
+                <div class="title">{{component.title}}</div>
+                <div plumb-connect class="ep"></div>
+            </div>
 
-    </div>
+        </div>
 
-    <!--Right side panel-->
-    <div
-      ui-layout="{flow: 'row'}"
-      size="300px"
-      class="right-column">
+        <!--Right side panel-->
+        <div
+                ui-layout="{flow: 'row'}"
+                size="300px"
+                class="right-column">
 
       <div class="right-column-top">
         <br>
         <pre>{{ template | json }}</pre>
       </div>
 
-      <div class="right-column-bottom">
-        Search: <input ng-model="searchText">
+            <div class="right-column-bottom">
+                <input ng-model="searchText">
 
-        <tabset>
+                <tabset>
 
-          <tab heading="Components" class="components-tab">
-            <div ng-repeat="comp in components | filter:searchText">
-              <div
-                class="empty-container"
-                ng-drag="true"
-                ng-drag-success="onDragComplete($data,$event)"
-                ng-drag-data="comp"
-                ng-center-anchor="false">
-              </div>
+                    <tab heading="Components" class="components-tab">
+                        <div ng-repeat="comp in components | filter:searchText">
+                            <div
+                                    class="empty-container"
+                                    ng-drag="true"
+                                    ng-drag-success="onDragComplete($data,$event)"
+                                    ng-drag-data="comp"
+                                    ng-center-anchor="false">
+                            </div>
+                            <div class="component-item">
+                                <p><img class="component-image" width="100" ng-src="{{comp.image}}"/>{{comp.name}} : {{comp.description}}</p>
+                            </div>
+                        </div>
+                    </tab>
 
-              <img class="component-image" width="100" ng-src="{{comp.image}}">
-              <p>
-                {{comp.name}} : {{comp.description}}
-              </p>
+                    <tab heading="Tasks" class="tasks-tab">
+                        <div ng-repeat="task in tasks | filter:searchText">
+                            <div
+                                    class="empty-container"
+                                    ng-drag="true"
+                                    ng-drag-data="task"
+                                    ng-center-anchor="false">
+                            </div>
+                            <p>
+                                {{task.name}}
+                            </p>
+                        </div>
+                    </tab>
+
+                </tabset>
             </div>
-          </tab>
-
-          <tab heading="Tasks" class="tasks-tab">
-            <div ng-repeat="task in tasks | filter:searchText">
-              <div
-                class="empty-container"
-                ng-drag="true"
-                ng-drag-data="task"
-                ng-center-anchor="false">
-              </div>
-              <p>
-                {{task.name}}
-              </p>
-            </div>
-          </tab>
-
-        </tabset>
-      </div>
-    </div>
-  </ui-layout>
+        </div>
+    </ui-layout>
 </div>
 
 
 <!--This is the visual of the component card while its being dragged-->
 <div
-  ng-drag-clone="" class="dragging" style="background-color: white">
-  <img width="100" ng-src="{{clonedData.image}}">
+        ng-drag-clone="" class="dragging" style="background-color: white">
+    <img width="100" ng-src="{{clonedData.image}}">
 
-  <div class="title">
-    {{clonedData.name}} : {{clonedData.description}}
-  </div>
+    <div class="title">
+        {{clonedData.name}} : {{clonedData.description}}
+    </div>
 </div>

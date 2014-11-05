@@ -1,151 +1,195 @@
-/* Space out content a bit */
-#container {
-  background-color: #202628;
+/* Center column style */
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > #container {
+    background-color: white;
 }
 
+/**
+  Right Panel Style
+*************************************/
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column.stretch.ui-layout-row {
+    background-color: rgba(112, 100, 130, 0.78);
+}
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch {
+    background-color: white;
+}
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch > .ng-isolate-scope > .tab-content > .tab-pane > div.ng-scope > .empty-container {
+    padding: 0 15px 0 0px;
+    display: block;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    border-bottom: 1px dashed rgba(112, 100, 130, 0.78);
+    background-color: rgba(112, 100, 130, 0.78);
+    height: 100px;
+}
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch > .ng-isolate-scope > .tab-content > .tab-pane > div.ng-scope >  div.component-item {
+    padding: 10px 15px 10px 0px;
+    display: block;
+    color: white;
+    cursor: pointer;
+    font-weight: 700;
+    border-bottom: 1px dashed rgba(112, 100, 130, 0.78);
+    background-color: rgba(112, 100, 130, 0.78);
+    height: 100px;
+}
+
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch > .ng-isolate-scope > .tab-content > .tab-pane > div.ng-scope >  div.component-item > p.ng-binding {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.layout-mock.stretch.ui-layout-row.ng-scope > .stretch.ui-layout-column > .right-column > .right-column-bottom.stretch > .ng-isolate-scope > .tab-content > .tab-pane > div.ng-scope >  div.component-item > p.ng-binding > img {
+   float: left;
+    width: 80px;
+    height: 80px;
+}
+
+/**
+  Resizable bar between each column & row
+*************************************/
+.stretch {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Can be changed by hand ;)*/
+    overflow: auto;
+}
+
+/* style for all splitbars*/
+.ui-splitbar {
+    display: block;
+    background-color: rgb(206, 199, 208);
+    right: auto;
+    position: absolute;
+    z-index: 99999;
+}
+
+/* horizontal splitbar style */
+.ui-layout-row > .ui-splitbar {
+    height: 6px !important;
+    width: 100%;
+    cursor: row-resize;
+}
+
+/* vertical splitbar style */
+.ui-layout-column > .ui-splitbar {
+    width: 6px !important;
+    height: 100%;
+    cursor: col-resize;
+}
 
 .ng-pageslide {
-  background-color: #f5f5f5;
-  -webkit-box-shadow: -9px 0px 5px -1px rgba(0,0,0,0.28);
-  -moz-box-shadow: -9px 0px 5px -1px rgba(0,0,0,0.28);
-  box-shadow: -9px 0px 5px -1px rgba(0,0,0,0.28);
-  overflow: scroll;
+    background-color: #f5f5f5;
+    -webkit-box-shadow: -9px 0px 5px -1px rgba(0, 0, 0, 0.28);
+    -moz-box-shadow: -9px 0px 5px -1px rgba(0, 0, 0, 0.28);
+    box-shadow: -9px 0px 5px -1px rgba(0, 0, 0, 0.28);
+    overflow: scroll;
 }
 
 .dragging {
-  background-color: rgba(245, 245, 245, 0.84);
-  -webkit-box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
-  -moz-box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
-  box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
-  width: 300px;
-  height: 161px;
-  color: black;
-  z-index: 1000;
+    background-color: rgba(245, 245, 245, 0.84);
+    -webkit-box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
+    -moz-box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
+    box-shadow: 0px 0px 0px 9px rgba(63, 194, 89, 0.75);
+    width: 300px;
+    height: 161px;
+    color: black;
+    z-index: 1000;
 }
 
 img {
-  position: relative;
+    position: relative;
 }
-.title {
-  position: relative;
-}
-
-.empty-container {
-  width: 300px;
-  height: 161px;
-  position: absolute;
-  background-color: transparent !important;
-}
-
-
-/**
-  UI.Layout CSS
-*************************************/
-.stretch {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  /* Can be changed by hand ;)*/
-  overflow: auto;
-}
-
-.ui-splitbar{
-  display: block;
-  background-color: #ffffff;
-  right: auto;
-  position: absolute;
-  z-index: 99999;
-}
-
-.ui-layout-row > .ui-splitbar{
-  height: 8px; width: 100%;
-  cursor: row-resize;
-}
-.ui-layout-column > .ui-splitbar{
-  width: 8px; height: 100%;
-  cursor: col-resize;
-}
-
-
 
 .title {
-  padding: 10px;
-  cursor: move;
-  font-weight: bold;
-  font-size: 120%;
+    position: relative;
+}
+
+.fuck {
+    width: 300px;
+    height: 161px;
+    position: absolute;
+    background-color: transparent !important;
+}
+
+.title {
+    padding: 10px;
+    cursor: move;
+    font-weight: bold;
+    font-size: 120%;
 }
 
 .connect {
-  width: 100%;
-  height: 20px;
-  cursor: pointer;
-  /*background-color: #40B3DF;*/
+    width: 100%;
+    height: 20px;
+    cursor: pointer;
+    /*background-color: #40B3DF;*/
 }
 
 .summary {
-  padding: 10px;
-  cursor: move;
-  font-weight: bold;
-  font-size: 120%;
+    padding: 10px;
+    cursor: move;
+    font-weight: bold;
+    font-size: 120%;
 }
 
 .menu-item {
-  position: absolute;
-  border: 1px solid black;
-  width: 150px;
-  font-size: 80%;
-  background-color:#FFFFFF;
-  text-align: center;
-  -moz-box-shadow: 2px 2px 3px 1px #AAA;
-  -webkit-box-shadow: 2px 2px 3px 1px #AAA;
-  box-shadow: 2px 2px 3px 1px #AAA;
+    position: absolute;
+    border: 1px solid black;
+    width: 150px;
+    font-size: 80%;
+    background-color: #FFFFFF;
+    text-align: center;
+    -moz-box-shadow: 2px 2px 3px 1px #AAA;
+    -webkit-box-shadow: 2px 2px 3px 1px #AAA;
+    box-shadow: 2px 2px 3px 1px #AAA;
 }
 
 .item {
-  position: absolute;
-  border: 1px solid black;
-  width: 150px;
-  font-size: 80%;
-  background-color:#FFFFFF;
-  text-align: center;
-  -moz-box-shadow: 2px 2px 3px 1px #AAA;
-  -webkit-box-shadow: 2px 2px 3px 1px #AAA;
-  box-shadow: 2px 2px 3px 1px #AAA;
+    position: absolute;
+    border: 1px solid black;
+    width: 150px;
+    font-size: 80%;
+    background-color: #FFFFFF;
+    text-align: center;
+    -moz-box-shadow: 2px 2px 3px 1px #AAA;
+    -webkit-box-shadow: 2px 2px 3px 1px #AAA;
+    box-shadow: 2px 2px 3px 1px #AAA;
 }
 
 /* the menu is 200px wide */
 /*#menu-container {*/
-  /*float: left;*/
-  /*border: 2px solid gray;*/
-  /*border-right: 4px solid gray;*/
-  /*width: 200px;*/
-  /*height: 497px;*/
-  /*background-color: #F3F2F4;*/
+/*float: left;*/
+/*border: 2px solid gray;*/
+/*border-right: 4px solid gray;*/
+/*width: 200px;*/
+/*height: 497px;*/
+/*background-color: #F3F2F4;*/
 /*}*/
 
 .verticalLine {
-  float: left;
-  border-right: 2px solid gray;
-  width: 1px;
-  height: 498px;
+    float: left;
+    border-right: 2px solid gray;
+    width: 1px;
+    height: 498px;
 }
 
 .ep {
-  position:absolute;
-  bottom: 37%;
-  right: 5px;
-  width:1em;
-  height:1em;
-  background-color:orange;
-  cursor:pointer;
-  box-shadow: 0px 0px 2px black;
-  -webkit-transition:-webkit-box-shadow 0.25s ease-in;
-  -moz-transition:-moz-box-shadow 0.25s ease-in;
-  transition:box-shadow 0.25s ease-in;
+    position: absolute;
+    bottom: 37%;
+    right: 5px;
+    width: 1em;
+    height: 1em;
+    background-color: orange;
+    cursor: pointer;
+    box-shadow: 0px 0px 2px black;
+    -webkit-transition: -webkit-box-shadow 0.25s ease-in;
+    -moz-transition: -moz-box-shadow 0.25s ease-in;
+    transition: box-shadow 0.25s ease-in;
 }
 
 .ace_editor {
-  height: 100%;
+    height: 100%;
 }
