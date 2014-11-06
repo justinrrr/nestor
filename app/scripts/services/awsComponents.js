@@ -141,6 +141,43 @@ app.service('AWSComponents', function () {
             name: 'TableName',
             description: 'Name of the created DynamoDb Table'
           }]
+      },
+      'EC2' : {
+        "type": 'AWS::EC2::Instance',
+        properties: {
+          required: {
+            ImageId : 'String'
+          },
+          optional: {
+            "AvailabilityZone" : 'default',
+            "BlockDeviceMappings" : [ EC2 Block Device Mapping, ... ],
+  "DisableApiTermination" : 'default',
+    "EbsOptimized" : 'default',
+    "IamInstanceProfile" : 'default',
+    "InstanceInitiatedShutdownBehavior" : 'default',
+    "InstanceType" : String,
+    "KernelId" : String,
+    "KeyName" : String,
+    "Monitoring" : Boolean,
+    "NetworkInterfaces" : [ EC2 Network Interface, ... ],
+  "PlacementGroupName" : String,
+    "PrivateIpAddress" : String,
+    "RamdiskId" : String,
+    "SecurityGroupIds" : [ String, ... ],
+  "SecurityGroups" : [ String, ... ],
+  "SourceDestCheck" : Boolean,
+    "SubnetId" : String,
+    "Tags" : [ Resource Tag, ... ],
+  "Tenancy" : String,
+    "UserData" : String,
+    "Volumes" : [ EC2 MountPoint, ... ]
+          }
+        },
+        outputs: [
+          {
+
+          }
+        ]
       }
     };
 
