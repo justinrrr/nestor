@@ -13,6 +13,9 @@ angular
   .module('nestorApp.services', []);
 
 angular
+  .module('nestorApp.directives', []);
+
+angular
   .module('nestorApp', [
     'ngAnimate',
     'ngCookies',
@@ -22,7 +25,11 @@ angular
     'ngTouch',
     'pageslide-directive',
     'ngDraggable',
-    'nestorApp.services'
+    'ui.bootstrap',
+    'ui.layout',
+    'ui.ace',
+    'nestorApp.services',
+    'nestorApp.directives'
   ])
 
   .config(function ($routeProvider) {

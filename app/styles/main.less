@@ -1,0 +1,278 @@
+/**
+  Colors
+*************************************/
+@ambiance: #7A7A93;
+@clouds: #E0DFDF;
+@dashborder: #F6F5F5;
+
+/* Center column style */
+#container {
+  background-color: white;
+}
+
+/**
+  Right Panel Style
+*************************************/
+.layout-mock > .stretch.ui-layout-column {
+
+  //   Left column style
+  .left-column {
+    .ace_editor {
+      height: 100%;
+    }
+  }
+  //   Center column style
+  .center-column {
+    .item {
+      position: absolute;
+      border: 1px dashed @dashborder;
+      width: 100px;
+      height: 100px;
+      font-size: 80%;
+      background-color: @ambiance;
+      text-align: center;
+      -moz-box-shadow: 2px 2px 3px 1px #AAA;
+      -webkit-box-shadow: 2px 2px 3px 1px #AAA;
+      box-shadow: 2px 2px 3px 1px #AAA;
+      img {
+        position: relative;
+        width: 60px;
+        height: 60px;
+        margin-bottom: -4px;
+      }
+      .title {
+        position: relative;
+        padding: 0px 2px 2px 2px;
+        margin-bottom: 0px;
+        cursor: move;
+        font-weight: 300;
+        font-size: 12px;
+        color: @clouds;
+      }
+      .ep {
+        position: absolute;
+        bottom: 80%;
+        right: 5px;
+        width: 1em;
+        height: 1em;
+        background-color: @clouds;
+        cursor: pointer;
+        box-shadow: 0px 0px 2px @clouds;
+        -webkit-transition: -webkit-box-shadow 0.25s ease-in;
+        -moz-transition: -moz-box-shadow 0.25s ease-in;
+        transition: box-shadow 0.25s ease-in;
+      }
+    }
+  }
+
+  //  Right column Style
+  .right-column {
+    background-color: rgba(112, 100, 130, 0.78);
+    width: 300px;
+    .right-column-top {
+      background-color: @dashborder;
+    }
+    .right-column-bottom {
+      width: 300px;
+      //      Search Input Style
+      #searchbox {
+        margin: 6px 0px 0px 0px;
+        display: inline-flex;
+        width: 300px;
+        .search {
+          padding: 8px 15px;
+          background-color: @dashborder;
+          border: 0px;
+          color: rgba(112, 100, 130, 0.78);;
+          font-weight: 500;
+          font-style: italic;
+          outline: none;
+          width: 100%;
+        }
+        .button {
+          position: relative;
+          padding: 8px 15px;
+          border: 0px solid #dbdbdb;
+          left: -45px;
+          color: #cbe2cb;
+          text-decoration: none;
+          background-color: transparent;
+          .glyphicon {
+            display: inline-block;
+            cursor: pointer;
+            color: rgba(112, 100, 130, 0.78);;
+          }
+          .glyphicon:hover {
+            color: rgba(112, 100, 130, 0.78);;
+          }
+        }
+      }
+
+      //      Nav Pills for Components
+      ul.nav-tabs.nav-justified {
+        li > a {
+          text-decoration: none;
+          cursor: pointer;
+          background-color: #E9E6EA;
+          color: rgba(112, 100, 130, 1);
+          font-weight: 600;
+          border: none;
+          border-bottom: 2px solid #E9E6EA;
+          border-radius: 0;
+          &:hover {
+            color: #26232A;
+          }
+        }
+        .active > a {
+          background-color: @ambiance;
+          border: none;
+          border-bottom: 2px solid rgb(206, 199, 208);
+          color: @clouds;
+          &:hover {
+            color: @clouds;
+          }
+        }
+      }
+
+      //       Components Style
+      .tab-content {
+        background-color: @ambiance;
+        border-bottom-color: rgba(112, 100, 130, 0.78);
+        .tab-pane {
+          .empty-container {
+            width: 285px;
+            height: 80px;
+            position: absolute;
+            padding: 0 0px 0 0px;
+            display: block;
+            color: @clouds;
+            cursor: pointer;
+            font-weight: 700;
+          }
+            padding: 10px 15px 10px 15px;
+          .component-item {
+            display: table-cell;
+            vertical-align: middle;
+            color: @clouds;
+            cursor: pointer;
+            font-weight: 700;
+            border-bottom: 1px dashed @dashborder;
+            width: 300px;
+            height: 80px;
+            .pdiv {
+              float: left;
+              width: 200px;
+              vertical-align: middle;
+              p {
+                font-weight: 300;
+                font-size: 12px;
+                vertical-align: middle;
+              }
+            }
+            .imgdiv {
+              float: left;
+              width: 70px;
+              img.component-image {
+                width: 60px;
+                height: 60px;
+              }
+            }
+          }
+          .task-item {
+            padding: 10px 15px 10px 15px;
+            display: table-cell;
+            vertical-align: middle;
+            color: @clouds;
+            cursor: pointer;
+            font-weight: 700;
+            border-bottom: 1px dashed @dashborder;
+            width: 300px;
+            height: 80px;
+            p {
+              font-weight: 300;
+              font-size: 12px;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+/**
+  Resizable bar between each column & row
+*************************************/
+.stretch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Can be changed by hand ;)*/
+  overflow: auto;
+  background-color: @ambiance;
+}
+
+//style for all splitbars
+.ui-splitbar {
+  display: block;
+  background-color: #E8E8E8;
+  right: auto;
+  position: absolute;
+  z-index: 99999;
+}
+
+//horizontal splitbar style
+.ui-layout-row > .ui-splitbar {
+  height: 6px !important;
+  width: 100%;
+  cursor: row-resize;
+}
+
+//vertical splitbar style
+.ui-layout-column > .ui-splitbar {
+  width: 6px !important;
+  height: 100%;
+  cursor: col-resize;
+}
+
+/**
+ This is the visual of the component card while its being dragged
+*************************************/
+
+.dragging{
+  background-color: @ambiance;
+  border-bottom-color: rgba(112, 100, 130, 0.78);
+  .component-item {
+    display: table-cell;
+    vertical-align: middle;
+    color: @clouds;
+    cursor: pointer;
+    font-weight: 700;
+    border-bottom: 1px dashed @dashborder;
+    width: 300px;
+    height: 80px;
+    .pdiv {
+      float: left;
+      width: 200px;
+      vertical-align: middle;
+      p {
+        font-weight: 300;
+        font-size: 12px;
+        vertical-align: middle;
+      }
+    }
+    .imgdiv {
+      float: left;
+      width: 70px;
+      img.component-image {
+        width: 60px;
+        height: 60px;
+      }
+    }
+  }
+}
+
+
