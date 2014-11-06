@@ -121,18 +121,27 @@ app.service('AWSComponents', function () {
     this.componentMetadata = {
       'DynamoDb': {
         type: 'AWS::DynamoDB::Table',
+        IncomingConnection: {
+          //if dynamoDB got connected
+          'DynamoDb': {
+            //set a field named 'DependsOn'
+          name: 'DependsOn',
+            //to the 'Name' property of the connected DynamoDB
+          value: 'Name',
+            //its not in the properties
+          isProperty: false}},
         properties: {
           required: {
             TableName: 'String',
-            AttributeDefinitions: 'default',
-            KeySchema: 'default',
-            ProvisionedThroughput: 'default'
+            AttributeDefinitions: 'AttributeDefinitions',
+            KeySchema: 'KeySchema',
+            ProvisionedThroughput: 'ProvisionedThroughput'
 
           },
           optional: {
-            GlobalSecondaryIndexes: 'default',
-            LocalSecondaryIndexes: 'default',
-            DependsOn: 'default'
+            GlobalSecondaryIndexes: 'GlobalSecondaryIndexes',
+            LocalSecondaryIndexes: 'LocalSecondaryIndexes',
+            DependsOn: 'DependsOn'
           }
         },
         outputs: [
