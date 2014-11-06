@@ -1,19 +1,19 @@
 <div ui-layout class="layout-mock" ng-init="init()">
-    <ui-layout options="{ flow : 'column' }">
+  <ui-layout options="{ flow : 'column' }">
 
-        <!--Json editor on the left-->
-        <div class="left-column" size="300px">
-            <div ui-ace="{
+    <!--Json editor on the left-->
+    <div class="left-column" size="300px">
+      <div ui-ace="{
         theme:'ambiance',
         mode: 'json'}"
-              ng-model="templateString"></div>
-        </div>
+           ng-model="templateString"></div>
+    </div>
 
-        <!--Canvas in the middle -->
-        <div ng-drop="true"
-             ng-drop-success="onDropComplete($data,$event)"
-             id="container"
-             class="center-column">
+    <!--Canvas in the middle -->
+    <div ng-drop="true"
+         ng-drop-success="onDropComplete($data,$event)"
+         id="container"
+         class="center-column">
 
       <!-- The actual components on the canvas -->
       <div plumb-item
@@ -23,71 +23,87 @@
            data-identifier="{{component.id}}">
         <img width="100" ng-src="{{component.image}}"/>
 
-                <div class="title">{{component.title}}</div>
-                <div plumb-connect class="ep"></div>
-            </div>
+        <p class="title">{{component.title}}</p>
+        <div plumb-connect class="ep"></div>
+      </div>
 
-        </div>
+    </div>
 
-        <!--Right side panel-->
-        <div
-                ui-layout="{flow: 'row'}"
-                size="300px"
-                class="right-column">
+    <!--Right side panel-->
+    <div
+      ui-layout="{flow: 'row'}"
+      size="300px"
+      class="right-column">
 
       <div class="right-column-top">
         <br>
         <pre>{{ template | json }}</pre>
       </div>
 
-            <div class="right-column-bottom">
-                <form id="searchbox">
-                    <input ng-model="searchText" type="text" placeholder="Search..." required class="search">
-                    <!--<button type="submit" class="button">-->
-                        <!--<i class="glyphicon glyphicon-search" visibility="hidden-xs"></i>-->
-                    <!--</button>-->
-                </form>
-                <tabset justified="true">
+      <div class="right-column-bottom">
+        <form id="searchbox">
+          <input ng-model="searchText" type="text" placeholder="Search..." required class="search">
+          <!--<button type="submit" class="button">-->
+          <!--<i class="glyphicon glyphicon-search" visibility="hidden-xs"></i>-->
+          <!--</button>-->
+        </form>
+        <tabset justified="true">
 
-                    <tab heading="Components" class="components-tab">
-                        <div ng-repeat="comp in components | filter:searchText">
-                            <div
-                                    class="empty-container"
-                                    ng-drag="true"
-                                    ng-drag-success="onDragComplete($data,$event)"
-                                    ng-drag-data="comp"
-                                    ng-center-anchor="false">
-                            </div>
-                            <div class="component-item">
-                                <p><img class="component-image" width="100" ng-src="{{comp.image}}"/>{{comp.name}} :
-                                    {{comp.description}}</p>
-                            </div>
-                        </div>
-                    </tab>
-
-                    <tab heading="Tasks" class="tasks-tab">
-                        <div ng-repeat="task in tasks | filter:searchText">
-                            <div
-                                    class="empty-container"
-                                    ng-drag="true"
-                                    ng-drag-data="task"
-                                    ng-center-anchor="false">
-                            </div>
-                            <p>
-                                {{task.name}}
-                            </p>
-                        </div>
-                    </tab>
-
-                </tabset>
+          <tab heading="Components" class="components-tab">
+            <div ng-repeat="comp in components | filter:searchText">
+              <div
+                class="empty-container"
+                ng-drag="true"
+                ng-drag-success="onDragComplete($data,$event)"
+                ng-drag-data="comp"
+                ng-center-anchor="false">
+              </div>
+              <div class="component-item">
+                <div class="imgdiv">
+                  <img class="component-image" ng-src="{{comp.image}}"/>
+                </div>
+                <div class="pdiv">
+                  <p>
+                    {{comp.name}} : {{comp.description}}</p>
+                </div>
+              </div>
             </div>
-        </div>
-    </ui-layout>
+          </tab>
+
+          <tab heading="Tasks" class="tasks-tab">
+            <div ng-repeat="task in tasks | filter:searchText">
+              <div
+                class="empty-container"
+                ng-drag="true"
+                ng-drag-data="task"
+                ng-center-anchor="false">
+              </div>
+
+              <div class="task-item">
+                <p>
+                  {{task.name}}
+                </p>
+              </div>
+            </div>
+          </tab>
+
+        </tabset>
+      </div>
+    </div>
+  </ui-layout>
 </div>
 
 
 <!--This is the visual of the component card while its being dragged-->
 <div
-        ng-drag-clone="" class="dragging">
-  <p><img class="component-image" width="100" ng-src="{{clonedData.image}}"/>{{clonedData.name}} : {{clonedData.description}}</p>
+  ng-drag-clone="" class="dragging">
+  <div class="component-item">
+    <div class="imgdiv">
+      <img class="component-image" ng-src="{{clonedData.image}}"/>
+    </div>
+    <div class="pdiv">
+      <p>
+        {{clonedData.name}} : {{clonedData.description}}</p>
+    </div>
+  </div>
 </div>
