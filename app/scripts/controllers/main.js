@@ -69,18 +69,10 @@ angular.module('nestorApp')
         }
       }
 
-      // add a module to the schema
-      var addComponent = function (blueprint, posX, posY) {
-        console.log('Add module ' + blueprint.name + ' to schema, at position ' + posX + ',' + posY);
-        var c = new Component(
-          blueprint.name,
-          blueprint.image,
-          blueprint.description,
-          posX,
-          posY);
-
+      function addComponentToTemplate(blueprint, c) {
 
         $scope.addedComponents.push(c);
+
         var componentName = generateComponentName(blueprint.name);
 
         var aMetadata = $scope.componentMetadata[blueprint.name];
@@ -91,6 +83,7 @@ angular.module('nestorApp')
           aMetadata.properties.required;
 
 
+        //add the possible outputs
         _.each(aMetadata.outputs, function(outputMetdata) {
           if (outputMetdata.type === 'Ref') {
             var outputObj = {
@@ -102,6 +95,20 @@ angular.module('nestorApp')
         });
 
         $scope.templateString = JSON.stringify($scope.template, null, 4);
+      }
+
+      // add a module to the schema
+      var addComponent = function (blueprint, posX, posY) {
+
+        var c = new Component(
+          blueprint.name,
+          blueprint.image,
+          blueprint.description,
+          posX,
+          posY);
+
+        addComponentToTemplate(blueprint, c);
+
       };
 
       $scope.onDragComplete = function ($data, $event) {
