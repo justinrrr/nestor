@@ -90,6 +90,17 @@ angular.module('nestorApp')
         $scope.template.Resources[componentName].Properties =
           aMetadata.properties.required;
 
+
+        _.each(aMetadata.outputs, function(outputMetdata) {
+          if (outputMetdata.type === 'Ref') {
+            var outputObj = {
+              Description : outputMetdata.description,
+              Value : {Ref :  componentName }
+            };
+            $scope.template.Outputs[componentName + outputMetdata.name] = outputObj;
+          }
+        });
+
         $scope.templateString = JSON.stringify($scope.template, null, 4);
       };
 

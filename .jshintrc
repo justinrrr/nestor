@@ -21,6 +21,7 @@
   "globals": {
     "angular": false,
     "jsPlumb" : false,
-    "$" : false
+    "$" : false,
+    "_" : false
   }
 }

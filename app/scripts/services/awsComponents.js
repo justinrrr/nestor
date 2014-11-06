@@ -133,7 +133,13 @@ app.service('AWSComponents', function () {
             LocalSecondaryIndexes: 'default',
             TableName: 'default'
           }
-        }
+        },
+        outputs: [
+          {
+            type: 'Ref',
+            name: 'TableName',
+            description: 'Name of the created DynamoDb Table'
+          }]
       }
     };
 
