@@ -121,18 +121,26 @@ app.service('AWSComponents', function () {
     this.componentMetadata = {
       'DynamoDb': {
         type: 'AWS::DynamoDB::Table',
+        IncomingConnection: {
+          //if dynamoDB got connected
+          'DynamoDb': {
+            //set a field named 'DependsOn'
+          name: 'DependsOn',
+            //to the 'Name' property of the connected DynamoDB
+          value: 'Name',
+            //its not in the properties
+          isProperty: false}},
         properties: {
           required: {
             TableName: 'String',
-            AttributeDefinitions: 'default',
-            KeySchema: 'default',
-            ProvisionedThroughput: 'default'
-
+            AttributeDefinitions: 'AttributeDefinitions',
+            KeySchema: 'KeySchema',
+            ProvisionedThroughput: 'ProvisionedThroughput'
           },
           optional: {
-            GlobalSecondaryIndexes: 'default',
-            LocalSecondaryIndexes: 'default',
-            DependsOn: 'default'
+            GlobalSecondaryIndexes: 'GlobalSecondaryIndexes',
+            LocalSecondaryIndexes: 'LocalSecondaryIndexes',
+            DependsOn: 'DependsOn'
           }
         },
         outputs: [
@@ -141,7 +149,82 @@ app.service('AWSComponents', function () {
             name: 'TableName',
             description: 'Name of the created DynamoDb Table'
           }]
+      },
+
+      'EC2' : {
+        type: 'AWS::EC2::Instance',
+        properties: {
+          required: {
+            ImageId : 'String'
+          },
+          optional: {
+            AvailabilityZone : 'String',
+//            BlockDeviceMappings : 'BlockDeviceMappings' //[ EC2 Block Device Mapping, ... ],
+            DisableApiTermination : 'Boolean',
+            EbsOptimized : 'Boolean',
+            IamInstanceProfile : 'String',
+            InstanceInitiatedShutdownBehavior : 'default',
+            InstanceType : 'String',
+            KernelId : 'String',
+            KeyName : 'String',
+            Monitoring : 'Boolean',
+//            NetworkInterfaces : 'NetworkInterfaces' // [ EC2 Network Interface, ... ],
+            PlacementGroupName : 'String',
+            PrivateIpAddress : 'String',
+            RamdiskId : 'String',
+//          SecurityGroupIds : [ String, ... ],
+//          SecurityGroups : [ String, ... ],
+            SourceDestCheck : 'Boolean',
+            SubnetId : 'String',
+//          Tags : [ Resource Tag, ... ],
+            Tenancy : 'String',
+//          Volumes : [ EC2 MountPoint, ... ],
+            UserData : 'String'
+          }
+        },
+        outputs: [
+          {
+            type: 'Ref',
+            name: 'ImageID',
+            description: 'Name of the EC2 instanced'
+          }]
+      },
+
+      'EBS' : {
+        type: 'AWS::EC2::Volume',
+        properties: {
+          required: {
+            AvailabilityZone : 'String'
+          },
+          optional: {
+            // TODO: some of these are conditionally required. we have to figure out how to handle them
+            Encrypted : 'Boolean',
+            Iops : 'Number',
+            Size : 'String',
+            SnapshotId : 'String',
+//          Tags : [ Resource Tag, ... ],
+            VolumeType : 'String'
+          }
+        },
+        outputs: [ ]
       }
+
+      /* template for a new component meta data
+      '' : {
+        "type": '',
+        properties: {
+          required: {
+
+          },
+          optional: {
+
+          }
+        },
+        outputs: [ {}]
+      }
+      */
+
+
     };
 
     this.PropertyTypes = {
@@ -223,6 +306,7 @@ app.service('AWSComponents', function () {
             }
           }
         },
+
         GlobalSecondaryIndexes: {
           Display: {type: 'drag', image: 'images/aws/localIndex.png'},
           Description: 'Global secondary indexes to be created on the table. You can create up to 5 global secondary indexes',
@@ -270,7 +354,10 @@ app.service('AWSComponents', function () {
               }
             }
           }
-        }
+        },
+
+        BlockDeviceMappings: {}
+
       }
     };
   }
