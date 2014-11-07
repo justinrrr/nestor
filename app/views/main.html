@@ -17,7 +17,6 @@
          class="center-column">
 
 
-
       <!-- The actual components on the canvas -->
       <div plumb-item
            ng-click="clickCallback(component)"
@@ -70,21 +69,23 @@
               <br/>
 
               <table class="table table-bordered table-hover table-condensed">
-                <tr style="font-weight: bold">
-                  <td ng-repeat="tableProp in types.complex[prop.type].types.required">
-                    <span tooltip="{{tableProp.description}}">
-                      {{tableProp.name}}
-                    </span>
-                  </td>
-                  <td>Edit</td>
+                <thead>
+                <tr>
+                  <th ng-repeat="tableHeading in types.complex[prop.type].types.required"
+                      tooltip="{{tableHeading.description}}">{{tableHeading.name}}
+                  </th>
+                  <th>Edit</th>
                 </tr>
+                </thead>
 
+                <tbody>
                 <tr ng-repeat="tableProp in template.Resources[selectedComponent.name].Properties[prop.name]">
-                  <td ng-repeat="propertyInfo in types.complex[prop.type].types.required">
+                  <td ng-repeat="tableHeading in types.complex[prop.type].types.required"
+                      data-title={{tableHeading.name}}>
                     <span
-                      editable-text="template.Resources[selectedComponent.name].Properties[prop.name][propertyInfo.name]"
-                      e-name="propertyInfo.name" e-form="rowform" e-required>
-                      {{tableProp[propertyInfo.name]}}
+                      editable-text="template.Resources[selectedComponent.name].Properties[prop.name][tableHeading.name]"
+                      e-name="tableHeading.name" e-form="rowform" e-required>
+                      {{tableProp[tableHeading.name]}}
                     </span>
                   </td>
                   <td style="white-space: nowrap">
@@ -113,6 +114,7 @@
                     </div>
                   </td>
                 </tr>
+                </tbody>
               </table>
               <button class="btn btn-default"
                       ng-click="AddToTable(template.Resources[selectedComponent.name].Properties, prop.name, types.complex[prop.type].types.required)">
