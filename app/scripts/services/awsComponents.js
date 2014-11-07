@@ -131,17 +131,16 @@ app.service('AWSComponents', function () {
             //its not in the properties
           isProperty: false}},
         properties: {
-          required: {
-            TableName: 'String',
-            AttributeDefinitions: 'AttributeDefinitions',
-            KeySchema: 'KeySchema',
-            ProvisionedThroughput: 'ProvisionedThroughput'
-          },
-          optional: {
-            GlobalSecondaryIndexes: 'GlobalSecondaryIndexes',
-            LocalSecondaryIndexes: 'LocalSecondaryIndexes',
-            DependsOn: 'DependsOn'
-          }
+          required: [
+            {name: 'TableName', description: 'name of the table', type: 'String'},
+            {name: 'AttributeDefinitions', type: 'AttributeDefinitions'},
+            {name: 'KeySchema', type: 'KeySchema'},
+            {name: 'ProvisionedThroughput' , type: 'ProvisionedThroughput'}
+          ],
+          optional: [
+            {name: 'GlobalSecondaryIndexes', type : 'GlobalSecondaryIndexes'},
+            {name: 'LocalSecondaryIndexes', type: 'LocalSecondaryIndexes'}
+          ]
         },
         outputs: [
           {
@@ -208,7 +207,7 @@ app.service('AWSComponents', function () {
 
     };
 
-    this.PropertyTypes = {
+    this.propertyTypes = {
       primitives: {
         String: 'String', Integer: 'Integer', Boolean: 'Boolean'
       },

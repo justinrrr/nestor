@@ -17,13 +17,16 @@
 
       <!-- The actual components on the canvas -->
       <div plumb-item
+           ng-click="clickCallback(component)"
            class="item"
+           ng-class="{selectedComponent : component.id === selectedComponentId}"
            ng-repeat="component in addedComponents"
            ng-style="{ 'left':component.x, 'top':component.y }"
            data-identifier="{{component.id}}">
         <img width="100" ng-src="{{component.image}}"/>
 
-        <p class="title">{{component.title}}</p>
+        <p class="title">{{component.name}}</p>
+
         <div plumb-connect class="ep"></div>
       </div>
 
@@ -36,8 +39,52 @@
       class="right-column">
 
       <div class="right-column-top">
-        <br>
-        <pre>{{ template | json }}</pre>
+        <div ng-show="selectedComponentId !== ''">
+          <h4>{{componentProperties[selectedComponentId].name}} </h4>
+          <h5>Type: {{componentProperties[selectedComponentId].type}}</h5>
+          <hr/>
+          <h5>Required Parameters</h5>
+
+          <div ng-repeat="prop in componentProperties[selectedComponentId].required">
+            <div ng-if="prop.type === 'String'">
+              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name=""><br>
+            </div>
+            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
+              <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
+              <br/>
+              <table class="table table-bordered table-hover table-condensed">
+                <tr style="font-weight: bold">
+                  <td ng-repeat="tableProp in types.complex[prop.type].types.required" >
+
+                  </td>
+                  <td style="width:20%">Status</td>
+                  <td style="width:20%">Group</td>
+                  <td style="width:25%">Edit</td>
+                </tr>
+              </table>
+            </div>
+            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
+              <p>drag</p>
+            </div>
+            <!--<p>{{prop.name}} : {{prop.type}}</p>-->
+          </div>
+          <hr/>
+          <h5>Optional Parameters</h5>
+          <div ng-repeat="prop in componentProperties[selectedComponentId].optional">
+            <div ng-if="prop.type === 'String'">
+              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name=""><br>
+            </div>
+            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
+              <p>table</p>
+            </div>
+
+            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
+              <img width="100" ng-src="{{types.complex[prop.type].Display.image}}"/>
+              <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
+            </div>
+          </div>
+
+        </div>
       </div>
 
       <div class="right-column-bottom">
@@ -92,6 +139,56 @@
     </div>
   </ui-layout>
 </div>
+
+<!-- Sidebar -->
+<!--<div id="sidebar-wrapper">-->
+<!--<div>-->
+<!--<pre>{{ template | json }}</pre>-->
+<!--</div>-->
+<!--<form id="searchbox">-->
+<!--<input ng-model="searchText" type="text" placeholder="Search..." required class="search">-->
+<!--</form>-->
+<!--<tabset justified="true">-->
+<!--<tab heading="Components" class="components-tab">-->
+<!--<ul>-->
+<!--<li class="sidebar-nav" ng-repeat="comp in components | filter:searchText">-->
+<!--<div class="empty-container"-->
+<!--ng-drag="true"-->
+<!--ng-drag-success="onDragComplete($data,$event)"-->
+<!--ng-drag-data="comp"-->
+<!--ng-center-anchor="false">-->
+<!--</div>-->
+<!--<div class="component-item">-->
+<!--<img class="component-image" width="100px" ng-src="{{comp.image}}"/> <a href="#">{{comp.name}} : {{comp.description}}</a>-->
+<!--</div>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</tab>-->
+<!--<tab heading="Tasks" class="tasks-tab">-->
+<!--<ul class="sidebar-nav" ng-repeat="task in tasks | filter:searchText">-->
+<!--<li class="empty-container"-->
+<!--ng-drag="true"-->
+<!--ng-drag-data="task"-->
+<!--ng-center-anchor="false">-->
+<!--</li>-->
+<!--<li class="task-item">-->
+<!--<a href="">{{task.name}}</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</tab>-->
+<!--</tabset>-->
+<!--</div>-->
+<!-- /#sidebar-wrapper -->
+
+<!--<li class="sidebar-brand">-->
+<!--<a href="">-->
+<!--Heisenberg-->
+<!--</a>-->
+<!--</li>-->
+<!---->
+<!--<li>-->
+<!--<a href="#">Dashboard</a>-->
+<!--</li>-->
 
 
 <!--This is the visual of the component card while its being dragged-->

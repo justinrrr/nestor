@@ -15,7 +15,7 @@ angular
 angular
   .module('nestorApp.directives', []);
 
-angular
+var app = angular
   .module('nestorApp', [
     'ngAnimate',
     'ngCookies',
@@ -28,21 +28,26 @@ angular
     'ui.bootstrap',
     'ui.layout',
     'ui.ace',
+    'xeditable',
     'nestorApp.services',
     'nestorApp.directives'
-  ])
+  ]);
 
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+app.config(function ($routeProvider) {
+  $routeProvider
+    .when('/', {
+      templateUrl: 'views/main.html',
+      controller: 'MainCtrl'
+    })
+    .when('/about', {
+      templateUrl: 'views/about.html',
+      controller: 'AboutCtrl'
+    })
+    .otherwise({
+      redirectTo: '/'
+    });
+});
+
+app.run(function (editableOptions) {
+  editableOptions.theme = 'bs3'; // bootstrap3 theme. Can be also 'bs2', 'default'
+});
