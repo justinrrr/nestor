@@ -7,9 +7,9 @@ var app = angular.module('nestorApp.directives');
 
 app.directive('plumbItem', function () {
   return {
-    replace: true,
+    //replace: true,
     //controller: 'PlumbCtrl',
-    link: function (scope, element ) {
+    link: function ($scope, element ) {
       console.log('Add plumbing for the item element');
 
       jsPlumb.makeTarget(element, {
@@ -18,6 +18,7 @@ app.directive('plumbItem', function () {
       jsPlumb.draggable(element, {
         containment: 'parent'
       });
+
     }
   };
 });

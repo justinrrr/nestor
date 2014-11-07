@@ -53,6 +53,9 @@
   -moz-transition: -moz-box-shadow 0.25s ease-in;
   transition: box-shadow 0.25s ease-in;
 }
+.layout-mock > .stretch.ui-layout-column .center-column .selectedComponent {
+  background-color: red;
+}
 .layout-mock > .stretch.ui-layout-column .center-column svg circle {
   fill: orange;
   stroke: orange;
