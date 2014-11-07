@@ -13,6 +13,7 @@
 @orange: rgb(215, 179, 113);
 @fieldborder: rgba(122, 122, 147, 0.36);
 @darkfield:  rgba(122, 122, 147, 0.64);
+@listhover: rgba(233, 230, 234, 0.19);
 
 /* Center column style */
 #container {
@@ -72,8 +73,8 @@
         bottom: 45%;
         right: -6px;
         border: 2px solid @orange;
-        width: 8px;
-        height: 8px;
+        width: 10px;
+        height: 10px;
         border-radius: 50%;
         background-color: @orange;
         cursor: pointer;
@@ -199,28 +200,31 @@
         background-color: @ambiance;
         border-bottom-color: rgba(112, 100, 130, 0.78);
         .tab-pane {
+          padding: 0px;
           .empty-container {
-            width: 285px;
+            width: 300px;
             height: 80px;
             position: absolute;
-            padding: 0 0px 0 0px;
-            display: block;
             color: @clouds;
             cursor: pointer;
             font-weight: 700;
+            border-bottom: 1px solid @listhover;
+            &:hover {
+              cursor: pointer;
+              background-color: @listhover;
+            }
           }
-          padding: 10px 15px 10px 15px;
           .component-item {
             display: table-cell;
             vertical-align: middle;
             color: @clouds;
             font-weight: 700;
-            border-bottom: 1px dashed @dashborder;
             width: 300px;
             height: 80px;
+            padding: 15px 15px 0px 15px;
             &:hover {
               cursor: pointer;
-              background-color: white;
+              background-color: @lambiance;
             }
             .pdiv {
               float: left;
@@ -561,7 +565,7 @@
 
 .propertyinput {
   border: 2px solid @fieldborder;
-  padding: 4px;
+  padding: 2px;
   background: rgba(255,255,255,0.5);
   margin: 2px 5px 10px 10px;
   outline: none;
