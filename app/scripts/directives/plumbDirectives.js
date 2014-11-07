@@ -13,7 +13,13 @@ app.directive('plumbItem', function () {
       console.log('Add plumbing for the item element');
 
       jsPlumb.makeTarget(element, {
-        anchor: 'Continuous'
+        anchor: 'Continuous',
+        paintStyle: {
+          strokeStyle: '#225588',
+          fillStyle: 'transparent',
+          radius: 4,
+          lineWidth: 1
+        }
       });
       jsPlumb.draggable(element, {
         containment: 'parent'
@@ -36,8 +42,8 @@ app.directive('plumbConnect', function () {
         paintStyle: {
           strokeStyle: '#225588',
           fillStyle: 'transparent',
-          radius: 7,
-          lineWidth: 2
+          radius: 4,
+          lineWidth: 1
         }
       });
     }
