@@ -95,8 +95,7 @@ angular.module('nestorApp')
         $scope.template.Resources[componentName] = {
           Type: aMetadata.type
         };
-        $scope.template.Resources[componentName].Properties =
-          aMetadata.properties.required;
+        $scope.template.Resources[componentName].Properties = {};
 
 
         //add the possible outputs
