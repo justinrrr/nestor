@@ -162,7 +162,43 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'DynamoDb': {
+      'SecurityGroup': {
+        type: 'AWS::EC2::SecurityGroup',
+
+        IncomingConnection: {
+          //read this from components object aove
+          'ConnectionSourceName': {
+            //name of the property on the this object (target object) to set
+            name: 'SecurityGroupName',
+            //the name of the property on the source object whose value we will set to the value of the target object
+            value: 'Name',
+            //whether this is part of the Properties of the Resource
+            isProperty: true
+          }
+        },
+
+        properties: {
+          required: [
+            {name: 'GroupDescription', type: 'String', description: 'tooltip??'}
+          ],
+          optional: [
+            {name: 'SecurityGroupEgress', type: 'SecurityGroupRule', description: 'tooltip??'},
+            {name: 'SecurityGroupIngress', type: 'SecurityGroupRule', description: 'tooltip??'},
+            {name: 'Tags', type: 'Tags', description: 'tooltip??'},
+            {name: 'VcpId', type: 'String', description: 'tooltip??'}
+          ]
+        },
+        Outputs: [
+          {
+            type: 'Ref',
+            name : 'security group identifier',
+            description : 'the security group name (for EC2-classic) or the security group ID (for EC2-VPC)'
+          }
+        ]
+      },
+
+
+    'DynamoDb': {
         type: 'AWS::DynamoDB::Table',
         IncomingConnection: {
           //if dynamoDB got connected
@@ -199,7 +235,7 @@ app.service('AWSComponents', function () {
         type: 'AWS::EC2::Instance',
 
         IncomingConnection: {
-          //read this from components object aove
+          //read this from components object above
           'ConnectionSourceName' : {
             //name of the property on the this object (target object) to set
             name: 'SecurityGroupName',
@@ -218,8 +254,8 @@ app.service('AWSComponents', function () {
 
             {name: 'BlockDeviceMappings', type: 'BlockDeviceMappings', description: 'tooltip??'},
             {name: 'NetworkInterfaces', type: 'NetworkInterfaces', description: 'tooltip??'},
-            {name: 'SecurityGroupIds', type: 'SecurityGroupIds', description: 'tooltip??'},
-            {name: 'SecurityGroups', type: 'SecurityGroups', description: 'tooltip??'},
+            {name: 'SecurityGroupIds', type: 'StringList', description: 'tooltip??'},
+            {name: 'SecurityGroups', type: 'StringList', description: 'tooltip??'},
             {name: 'Tags', type: 'Tags', description: 'tooltip??'},
             {name: 'AvailabilityZone', type: 'AvailabilityZone', description: 'tooltip??'},
             {name: 'Volumes', type: 'Volumes', description: 'tooltip??'},
