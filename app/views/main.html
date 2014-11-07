@@ -55,8 +55,9 @@
               <table class="table table-bordered table-hover table-condensed">
                 <tr style="font-weight: bold">
                   <td ng-repeat="tableProp in types.complex[prop.type].types.required" >
-
+                    <span tooltip="{{tableProp.description}}"> {{tableProp.name}} </span>
                   </td>
+                  <td>Edit</td>
                 </tr>
               </table>
             </div>
