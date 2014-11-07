@@ -6,7 +6,8 @@
       <div ui-ace="{
         theme:'ambiance',
         mode: 'json'}"
-           ng-model="templateString"></div>
+           ng-model="templateString">
+      </div>
     </div>
 
     <!--Canvas in the middle -->
@@ -46,9 +47,6 @@
             <h4 id="titleh4">{{selectedComponent.name}} </h4>
             <h5 id="titleh5">Type: {{selectedComponent.type}}</h5>
           </div>
-
-          <pre>{{template.Resources[selectedComponent.name] | json}}</pre>
-
           <h5 class="contenth5">Required Parameters</h5>
 
           <div ng-repeat="prop in selectedComponent.required" class="content">
@@ -65,16 +63,61 @@
             </div>
 
             <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
-              <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
+
+              <span tooltip="{{types.complex[prop.type].Description}}">
+                {{prop.name}}
+              </span>
               <br/>
+
               <table class="table table-bordered table-hover table-condensed">
                 <tr style="font-weight: bold">
-                  <td ng-repeat="tableProp in types.complex[prop.type].types.required" >
-                    <span tooltip="{{tableProp.description}}"> {{tableProp.name}} </span>
+                  <td ng-repeat="tableProp in types.complex[prop.type].types.required">
+                    <span tooltip="{{tableProp.description}}">
+                      {{tableProp.name}}
+                    </span>
                   </td>
                   <td>Edit</td>
                 </tr>
+
+                <tr ng-repeat="tableProp in template.Resources[selectedComponent.name].Properties[prop.name]">
+                  <td ng-repeat="propertyInfo in types.complex[prop.type].types.required">
+                    <span
+                      editable-text="template.Resources[selectedComponent.name].Properties[prop.name][propertyInfo.name]"
+                      e-name="propertyInfo.name" e-form="rowform" e-required>
+                      {{tableProp[propertyInfo.name]}}
+                    </span>
+                  </td>
+                  <td style="white-space: nowrap">
+                    <!-- form -->
+                    <form editable-form
+                          name="rowform"
+                          onbeforesave="saveUser($data, user.id)"
+                          ng-show="rowform.$visible"
+                          class="form-buttons form-inline"
+                          shown="inserted == user">
+                      <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                        save
+                      </button>
+                      <button
+                        type="button"
+                        ng-disabled="rowform.$waiting"
+                        ng-click="rowform.$cancel()"
+                        class="btn btn-default">
+                        cancel
+                      </button>
+                    </form>
+
+                    <div class="buttons" ng-show="!rowform.$visible">
+                      <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+                      <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+                    </div>
+                  </td>
+                </tr>
               </table>
+              <button class="btn btn-default"
+                      ng-click="AddToTable(template.Resources[selectedComponent.name].Properties, prop.name, types.complex[prop.type].types.required)">
+                Add
+              </button>
             </div>
             <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
               <p>drag</p>
@@ -83,9 +126,11 @@
           </div>
 
           <h5 class="contenth5">Optional Parameters</h5>
+
           <div ng-repeat="prop in componentProperties[selectedComponentId].optional" class="content">
             <div ng-if="prop.type === 'String'">
-              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name="" class="propertyinput"><br>
+              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name=""
+                                                                               class="propertyinput"><br>
             </div>
             <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
               <p>table</p>
