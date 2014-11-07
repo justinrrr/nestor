@@ -141,6 +141,12 @@ angular.module('nestorApp')
       };
 
       $scope.$watch('template', function(newValue, oldValue){
-        $scope.templateString = JSON.stringify($scope.template, null, 4);
+        if (newValue !== oldValue){
+          $scope.templateString = JSON.stringify($scope.template, null, 4);
+        }
       }, true);
+
+      $scope.templateStringChanged = function() {
+        $scope.template = JSON.parse($scope.templateString);
+      }
     }]);
