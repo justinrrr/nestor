@@ -14,7 +14,7 @@ angular.module('nestorApp')
       //The draggable component on the canvas
       function Component(id, name, image, description, x, y) {
         this.id = id;
-        this.title = name;
+        this.name = name;
         this.description = description;
         this.image = image;
         this.x = x;
@@ -72,11 +72,15 @@ angular.module('nestorApp')
         }
       }
 
-      function assignComponentProperties(blueprint, componentId) {
+      function assignComponentProperties(blueprint,
+                                         component) {
 
-        $scope.componentProperties[componentId] = {};
-        $scope.componentProperties[componentId].required = AWSComponents.componentMetadata[blueprint.name].properties.required;
-        $scope.componentProperties[componentId].optional = AWSComponents.componentMetadata[blueprint.name].properties.optional;
+        $scope.componentProperties[component.id] = {};
+
+        $scope.componentProperties[component.id].name = component.name;
+        $scope.componentProperties[component.id].type = blueprint.name;
+        $scope.componentProperties[component.id].required = AWSComponents.componentMetadata[blueprint.name].properties.required;
+        $scope.componentProperties[component.id].optional = AWSComponents.componentMetadata[blueprint.name].properties.optional;
 
         //var treatProperty = function(value, key) {
         //  if (AWSComponents.PropertyTypes.primitives[value]) {
@@ -98,7 +102,7 @@ angular.module('nestorApp')
 
         $scope.addedComponents.push(c);
 
-        var componentName = generateComponentName(blueprint.name);
+        var componentName = c.name;
 
         var aMetadata = $scope.componentMetadata[blueprint.name];
         $scope.template.Resources[componentName] = {
@@ -109,19 +113,24 @@ angular.module('nestorApp')
 
 
         //add the possible outputs
-        _.each(aMetadata.outputs, function(outputMetdata) {
+        _.each(aMetadata.outputs, function (outputMetdata) {
           if (outputMetdata.type === 'Ref') {
             var outputObj = {
-              Description : outputMetdata.description,
-              Value : {Ref :  componentName }
+              Description: outputMetdata.description,
+              Value: {Ref: componentName}
             };
             $scope.template.Outputs[componentName + outputMetdata.name] = outputObj;
           }
         });
 
-        assignComponentProperties(blueprint);
+        assignComponentProperties(blueprint, c);
 
         $scope.templateString = JSON.stringify($scope.template, null, 4);
+      }
+
+      function itemSelected(component) {
+        $scope.selectedComponentId = component.id;
+
       }
 
       // add a module to the schema
@@ -130,7 +139,7 @@ angular.module('nestorApp')
         var uniqueId = _.uniqueId(blueprint.name + '-');
         var c = new Component(
           uniqueId,
-          blueprint.name,
+          generateComponentName(blueprint.name),
           blueprint.image,
           blueprint.description,
           posX,
@@ -138,14 +147,16 @@ angular.module('nestorApp')
 
         addComponentToTemplate(blueprint, c);
 
+        itemSelected(c);
       };
 
       $scope.onDragComplete = function ($data, $event) {
         addComponent($data, $event.x, $event.y);
       };
 
-      $scope.clickCallback = function(component) {
-        $scope.selectedComponentId = component.id;
+      $scope.clickCallback = function (component) {
+        itemSelected(component);
       };
+
 
     }]);
