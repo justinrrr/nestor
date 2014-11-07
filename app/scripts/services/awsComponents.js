@@ -119,6 +119,41 @@ app.service('AWSComponents', function () {
 
     //add component specific metadat here
     this.componentMetadata = {
+
+      'NameOfTheComponent' : {
+        type: 'AWS::Component::Table',
+
+        IncomingConnection: {
+          //read this from components object aove
+          'ConnectionSourceName' : {
+            //name of the property on the this object (target object) to set
+            name: 'SecurityGroupName',
+            //the name of the property on the source object whose value we will set to the value of the target object
+            value: 'Name',
+            //whether this is part of the Properties of the Resource
+            isProperty: true
+          }
+        },
+
+        properties : {
+          required : [
+            {name: 'nameOfProperty', type: 'type of the property, if it is complex you should add it to the typedefs', description: 'tooltop description if property is primitive'}
+            {name: 'nameOfProperty', type: 'typeOfTheProperty', description: 'Description for tooltip'}
+          ],
+          optional : [
+            {name: 'nameOfProperty', type: 'type of the property, if it is complex you should add it to the typedefs', description: 'tooltop description if property is primitive'}
+            {name: 'nameOfProperty', type: 'typeOfTheProperty', description: 'Description for tooltip'}
+          ]
+        },
+        Outputs : [
+          {
+            type: 'acceptable values are Ref and GetAtt',
+            'name' : 'userFriendlyNameOfOutput',
+            'description' : 'userFriendlyDescriptionOfOutput'
+          }
+        ]
+      },
+
       'DynamoDb': {
         type: 'AWS::DynamoDB::Table',
         IncomingConnection: {
