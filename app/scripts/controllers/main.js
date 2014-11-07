@@ -43,6 +43,7 @@ angular.module('nestorApp')
       //available components in the library
       $scope.components = AWSComponents.components;
       $scope.componentMetadata = AWSComponents.componentMetadata;
+      $scope.types = AWSComponents.propertyTypes;
 
       //tasks can be and together
       $scope.tasks = AWSComponents.tasks;
@@ -68,7 +69,7 @@ angular.module('nestorApp')
         } else {
           var counter = $scope.componentNameCounters.type;
           $scope.componentNameCounters.type++;
-          return type + counter;
+          return type + '-' + counter;
         }
       }
 
@@ -82,20 +83,6 @@ angular.module('nestorApp')
         $scope.componentProperties[component.id].required = AWSComponents.componentMetadata[blueprint.name].properties.required;
         $scope.componentProperties[component.id].optional = AWSComponents.componentMetadata[blueprint.name].properties.optional;
 
-        //var treatProperty = function(value, key) {
-        //  if (AWSComponents.PropertyTypes.primitives[value]) {
-        //    expandedProperties.push({name: key, type: value});
-        //  } else {
-        //    if (AWSComponents.PropertyTypes.complex[value]) {
-        //      var dataType = AWSComponents.PropertyTypes.complex[value];
-        //      if (dataType.Display.type === 'table') {
-        //
-        //      } else if (dataType.Display.type === 'drag') {
-        //
-        //      }
-        //    }
-        //  }
-        //};
       }
 
       function addComponentToTemplate(blueprint, c) {
