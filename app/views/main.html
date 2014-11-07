@@ -44,9 +44,8 @@
             <h4 id="titleh4">{{componentProperties[selectedComponentId].name}} </h4>
             <h5 id="titleh5">Type: {{componentProperties[selectedComponentId].type}}</h5>
           </div>
-
+          <h5 class="contenth5">Required Parameters</h5>
           <div ng-repeat="prop in componentProperties[selectedComponentId].required" class="content">
-            <h5>Required Parameters</h5>
             <div ng-if="prop.type === 'String'">
               <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name="" class="propertyinput"><br>
             </div>
@@ -66,10 +65,9 @@
             </div>
             <!--<p>{{prop.name}} : {{prop.type}}</p>-->
           </div>
-          <hr/>
 
+          <h5 class="contenth5">Optional Parameters</h5>
           <div ng-repeat="prop in componentProperties[selectedComponentId].optional" class="content">
-            <h5>Optional Parameters</h5>
             <div ng-if="prop.type === 'String'">
               <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name="" class="propertyinput"><br>
             </div>
