@@ -42,16 +42,30 @@
       id="menu">
 
       <div class="right-column-top">
-        <div ng-show="selectedComponentId !== ''">
+        <div ng-show="selectedComponent">
           <div class="cd-fixed-bg">
-            <h4 id="titleh4">{{componentProperties[selectedComponentId].name}} </h4>
-            <h5 id="titleh5">Type: {{componentProperties[selectedComponentId].type}}</h5>
+            <h4>ID : {{selectedComponent.id}}</h4>
+            <h4 id="titleh4">{{selectedComponent.name}} </h4>
+            <h5 id="titleh5">Type: {{selectedComponent.type}}</h5>
           </div>
+
+          <pre>{{template.Resources[selectedComponent.name] | json}}</pre>
+
           <h5 class="contenth5">Required Parameters</h5>
-          <div ng-repeat="prop in componentProperties[selectedComponentId].required" class="content">
+
+          <div ng-repeat="prop in selectedComponent.required" class="content">
+
             <div ng-if="prop.type === 'String'">
-              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name="" class="propertyinput"><br>
+              <span tooltip="{{prop.description}}">
+                {{prop.name}}
+              </span>
+              <input type="text"
+                     name=""
+                     ng-model="template.Resources[selectedComponent.name].Properties[prop.name]"
+                     class="propertyinput">
+              <br>
             </div>
+
             <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
               <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
               <br/>

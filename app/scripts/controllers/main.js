@@ -1,24 +1,21 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name nestorApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the nestorApp
- */
 angular.module('nestorApp')
   .controller('MainCtrl', ['$scope', 'AWSComponents',
     function ($scope, AWSComponents) {
 
       //The draggable component on the canvas
-      function Component(id, name, image, description, x, y) {
+      function Component(id, type, name, image, metadata,  description, x, y) {
         this.id = id;
+        this.type = type;
         this.name = name;
         this.description = description;
         this.image = image;
         this.x = x;
         this.y = y;
+        //this.metadata = metadata;
+        this.required = metadata.properties.required;
+        this.optional = metadata.properties.optional;
       }
 
       //set up jsPlumb
@@ -33,9 +30,8 @@ angular.module('nestorApp')
         });
       };
 
-      $scope.componentProperties = {};
       $scope.addedComponents = [];
-      $scope.selectedComponentId = '';
+
       //we use this to make sure that components are named
       //sequencially : Dynamo1, Dynamo2
       $scope.componentNameCounters = {};
@@ -65,24 +61,11 @@ angular.module('nestorApp')
       function generateComponentName(type) {
         if (!$scope.componentNameCounters.type) {
           $scope.componentNameCounters.type = 1;
-          return type;
-        } else {
-          var counter = $scope.componentNameCounters.type;
-          $scope.componentNameCounters.type++;
-          return type + '-' + counter;
         }
-      }
 
-      function assignComponentProperties(blueprint,
-                                         component) {
-
-        $scope.componentProperties[component.id] = {};
-
-        $scope.componentProperties[component.id].name = component.name;
-        $scope.componentProperties[component.id].type = blueprint.name;
-        $scope.componentProperties[component.id].required = AWSComponents.componentMetadata[blueprint.name].properties.required;
-        $scope.componentProperties[component.id].optional = AWSComponents.componentMetadata[blueprint.name].properties.optional;
-
+        var counter = $scope.componentNameCounters.type;
+        $scope.componentNameCounters.type++;
+        return type + '-' + counter;
       }
 
       function addComponentToTemplate(blueprint, c) {
@@ -105,18 +88,15 @@ angular.module('nestorApp')
               Description: outputMetdata.description,
               Value: {Ref: componentName}
             };
-            $scope.template.Outputs[componentName + outputMetdata.name] = outputObj;
+            $scope.template.Outputs[componentName + '-' + outputMetdata.name] = outputObj;
           }
         });
-
-        assignComponentProperties(blueprint, c);
 
         $scope.templateString = JSON.stringify($scope.template, null, 4);
       }
 
       function itemSelected(component) {
-        $scope.selectedComponentId = component.id;
-
+        $scope.selectedComponent = component;
       }
 
       // add a module to the schema
@@ -125,8 +105,10 @@ angular.module('nestorApp')
         var uniqueId = _.uniqueId(blueprint.name + '-');
         var c = new Component(
           uniqueId,
+          blueprint.name,
           generateComponentName(blueprint.name),
           blueprint.image,
+          $scope.componentMetadata[blueprint.name],
           blueprint.description,
           posX,
           posY);
