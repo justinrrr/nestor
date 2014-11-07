@@ -126,5 +126,17 @@ angular.module('nestorApp')
         itemSelected(component);
       };
 
+      $scope.AddToTable = function(listToAddTo,  propertyName, neededFields) {
 
+        var item = {};
+        _.each(neededFields, function(property) {
+          item[property.name] = property.type;
+        });
+
+        if (!listToAddTo[propertyName]) {
+          listToAddTo[propertyName] = [];
+        }
+
+        listToAddTo[propertyName].push(item);
+      };
     }]);
