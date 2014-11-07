@@ -149,7 +149,7 @@
   border-radius: 0;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a:hover {
-  color: #26232A;
+  color: rgba(38, 35, 42, 0.75);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a {
   background-color: #7a7a93;
@@ -220,7 +220,6 @@
   color: #e0dfdf;
   cursor: pointer;
   font-weight: 700;
-  border-bottom: 1px dashed #f6f5f5;
   width: 300px;
   height: 80px;
 }

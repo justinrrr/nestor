@@ -14,6 +14,7 @@
 @fieldborder: rgba(122, 122, 147, 0.36);
 @darkfield:  rgba(122, 122, 147, 0.64);
 @listhover: rgba(233, 230, 234, 0.19);
+@linkhover: rgba(38, 35, 42, 0.75);
 
 /* Center column style */
 #container {
@@ -179,7 +180,7 @@
           border-bottom: 1px solid rgb(206, 199, 208);
           border-radius: 0;
           &:hover {
-            color: #26232A;
+            color: @linkhover;
           }
         }
         .active > a {
@@ -252,7 +253,6 @@
             color: @clouds;
             cursor: pointer;
             font-weight: 700;
-            border-bottom: 1px dashed @dashborder;
             width: 300px;
             height: 80px;
             p {
