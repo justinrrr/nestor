@@ -11,6 +11,8 @@
 @evening: #2E2633;
 @helio: #99173C;
 @orange: rgb(215, 179, 113);
+@fieldborder: rgba(122, 122, 147, 0.36);
+@darkfield:  rgba(122, 122, 147, 0.64);
 
 /* Center column style */
 #container {
@@ -70,10 +72,10 @@
         bottom: 45%;
         right: -6px;
         border: 2px solid @orange;
-        width: 12px;
-        height: 12px;
+        width: 8px;
+        height: 8px;
         border-radius: 50%;
-        background-color: @clouds;
+        background-color: @orange;
         cursor: pointer;
         box-shadow: 0px 0px 2px @clouds;
         -webkit-transition: -webkit-box-shadow 0.25s ease-in;
@@ -83,12 +85,10 @@
     }
     .selectedComponent {
       background-color: @ambiance;
-      -webkit-transform: scale(1.1);
-      -ms-transform: scale(1.1);
-      transform: scale(1.1);
       -moz-box-shadow: 2px 2px 3px 1px #AAA;
       -webkit-box-shadow: 2px 2px 3px 1px #AAA;
       box-shadow: 2px 2px 3px 1px #AAA;
+      border: 1px dashed @lambiance;
       .title {
         color: @lighttext;
       }
@@ -128,15 +128,18 @@
         margin: 6px 0px 0px 0px;
         display: inline-flex;
         width: 300px;
+        border: 2px solid @ambiance;
         .search {
           padding: 8px 15px;
           background-color: @dashborder;
+          box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
           border: 0px;
           color: rgba(112, 100, 130, 0.78);;
           font-weight: 500;
           font-style: italic;
           outline: none;
           width: 100%;
+          margin-left: 6px;
         }
         .button {
           position: relative;
@@ -159,14 +162,20 @@
 
       //      Nav Pills for Components
       ul.nav-tabs.nav-justified {
+        .components-tab {
+          padding-left: 8px;
+        }
+        .tasks-tab {
+          padding-right: 4px;
+        }
         li > a {
           text-decoration: none;
           cursor: pointer;
-          background-color: @lambiance;
-          color: rgba(112, 100, 130, 1);
+          background-color: @ambiance;
+          color: @lambiance;
           font-weight: 600;
           border: none;
-          border-bottom: 2px solid @lambiance;
+          border-bottom: 1px solid rgb(206, 199, 208);
           border-radius: 0;
           &:hover {
             color: #26232A;
@@ -174,8 +183,10 @@
         }
         .active > a {
           background-color: @ambiance;
-          border: none;
-          border-bottom: 2px solid rgb(206, 199, 208);
+          border-bottom: none;
+          border-top: 4px solid rgb(206, 199, 208);
+          border-left: 1px solid rgb(206, 199, 208);
+          border-right: 1px solid rgb(206, 199, 208);
           color: @clouds;
           &:hover {
             color: @clouds;
@@ -548,3 +559,13 @@
 
 
 
+.propertyinput {
+  border: 2px solid @fieldborder;
+  padding: 4px;
+  background: rgba(255,255,255,0.5);
+  margin: 2px 5px 10px 10px;
+  outline: none;
+  &:focus {
+    border: 2px solid @darkfield;
+  }
+}

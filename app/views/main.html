@@ -47,7 +47,7 @@
 
           <div ng-repeat="prop in componentProperties[selectedComponentId].required">
             <div ng-if="prop.type === 'String'">
-              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name=""><br>
+              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name="" class="propertyinput"><br>
             </div>
             <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
               <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
@@ -69,7 +69,7 @@
           <h5>Optional Parameters</h5>
           <div ng-repeat="prop in componentProperties[selectedComponentId].optional">
             <div ng-if="prop.type === 'String'">
-              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name=""><br>
+              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name="" class="propertyinput"><br>
             </div>
             <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
               <p>table</p>
