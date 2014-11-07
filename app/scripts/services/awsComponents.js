@@ -120,12 +120,12 @@ app.service('AWSComponents', function () {
     //add component specific metadat here
     this.componentMetadata = {
 
-      'NameOfTheComponent' : {
+      'NameOfTheComponent': {
         type: 'AWS::Component::Table',
 
         IncomingConnection: {
           //read this from components object aove
-          'ConnectionSourceName' : {
+          'ConnectionSourceName': {
             //name of the property on the this object (target object) to set
             name: 'SecurityGroupName',
             //the name of the property on the source object whose value we will set to the value of the target object
@@ -135,21 +135,29 @@ app.service('AWSComponents', function () {
           }
         },
 
-        properties : {
-          required : [
-            {name: 'nameOfProperty', type: 'type of the property, if it is complex you should add it to the typedefs', description: 'tooltop description if property is primitive'},
+        properties: {
+          required: [
+            {
+              name: 'nameOfProperty',
+              type: 'type of the property, if it is complex you should add it to the typedefs',
+              description: 'tooltop description if property is primitive'
+            },
             {name: 'nameOfProperty', type: 'typeOfTheProperty', description: 'Description for tooltip'}
           ],
-          optional : [
-            {name: 'nameOfProperty', type: 'type of the property, if it is complex you should add it to the typedefs', description: 'tooltop description if property is primitive'},
+          optional: [
+            {
+              name: 'nameOfProperty',
+              type: 'type of the property, if it is complex you should add it to the typedefs',
+              description: 'tooltop description if property is primitive'
+            },
             {name: 'nameOfProperty', type: 'typeOfTheProperty', description: 'Description for tooltip'}
           ]
         },
-        Outputs : [
+        Outputs: [
           {
             type: 'acceptable values are Ref and GetAtt',
-            'name' : 'userFriendlyNameOfOutput',
-            'description' : 'userFriendlyDescriptionOfOutput'
+            'name': 'userFriendlyNameOfOutput',
+            'description': 'userFriendlyDescriptionOfOutput'
           }
         ]
       },
@@ -160,20 +168,22 @@ app.service('AWSComponents', function () {
           //if dynamoDB got connected
           'DynamoDb': {
             //set a field named 'DependsOn'
-          name: 'DependsOn',
+            name: 'DependsOn',
             //to the 'Name' property of the connected DynamoDB
-          value: 'Name',
+            value: 'Name',
             //its not in the properties
-          isProperty: false}},
+            isProperty: false
+          }
+        },
         properties: {
           required: [
             {name: 'TableName', description: 'name of the table', type: 'String'},
             {name: 'AttributeDefinitions', type: 'AttributeDefinitions'},
             {name: 'KeySchema', type: 'KeySchema'},
-            {name: 'ProvisionedThroughput' , type: 'ProvisionedThroughput'}
+            {name: 'ProvisionedThroughput', type: 'ProvisionedThroughput'}
           ],
           optional: [
-            {name: 'GlobalSecondaryIndexes', type : 'GlobalSecondaryIndexes'},
+            {name: 'GlobalSecondaryIndexes', type: 'GlobalSecondaryIndexes'},
             {name: 'LocalSecondaryIndexes', type: 'LocalSecondaryIndexes'}
           ]
         },
@@ -185,35 +195,35 @@ app.service('AWSComponents', function () {
           }]
       },
 
-      'EC2' : {
+      'EC2': {
         type: 'AWS::EC2::Instance',
         properties: {
           required: {
-            ImageId : 'String'
+            ImageId: 'String'
           },
           optional: {
-            AvailabilityZone : 'String',
-            BlockDeviceMappings : 'BlockDeviceMappings', //[ EC2 Block Device Mapping, ... ],
-            DisableApiTermination : 'Boolean',
-            EbsOptimized : 'Boolean',
-            IamInstanceProfile : 'String',
-            InstanceInitiatedShutdownBehavior : 'default',
-            InstanceType : 'String',
-            KernelId : 'String',
-            KeyName : 'String',
-            Monitoring : 'Boolean',
-            NetworkInterfaces : 'NetworkInterfaces', // [ EC2 Network Interface, ... ],
-            PlacementGroupName : 'String',
-            PrivateIpAddress : 'String',
-            RamdiskId : 'String',
+            AvailabilityZone: 'String',
+            BlockDeviceMappings: 'BlockDeviceMappings', //[ EC2 Block Device Mapping, ... ],
+            DisableApiTermination: 'Boolean',
+            EbsOptimized: 'Boolean',
+            IamInstanceProfile: 'String',
+            InstanceInitiatedShutdownBehavior: 'default',
+            InstanceType: 'String',
+            KernelId: 'String',
+            KeyName: 'String',
+            Monitoring: 'Boolean',
+            NetworkInterfaces: 'NetworkInterfaces', // [ EC2 Network Interface, ... ],
+            PlacementGroupName: 'String',
+            PrivateIpAddress: 'String',
+            RamdiskId: 'String',
 //          SecurityGroupIds : [ String, ... ],
 //          SecurityGroups : [ String, ... ],
-            SourceDestCheck : 'Boolean',
-            SubnetId : 'String',
+            SourceDestCheck: 'Boolean',
+            SubnetId: 'String',
 //          Tags : [ Resource Tag, ... ],
-            Tenancy : 'String',
+            Tenancy: 'String',
 //          Volumes : [ EC2 MountPoint, ... ],
-            UserData : 'String'
+            UserData: 'String'
           }
         },
         outputs: [
@@ -225,19 +235,19 @@ app.service('AWSComponents', function () {
       }
 
       /* template for a new component meta data
-      '' : {
-        "type": '',
-        properties: {
-          required: {
+       '' : {
+       "type": '',
+       properties: {
+       required: {
 
-          },
-          optional: {
+       },
+       optional: {
 
-          }
-        },
-        outputs: [ {}]
-      }
-      */
+       }
+       },
+       outputs: [ {}]
+       }
+       */
 
 
     };
@@ -247,6 +257,40 @@ app.service('AWSComponents', function () {
         String: 'String', Integer: 'Integer', Boolean: 'Boolean'
       },
       complex: {
+        TypeName: {
+
+          //how to show this in UI
+          Display: {
+            type: 'allowable values are table/drag',
+            //the number of items that the table can possibly have
+            maxSize: -1
+          },
+          Description: 'User Frindly Description',
+          types: {
+            required: {
+              key: {
+                type: 'type of subtype. If it is complex you need another typedef for it',
+                description: 'The user friendly desc',
+                // a list of allowable values
+                allowableValues: [
+                  {
+                    'AMAZON_READABLE_VALUE': 'a user friendly name for the user to select'
+                  },
+                  {
+                    'AMAZON_READABLE_VALUE': 'a user friendly name for the user to select'
+                  }
+                ],
+                //the limit for the input
+                limit: {min: 1, max: 10},
+                // alist of default values
+                default: ['a', 'b']
+              }
+            },
+            optional: {
+              //same as above
+            }
+          }
+        },
         Tag: {
           Display: {type: 'table', maxSize: -1},
           Description: 'You can use the AWS CloudFormation Resource Tags property to apply tags to resources, which can help you identify and categorize those resources.',
@@ -394,16 +438,16 @@ app.service('AWSComponents', function () {
           Description: 'Amazon Elastic Block Store volume. You can choose to retain the volume, to delete the volume, or to create a snapshot of the volume.',
           types: {
             required: {
-              AvailabilityZone : { type: 'String', description: '' }
+              AvailabilityZone: {type: 'String', description: ''}
             },
             optional: {
               // TODO: some of these are conditionally required. we have to figure out how to handle them
-              Encrypted : { type: 'Boolean', description: ''},
-              Iops : { type: 'Number', description: ''},
-              Size : { type: 'String', description: ''},
-              SnapshotId : { type: 'String', description: ''},
-              Tags : { type: 'Tag', description: 'An arbitrary set of tags (key–value pairs) for this volume.' },
-              VolumeType : { type: 'String', description: ''}
+              Encrypted: {type: 'Boolean', description: ''},
+              Iops: {type: 'Number', description: ''},
+              Size: {type: 'String', description: ''},
+              SnapshotId: {type: 'String', description: ''},
+              Tags: {type: 'Tag', description: 'An arbitrary set of tags (key–value pairs) for this volume.'},
+              VolumeType: {type: 'String', description: ''}
             }
 
           }
