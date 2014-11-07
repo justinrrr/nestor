@@ -159,7 +159,7 @@ app.service('AWSComponents', function () {
           },
           optional: {
             AvailabilityZone : 'String',
-//            BlockDeviceMappings : 'BlockDeviceMappings' //[ EC2 Block Device Mapping, ... ],
+            BlockDeviceMappings : 'BlockDeviceMappings', //[ EC2 Block Device Mapping, ... ],
             DisableApiTermination : 'Boolean',
             EbsOptimized : 'Boolean',
             IamInstanceProfile : 'String',
@@ -168,7 +168,7 @@ app.service('AWSComponents', function () {
             KernelId : 'String',
             KeyName : 'String',
             Monitoring : 'Boolean',
-//            NetworkInterfaces : 'NetworkInterfaces' // [ EC2 Network Interface, ... ],
+            NetworkInterfaces : 'NetworkInterfaces', // [ EC2 Network Interface, ... ],
             PlacementGroupName : 'String',
             PrivateIpAddress : 'String',
             RamdiskId : 'String',
@@ -188,25 +188,6 @@ app.service('AWSComponents', function () {
             name: 'ImageID',
             description: 'Name of the EC2 instanced'
           }]
-      },
-
-      'EBS' : {
-        type: 'AWS::EC2::Volume',
-        properties: {
-          required: {
-            AvailabilityZone : 'String'
-          },
-          optional: {
-            // TODO: some of these are conditionally required. we have to figure out how to handle them
-            Encrypted : 'Boolean',
-            Iops : 'Number',
-            Size : 'String',
-            SnapshotId : 'String',
-//          Tags : [ Resource Tag, ... ],
-            VolumeType : 'String'
-          }
-        },
-        outputs: [ ]
       }
 
       /* template for a new component meta data
@@ -232,6 +213,24 @@ app.service('AWSComponents', function () {
         String: 'String', Integer: 'Integer', Boolean: 'Boolean'
       },
       complex: {
+        Tag: {
+          Display: {type: 'table', maxSize: -1},
+          Description: 'You can use the AWS CloudFormation Resource Tags property to apply tags to resources, which can help you identify and categorize those resources.',
+          types: {
+            required: {
+              Key: {
+                type: 'String',
+                description: 'the key for the tag',
+                default: ['S']
+              },
+              Value: {
+                type: 'String',
+                description: 'the value for a specific tag',
+              }
+            }
+          }
+        },
+
         AttributeDefinitions: {
           Display: {type: 'table', maxSize: -1},
           Description: 'A list of AttributeName and AttributeType objects that describe the key schema for the table and indexes',
@@ -356,7 +355,50 @@ app.service('AWSComponents', function () {
           }
         },
 
-        BlockDeviceMappings: {}
+        BlockDeviceMappings: {
+          Display: {type: 'drag', image: 'images/aws/blockDeviceMapping.png'},
+          Description: 'Amazon Elastic Block Store volume. You can choose to retain the volume, to delete the volume, or to create a snapshot of the volume.',
+          types: {
+            required: {
+              AvailabilityZone : { type: 'String', description: '' }
+            },
+            optional: {
+              // TODO: some of these are conditionally required. we have to figure out how to handle them
+              Encrypted : { type: 'Boolean', description: ''},
+              Iops : { type: 'Number', description: ''},
+              Size : { type: 'String', description: ''},
+              SnapshotId : { type: 'String', description: ''},
+              Tags : { type: 'Tag', description: 'An arbitrary set of tags (key–value pairs) for this volume.' },
+              VolumeType : { type: 'String', description: ''}
+            }
+
+          }
+        },
+
+        NetworkInterfaces: {
+          Display: {type: 'drag', image: 'images/aws/blockDeviceMapping.png'},
+          Description: 'Amazon Elastic Block Store volume. You can choose to retain the volume, to delete the volume, or to create a snapshot of the volume.',
+          types: {
+//            required: {
+//            },
+//            optional: {
+//
+//    AssociatePublicIpAddress : { type: 'Boolean', description: ''},
+//    DeleteOnTermination : { type: 'Boolean', description: ''},
+//    Description : { type: 'String', description: ''},
+//    DeviceIndex : { type: 'String', description: ''},
+//    GroupSet : [ String, ... ],
+//    NetworkInterfaceId : { type: 'String', description: ''},
+//    PrivateIpAddress : { type: 'String', description: ''},
+//    PrivateIpAddresses : [ PrivateIpAddressSpecification, ... ],
+//    SecondaryPrivateIpAddressCount : Integer,
+//    SubnetId : { type: 'String', description: ''},
+//
+//            }
+//
+          }
+
+        }
 
       }
     };
