@@ -40,16 +40,32 @@
 }
 .layout-mock > .stretch.ui-layout-column .center-column .item .ep {
   position: absolute;
-  bottom: 80%;
-  right: 5px;
-  width: 1em;
-  height: 1em;
+  bottom: 45%;
+  right: -6px;
+  border: 2px solid orange;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
   background-color: #e0dfdf;
   cursor: pointer;
   box-shadow: 0px 0px 2px #e0dfdf;
   -webkit-transition: -webkit-box-shadow 0.25s ease-in;
   -moz-transition: -moz-box-shadow 0.25s ease-in;
   transition: box-shadow 0.25s ease-in;
+}
+.layout-mock > .stretch.ui-layout-column .center-column svg circle {
+  fill: orange;
+  stroke: orange;
+  stroke-width: 1px;
+}
+.layout-mock > .stretch.ui-layout-column .center-column svg ._jsPlumb_endpoint._jsPlumb_endpoint_anchor_.ui-droppable.ui-draggable.ui-draggable-handle._jsPlumb_endpoint_connected._jsPlumb_endpoint_full circle {
+  fill: orange;
+  stroke: orange;
+  stroke-width: 1px;
+}
+.layout-mock > .stretch.ui-layout-column .center-column svg path {
+  stroke: orange;
+  stroke-width: 2px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column {
   background-color: rgba(112, 100, 130, 0.78);
