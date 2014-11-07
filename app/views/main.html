@@ -42,6 +42,37 @@
         <div ng-show="selectedComponentId !== ''">
           <h4>{{componentProperties[selectedComponentId].name}} </h4>
           <h5>Type: {{componentProperties[selectedComponentId].type}}</h5>
+          <hr/>
+          <h5>Required Parameters</h5>
+
+          <div ng-repeat="prop in componentProperties[selectedComponentId].required">
+            <div ng-if="prop.type === 'String'">
+              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name=""><br>
+            </div>
+            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
+              <p>table</p>
+            </div>
+            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
+              <p>drag</p>
+            </div>
+            <!--<p>{{prop.name}} : {{prop.type}}</p>-->
+          </div>
+          <hr/>
+          <h5>Optional Parameters</h5>
+          <div ng-repeat="prop in componentProperties[selectedComponentId].optional">
+            <div ng-if="prop.type === 'String'">
+              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name=""><br>
+            </div>
+            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
+              <p>table</p>
+            </div>
+
+            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
+              <img width="100" ng-src="{{types.complex[prop.type].Display.image}}"/>
+              <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
+            </div>
+          </div>
+
         </div>
       </div>
 
