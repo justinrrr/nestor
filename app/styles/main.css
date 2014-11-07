@@ -52,8 +52,8 @@
   bottom: 45%;
   right: -6px;
   border: 2px solid #d7b371;
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: #d7b371;
   cursor: pointer;
@@ -149,7 +149,7 @@
   border-radius: 0;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a:hover {
-  color: #26232A;
+  color: rgba(38, 35, 42, 0.75);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a {
   background-color: #7a7a93;
@@ -167,30 +167,33 @@
   border-bottom-color: rgba(112, 100, 130, 0.78);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane {
-  padding: 10px 15px 10px 15px;
+  padding: 0px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .empty-container {
-  width: 285px;
+  width: 300px;
   height: 80px;
   position: absolute;
-  padding: 0 0px 0 0px;
-  display: block;
   color: #e0dfdf;
   cursor: pointer;
   font-weight: 700;
+  border-bottom: 1px solid rgba(233, 230, 234, 0.19);
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .empty-container:hover {
+  cursor: pointer;
+  background-color: rgba(233, 230, 234, 0.19);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .component-item {
   display: table-cell;
   vertical-align: middle;
   color: #e0dfdf;
   font-weight: 700;
-  border-bottom: 1px dashed #f6f5f5;
   width: 300px;
   height: 80px;
+  padding: 15px 15px 0px 15px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .component-item:hover {
   cursor: pointer;
-  background-color: white;
+  background-color: #e9e6ea;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .component-item .pdiv {
   float: left;
@@ -217,7 +220,6 @@
   color: #e0dfdf;
   cursor: pointer;
   font-weight: 700;
-  border-bottom: 1px dashed #f6f5f5;
   width: 300px;
   height: 80px;
 }
@@ -486,7 +488,7 @@
 }
 .propertyinput {
   border: 2px solid rgba(122, 122, 147, 0.36);
-  padding: 4px;
+  padding: 2px;
   background: rgba(255, 255, 255, 0.5);
   margin: 2px 5px 10px 10px;
   outline: none;
