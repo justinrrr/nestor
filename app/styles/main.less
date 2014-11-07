@@ -164,6 +164,77 @@ body {
         padding: 5px 10px 5px 15px;
         border-bottom: 1px solid rgba(225, 225, 225, 0.54);
 
+        /* Force table1 to not be like tables anymore */
+        #no-more-tables1 table,
+        #no-more-tables1 thead,
+        #no-more-tables1 tbody,
+        #no-more-tables1 th,
+        #no-more-tables1 td,
+        #no-more-tables1 tr {
+          display: block;
+        }
+
+        #no-more-tables1 table {
+          margin-right: 10px;
+        }
+        /* Hide table headers (but not display: none;, for accessibility) */
+        #no-more-tables1 thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+
+        #no-more-tables1 tr { border: 1px solid #ccc; }
+
+        #no-more-tables1 td {
+          /* Behave  like a "row" */
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 50%;
+          white-space: normal;
+          text-align:left;
+          padding-right: 10px;
+          font-size: 14px;
+          ul {
+            padding-left: 6px;
+
+            li {
+              margin-left: 6px;
+              span {
+                font-size: 14px;
+              }
+
+            }
+          }
+
+        }
+
+        #no-more-tables1 td:before {
+          /* Now like a table header */
+          position: absolute;
+          /* Top/left values mimic padding */
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          text-align:left;
+          font-weight: 400;
+          color: @ambiance;
+        }
+
+        /*
+        Label the data
+        */
+        #no-more-tables1 td:before { content: attr(data-title); }
+
+        .table-responsive {
+          margin-left: -10px;
+          margin-right: -10px;
+        }
+
+
         span{
           color: @attributes;
           display: block;
