@@ -25,7 +25,8 @@
            data-identifier="{{component.id}}">
         <img width="100" ng-src="{{component.image}}"/>
 
-        <p class="title">{{component.title}}</p>
+        <p class="title">{{component.name}}</p>
+
         <div plumb-connect class="ep"></div>
       </div>
 
@@ -34,11 +35,15 @@
     <!--Right side panel-->
     <div
       ui-layout="{flow: 'row'}"
-      size="300px"
+      
+      max-size="300px"
       class="right-column">
 
       <div class="right-column-top">
-
+        <div ng-show="selectedComponentId !== ''">
+          <h4>{{componentProperties[selectedComponentId].name}} </h4>
+          <h5>Type: {{componentProperties[selectedComponentId].type}}</h5>
+        </div>
       </div>
 
       <div class="right-column-bottom">
@@ -93,8 +98,6 @@
     </div>
   </ui-layout>
 </div>
-
-
 
 
 <!--This is the visual of the component card while its being dragged-->
