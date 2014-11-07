@@ -119,26 +119,71 @@ app.service('AWSComponents', function () {
 
     //add component specific metadat here
     this.componentMetadata = {
+
+      'NameOfTheComponent': {
+        type: 'AWS::Component::Table',
+
+        IncomingConnection: {
+          //read this from components object aove
+          'ConnectionSourceName': {
+            //name of the property on the this object (target object) to set
+            name: 'SecurityGroupName',
+            //the name of the property on the source object whose value we will set to the value of the target object
+            value: 'Name',
+            //whether this is part of the Properties of the Resource
+            isProperty: true
+          }
+        },
+
+        properties: {
+          required: [
+            {
+              name: 'nameOfProperty',
+              type: 'type of the property, if it is complex you should add it to the typedefs',
+              description: 'tooltop description if property is primitive'
+            },
+            {name: 'nameOfProperty', type: 'typeOfTheProperty', description: 'Description for tooltip'}
+          ],
+          optional: [
+            {
+              name: 'nameOfProperty',
+              type: 'type of the property, if it is complex you should add it to the typedefs',
+              description: 'tooltop description if property is primitive'
+            },
+            {name: 'nameOfProperty', type: 'typeOfTheProperty', description: 'Description for tooltip'}
+          ]
+        },
+        Outputs: [
+          {
+            type: 'acceptable values are Ref and GetAtt',
+            name: 'userFriendlyNameOfOutput',
+            description: 'userFriendlyDescriptionOfOutput'
+          }
+        ]
+      },
+
       'DynamoDb': {
         type: 'AWS::DynamoDB::Table',
         IncomingConnection: {
           //if dynamoDB got connected
           'DynamoDb': {
             //set a field named 'DependsOn'
-          name: 'DependsOn',
+            name: 'DependsOn',
             //to the 'Name' property of the connected DynamoDB
-          value: 'Name',
+            value: 'Name',
             //its not in the properties
-          isProperty: false}},
+            isProperty: false
+          }
+        },
         properties: {
           required: [
             {name: 'TableName', description: 'name of the table', type: 'String'},
             {name: 'AttributeDefinitions', type: 'AttributeDefinitions'},
             {name: 'KeySchema', type: 'KeySchema'},
-            {name: 'ProvisionedThroughput' , type: 'ProvisionedThroughput'}
+            {name: 'ProvisionedThroughput', type: 'ProvisionedThroughput'}
           ],
           optional: [
-            {name: 'GlobalSecondaryIndexes', type : 'GlobalSecondaryIndexes'},
+            {name: 'GlobalSecondaryIndexes', type: 'GlobalSecondaryIndexes'},
             {name: 'LocalSecondaryIndexes', type: 'LocalSecondaryIndexes'}
           ]
         },
@@ -150,78 +195,76 @@ app.service('AWSComponents', function () {
           }]
       },
 
-      'EC2' : {
+      'EC2': {
         type: 'AWS::EC2::Instance',
-        properties: {
-          required: {
-            ImageId : 'String'
-          },
-          optional: {
-            AvailabilityZone : 'String',
-//            BlockDeviceMappings : 'BlockDeviceMappings' //[ EC2 Block Device Mapping, ... ],
-            DisableApiTermination : 'Boolean',
-            EbsOptimized : 'Boolean',
-            IamInstanceProfile : 'String',
-            InstanceInitiatedShutdownBehavior : 'default',
-            InstanceType : 'String',
-            KernelId : 'String',
-            KeyName : 'String',
-            Monitoring : 'Boolean',
-//            NetworkInterfaces : 'NetworkInterfaces' // [ EC2 Network Interface, ... ],
-            PlacementGroupName : 'String',
-            PrivateIpAddress : 'String',
-            RamdiskId : 'String',
-//          SecurityGroupIds : [ String, ... ],
-//          SecurityGroups : [ String, ... ],
-            SourceDestCheck : 'Boolean',
-            SubnetId : 'String',
-//          Tags : [ Resource Tag, ... ],
-            Tenancy : 'String',
-//          Volumes : [ EC2 MountPoint, ... ],
-            UserData : 'String'
+
+        IncomingConnection: {
+          //read this from components object aove
+          'ConnectionSourceName': {
+            //name of the property on the this object (target object) to set
+            name: 'SecurityGroupName',
+            //the name of the property on the source object whose value we will set to the value of the target object
+            value: 'Name',
+            //whether this is part of the Properties of the Resource
+            isProperty: true
           }
         },
-        outputs: [
+
+        properties: {
+          required: [
+            {name: 'ImageId', type: 'String', description: 'Name of the EC2 instance'}
+          ],
+          optional: [
+
+            {name: 'BlockDeviceMappings', type: 'BlockDeviceMappings', description: 'tooltip??'},
+            {name: 'NetworkInterfaces', type: 'NetworkInterfaces', description: 'tooltip??'},
+            {name: 'SecurityGroupIds', type: 'SecurityGroupIds', description: 'tooltip??'},
+            {name: 'SecurityGroups', type: 'SecurityGroups', description: 'tooltip??'},
+            {name: 'Tags', type: 'Tags', description: 'tooltip??'},
+            {name: 'AvailabilityZone', type: 'AvailabilityZone', description: 'tooltip??'},
+            {name: 'Volumes', type: 'Volumes', description: 'tooltip??'},
+
+            {name: 'DisableApiTermination', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'EbsOptimized', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'IamInstanceProfile', type: 'String', description: 'Description for tooltip'},
+            {name: 'InstanceInitiatedShutdownBehavior', type: 'String', description: 'Description for tooltip'},
+            {name: 'InstanceType', type: 'String', description: 'Description for tooltip'},
+            {name: 'KernelId', type: 'String', description: 'Description for tooltip'},
+            {name: 'KeyName', type: 'String', description: 'Description for tooltip'},
+            {name: 'Monitoring', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'PlacementGroupName', type: 'String', description: 'Description for tooltip'},
+            {name: 'PrivateIpAddress', type: 'String', description: 'Description for tooltip'},
+            {name: 'RamdiskId', type: 'String', description: 'Description for tooltip'},
+            {name: 'SourceDestCheck', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'SubnetId', type: 'String', description: 'Description for tooltip'},
+            {name: 'Tenancy', type: 'String', description: 'Description for tooltip'},
+            {name: 'UserData', type: 'String', description: 'Description for tooltip'},
+          ]
+        },
+        Outputs: [
           {
             type: 'Ref',
             name: 'ImageID',
-            description: 'Name of the EC2 instanced'
-          }]
-      },
-
-      'EBS' : {
-        type: 'AWS::EC2::Volume',
-        properties: {
-          required: {
-            AvailabilityZone : 'String'
-          },
-          optional: {
-            // TODO: some of these are conditionally required. we have to figure out how to handle them
-            Encrypted : 'Boolean',
-            Iops : 'Number',
-            Size : 'String',
-            SnapshotId : 'String',
-//          Tags : [ Resource Tag, ... ],
-            VolumeType : 'String'
+            description: 'Name of the EC2 instance'
           }
-        },
-        outputs: [ ]
+        ]
       }
+
 
       /* template for a new component meta data
-      '' : {
-        "type": '',
-        properties: {
-          required: {
+       '' : {
+       "type": '',
+       properties: {
+       required: {
 
-          },
-          optional: {
+       },
+       optional: {
 
-          }
-        },
-        outputs: [ {}]
-      }
-      */
+       }
+       },
+       outputs: [ {}]
+       }
+       */
 
 
     };
@@ -231,24 +274,82 @@ app.service('AWSComponents', function () {
         String: 'String', Integer: 'Integer', Boolean: 'Boolean'
       },
       complex: {
+
+        TypeName: {
+
+          //how to show this in UI
+          Display: {
+            type: 'allowable values are table/drag',
+            //the number of items that the table can possibly have
+            maxSize: -1
+          },
+          Description: 'User Frindly Description',
+          types: {
+            required: {
+              key: {
+                type: 'type of subtype. If it is complex you need another typedef for it',
+                description: 'The user friendly desc',
+                // a list of allowable values
+                allowableValues: [
+                  {
+                    'AMAZON_READABLE_VALUE': 'a user friendly name for the user to select'
+                  },
+                  {
+                    'AMAZON_READABLE_VALUE': 'a user friendly name for the user to select'
+                  }
+                ],
+                //the limit for the input
+                limit: {min: 1, max: 10},
+                // alist of default values
+                default: ['a', 'b']
+              }
+            },
+            optional: {
+              //same as above
+            }
+          }
+        },
+
+        Tags: {
+          Display: {type: 'table', maxSize: -1},
+          Description: 'You can use the AWS CloudFormation Resource Tags property to apply tags to resources, which can help you identify and categorize those resources.',
+          types: {
+            required: [
+              {
+                name: 'Key',
+                type: 'String',
+                description: 'the key for the tag',
+                default: ['S']
+              },
+              {
+                name: 'Value',
+                type: 'String',
+                description: 'the value for a specific tag'
+              }
+            ]
+          }
+        },
+
         AttributeDefinitions: {
           Display: {type: 'table', maxSize: -1},
           Description: 'A list of AttributeName and AttributeType objects that describe the key schema for the table and indexes',
           types: {
-            required: {
+            required: [
 
-              AttributeType: {
+              {
+                name: 'AttributeType',
                 type: 'String',
                 description: 'The data type for the attribute.',
                 allowableValues: [{'S': 'String'}, {'N': 'Number'}, {'B': 'Binary'}],
                 default: ['S']
               },
-              AttributeName: {
+              {
+                name: 'AttributeName',
                 type: 'String',
                 description: 'The name of an attribute. Attribute names can be 1 – 255 characters long and have no character restrictions.',
                 limit: {min: 1, max: 255}
               }
-            }
+            ]
           }
         },
 
@@ -256,18 +357,20 @@ app.service('AWSComponents', function () {
           Display: {type: 'table', maxSize: 2},
           Description: 'Specifies the attributes that make up the primary key for the table. The attributes in the KeySchema property must also be defined in the AttributeDefinitions property',
           types: {
-            required: {
-              AttributeName: {
+            required: [
+              {
+                name: 'AttributeName',
                 type: 'String',
                 description: 'The attribute name that is used as the primary key for this table. Primary key element names can be 1 – 255 characters long and have no character restrictions.',
                 limit: {min: 1, max: 255}
               },
-              KeyType: {
+              {
+                name: 'KeyType',
                 type: 'String',
                 description: 'Represents the attribute data, consisting of the data type and the attribute value itself. You can specify HASH or RANGE.',
                 allowableValues: [{'HASH': 'Hash'}, {'RANGE': 'Range'}]
               }
-            }
+            ]
           }
         },
 
@@ -275,16 +378,18 @@ app.service('AWSComponents', function () {
           Display: {type: 'table', maxSize: 1},
           Description: 'Throughput for the specified table, consisting of values for ReadCapacityUnits and WriteCapacityUnits. For more information about the contents of a Provisioned Throughput structure',
           types: {
-            required: {
-              ReadCapacityUnits: {
+            required: [
+              {
+                name: 'ReadCapacityUnits',
                 type: 'Integer',
                 description: 'Sets the desired minimum number of consistent reads of items (up to 1KB in size) per second for the specified table before Amazon DynamoDB balances the load.'
               },
-              WriteCapacityUnits: {
+              {
+                name: 'WriteCapacityUnits',
                 type: 'Integer',
                 description: 'Sets the desired minimum number of consistent writes of items (up to 1KB in size) per second for the specified table before Amazon DynamoDB balances the load'
               }
-            }
+            ]
           }
         },
 
@@ -292,17 +397,19 @@ app.service('AWSComponents', function () {
           Display: {type: 'table', maxSize: 1},
           Description: 'Attributes that are copied (projected) from the source table into the index. These attributes are additions to the primary key attributes and index key attributes, which are automatically projected.',
           types: {
-            optional: {
-              NonKeyAttributes: {
+            optional: [
+              {
+                name: 'NonKeyAttributes',
                 type: 'StringList',
                 description: 'The non-key attribute names that are projected into the index.For local secondary indexes, the total count of NonKeyAttributes summed across all of the local secondary indexes must not exceed 20. If you project the same attribute into two different indexes, this counts as two distinct attributes in determining the total.'
               },
-              ProjectionType: {
+              {
+                name: 'ProjectionType',
                 type: 'String',
                 description: 'The set of attributes that are projected into the index: KEYS_ONLY: Only the index and primary keys are projected into the index. INCLUDE:  Only the specified table attributes are projected into the index. The list of projected attributes are in NonKeyAttributes. ALL:  All of the table attributes are projected into the index.',
                 allowableValues: [{'KEYS_ONLY': 'only keys'}, {'INCLUDE': 'include specified values'}, {'ALL': 'include everything'}]
               }
-            }
+            ]
           }
         },
 
@@ -310,25 +417,30 @@ app.service('AWSComponents', function () {
           Display: {type: 'drag', image: 'images/aws/localIndex.png'},
           Description: 'Global secondary indexes to be created on the table. You can create up to 5 global secondary indexes',
           types: {
-            required: {
-              IndexName: {
+            required: [
+
+              {
+                name: 'IndexName',
                 type: 'String',
                 description: 'The name of the global secondary index. The index name can be 3 – 255 characters long and have no character restrictions.',
                 limit: {min: 3, max: 255}
               },
-              KeySchema: {
+              {
+                name: 'KeySchema',
                 type: 'KeySchema',
                 description: 'The complete index key schema for the global secondary index, which consists of one or more pairs of attribute names and key types.'
               },
-              Projection: {
+              {
+                name: 'Projection',
                 type: 'Projection',
                 description: 'Attributes that are copied (projected) from the source table into the index. These attributes are in addition to the primary key attributes and index key attributes, which are automatically projected.'
               },
-              ProvisionedThroughput: {
+              {
+                name: 'ProvisionedThroughput',
                 type: 'ProvisionedThroughput',
                 description: 'The provisioned throughput settings for the index.'
               }
-            }
+            ]
           }
         },
 
@@ -336,26 +448,101 @@ app.service('AWSComponents', function () {
           Display: {type: 'drag', image: 'images/aws/globalIndex.png'},
           Description: 'Local secondary indexes to be created on the table. You can create up to 5 local secondary indexes. Each index is scoped to a given hash key value. The size of each hash key can be up to 10 gigabytes',
           types: {
-            required: {
+            required: [
 
-              IndexName: {
+              {
+                name: 'IndexName',
                 type: 'String',
                 description: 'The name of the local secondary index. The index name can be 3 – 255 characters long and have no character restrictions.',
                 limit: {min: 3, max: 255}
               },
-              KeySchema: {
+              {
+                name: 'KeySchema',
                 type: 'KeySchema',
                 description: 'The complete index key schema for the local secondary index, which consists of one or more pairs of attribute names and key types. For local secondary indexes, the hash key must be the same as that of the source table.'
               },
-              Projection: {
+              {
+                name: 'Projection',
                 type: 'Projection',
                 description: 'Attributes that are copied (projected) from the source table into the index. These attributes are additions to the primary key attributes and index key attributes, which are automatically projected.'
               }
-            }
+            ]
           }
         },
 
-        BlockDeviceMappings: {}
+        BlockDeviceMappings: {
+          Display: {type: 'drag', image: 'images/aws/blockDeviceMapping.png'},
+          Description: 'Amazon Elastic Block Store volume. You can choose to retain the volume, to delete the volume, or to create a snapshot of the volume.',
+          types: {
+            required: [
+              {
+                name: 'AvailabilityZone',
+                type: 'String',
+                description: ''
+              }
+            ],
+            optional: [
+              // TODO: some of these are conditionally required. we have to figure out how to handle them
+              {
+                name: 'Encrypted',
+                type: 'Boolean',
+                description: ''
+              },
+              {
+                name: 'Iops',
+                type: 'Number',
+                description: ''
+              },
+              {
+
+                name: 'Size',
+                type: 'String',
+                description: ''
+              },
+              {
+                name: 'SnapshotId',
+                type: 'String',
+                description: ''
+              },
+              {
+                name: 'Tags',
+                type: 'Tags',
+                description: 'An arbitrary set of tags (key–value pairs) for this volume.'
+              },
+              {
+                name: 'VolumeType',
+                type: 'String',
+                description: ''
+              }
+            ]
+
+          }
+        },
+
+        NetworkInterfaces: {
+          Display: {type: 'drag', image: 'images/aws/blockDeviceMapping.png'},
+          Description: 'Amazon Elastic Block Store volume. You can choose to retain the volume, to delete the volume, or to create a snapshot of the volume.',
+          types: {
+//            required: {
+//            },
+//            optional: {
+//
+//    AssociatePublicIpAddress : { type: 'Boolean', description: ''},
+//    DeleteOnTermination : { type: 'Boolean', description: ''},
+//    Description : { type: 'String', description: ''},
+//    DeviceIndex : { type: 'String', description: ''},
+//    GroupSet : [ String, ... ],
+//    NetworkInterfaceId : { type: 'String', description: ''},
+//    PrivateIpAddress : { type: 'String', description: ''},
+//    PrivateIpAddresses : [ PrivateIpAddressSpecification, ... ],
+//    SecondaryPrivateIpAddressCount : Integer,
+//    SubnetId : { type: 'String', description: ''},
+//
+//            }
+//
+          }
+
+        }
 
       }
     };
