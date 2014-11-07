@@ -42,7 +42,6 @@
       class="right-column"
       id="menu">
 
-      <pre>{{template | json}}</pre>
       <div class="right-column-top">
         <div ng-show="selectedComponent">
           <div class="cd-fixed-bg">
@@ -50,9 +49,6 @@
             <h4 id="titleh4">{{selectedComponent.name}} </h4>
             <h5 id="titleh5">Type: {{selectedComponent.type}}</h5>
           </div>
-
-          <pre>{{template.Resources[selectedComponent.name] | json}}</pre>
-
           <h5 class="contenth5">Required Parameters</h5>
 
           <div ng-repeat="prop in selectedComponent.required" class="content">
