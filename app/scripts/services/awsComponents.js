@@ -137,11 +137,11 @@ app.service('AWSComponents', function () {
 
         properties : {
           required : [
-            {name: 'nameOfProperty', type: 'type of the property, if it is complex you should add it to the typedefs', description: 'tooltop description if property is primitive'}
+            {name: 'nameOfProperty', type: 'type of the property, if it is complex you should add it to the typedefs', description: 'tooltop description if property is primitive'},
             {name: 'nameOfProperty', type: 'typeOfTheProperty', description: 'Description for tooltip'}
           ],
           optional : [
-            {name: 'nameOfProperty', type: 'type of the property, if it is complex you should add it to the typedefs', description: 'tooltop description if property is primitive'}
+            {name: 'nameOfProperty', type: 'type of the property, if it is complex you should add it to the typedefs', description: 'tooltop description if property is primitive'},
             {name: 'nameOfProperty', type: 'typeOfTheProperty', description: 'Description for tooltip'}
           ]
         },
@@ -259,7 +259,7 @@ app.service('AWSComponents', function () {
               },
               Value: {
                 type: 'String',
-                description: 'the value for a specific tag',
+                description: 'the value for a specific tag'
               }
             }
           }
