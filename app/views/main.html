@@ -16,6 +16,8 @@
          id="container"
          class="center-column">
 
+
+
       <!-- The actual components on the canvas -->
       <div plumb-item
            ng-click="clickCallback(component)"
@@ -32,12 +34,13 @@
       </div>
 
     </div>
-
+    <a href="#menu" id="toggle"><span></span></a>
     <!--Right side panel-->
     <div
       ui-layout="{flow: 'row'}"
       size="300px"
-      class="right-column">
+      class="right-column"
+      id="menu">
 
       <pre>{{template | json}}</pre>
       <div class="right-column-top">
@@ -140,6 +143,9 @@
 
       <div class="right-column-bottom">
         <form id="searchbox">
+          <p class="fieldset">
+            <label class="glyphicon glyphicon-search"></label>
+          </p>
           <input ng-model="searchText" type="text" placeholder="Search..." required class="search">
           <!--<button type="submit" class="button">-->
           <!--<i class="glyphicon glyphicon-search" visibility="hidden-xs"></i>-->
@@ -190,56 +196,6 @@
     </div>
   </ui-layout>
 </div>
-
-<!-- Sidebar -->
-<!--<div id="sidebar-wrapper">-->
-<!--<div>-->
-<!--<pre>{{ template | json }}</pre>-->
-<!--</div>-->
-<!--<form id="searchbox">-->
-<!--<input ng-model="searchText" type="text" placeholder="Search..." required class="search">-->
-<!--</form>-->
-<!--<tabset justified="true">-->
-<!--<tab heading="Components" class="components-tab">-->
-<!--<ul>-->
-<!--<li class="sidebar-nav" ng-repeat="comp in components | filter:searchText">-->
-<!--<div class="empty-container"-->
-<!--ng-drag="true"-->
-<!--ng-drag-success="onDragComplete($data,$event)"-->
-<!--ng-drag-data="comp"-->
-<!--ng-center-anchor="false">-->
-<!--</div>-->
-<!--<div class="component-item">-->
-<!--<img class="component-image" width="100px" ng-src="{{comp.image}}"/> <a href="#">{{comp.name}} : {{comp.description}}</a>-->
-<!--</div>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</tab>-->
-<!--<tab heading="Tasks" class="tasks-tab">-->
-<!--<ul class="sidebar-nav" ng-repeat="task in tasks | filter:searchText">-->
-<!--<li class="empty-container"-->
-<!--ng-drag="true"-->
-<!--ng-drag-data="task"-->
-<!--ng-center-anchor="false">-->
-<!--</li>-->
-<!--<li class="task-item">-->
-<!--<a href="">{{task.name}}</a>-->
-<!--</li>-->
-<!--</ul>-->
-<!--</tab>-->
-<!--</tabset>-->
-<!--</div>-->
-<!-- /#sidebar-wrapper -->
-
-<!--<li class="sidebar-brand">-->
-<!--<a href="">-->
-<!--Heisenberg-->
-<!--</a>-->
-<!--</li>-->
-<!---->
-<!--<li>-->
-<!--<a href="#">Dashboard</a>-->
-<!--</li>-->
 
 
 <!--This is the visual of the component card while its being dragged-->

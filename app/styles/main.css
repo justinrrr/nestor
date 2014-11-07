@@ -9,7 +9,7 @@ body {
   background-color: white;
 }
 /**
-  Right Panel Style
+   Panel Style
 *************************************/
 .layout-mock > .stretch.ui-layout-column .left-column .ace_editor {
   height: 100%;
@@ -34,6 +34,7 @@ body {
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
   border: 1px dashed #6a7ea3;
+  border-radius: 0.25em;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .item img {
   position: relative;
@@ -50,7 +51,7 @@ body {
   padding: 54px 2px 11px 2px;
   margin-bottom: 0px;
   cursor: move;
-  color: #5d5d74;
+  color: #404c62;
   bottom: 54px;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .item .ep {
@@ -74,6 +75,7 @@ body {
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
   border: 1px dashed #e9e6ea;
+  border-radius: 0.25em;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent .title {
   color: #ffffff;
@@ -93,8 +95,11 @@ body {
   stroke-width: 2px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column {
-  background-color: rgba(112, 100, 130, 0.78);
+  background-color: #6a7ea3;
   width: 300px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 79.2% !important;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top {
   background-color: #f6f5f5;
@@ -123,20 +128,22 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content {
   padding: 5px 10px 5px 15px;
-  margin-top: 10px;
+  border-bottom: 1px solid rgba(225, 225, 225, 0.54);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content span {
   color: #6f7b91;
+  display: block;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .propertyinput {
   border: 2px solid rgba(122, 122, 147, 0.36);
   padding: 2px;
-  background: rgba(255, 255, 255, 0.5);
-  margin: 2px 5px 10px 10px;
+  background: white;
+  margin: 2px 5px 10px 0px;
   outline: none;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .propertyinput:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
+  background-color: white;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom {
   width: 300px;
@@ -147,16 +154,28 @@ body {
   width: 300px;
   border: 2px solid #6a7ea3;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox .search {
-  padding: 8px 15px;
-  background-color: #f6f5f5;
-  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
-  border: 0px;
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox .fieldset > label {
+  position: absolute;
+  left: 18px;
+  top: 20px;
   color: rgba(112, 100, 130, 0.78);
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox .search {
+  padding: 8px 15px 8px 34px;
+  background-color: white;
+  color: rgba(112, 100, 130, 0.78);
+  border: 1px solid #6a7ea3;
   font-weight: 500;
   outline: none;
-  width: 100%;
-  margin-left: 6px;
+  width: 97.2%;
+  margin-left: 4px;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox .search:focus {
+  border: 1px solid #61708C;
+  color: #6a7ea3;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox .button {
   position: relative;
@@ -176,10 +195,10 @@ body {
   color: rgba(112, 100, 130, 0.78);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .components-tab {
-  padding-left: 8px;
+  padding-left: 7px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .tasks-tab {
-  padding-right: 4px;
+  padding-right: 6px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a {
   text-decoration: none;
@@ -188,7 +207,7 @@ body {
   color: rgba(38, 35, 42, 0.75);
   font-weight: 600;
   border: none;
-  border-bottom: 1px solid #cec7d0;
+  border-bottom: 1px solid #ffd88f;
   border-radius: 0;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a:hover {
@@ -198,8 +217,8 @@ body {
   background-color: #6a7ea3;
   border-bottom: none;
   border-top: 4px solid #ffd88f;
-  border-left: 1px solid #cec7d0;
-  border-right: 1px solid #cec7d0;
+  border-left: 1px solid #ffd88f;
+  border-right: 1px solid #ffd88f;
   color: #ffffff;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a:hover {
@@ -286,24 +305,25 @@ body {
   bottom: 0;
   /* Can be changed by hand ;)*/
   overflow: auto;
-  background-color: #6a7ea3;
+  background-color: transparent;
 }
 .ui-splitbar {
   display: block;
-  background-color: #E8E8E8;
+  background-color: #e9e6ea;
   right: auto;
   position: absolute;
   z-index: 99999;
 }
 .ui-layout-row > .ui-splitbar {
-  height: 6px !important;
+  height: 3px !important;
   width: 100%;
   cursor: row-resize;
 }
 .ui-layout-column > .ui-splitbar {
-  width: 6px !important;
+  width: 3px !important;
   height: 100%;
   cursor: col-resize;
+  background-color: transparent;
 }
 /**
  This is the visual of the component card while its being dragged
@@ -315,10 +335,10 @@ body {
 .dragging .component-item {
   display: table-cell;
   vertical-align: middle;
-  color: #5d5d74;
+  color: #404c62;
   cursor: pointer;
   font-weight: 700;
-  border: 1px dashed #5d5d74;
+  border: 1px dashed #404c62;
   width: 300px;
   height: 80px;
 }
@@ -344,4 +364,48 @@ body {
 }
 .ace-ambiance .ace_variable {
   color: #89A1D0 !important;
+}
+/* Important styles */
+#toggle {
+  display: block;
+  width: 28px;
+  height: 30px;
+  margin: 30px auto 10px;
+}
+#toggle span:after,
+#toggle span:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -9px;
+}
+#toggle span:after {
+  top: 9px;
+}
+#toggle span {
+  position: relative;
+  display: block;
+}
+#toggle span,
+#toggle span:after,
+#toggle span:before {
+  width: 100%;
+  height: 5px;
+  background-color: #888;
+  transition: all 0.3s;
+  backface-visibility: hidden;
+  border-radius: 2px;
+}
+/* on activation */
+#toggle.on span {
+  background-color: transparent;
+}
+#toggle.on span:before {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#toggle.on span:after {
+  transform: rotate(-45deg) translate(7px, -8px);
+}
+#toggle.on + #menu {
+  opacity: 1;
 }

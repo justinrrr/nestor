@@ -2,7 +2,7 @@
   Colors
 *************************************/
 @ambiance: #6A7EA3;
-@dambiance: #5D5D74;
+@dambiance: #404C62;
 @lambiance: #E9E6EA;
 @clouds: #E0DFDF;
 @dashborder: #F6F5F5;
@@ -30,10 +30,9 @@ body {
 }
 
 /**
-  Right Panel Style
+   Panel Style
 *************************************/
 .layout-mock > .stretch.ui-layout-column {
-
   //   Left column style
   .left-column {
     .ace_editor {
@@ -62,6 +61,7 @@ body {
       -webkit-box-shadow: 2px 2px 3px 1px #AAA;
       box-shadow: 2px 2px 3px 1px #AAA;
       border: 1px dashed @ambiance;
+      border-radius: 0.25em;
       img {
         position: relative;
         width: 60px;
@@ -102,6 +102,7 @@ body {
       -webkit-box-shadow: 2px 2px 3px 1px #AAA;
       box-shadow: 2px 2px 3px 1px #AAA;
       border: 1px dashed @lambiance;
+      border-radius: 0.25em;
       .title {
         color: @snow;
       }
@@ -128,8 +129,11 @@ body {
 
   //  Right column Style
   .right-column {
-    background-color: rgba(112, 100, 130, 0.78);
+    background-color: @ambiance;
     width: 300px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    position: absolute;
+    left: 79.2% !important;
     .right-column-top {
       background-color: @dashborder;
       .cd-fixed-bg {
@@ -158,21 +162,23 @@ body {
       }
       .content {
         padding: 5px 10px 5px 15px;
-        margin-top: 10px;
+        border-bottom: 1px solid rgba(225, 225, 225, 0.54);
 
         span{
           color: @attributes;
+          display: block;
         }
       }
       //Input field style
       .propertyinput {
         border: 2px solid @fieldborder;
         padding: 2px;
-        background: rgba(255,255,255,0.5);
-        margin: 2px 5px 10px 10px;
+        background: white;
+        margin: 2px 5px 10px 0px;
         outline: none;
         &:focus {
           border: 2px solid @darkfield;
+          background-color: white;
         }
       }
 
@@ -185,16 +191,29 @@ body {
         display: inline-flex;
         width: 300px;
         border: 2px solid @ambiance;
+        .fieldset > label {
+          position: absolute;
+          left: 18px;
+          top: 20px;
+          color: rgba(112, 100, 130, 0.78);
+        }
+        input:focus::-webkit-input-placeholder
+        {
+          color: transparent;
+        }
         .search {
-          padding: 8px 15px;
-          background-color: @dashborder;
-          box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.1), 0 0 16px rgba(0, 0, 0, 0.1);
-          border: 0px;
-          color: rgba(112, 100, 130, 0.78);;
+          padding: 8px 15px 8px 34px;
+          background-color: white;
+          color: rgba(112, 100, 130, 0.78);
+          border: 1px solid @ambiance;
           font-weight: 500;
           outline: none;
-          width: 100%;
-          margin-left: 6px;
+          width: 97.2%;
+          margin-left: 4px;
+          &:focus {
+            border: 1px solid #61708C;
+            color: @ambiance;
+          }
         }
         .button {
           position: relative;
@@ -218,10 +237,10 @@ body {
       //      Nav Pills for Components
       ul.nav-tabs.nav-justified {
         .components-tab {
-          padding-left: 8px;
+          padding-left: 7px;
         }
         .tasks-tab {
-          padding-right: 4px;
+          padding-right: 6px;
         }
         li > a {
           text-decoration: none;
@@ -230,7 +249,7 @@ body {
           color: @linkhover;
           font-weight: 600;
           border: none;
-          border-bottom: 1px solid rgb(206, 199, 208);
+          border-bottom: 1px solid #ffd88f;
           border-radius: 0;
           &:hover {
             color: @lighttext;
@@ -240,8 +259,8 @@ body {
           background-color: @ambiance;
           border-bottom: none;
           border-top: 4px solid #ffd88f;
-          border-left: 1px solid rgb(206, 199, 208);
-          border-right: 1px solid rgb(206, 199, 208);
+          border-left: 1px solid #ffd88f;
+          border-right: 1px solid #ffd88f;
           color: @snow;
           &:hover {
             color: @snow;
@@ -337,13 +356,13 @@ body {
   bottom: 0;
   /* Can be changed by hand ;)*/
   overflow: auto;
-  background-color: @ambiance;
+  background-color: transparent;
 }
 
 //style for all splitbars
 .ui-splitbar {
   display: block;
-  background-color: #E8E8E8;
+  background-color: @lambiance;
   right: auto;
   position: absolute;
   z-index: 99999;
@@ -351,16 +370,17 @@ body {
 
 //horizontal splitbar style
 .ui-layout-row > .ui-splitbar {
-  height: 6px !important;
+  height: 3px !important;
   width: 100%;
   cursor: row-resize;
 }
 
 //vertical splitbar style
 .ui-layout-column > .ui-splitbar {
-  width: 6px !important;
+  width: 3px !important;
   height: 100%;
   cursor: col-resize;
+  background-color: transparent;
 }
 
 /**
@@ -403,4 +423,52 @@ body {
 }
 .ace-ambiance .ace_variable {
   color: #89A1D0 !important;
+}
+
+/* Important styles */
+#toggle {
+  display: block;
+  width: 28px;
+  height: 30px;
+  margin: 30px auto 10px;
+}
+
+#toggle span:after,
+#toggle span:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: -9px;
+}
+#toggle span:after{
+  top: 9px;
+}
+#toggle span {
+  position: relative;
+  display: block;
+}
+
+#toggle span,
+#toggle span:after,
+#toggle span:before {
+  width: 100%;
+  height: 5px;
+  background-color: #888;
+  transition: all 0.3s;
+  backface-visibility: hidden;
+  border-radius: 2px;
+}
+
+/* on activation */
+#toggle.on span {
+  background-color: transparent;
+}
+#toggle.on span:before {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#toggle.on span:after {
+  transform: rotate(-45deg) translate(7px, -8px);
+}
+#toggle.on + #menu {
+  opacity: 1;
 }
