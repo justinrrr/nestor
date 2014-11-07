@@ -33,7 +33,7 @@ body {
   -moz-box-shadow: 2px 2px 3px 1px #AAA;
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
-  border: 1px dashed #5e6e8d;
+  border: 1px dashed #6a7ea3;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .item img {
   position: relative;
@@ -69,7 +69,7 @@ body {
   transition: box-shadow 0.25s ease-in;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent {
-  background-color: #5e6e8d;
+  background-color: #6a7ea3;
   -moz-box-shadow: 2px 2px 3px 1px #AAA;
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
@@ -101,7 +101,7 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg {
   top: 0px;
-  background-color: #5e6e8d;
+  background-color: #6a7ea3;
   width: 300px;
   padding: 5px 10px 5px 15px;
   color: #ffffff;
@@ -145,7 +145,7 @@ body {
   margin: 6px 0px 0px 0px;
   display: inline-flex;
   width: 300px;
-  border: 2px solid #5e6e8d;
+  border: 2px solid #6a7ea3;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox .search {
   padding: 8px 15px;
@@ -184,7 +184,7 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a {
   text-decoration: none;
   cursor: pointer;
-  background-color: #5e6e8d;
+  background-color: #6a7ea3;
   color: rgba(38, 35, 42, 0.75);
   font-weight: 600;
   border: none;
@@ -195,9 +195,9 @@ body {
   color: #dbdbdb;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a {
-  background-color: #5e6e8d;
+  background-color: #6a7ea3;
   border-bottom: none;
-  border-top: 4px solid #cec7d0;
+  border-top: 4px solid #ffd88f;
   border-left: 1px solid #cec7d0;
   border-right: 1px solid #cec7d0;
   color: #ffffff;
@@ -206,7 +206,7 @@ body {
   color: #ffffff;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content {
-  background-color: #5e6e8d;
+  background-color: #6a7ea3;
   border-bottom-color: rgba(112, 100, 130, 0.78);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane {
@@ -286,7 +286,7 @@ body {
   bottom: 0;
   /* Can be changed by hand ;)*/
   overflow: auto;
-  background-color: #5e6e8d;
+  background-color: #6a7ea3;
 }
 .ui-splitbar {
   display: block;
