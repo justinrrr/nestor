@@ -35,8 +35,7 @@
     <!--Right side panel-->
     <div
       ui-layout="{flow: 'row'}"
-      
-      max-size="300px"
+      size="300px"
       class="right-column">
 
       <div class="right-column-top">
@@ -46,14 +45,14 @@
         </div>
       </div>
 
-    <div class="right-column-bottom">
-    <form id="searchbox">
-    <input ng-model="searchText" type="text" placeholder="Search..." required class="search">
-    <!--<button type="submit" class="button">-->
-    <!--<i class="glyphicon glyphicon-search" visibility="hidden-xs"></i>-->
-    <!--</button>-->
-    </form>
-    <tabset justified="true">
+      <div class="right-column-bottom">
+        <form id="searchbox">
+          <input ng-model="searchText" type="text" placeholder="Search..." required class="search">
+          <!--<button type="submit" class="button">-->
+          <!--<i class="glyphicon glyphicon-search" visibility="hidden-xs"></i>-->
+          <!--</button>-->
+        </form>
+        <tabset justified="true">
 
           <tab heading="Components" class="components-tab">
             <div ng-repeat="comp in components | filter:searchText">
@@ -101,41 +100,41 @@
 
 <!-- Sidebar -->
 <!--<div id="sidebar-wrapper">-->
-  <!--<div>-->
-  <!--<pre>{{ template | json }}</pre>-->
-  <!--</div>-->
-  <!--<form id="searchbox">-->
-    <!--<input ng-model="searchText" type="text" placeholder="Search..." required class="search">-->
-  <!--</form>-->
-  <!--<tabset justified="true">-->
-    <!--<tab heading="Components" class="components-tab">-->
-      <!--<ul>-->
-        <!--<li class="sidebar-nav" ng-repeat="comp in components | filter:searchText">-->
-          <!--<div class="empty-container"-->
-               <!--ng-drag="true"-->
-               <!--ng-drag-success="onDragComplete($data,$event)"-->
-               <!--ng-drag-data="comp"-->
-               <!--ng-center-anchor="false">-->
-          <!--</div>-->
-          <!--<div class="component-item">-->
-            <!--<img class="component-image" width="100px" ng-src="{{comp.image}}"/> <a href="#">{{comp.name}} : {{comp.description}}</a>-->
-          <!--</div>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</tab>-->
-    <!--<tab heading="Tasks" class="tasks-tab">-->
-      <!--<ul class="sidebar-nav" ng-repeat="task in tasks | filter:searchText">-->
-        <!--<li class="empty-container"-->
-            <!--ng-drag="true"-->
-            <!--ng-drag-data="task"-->
-            <!--ng-center-anchor="false">-->
-        <!--</li>-->
-        <!--<li class="task-item">-->
-          <!--<a href="">{{task.name}}</a>-->
-        <!--</li>-->
-      <!--</ul>-->
-    <!--</tab>-->
-  <!--</tabset>-->
+<!--<div>-->
+<!--<pre>{{ template | json }}</pre>-->
+<!--</div>-->
+<!--<form id="searchbox">-->
+<!--<input ng-model="searchText" type="text" placeholder="Search..." required class="search">-->
+<!--</form>-->
+<!--<tabset justified="true">-->
+<!--<tab heading="Components" class="components-tab">-->
+<!--<ul>-->
+<!--<li class="sidebar-nav" ng-repeat="comp in components | filter:searchText">-->
+<!--<div class="empty-container"-->
+<!--ng-drag="true"-->
+<!--ng-drag-success="onDragComplete($data,$event)"-->
+<!--ng-drag-data="comp"-->
+<!--ng-center-anchor="false">-->
+<!--</div>-->
+<!--<div class="component-item">-->
+<!--<img class="component-image" width="100px" ng-src="{{comp.image}}"/> <a href="#">{{comp.name}} : {{comp.description}}</a>-->
+<!--</div>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</tab>-->
+<!--<tab heading="Tasks" class="tasks-tab">-->
+<!--<ul class="sidebar-nav" ng-repeat="task in tasks | filter:searchText">-->
+<!--<li class="empty-container"-->
+<!--ng-drag="true"-->
+<!--ng-drag-data="task"-->
+<!--ng-center-anchor="false">-->
+<!--</li>-->
+<!--<li class="task-item">-->
+<!--<a href="">{{task.name}}</a>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</tab>-->
+<!--</tabset>-->
 <!--</div>-->
 <!-- /#sidebar-wrapper -->
 
