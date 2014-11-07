@@ -274,7 +274,7 @@ app.service('AWSComponents', function () {
             {name: 'SourceDestCheck', type: 'Boolean', description: 'Description for tooltip'},
             {name: 'SubnetId', type: 'String', description: 'Description for tooltip'},
             {name: 'Tenancy', type: 'String', description: 'Description for tooltip'},
-            {name: 'UserData', type: 'String', description: 'Description for tooltip'},
+            {name: 'UserData', type: 'String', description: 'Description for tooltip'}
           ]
         },
         Outputs: [
