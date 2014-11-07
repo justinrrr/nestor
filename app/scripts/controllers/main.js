@@ -12,7 +12,8 @@ angular.module('nestorApp')
     function ($scope, AWSComponents) {
 
       //The draggable component on the canvas
-      function Component(name, image, description, x, y) {
+      function Component(id, name, image, description, x, y) {
+        this.id = id;
         this.title = name;
         this.description = description;
         this.image = image;
@@ -32,7 +33,9 @@ angular.module('nestorApp')
         });
       };
 
+      $scope.componentProperties = {};
       $scope.addedComponents = [];
+      $scope.selectedComponentId = '';
       //we use this to make sure that components are named
       //sequencially : Dynamo1, Dynamo2
       $scope.componentNameCounters = {};
@@ -69,6 +72,28 @@ angular.module('nestorApp')
         }
       }
 
+      function assignComponentProperties(blueprint, componentId) {
+
+        $scope.componentProperties[componentId] = {};
+        $scope.componentProperties[componentId].required = AWSComponents.componentMetadata[blueprint.name].properties.required;
+        $scope.componentProperties[componentId].optional = AWSComponents.componentMetadata[blueprint.name].properties.optional;
+
+        //var treatProperty = function(value, key) {
+        //  if (AWSComponents.PropertyTypes.primitives[value]) {
+        //    expandedProperties.push({name: key, type: value});
+        //  } else {
+        //    if (AWSComponents.PropertyTypes.complex[value]) {
+        //      var dataType = AWSComponents.PropertyTypes.complex[value];
+        //      if (dataType.Display.type === 'table') {
+        //
+        //      } else if (dataType.Display.type === 'drag') {
+        //
+        //      }
+        //    }
+        //  }
+        //};
+      }
+
       function addComponentToTemplate(blueprint, c) {
 
         $scope.addedComponents.push(c);
@@ -94,13 +119,17 @@ angular.module('nestorApp')
           }
         });
 
+        assignComponentProperties(blueprint);
+
         $scope.templateString = JSON.stringify($scope.template, null, 4);
       }
 
       // add a module to the schema
       var addComponent = function (blueprint, posX, posY) {
 
+        var uniqueId = _.uniqueId(blueprint.name + '-');
         var c = new Component(
+          uniqueId,
           blueprint.name,
           blueprint.image,
           blueprint.description,
@@ -114,4 +143,9 @@ angular.module('nestorApp')
       $scope.onDragComplete = function ($data, $event) {
         addComponent($data, $event.x, $event.y);
       };
+
+      $scope.clickCallback = function(component) {
+        $scope.selectedComponentId = component.id;
+      };
+
     }]);

@@ -17,6 +17,7 @@
 
       <!-- The actual components on the canvas -->
       <div plumb-item
+           ng-click="clickCallback(component)"
            class="item"
            ng-repeat="component in addedComponents"
            ng-style="{ 'left':component.x, 'top':component.y }"
