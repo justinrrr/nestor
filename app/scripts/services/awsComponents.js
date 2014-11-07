@@ -274,6 +274,7 @@ app.service('AWSComponents', function () {
         String: 'String', Integer: 'Integer', Boolean: 'Boolean'
       },
       complex: {
+
         TypeName: {
 
           //how to show this in UI
@@ -308,6 +309,7 @@ app.service('AWSComponents', function () {
             }
           }
         },
+
         Tags: {
           Display: {type: 'table', maxSize: -1},
           Description: 'You can use the AWS CloudFormation Resource Tags property to apply tags to resources, which can help you identify and categorize those resources.',
