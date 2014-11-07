@@ -1,7 +1,7 @@
 /**
   Colors
 *************************************/
-@ambiance: #7A7A93;
+@ambiance: #5e6e8d;
 @dambiance: #5D5D74;
 @lambiance: #E9E6EA;
 @clouds: #E0DFDF;
@@ -15,6 +15,13 @@
 @darkfield:  rgba(122, 122, 147, 0.64);
 @listhover: rgba(233, 230, 234, 0.19);
 @linkhover: rgba(38, 35, 42, 0.75);
+@snow: white;
+
+//Font
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 
 /* Center column style */
 #container {
@@ -61,12 +68,14 @@
         margin-bottom: -4px;
       }
       .title {
+        font-weight: 300;
+        font-family: sans-serif;
+        font-size: 12px;
+        letter-spacing: 0.19px;
         position: relative;
         padding: 54px 2px 11px 2px;
         margin-bottom: 0px;
         cursor: move;
-        font-weight: 300;
-        font-size: 12px;
         color: @dambiance;
         bottom: 54px;
       }
@@ -93,7 +102,7 @@
       box-shadow: 2px 2px 3px 1px #AAA;
       border: 1px dashed @lambiance;
       .title {
-        color: @lighttext;
+        color: @snow;
       }
     }
     svg {
@@ -128,7 +137,7 @@
         background-color: @ambiance;
         width: 300px;
         padding: 5px 10px 5px 15px;
-        color: @lighttext;
+        color: @snow;
         border-bottom: 4px solid @lambiance;
         #titleh4 {
           font-size: 16px;
@@ -178,7 +187,6 @@
           border: 0px;
           color: rgba(112, 100, 130, 0.78);;
           font-weight: 500;
-          font-style: italic;
           outline: none;
           width: 100%;
           margin-left: 6px;
@@ -214,13 +222,13 @@
           text-decoration: none;
           cursor: pointer;
           background-color: @ambiance;
-          color: @lambiance;
+          color: @linkhover;
           font-weight: 600;
           border: none;
           border-bottom: 1px solid rgb(206, 199, 208);
           border-radius: 0;
           &:hover {
-            color: @linkhover;
+            color: @lighttext;
           }
         }
         .active > a {
@@ -229,9 +237,9 @@
           border-top: 4px solid rgb(206, 199, 208);
           border-left: 1px solid rgb(206, 199, 208);
           border-right: 1px solid rgb(206, 199, 208);
-          color: @clouds;
+          color: @snow;
           &:hover {
-            color: @clouds;
+            color: @snow;
           }
         }
       }
@@ -246,7 +254,7 @@
             width: 300px;
             height: 80px;
             position: absolute;
-            color: @clouds;
+            color: @snow;
             cursor: pointer;
             font-weight: 700;
             border-bottom: 1px solid @listhover;
@@ -258,7 +266,7 @@
           .component-item {
             display: table-cell;
             vertical-align: middle;
-            color: @clouds;
+            color: @snow;
             font-weight: 700;
             width: 300px;
             height: 80px;
@@ -269,20 +277,22 @@
             }
             .pdiv {
               float: left;
-              width: 200px;
+              width: 220px;
               vertical-align: middle;
               p {
                 font-weight: 300;
-                font-size: 12px;
+                font-family: sans-serif;
+                font-size: 13px;
                 vertical-align: middle;
+                letter-spacing: 0.19px;
               }
             }
             .imgdiv {
               float: left;
-              width: 70px;
+              width: 50px;
               img.component-image {
-                width: 60px;
-                height: 60px;
+                width: 40px;
+                height: 40px;
               }
             }
           }
@@ -290,15 +300,18 @@
             padding: 10px 15px 10px 15px;
             display: table-cell;
             vertical-align: middle;
-            color: @clouds;
+            color: @snow;
             cursor: pointer;
             font-weight: 700;
             width: 300px;
             height: 80px;
             p {
               font-weight: 300;
-              font-size: 12px;
+              font-family: sans-serif;
+              font-size: 13px;
               vertical-align: middle;
+              letter-spacing: 0.19px;
+
             }
           }
         }
@@ -367,8 +380,10 @@
       vertical-align: middle;
       p {
         font-weight: 300;
+        font-family: sans-serif;
         font-size: 12px;
         vertical-align: middle;
+        letter-spacing: 0.19px;
       }
     }
     .imgdiv {
@@ -380,4 +395,7 @@
       }
     }
   }
+}
+.ace-ambiance .ace_variable {
+  color: #89A1D0 !important;
 }

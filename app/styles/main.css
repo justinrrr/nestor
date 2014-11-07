@@ -1,6 +1,9 @@
 /**
   Colors
 *************************************/
+body {
+  font-family: 'Lato', sans-serif;
+}
 /* Center column style */
 #container {
   background-color: white;
@@ -30,7 +33,7 @@
   -moz-box-shadow: 2px 2px 3px 1px #AAA;
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
-  border: 1px dashed #7a7a93;
+  border: 1px dashed #5e6e8d;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .item img {
   position: relative;
@@ -39,12 +42,14 @@
   margin-bottom: -4px;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .item .title {
+  font-weight: 300;
+  font-family: sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.19px;
   position: relative;
   padding: 54px 2px 11px 2px;
   margin-bottom: 0px;
   cursor: move;
-  font-weight: 300;
-  font-size: 12px;
   color: #5d5d74;
   bottom: 54px;
 }
@@ -64,14 +69,14 @@
   transition: box-shadow 0.25s ease-in;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent {
-  background-color: #7a7a93;
+  background-color: #5e6e8d;
   -moz-box-shadow: 2px 2px 3px 1px #AAA;
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
   border: 1px dashed #e9e6ea;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent .title {
-  color: #dbdbdb;
+  color: #ffffff;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg circle {
   fill: #d7b371;
@@ -96,10 +101,10 @@
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg {
   top: 0px;
-  background-color: #7a7a93;
+  background-color: #5e6e8d;
   width: 300px;
   padding: 5px 10px 5px 15px;
-  color: #dbdbdb;
+  color: #ffffff;
   border-bottom: 4px solid #e9e6ea;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg #titleh4 {
@@ -137,7 +142,7 @@
   margin: 6px 0px 0px 0px;
   display: inline-flex;
   width: 300px;
-  border: 2px solid #7a7a93;
+  border: 2px solid #5e6e8d;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox .search {
   padding: 8px 15px;
@@ -146,7 +151,6 @@
   border: 0px;
   color: rgba(112, 100, 130, 0.78);
   font-weight: 500;
-  font-style: italic;
   outline: none;
   width: 100%;
   margin-left: 6px;
@@ -177,29 +181,29 @@
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a {
   text-decoration: none;
   cursor: pointer;
-  background-color: #7a7a93;
-  color: #e9e6ea;
+  background-color: #5e6e8d;
+  color: rgba(38, 35, 42, 0.75);
   font-weight: 600;
   border: none;
   border-bottom: 1px solid #cec7d0;
   border-radius: 0;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a:hover {
-  color: rgba(38, 35, 42, 0.75);
+  color: #dbdbdb;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a {
-  background-color: #7a7a93;
+  background-color: #5e6e8d;
   border-bottom: none;
   border-top: 4px solid #cec7d0;
   border-left: 1px solid #cec7d0;
   border-right: 1px solid #cec7d0;
-  color: #e0dfdf;
+  color: #ffffff;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a:hover {
-  color: #e0dfdf;
+  color: #ffffff;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content {
-  background-color: #7a7a93;
+  background-color: #5e6e8d;
   border-bottom-color: rgba(112, 100, 130, 0.78);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane {
@@ -209,7 +213,7 @@
   width: 300px;
   height: 80px;
   position: absolute;
-  color: #e0dfdf;
+  color: #ffffff;
   cursor: pointer;
   font-weight: 700;
   border-bottom: 1px solid rgba(233, 230, 234, 0.19);
@@ -221,7 +225,7 @@
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .component-item {
   display: table-cell;
   vertical-align: middle;
-  color: #e0dfdf;
+  color: #ffffff;
   font-weight: 700;
   width: 300px;
   height: 80px;
@@ -233,27 +237,29 @@
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .component-item .pdiv {
   float: left;
-  width: 200px;
+  width: 220px;
   vertical-align: middle;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .component-item .pdiv p {
   font-weight: 300;
-  font-size: 12px;
+  font-family: sans-serif;
+  font-size: 13px;
   vertical-align: middle;
+  letter-spacing: 0.19px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .component-item .imgdiv {
   float: left;
-  width: 70px;
+  width: 50px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .component-item .imgdiv img.component-image {
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .task-item {
   padding: 10px 15px 10px 15px;
   display: table-cell;
   vertical-align: middle;
-  color: #e0dfdf;
+  color: #ffffff;
   cursor: pointer;
   font-weight: 700;
   width: 300px;
@@ -261,8 +267,10 @@
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content .tab-pane .task-item p {
   font-weight: 300;
-  font-size: 12px;
+  font-family: sans-serif;
+  font-size: 13px;
   vertical-align: middle;
+  letter-spacing: 0.19px;
 }
 /**
   Resizable bar between each column & row
@@ -275,7 +283,7 @@
   bottom: 0;
   /* Can be changed by hand ;)*/
   overflow: auto;
-  background-color: #7a7a93;
+  background-color: #5e6e8d;
 }
 .ui-splitbar {
   display: block;
@@ -318,8 +326,10 @@
 }
 .dragging .component-item .pdiv p {
   font-weight: 300;
+  font-family: sans-serif;
   font-size: 12px;
   vertical-align: middle;
+  letter-spacing: 0.19px;
 }
 .dragging .component-item .imgdiv {
   float: left;
@@ -328,4 +338,7 @@
 .dragging .component-item .imgdiv img.component-image {
   width: 60px;
   height: 60px;
+}
+.ace-ambiance .ace_variable {
+  color: #89A1D0 !important;
 }
