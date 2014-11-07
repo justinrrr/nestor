@@ -2,10 +2,15 @@
   Colors
 *************************************/
 @ambiance: #7A7A93;
+@dambiance: #5D5D74;
+@lambiance: #E9E6EA;
 @clouds: #E0DFDF;
 @dashborder: #F6F5F5;
 @darktext: rgb(48, 44, 53);
 @lighttext: rgb(219, 219, 219);
+@evening: #2E2633;
+@helio: #99173C;
+@orange: rgb(215, 179, 113);
 
 /* Center column style */
 #container {
@@ -27,15 +32,24 @@
   .center-column {
     .item {
       position: absolute;
-      border: 1px dashed @dashborder;
       width: 100px;
       height: 100px;
       font-size: 80%;
-      background-color: @ambiance;
+      background-color: @lambiance;
       text-align: center;
+      display: inline-block;
+      -webkit-transition-duration: 0.02s;
+      transition-duration: 0.02s;
+      -webkit-transition-property: -webkit-transform;
+      transition-property: transform;
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+      -webkit-transform: translateZ(0);
+      -ms-transform: translateZ(0);
+      transform: translateZ(0);
       -moz-box-shadow: 2px 2px 3px 1px #AAA;
       -webkit-box-shadow: 2px 2px 3px 1px #AAA;
       box-shadow: 2px 2px 3px 1px #AAA;
+      border: 1px dashed @ambiance;
       img {
         position: relative;
         width: 60px;
@@ -49,13 +63,13 @@
         cursor: move;
         font-weight: 300;
         font-size: 12px;
-        color: @clouds;
+        color: @dambiance;
       }
       .ep {
         position: absolute;
         bottom: 45%;
         right: -6px;
-        border: 2px solid orange;
+        border: 2px solid @orange;
         width: 12px;
         height: 12px;
         border-radius: 50%;
@@ -68,23 +82,32 @@
       }
     }
     .selectedComponent {
-      background-color: red;
+      background-color: @ambiance;
+      -webkit-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+      -moz-box-shadow: 2px 2px 3px 1px #AAA;
+      -webkit-box-shadow: 2px 2px 3px 1px #AAA;
+      box-shadow: 2px 2px 3px 1px #AAA;
+      .title {
+        color: @lighttext;
+      }
     }
     svg {
       circle {
-        fill: orange;
-        stroke: orange;
+        fill: @orange;
+        stroke: @orange;
         stroke-width: 1px;
       }
       ._jsPlumb_endpoint._jsPlumb_endpoint_anchor_.ui-droppable.ui-draggable.ui-draggable-handle._jsPlumb_endpoint_connected._jsPlumb_endpoint_full {
         circle {
-          fill: orange;
-          stroke: orange;
+          fill: @orange;
+          stroke: @orange;
           stroke-width: 1px;
         }
       }
       path {
-        stroke: orange;
+        stroke: @orange;
         stroke-width: 2px;
       }
     }
@@ -138,11 +161,11 @@
         li > a {
           text-decoration: none;
           cursor: pointer;
-          background-color: #E9E6EA;
+          background-color: @lambiance;
           color: rgba(112, 100, 130, 1);
           font-weight: 600;
           border: none;
-          border-bottom: 2px solid #E9E6EA;
+          border-bottom: 2px solid @lambiance;
           border-radius: 0;
           &:hover {
             color: #26232A;
@@ -179,11 +202,14 @@
             display: table-cell;
             vertical-align: middle;
             color: @clouds;
-            cursor: pointer;
             font-weight: 700;
             border-bottom: 1px dashed @dashborder;
             width: 300px;
             height: 80px;
+            &:hover {
+              cursor: pointer;
+              background-color: white;
+            }
             .pdiv {
               float: left;
               width: 200px;
@@ -268,15 +294,15 @@
 *************************************/
 
 .dragging {
-  background-color: @ambiance;
+  background-color: @lambiance;
   border-bottom-color: rgba(112, 100, 130, 0.78);
   .component-item {
     display: table-cell;
     vertical-align: middle;
-    color: @clouds;
+    color: @dambiance;
     cursor: pointer;
     font-weight: 700;
-    border-bottom: 1px dashed @dashborder;
+    border: 1px dashed @dambiance;
     width: 300px;
     height: 80px;
     .pdiv {
