@@ -139,4 +139,8 @@ angular.module('nestorApp')
 
         listToAddTo[propertyName].push(item);
       };
+
+      $scope.$watch('template', function(newValue, oldValue){
+        $scope.templateString = JSON.stringify($scope.template, null, 4);
+      }, true);
     }]);
