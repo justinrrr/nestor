@@ -19,6 +19,7 @@
       <div plumb-item
            ng-click="clickCallback(component)"
            class="item"
+           ng-class="{selectedComponent : component.id === selectedComponentId}"
            ng-repeat="component in addedComponents"
            ng-style="{ 'left':component.x, 'top':component.y }"
            data-identifier="{{component.id}}">
