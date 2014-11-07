@@ -148,8 +148,8 @@ app.service('AWSComponents', function () {
         Outputs : [
           {
             type: 'acceptable values are Ref and GetAtt',
-            'name' : 'userFriendlyNameOfOutput',
-            'description' : 'userFriendlyDescriptionOfOutput'
+            name : 'userFriendlyNameOfOutput',
+            description : 'userFriendlyDescriptionOfOutput'
           }
         ]
       },
@@ -187,42 +187,59 @@ app.service('AWSComponents', function () {
 
       'EC2' : {
         type: 'AWS::EC2::Instance',
-        properties: {
-          required: {
-            ImageId : 'String'
-          },
-          optional: {
-            AvailabilityZone : 'String',
-            BlockDeviceMappings : 'BlockDeviceMappings', //[ EC2 Block Device Mapping, ... ],
-            DisableApiTermination : 'Boolean',
-            EbsOptimized : 'Boolean',
-            IamInstanceProfile : 'String',
-            InstanceInitiatedShutdownBehavior : 'default',
-            InstanceType : 'String',
-            KernelId : 'String',
-            KeyName : 'String',
-            Monitoring : 'Boolean',
-            NetworkInterfaces : 'NetworkInterfaces', // [ EC2 Network Interface, ... ],
-            PlacementGroupName : 'String',
-            PrivateIpAddress : 'String',
-            RamdiskId : 'String',
-//          SecurityGroupIds : [ String, ... ],
-//          SecurityGroups : [ String, ... ],
-            SourceDestCheck : 'Boolean',
-            SubnetId : 'String',
-//          Tags : [ Resource Tag, ... ],
-            Tenancy : 'String',
-//          Volumes : [ EC2 MountPoint, ... ],
-            UserData : 'String'
+
+        IncomingConnection: {
+          //read this from components object aove
+          'ConnectionSourceName' : {
+            //name of the property on the this object (target object) to set
+            name: 'SecurityGroupName',
+            //the name of the property on the source object whose value we will set to the value of the target object
+            value: 'Name',
+            //whether this is part of the Properties of the Resource
+            isProperty: true
           }
         },
-        outputs: [
+
+        properties : {
+          required : [
+            {name: 'ImageId', type: 'String', description: 'Name of the EC2 instance'}
+          ],
+          optional : [
+
+            {name: 'BlockDeviceMappings', type: 'BlockDeviceMappings', description: 'tooltip??'},
+            {name: 'NetworkInterfaces', type: 'NetworkInterfaces', description: 'tooltip??'},
+            {name: 'SecurityGroupIds', type: 'SecurityGroupIds', description: 'tooltip??'},
+            {name: 'SecurityGroups', type: 'SecurityGroups', description: 'tooltip??'},
+            {name: 'Tags', type: 'Tags', description: 'tooltip??'},
+            {name: 'AvailabilityZone', type: 'AvailabilityZone', description: 'tooltip??'},
+            {name: 'Volumes', type: 'Volumes', description: 'tooltip??'},
+
+            {name: 'DisableApiTermination', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'EbsOptimized', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'IamInstanceProfile', type: 'String', description: 'Description for tooltip'},
+            {name: 'InstanceInitiatedShutdownBehavior', type: 'String', description: 'Description for tooltip'},
+            {name: 'InstanceType', type: 'String', description: 'Description for tooltip'},
+            {name: 'KernelId', type: 'String', description: 'Description for tooltip'},
+            {name: 'KeyName', type: 'String', description: 'Description for tooltip'},
+            {name: 'Monitoring', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'PlacementGroupName', type: 'String', description: 'Description for tooltip'},
+            {name: 'PrivateIpAddress', type: 'String', description: 'Description for tooltip'},
+            {name: 'RamdiskId', type: 'String', description: 'Description for tooltip'},
+            {name: 'SourceDestCheck', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'SubnetId', type: 'String', description: 'Description for tooltip'},
+            {name: 'Tenancy', type: 'String', description: 'Description for tooltip'},
+            {name: 'UserData', type: 'String', description: 'Description for tooltip'},
+          ]
+        },
+        Outputs : [
           {
             type: 'Ref',
             name: 'ImageID',
-            description: 'Name of the EC2 instanced'
-          }]
+            description: 'Name of the EC2 instance'
+          }
+        ]
       }
+
 
       /* template for a new component meta data
       '' : {
@@ -247,7 +264,7 @@ app.service('AWSComponents', function () {
         String: 'String', Integer: 'Integer', Boolean: 'Boolean'
       },
       complex: {
-        Tag: {
+        Tags: {
           Display: {type: 'table', maxSize: -1},
           Description: 'You can use the AWS CloudFormation Resource Tags property to apply tags to resources, which can help you identify and categorize those resources.',
           types: {
@@ -402,7 +419,7 @@ app.service('AWSComponents', function () {
               Iops : { type: 'Number', description: ''},
               Size : { type: 'String', description: ''},
               SnapshotId : { type: 'String', description: ''},
-              Tags : { type: 'Tag', description: 'An arbitrary set of tags (key–value pairs) for this volume.' },
+              Tags : { type: 'Tags', description: 'An arbitrary set of tags (key–value pairs) for this volume.' },
               VolumeType : { type: 'String', description: ''}
             }
 
