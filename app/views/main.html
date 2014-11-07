@@ -42,6 +42,17 @@
         <div ng-show="selectedComponentId !== ''">
           <h4>{{componentProperties[selectedComponentId].name}} </h4>
           <h5>Type: {{componentProperties[selectedComponentId].type}}</h5>
+          <hr/>
+          <h5>Required Parameters</h5>
+          <div ng-repeat="prop in componentProperties[selectedComponentId].required">
+            <p>hi</p>
+          </div>
+          <hr/>
+          <h5>Optional Parameters</h5>
+          <div ng-repeat="prop in componentProperties[selectedComponentId].optional">
+            <p>ho</p>
+          </div>
+
         </div>
       </div>
 
