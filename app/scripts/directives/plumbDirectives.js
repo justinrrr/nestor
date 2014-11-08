@@ -11,7 +11,8 @@ app.directive('plumbListeners', function () {
     //controller: 'PlumbCtrl',
     restrict: 'EA',
     scope: {
-      onConnectionEstablished: '&'
+      onConnectionEstablished: '&',
+      onConnectionDetached: '&'
     },
     link: function ($scope) {
 
@@ -26,6 +27,8 @@ app.directive('plumbListeners', function () {
           targetName: targetName
         });
       });
+
+      jsPlumb.bind('')
     }
   };
 });
