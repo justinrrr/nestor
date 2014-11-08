@@ -11,8 +11,9 @@
 @evening: #2E2633;
 @helio: #99173C;
 @orange: rgb(215, 179, 113);
+@lightorange: #ffd88f;
 @fieldborder: rgba(122, 122, 147, 0.36);
-@darkfield:  rgba(122, 122, 147, 0.64);
+@darkfield: rgba(122, 122, 147, 0.64);
 @listhover: rgba(233, 230, 234, 0.19);
 @linkhover: rgba(38, 35, 42, 0.75);
 @snow: white;
@@ -22,7 +23,6 @@
 body {
   font-family: 'Lato', sans-serif;
 }
-
 
 /* Center column style */
 #container {
@@ -137,7 +137,7 @@ body {
     .right-column-top {
       background-color: @dashborder;
       .cd-fixed-bg {
-//        position: fixed;
+        //        position: fixed;
         top: 0px;
         background-color: @ambiance;
         width: 300px;
@@ -146,7 +146,7 @@ body {
         border-bottom: 4px solid @lambiance;
         #titleh4 {
           font-size: 16px;
-         margin-top: 4px;
+          margin-top: 4px;
         }
         #titleh5 {
           font-size: 12px;
@@ -161,10 +161,50 @@ body {
         margin-bottom: 0px;
       }
       .content {
-        padding: 5px 10px 5px 15px;
-        border-bottom: 1px solid rgba(225, 225, 225, 0.54);
+        padding: 0px 10px 0px 15px;
 
-        /* Force table1 to not be like tables anymore */
+        /* STYLES FOR ACCORDION */
+        .propertiesaccordion {
+          .panel-group {
+            .panel.panel-default.ng-isolate-scope {
+              .panel-heading {
+                background-color: #F7FFF7;
+                h4.panel-title {
+                  font-size: 14px;
+                  a {
+                    text-decoration: none;
+                    color: @evening;
+                    cursor: pointer;
+                  }
+                }
+              }
+              .panel-collapse > .panel-body {
+                .new {
+                  width: 30px;
+                  height: 30px;
+                  border-radius: 50%;
+                  background-color: #d95353;
+                  transition: background-color 0.2s;
+                  span {
+                    top: 0px;
+                    right: 5px;
+                    color: white;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .pull-right {
+          top: -15px;
+          font-size: 12px;
+          color: @ambiance;
+        }
+
+
+
+
+        /* STYLE FOR TABLES WITHIN PROPERTIES ACCORDION */
         #no-more-tables1 table,
         #no-more-tables1 thead,
         #no-more-tables1 tbody,
@@ -173,74 +213,69 @@ body {
         #no-more-tables1 tr {
           display: block;
         }
-
         #no-more-tables1 table {
           margin-right: 10px;
         }
-        /* Hide table headers (but not display: none;, for accessibility) */
+        //        Hide table headers (but not display: none;, for accessibility)
         #no-more-tables1 thead tr {
           position: absolute;
           top: -9999px;
           left: -9999px;
         }
-
-        #no-more-tables1 tr { border: 1px solid #ccc; }
-
+        #no-more-tables1 tr {
+          border: 1px solid #ccc;
+        }
         #no-more-tables1 td {
-          /* Behave  like a "row" */
+          //          Behave  like a "row"
           border: none;
           border-bottom: 1px solid #eee;
           position: relative;
           padding-left: 50%;
           white-space: normal;
-          text-align:left;
+          text-align: left;
           padding-right: 10px;
           font-size: 14px;
           ul {
             padding-left: 6px;
-
             li {
               margin-left: 6px;
               span {
                 font-size: 14px;
               }
-
             }
           }
-
         }
-
+        .table-bordered {
+          border: 0px;
+        }
         #no-more-tables1 td:before {
-          /* Now like a table header */
+          //          Now like a table header
           position: absolute;
-          /* Top/left values mimic padding */
+          // Top/left values mimic padding //
           top: 6px;
           left: 6px;
           width: 45%;
           padding-right: 10px;
           white-space: nowrap;
-          text-align:left;
+          text-align: left;
           font-weight: 400;
           color: @ambiance;
         }
-
-        /*
-        Label the data
-        */
-        #no-more-tables1 td:before { content: attr(data-title); }
-
+        //        Label the data
+        #no-more-tables1 td:before {
+          content: attr(data-title);
+        }
         .table-responsive {
           margin-left: -10px;
           margin-right: -10px;
         }
-
-
-        span{
+        span {
           color: @attributes;
           display: block;
         }
       }
-      //Input field style
+
+      /*Input field style */
       .propertyinput {
         border: 2px solid @fieldborder;
         padding: 2px;
@@ -268,8 +303,7 @@ body {
           top: 20px;
           color: rgba(112, 100, 130, 0.78);
         }
-        input:focus::-webkit-input-placeholder
-        {
+        input:focus::-webkit-input-placeholder {
           color: transparent;
         }
         .search {
@@ -492,6 +526,7 @@ body {
     }
   }
 }
+
 .ace-ambiance .ace_variable {
   color: #89A1D0 !important;
 }

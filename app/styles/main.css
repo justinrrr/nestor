@@ -103,6 +103,7 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top {
   background-color: #f6f5f5;
+  /*Input field style */
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg {
   top: 0px;
@@ -127,13 +128,37 @@ body {
   margin-bottom: 0px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content {
-  padding: 5px 10px 5px 15px;
-  border-bottom: 1px solid rgba(225, 225, 225, 0.54);
-  /* Force table1 to not be like tables anymore */
-  /* Hide table headers (but not display: none;, for accessibility) */
-  /*
-        Label the data
-        */
+  padding: 0px 10px 0px 15px;
+  /* STYLES FOR ACCORDION */
+  /* STYLE FOR TABLES WITHIN PROPERTIES ACCORDION */
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading {
+  background-color: #F7FFF7;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading h4.panel-title {
+  font-size: 14px;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading h4.panel-title a {
+  text-decoration: none;
+  color: #2e2633;
+  cursor: pointer;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse > .panel-body .new {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: #d95353;
+  transition: background-color 0.2s;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse > .panel-body .new span {
+  top: 0px;
+  right: 5px;
+  color: white;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .pull-right {
+  top: -15px;
+  font-size: 12px;
+  color: #6a7ea3;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 table,
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 thead,
@@ -155,7 +180,6 @@ body {
   border: 1px solid #ccc;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td {
-  /* Behave  like a "row" */
   border: none;
   border-bottom: 1px solid #eee;
   position: relative;
@@ -174,10 +198,11 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td ul li span {
   font-size: 14px;
 }
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .table-bordered {
+  border: 0px;
+}
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td:before {
-  /* Now like a table header */
   position: absolute;
-  /* Top/left values mimic padding */
   top: 6px;
   left: 6px;
   width: 45%;
