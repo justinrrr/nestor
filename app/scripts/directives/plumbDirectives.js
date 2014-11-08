@@ -12,7 +12,8 @@ app.directive('plumbListeners', function () {
     restrict: 'EA',
     scope: {
       onConnectionEstablished: '&',
-      onConnectionDetached: '&'
+      onConnectionDetached: '&',
+      onConnectionMoved: '&'
     },
     link: function ($scope) {
 
@@ -28,7 +29,29 @@ app.directive('plumbListeners', function () {
         });
       });
 
-      jsPlumb.bind('')
+      jsPlumb.bind('connectionDetached', function(info) {
+
+        var sourceName = info.source.attributes.getNamedItem('data-component-name').value;
+        var targetName = info.target.attributes.getNamedItem('data-component-name').value;
+
+        $scope.onConnectionDetached({
+          sourceName: sourceName,
+          targetName: targetName
+        });
+      });
+
+      jsPlumb.bind('connectionMoved', function(info) {
+
+        var sourceName = info.source.attributes.getNamedItem('data-component-name').value;
+        var targetName = info.target.attributes.getNamedItem('data-component-name').value;
+
+        $scope.onConnectionMoved({
+          sourceName: sourceName,
+          targetName: targetName
+        });
+      });
+
+
     }
   };
 });

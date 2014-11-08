@@ -210,22 +210,29 @@ angular.module('nestorApp')
         if (!incomingConnectionProperies.isProperty) {
           if (incomingConnectionProperies.value === 'Name') {
             $scope.template.Resources[targetName][incomingConnectionProperies.name] = sourceName;
-            $scope.templateString = JSON.stringify($scope.template, null, 4);
             $scope.$digest();
           }
         }
       };
 
-      $scope.connectionRemoved = function(sourceName, targetName) {
+      $scope.connectionDetached = function(sourceName, targetName) {
+
         var sourceType = AWSComponents.typeMappings[$scope.template.Resources[sourceName].Type];
         var targetType = AWSComponents.typeMappings[$scope.template.Resources[targetName].Type];
         var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
         if (!incomingConnectionProperies.isProperty) {
           if (incomingConnectionProperies.value === 'Name') {
-            $scope.template.Resources[targetName][incomingConnectionProperies.name] = sourceName;
-            $scope.templateString = JSON.stringify($scope.template, null, 4);
+            delete $scope.template.Resources[targetName][incomingConnectionProperies.name];
             $scope.$digest();
           }
         }
+        //var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
+        //if (!incomingConnectionProperies.isProperty) {
+        //  if (incomingConnectionProperies.value === 'Name') {
+        //    $scope.template.Resources[targetName][incomingConnectionProperies.name] = sourceName;
+        //    $scope.templateString = JSON.stringify($scope.template, null, 4);
+        //    $scope.$digest();
+        //  }
+        //}
       };
     }]);

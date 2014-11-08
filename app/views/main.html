@@ -17,6 +17,7 @@
          id="container"
          plumb-listeners
          on-connection-established="connectionEstablished(sourceName, targetName)"
+         on-connection-Detached="connectionDetached(sourceName, targetName)"
          class="center-column">
 
 
@@ -48,7 +49,6 @@
       <div class="right-column-top">
         <div ng-show="selectedComponent">
           <div class="cd-fixed-bg">
-            <h4>ID : {{selectedComponent.id}}</h4>
             <h4 id="titleh4">{{selectedComponent.name}} </h4>
             <h5 id="titleh5">Type: {{selectedComponent.type}}</h5>
           </div>
