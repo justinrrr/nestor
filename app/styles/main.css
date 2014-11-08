@@ -102,7 +102,7 @@ body {
   left: 79.2% !important;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top {
-  background-color: #f6f5f5;
+  background-color: white;
   /*Input field style */
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg {
@@ -111,7 +111,6 @@ body {
   width: 300px;
   padding: 5px 10px 5px 15px;
   color: #ffffff;
-  border-bottom: 4px solid #e9e6ea;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg #titleh4 {
   font-size: 16px;
@@ -150,6 +149,7 @@ body {
   border-radius: 0px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
+  margin-top: -2px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading .table-responsive {
   border-top: 0px;
