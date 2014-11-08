@@ -118,12 +118,12 @@ app.service('AWSComponents', function () {
     ];
 
     this.typeMappings = {
-      'AWS::DynamoDB::Table' : 'DynamoDb',
-      'AWS::AutoScaling::AutoScalingGroup' : 'Autoscaling Group',
-      'AWS::EC2::Instance' : 'EC2',
-      'AWS::EC2::EIP' : 'Elastic IP',
+      'AWS::DynamoDB::Table': 'DynamoDb',
+      'AWS::AutoScaling::AutoScalingGroup': 'Autoscaling Group',
+      'AWS::EC2::Instance': 'EC2',
+      'AWS::EC2::EIP': 'Elastic IP',
       'AWS::ElasticLoadBalancing::LoadBalancer': 'ELB',
-      'AWS::EC2::VPC' : 'VPC'
+      'AWS::EC2::VPC': 'VPC'
     };
 
     //add component specific metadat here
@@ -188,26 +188,27 @@ app.service('AWSComponents', function () {
 
         properties: {
           required: [
-            {name: 'GroupDescription', type: 'String', description: 'tooltip??'}
+            {name: 'GroupDescription', type: 'String', description: 'Description of the security group'}
           ],
           optional: [
-            {name: 'SecurityGroupEgress', type: 'SecurityGroupRule', description: 'tooltip??'},
-            {name: 'SecurityGroupIngress', type: 'SecurityGroupRule', description: 'tooltip??'},
-            {name: 'Tags', type: 'Tags', description: 'tooltip??'},
-            {name: 'VcpId', type: 'String', description: 'tooltip??'}
+            {name: 'SecurityGroupEgress', type: 'SecurityGroupRule', description: 'A list of Amazon EC2 security group outgoing connection rules'},
+            {name: 'SecurityGroupIngress', type: 'SecurityGroupRule', description: 'A list of Amazon EC2 security group incoming connection rules'},
+            {name: 'Tags', type: 'Tags', description: 'The tags that you want to attach to the resource'}
+            //TODO: take this item back when we add support for VPC
+//          {name: 'VcpId', type: 'String', description: 'The physical ID of the VPC. Can be obtained by using a reference to an AWS::EC2::VPC, such as: { "Ref" : "myVPC" }'}
           ]
         },
         Outputs: [
           {
             type: 'Ref',
-            name : 'security group identifier',
-            description : 'the security group name (for EC2-classic) or the security group ID (for EC2-VPC)'
+            name: 'security group identifier',
+            description: 'the security group name (for EC2-classic) or the security group ID (for EC2-VPC)'
           }
         ]
       },
 
 
-    'DynamoDb': {
+      'DynamoDb': {
         type: 'AWS::DynamoDB::Table',
         IncomingConnection: {
           //if dynamoDB got connected
@@ -237,7 +238,8 @@ app.service('AWSComponents', function () {
             type: 'Ref',
             name: 'TableName',
             description: 'Name of the created DynamoDb Table'
-          }]
+          }
+        ]
       },
 
       'EC2': {
@@ -245,7 +247,7 @@ app.service('AWSComponents', function () {
 
         IncomingConnection: {
           //read this from components object above
-          'ConnectionSourceName' : {
+          'ConnectionSourceName': {
             //name of the property on the this object (target object) to set
             name: 'SecurityGroupName',
             //the name of the property on the source object whose value we will set to the value of the target object
@@ -262,13 +264,45 @@ app.service('AWSComponents', function () {
           optional: [
 
             {name: 'BlockDeviceMappings', type: 'BlockDeviceMappings', description: 'tooltip??'},
-            {name: 'NetworkInterfaces', type: 'NetworkInterfaces', description: 'tooltip??'},
-            {name: 'SecurityGroupIds', type: 'StringList', description: 'tooltip??'},
-            {name: 'SecurityGroups', type: 'StringList', description: 'tooltip??'},
+            {name: 'NetworkInterfaces', type: 'NetworkInterfaces', description: 'A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance'},
+            {name: 'SecurityGroupIds', type: 'StringList', description: 'A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property'},
+            {name: 'SecurityGroups', type: 'StringList', description: 'Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template'},
             {name: 'Tags', type: 'Tags', description: 'tooltip??'},
-            {name: 'AvailabilityZone', type: 'AvailabilityZone', description: 'tooltip??'},
             {name: 'Volumes', type: 'Volumes', description: 'tooltip??'},
 
+            {name: 'AvailabilityZone', type: 'String', description: 'Specifies the name of the Availability Zone in which the instance is located',
+              // a list of allowable values
+              allowableValues: [
+                {
+                  'ap-northeast-1': 'Asia Pacific (Tokyo)'
+                },
+                {
+                  'ap-southeast-1': 'Asia Pacific (Singapore)'
+                },
+                {
+                  'ap-southeast-2': 'Asia Pacific (Sydney)'
+                },
+                {
+                  'eu-central-1': 'EU (Frankfurt)'
+                },
+                {
+                  'eu-west-1': 'EU (Ireland)'
+                },
+                {
+                  'sa-east-1': 'South America (Sao Paulo)'
+                },
+                {
+                  'us-east-1': 'US East (N. Virginia)'
+                },
+                {
+                  'us-west-1': 'US West (N. California)'
+                },
+                {
+                  'us-west-2': 'US West (Oregon)'
+                }
+              ]
+
+            },
             {name: 'DisableApiTermination', type: 'Boolean', description: 'Description for tooltip'},
             {name: 'EbsOptimized', type: 'Boolean', description: 'Description for tooltip'},
             {name: 'IamInstanceProfile', type: 'String', description: 'Description for tooltip'},
@@ -295,23 +329,6 @@ app.service('AWSComponents', function () {
         ]
       }
 
-
-      /* template for a new component meta data
-       '' : {
-       "type": '',
-       properties: {
-       required: {
-
-       },
-       optional: {
-
-       }
-       },
-       outputs: [ {}]
-       }
-       */
-
-
     };
 
     this.propertyTypes = {
@@ -330,8 +347,9 @@ app.service('AWSComponents', function () {
           },
           Description: 'User Frindly Description',
           types: {
-            required: {
-              key: {
+            required: [
+              {
+                name: 'key',
                 type: 'type of subtype. If it is complex you need another typedef for it',
                 description: 'The user friendly desc',
                 // a list of allowable values
@@ -347,13 +365,16 @@ app.service('AWSComponents', function () {
                 limit: {min: 1, max: 10},
                 // alist of default values
                 default: ['a', 'b']
+
               }
-            },
-            optional: {
-              //same as above
+            ],
+            mutuallyExclusive: {
+              A: [],
+              B: []
             }
           }
         },
+
 
         Tags: {
           Display: {type: 'table', maxSize: -1},
@@ -385,7 +406,11 @@ app.service('AWSComponents', function () {
                 name: 'AttributeType',
                 type: 'String',
                 description: 'The data type for the attribute.',
-                allowableValues: [{'S': 'String'}, {'N': 'Number'}, {'B': 'Binary'}],
+                allowableValues: [
+                  {'S': 'String'},
+                  {'N': 'Number'},
+                  {'B': 'Binary'}
+                ],
                 default: ['S']
               },
               {
@@ -413,7 +438,10 @@ app.service('AWSComponents', function () {
                 name: 'KeyType',
                 type: 'String',
                 description: 'Represents the attribute data, consisting of the data type and the attribute value itself. You can specify HASH or RANGE.',
-                allowableValues: [{'HASH': 'Hash'}, {'RANGE': 'Range'}]
+                allowableValues: [
+                  {'HASH': 'Hash'},
+                  {'RANGE': 'Range'}
+                ]
               }
             ]
           }
@@ -452,7 +480,11 @@ app.service('AWSComponents', function () {
                 name: 'ProjectionType',
                 type: 'String',
                 description: 'The set of attributes that are projected into the index: KEYS_ONLY: Only the index and primary keys are projected into the index. INCLUDE:  Only the specified table attributes are projected into the index. The list of projected attributes are in NonKeyAttributes. ALL:  All of the table attributes are projected into the index.',
-                allowableValues: [{'KEYS_ONLY': 'only keys'}, {'INCLUDE': 'include specified values'}, {'ALL': 'include everything'}]
+                allowableValues: [
+                  {'KEYS_ONLY': 'only keys'},
+                  {'INCLUDE': 'include specified values'},
+                  {'ALL': 'include everything'}
+                ]
               }
             ]
           }
@@ -494,7 +526,6 @@ app.service('AWSComponents', function () {
           Description: 'Local secondary indexes to be created on the table. You can create up to 5 local secondary indexes. Each index is scoped to a given hash key value. The size of each hash key can be up to 10 gigabytes',
           types: {
             required: [
-
               {
                 name: 'IndexName',
                 type: 'String',
@@ -565,26 +596,77 @@ app.service('AWSComponents', function () {
         },
 
         NetworkInterfaces: {
-          Display: {type: 'drag', image: 'images/aws/blockDeviceMapping.png'},
-          Description: 'Amazon Elastic Block Store volume. You can choose to retain the volume, to delete the volume, or to create a snapshot of the volume.',
+          Display: {type: 'drag', image: 'images/aws/networkInterface.png'},
+          Description: 'A network interface that is to be attached to the EC2 instance',
           types: {
-//            required: {
-//            },
-//            optional: {
-//
-//    AssociatePublicIpAddress : { type: 'Boolean', description: ''},
-//    DeleteOnTermination : { type: 'Boolean', description: ''},
-//    Description : { type: 'String', description: ''},
-//    DeviceIndex : { type: 'String', description: ''},
-//    GroupSet : [ String, ... ],
-//    NetworkInterfaceId : { type: 'String', description: ''},
-//    PrivateIpAddress : { type: 'String', description: ''},
-//    PrivateIpAddresses : [ PrivateIpAddressSpecification, ... ],
-//    SecondaryPrivateIpAddressCount : Integer,
-//    SubnetId : { type: 'String', description: ''},
-//
-//            }
-//
+            required: [
+              {name: 'DeviceIndex', type: 'String', description: ''}
+            ],
+            optional: [
+              {name: 'AssociatePublicIpAddress', type: 'Boolean', description: ''},
+              {name: 'DeleteOnTermination', type: 'Boolean', description: ''},
+              {name: 'Description', type: 'String', description: ''},
+              {name: 'GroupSet', type: 'StringList', description: ''},
+              {name: 'NetworkInterfaceId', type: 'String', description: ''},
+              {name: 'PrivateIpAddress', type: 'String', description: ''},
+              {name: 'PrivateIpAddresses', type: 'PrivateIpAddressSpecification', description: ''},
+              {name: 'SecondaryPrivateIpAddressCount', type: 'Integer', description: ''},
+              {name: 'SubnetId', type: 'String', description: ''}
+            ]
+          }
+
+        },
+
+        SecurityGroupIngress: {
+          Display: {type: 'table', maxSize: -1},
+          Description: 'Rules on incoming connections',
+          types: {
+            required: [
+              {name: 'FromPort', type: 'Integer', description: 'The start of port range for the TCP and UDP protocols, or an ICMP type number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP type number)'},
+              {name: 'toPort', type: 'Integer', description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'},
+              {name: 'IpProtocol', type: 'String', description: 'An IP protocol name or number'}
+            ],
+            mutuallyExclusive: {
+              A: [
+                {name: 'CidrIp', type: 'String', description: 'When you create a VPC, you specify the set of IP addresses for the VPC in the form of a Classless Inter-Domain Routing (CIDR) block (for example, 10.0.0.0/16)'}
+              ],
+              B: [
+                {name: 'SourceSecurityGroupId', type: 'String', description: 'For VPC security groups only. Specifies the ID of the Amazon EC2 Security Group to allow access. You can use the Ref intrinsic function to refer to the logical ID of a security group defined in the same template'},
+                {name: 'SourceSecurityGroupName', type: 'String', description: 'For non-VPC security groups only. Specifies the name of the Amazon EC2 Security Group to use for access. You can use the Ref intrinsic function to refer to the logical name of a security group that is defined in the same template'},
+                {name: 'SourceSecurityGroupOwnerId', type: 'String', description: 'Specifies the AWS Account ID of the owner of the Amazon EC2 Security Group that is specified in the SourceSecurityGroupName property.'}
+              ]
+            }
+          }
+        },
+
+        SecurityGroupEgress: {
+          Display: { type: 'table', maxSize: -1 },
+          Description: 'Rules on outgoing connections',
+          types: {
+            required: [
+              {name: 'FromPort', type: 'Integer', description: 'The start of port range for the TCP and UDP protocols, or an ICMP type number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP type number)'},
+              {name: 'toPort', type: 'Integer', description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'},
+              {name: 'IpProtocol', type: 'String', description: 'An IP protocol name or number'}
+            ],
+            mutuallyExclusive: {
+              A: [
+                {name: 'DestinationSecurityGroupId', type: 'String', description: 'Specifies the group ID of the destination Amazon VPC security group'}
+              ],
+              B: [
+                {name: 'CidrIp', type: 'String', description: 'When you create a VPC, you specify the set of IP addresses for the VPC in the form of a Classless Inter-Domain Routing (CIDR) block (for example, 10.0.0.0/16)'}
+              ]
+            }
+          }
+        },
+
+        PrivateIpAddressSpecification: {
+          Display: { type: 'table', maxSize: -1 },
+          Description: 'private IP address specification',
+          types: {
+            required: [
+              {name: 'Primary', type: 'Integer', description: 'Sets the private IP address as the primary private address. You can set only one primary private IP address. If you do not specify a primary private IP address, Amazon EC2 automatically assigns a primary private IP address'},
+              {name: 'PrivateIpAddress', type: 'String', description: 'The private IP address of the network interface.'}
+            ]
           }
 
         }
