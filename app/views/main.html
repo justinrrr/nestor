@@ -182,6 +182,12 @@
                   <table class="table table-striped table-bordered">
                     <thead>
                     <tr>
+                      <th ng-repeat="tableHeading in types.complex[prop.type].types.required"
+                          tooltip="{{tableHeading.description}}">{{tableHeading.name}}
+                      </th>
+                      <th>Edit</th>
+                    </tr>
+                    <tr>
                       <th ng-repeat="tableHeading in types.complex[prop.type].types.optional"
                           tooltip="{{tableHeading.description}}">{{tableHeading.name}}
                       </th>
