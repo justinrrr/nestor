@@ -137,14 +137,32 @@ app.service('AWSComponents', function () {
       'NameOfTheComponent': {
         type: 'AWS::Component::Table',
 
+        // When the user drags a link from another object (source) to connect it to this component (target) use the following rules
         IncomingConnection: {
-          //read this from components object aove
-          'ConnectionSourceName': {
-            //name of the property on the this object (target object) to set
-            name: 'SecurityGroupName',
-            //the name of the property on the source object whose value we will set to the value of the target object
-            value: 'Name',
-            //whether this is part of the Properties of the Resource
+
+          'IncomingComponentName': {    // e.g. EC2, DynamoDB
+
+            // if this connection is a one-way connection or bi-directional
+            type: 'oneWay/twoWay',
+
+            //optional, don't set if it doesn't apply
+            targetPropName: 'the name of the property on Target to be modified',
+
+            //optional, don't set if it doesn't apply
+            targetPropValue: 'the value that needs to be assigned to targetPropName',
+
+            // how to update targetPropName with targetPropValue
+            targetPolicy: 'assign/append',
+
+            //optional, don't set if it doesn't apply
+            sourcePropName: 'the name of the property on Source to be modified',
+
+            //optional, don't set if it doesn't apply
+            sourcePropValue: 'the value that needs to be assigned to sourcePropName',
+
+            // how to update sourcePropName with sourcePropValue
+            sourcePolicy: 'assign/append',
+
             isProperty: true
           }
         },
@@ -181,9 +199,9 @@ app.service('AWSComponents', function () {
 
         IncomingConnection: {
           //read this from components object aove
-          'ConnectionSourceName': {
+          'EC2': {
             //name of the property on the this object (target object) to set
-            name: 'SecurityGroupName',
+            name: 'SecurityGroups',
             //the name of the property on the source object whose value we will set to the value of the target object
             value: 'Name',
             //whether this is part of the Properties of the Resource
