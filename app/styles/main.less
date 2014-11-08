@@ -163,12 +163,27 @@ body {
       .content {
         padding: 0px 10px 0px 15px;
 
+        .tablename {
+          padding: 10px 0px 5px 0px;
+        }
+
         /* STYLES FOR ACCORDION */
         .propertiesaccordion {
           .panel-group {
+            margin-left: -15px;
+            margin-bottom: 0px;
+            border-radius: 0px;
+            width: 300px;
             .panel.panel-default.ng-isolate-scope {
+              border: none;
               .panel-heading {
                 background-color: #F7FFF7;
+                border-radius: 0px;
+                border-top: 1px solid #ddd;
+                border-bottom: 1px solid #ddd;
+                .table-responsive {
+                  border-top: 0px;
+                }
                 h4.panel-title {
                   font-size: 14px;
                   a {
@@ -178,19 +193,38 @@ body {
                   }
                 }
               }
-              .panel-collapse > .panel-body {
-                .new {
-                  width: 30px;
-                  height: 30px;
-                  border-radius: 50%;
-                  background-color: #d95353;
-                  transition: background-color 0.2s;
-                  span {
-                    top: 0px;
-                    right: 5px;
-                    color: white;
-                  }
-                }
+              .collapsing {
+                -webkit-transition: none;
+                transition: none !important;
+                width: 300px !important;
+              }
+              .panel-collapse {
+                 .panel-body {
+                   border-top: none;
+                   padding: 5px 15px 15px 15px;
+                   .new {
+                     width: 30px;
+                     height: 30px;
+                     border-radius: 50%;
+                     background-color: #00c29d;
+                     transition: background-color 0.2s;
+                     border: none;
+                     &:hover {
+                       background-color: rgba(0, 194, 157, 0.81);
+                       outline: 0;
+                       border: none;
+                     }
+                     &:focus {
+                       outline: 0;
+                       border: none;
+                     }
+                     span {
+                       top: 0px;
+                       right: 3.5px;
+                       color: white;
+                     }
+                   }
+                 }
               }
             }
           }
@@ -235,6 +269,34 @@ body {
           text-align: left;
           padding-right: 10px;
           font-size: 14px;
+          .btn-default {
+            background-color: #aab2c0;
+            color: white;
+            border: none;
+            &:hover {
+              background-color: rgba(182, 190, 206, 0.90);
+              border: none;
+            }
+          }
+          .btn:focus, .btn:active:focus, .btn.active:focus {
+            outline: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+          }
+          input {
+            border: 2px solid @fieldborder;
+            padding: 2px;
+            background: white;
+            margin: 2px 5px 2px 0px;
+            outline: none;
+            height: 27px;
+            box-shadow: none;
+            border-radius: 0px;
+            &:focus {
+              border: 2px solid @darkfield;
+              background-color: white;
+            }
+          }
           ul {
             padding-left: 6px;
             li {
@@ -280,7 +342,7 @@ body {
         border: 2px solid @fieldborder;
         padding: 2px;
         background: white;
-        margin: 2px 5px 10px 0px;
+        margin: 2px 5px 20px 0px;
         outline: none;
         &:focus {
           border: 2px solid @darkfield;
