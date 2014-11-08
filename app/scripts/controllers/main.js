@@ -30,6 +30,13 @@ angular.module('nestorApp')
         });
       };
 
+      //accordion
+      $scope.oneAtATime = true;
+      $scope.status = {
+        isFirstOpen: true,
+        isFirstDisabled: false
+      };
+
       $scope.addedComponents = [];
 
       //we use this to make sure that components are named
