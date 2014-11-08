@@ -52,7 +52,7 @@
           <div ng-repeat="prop in selectedComponent.required" class="content">
 
             <div ng-if="prop.type === 'String'">
-              <span tooltip="{{prop.description}}">
+              <span tooltip="{{prop.description}}" class="tablename">
                 {{prop.name}}
               </span>
               <input type="text"
