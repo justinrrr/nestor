@@ -147,6 +147,7 @@ angular.module('nestorApp')
         }
       }, true);
 
+
       $scope.templateStringChanged = function () {
         try {
           $scope.template = JSON.parse($scope.templateString);
@@ -154,6 +155,10 @@ angular.module('nestorApp')
           console.log(err);
         }
 
+        //in the rest of this function we are going to consolidate the json string
+        //and the components on the screen
+
+        //remove each component that is in the addedComponent but is not in the json string
         _.each($scope.addedComponents, function(component, componentName){
 
           if (!$scope.template.Resources[componentName]) {
@@ -161,6 +166,7 @@ angular.module('nestorApp')
           }
         });
 
+        //add any component that is in the json string but not in the addedComponents
         _.each($scope.template.Resources, function (resourceObj, resourceName) {
           if (!$scope.addedComponents[resourceName]) {
             var blueprintName = AWSComponents.typeMappings[resourceObj.Type];
@@ -192,7 +198,21 @@ angular.module('nestorApp')
               }
             });
           }
+
         });
 
+      };
+
+      $scope.connectionEstablished = function(sourceName, targetName) {
+        var sourceType = AWSComponents.typeMappings[$scope.template.Resources[sourceName].Type];
+        var targetType = AWSComponents.typeMappings[$scope.template.Resources[targetName].Type];
+        var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
+        if (!incomingConnectionProperies.isProperty) {
+          if (incomingConnectionProperies.value === 'Name') {
+            $scope.template.Resources[targetName][incomingConnectionProperies.name] = sourceName;
+            $scope.templateString = JSON.stringify($scope.template, null, 4);
+            $scope.$digest()
+          }
+        }
       };
     }]);

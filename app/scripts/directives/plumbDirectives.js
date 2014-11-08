@@ -5,12 +5,39 @@
 
 var app = angular.module('nestorApp.directives');
 
+app.directive('plumbListeners', function () {
+  return {
+    //replace: true,
+    //controller: 'PlumbCtrl',
+    restrict: 'EA',
+    scope: {
+      onConnectionEstablished: '&'
+    },
+    link: function ($scope) {
+
+      console.log('Listening for connections so that connections dont get depressed');
+
+      jsPlumb.bind('connection', function (info) {
+        console.log(info.source);
+        var sourceName = info.source.attributes.getNamedItem('data-component-name').value;
+        var targetName = info.target.attributes.getNamedItem('data-component-name').value;
+        $scope.onConnectionEstablished({
+          sourceName: sourceName,
+          targetName: targetName
+        });
+      });
+    }
+  };
+});
+
 app.directive('plumbItem', function () {
   return {
     //replace: true,
     //controller: 'PlumbCtrl',
-    link: function ($scope, element ) {
+    restrict: 'EA',
+    link: function ($scope, element) {
       console.log('Add plumbing for the item element');
+
 
       jsPlumb.makeTarget(element, {
         anchor: 'Continuous',
@@ -24,7 +51,6 @@ app.directive('plumbItem', function () {
       jsPlumb.draggable(element, {
         containment: 'parent'
       });
-
     }
   };
 });
@@ -33,7 +59,7 @@ app.directive('plumbItem', function () {
 app.directive('plumbConnect', function () {
   return {
     replace: true,
-    link: function (scope, element ) {
+    link: function (scope, element) {
       console.log('Add plumbing for the connect element');
 
       jsPlumb.makeSource(element, {
@@ -45,7 +71,9 @@ app.directive('plumbConnect', function () {
           radius: 4,
           lineWidth: 1
         }
+
       });
+
     }
   };
 });
