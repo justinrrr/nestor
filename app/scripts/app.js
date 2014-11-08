@@ -13,7 +13,7 @@ angular
   .module('nestorApp.services', []);
 
 angular
-  .module('nestorApp.directives', []);
+  .module('nestorApp.directives', ['nestorApp.services']);
 
 var app = angular
   .module('nestorApp', [
