@@ -65,8 +65,12 @@ app.directive('tableProperty', [function () {
       };
       scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
 
+        var allFields = neededFields.required;
+        if (neededFields.optional) {
+          allFields.concat(neededFields.optional);
+        }
         var item = {};
-        _.each(neededFields, function (property) {
+        _.each(allFields, function (property) {
           item[property.name] = property.type;
         });
 
