@@ -15,6 +15,8 @@
     <div ng-drop="true"
          ng-drop-success="onDropComplete($data,$event)"
          id="container"
+         plumb-listeners
+         on-connection-established="connectionEstablished(sourceName, targetName)"
          class="center-column">
 
 
@@ -25,7 +27,10 @@
            ng-class="{selectedComponent : component.id === selectedComponent.id}"
            ng-repeat="component in addedComponents"
            ng-style="{ 'left':component.x, 'top':component.y }"
-           data-identifier="{{component.id}}">
+           data-identifier="{{component.id}}"
+           data-component-name={{component.name}}
+        >
+
         <img width="100" ng-src="{{component.image}}"/>
 
         <p class="title">{{component.name}}</p>
@@ -136,21 +141,98 @@
 
 
             <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
-              <p>drag</p>
+              <img width="100" ng-src="{{types.complex[prop.type].Display.image}}"/>
+              <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
             </div>
             <!--<p>{{prop.name}} : {{prop.type}}</p>-->
           </div>
 
           <h5 class="contenth5">Optional Parameters</h5>
 
-          <div ng-repeat="prop in componentProperties[selectedComponentId].optional" class="content">
+          <div ng-repeat="prop in selectedComponent.optional" class="content">
+
             <div ng-if="prop.type === 'String'">
-              <span tooltip="{{prop.description}}"> {{prop.name}}</span><input type="text" name=""
-                                                                               class="propertyinput"><br>
+              <span tooltip="{{prop.description}}" class="tablename">
+                {{prop.name}}
+              </span>
+              <input type="text"
+                     name=""
+                     ng-model="template.Resources[selectedComponent.name].Properties[prop.name]"
+                     class="propertyinput">
+              <br>
             </div>
-            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
-              <p>table</p>
-            </div>
+
+            <accordion ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'"
+                       close-others="true"
+                       class="propertiesaccordion">
+              <accordion-group is-open="status.open">
+                <accordion-heading>
+                  <div>
+                        <span tooltip="{{types.complex[prop.type].Description}}">
+                          {{prop.name}}
+                        </span>
+                    <i class="pull-right glyphicon"
+                       ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}">
+                    </i>
+                  </div>
+                </accordion-heading>
+                <div class="table-responsive" id="no-more-tables2">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                      <th ng-repeat="tableHeading in types.complex[prop.type].types.optional"
+                          tooltip="{{tableHeading.description}}">{{tableHeading.name}}
+                      </th>
+                      <th>Edit</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr ng-repeat="tableProp in template.Resources[selectedComponent.name].Properties[prop.name]">
+                      <td ng-repeat="tableHeading in types.complex[prop.type].types.optional"
+                          data-title={{tableHeading.name}}>
+                    <span
+                      editable-text="template.Resources[selectedComponent.name].Properties[prop.name][tableHeading.name]"
+                      e-name="tableHeading.name" e-form="rowform" e-required>
+                      {{tableProp[tableHeading.name]}}
+                    </span>
+                      </td>
+                      <td style="white-space: nowrap">
+                        <!-- form -->
+                        <form editable-form
+                              name="rowform"
+                              onbeforesave="saveUser($data, user.id)"
+                              ng-show="rowform.$visible"
+                              class="form-buttons form-inline"
+                              shown="inserted == user">
+                          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                            save
+                          </button>
+                          <button
+                            type="button"
+                            ng-disabled="rowform.$waiting"
+                            ng-click="rowform.$cancel()"
+                            class="btn btn-default">
+                            cancel
+                          </button>
+                        </form>
+
+                        <div class="buttons" ng-show="!rowform.$visible">
+                          <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+                          <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+                        </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-default new"
+                        ng-click="AddToTable(template.Resources[selectedComponent.name].Properties, prop.name, types.complex[prop.type].types.optional)">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
+
+              </accordion-group>
+            </accordion>
 
             <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
               <img width="100" ng-src="{{types.complex[prop.type].Display.image}}"/>
