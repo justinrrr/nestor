@@ -199,32 +199,32 @@ body {
                 width: 300px !important;
               }
               .panel-collapse {
-                 .panel-body {
-                   border-top: none;
-                   padding: 5px 15px 15px 15px;
-                   .new {
-                     width: 30px;
-                     height: 30px;
-                     border-radius: 50%;
-                     background-color: #00c29d;
-                     transition: background-color 0.2s;
-                     border: none;
-                     &:hover {
-                       background-color: rgba(0, 194, 157, 0.81);
-                       outline: 0;
-                       border: none;
-                     }
-                     &:focus {
-                       outline: 0;
-                       border: none;
-                     }
-                     span {
-                       top: 0px;
-                       right: 3.5px;
-                       color: white;
-                     }
-                   }
-                 }
+                .panel-body {
+                  border-top: none;
+                  padding: 5px 15px 15px 15px;
+                  .new {
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    background-color: #00c29d;
+                    transition: background-color 0.2s;
+                    border: none;
+                    &:hover {
+                      background-color: rgba(0, 194, 157, 0.81);
+                      outline: 0;
+                      border: none;
+                    }
+                    &:focus {
+                      outline: 0;
+                      border: none;
+                    }
+                    span {
+                      top: 0px;
+                      right: 3.5px;
+                      color: white;
+                    }
+                  }
+                }
               }
             }
           }
@@ -234,9 +234,6 @@ body {
           font-size: 12px;
           color: @ambiance;
         }
-
-
-
 
         /* STYLE FOR TABLES WITHIN PROPERTIES ACCORDION */
         #no-more-tables1 table,
@@ -335,22 +332,120 @@ body {
           color: @attributes;
           display: block;
         }
-      }
 
-      /*Input field style */
-      .propertyinput {
-        border: 2px solid @fieldborder;
-        padding: 2px;
-        background: white;
-        margin: 2px 5px 20px 0px;
-        outline: none;
-        &:focus {
-          border: 2px solid @darkfield;
-          background-color: white;
+        /* STYLE FOR TABLES WITHIN PROPERTIES ACCORDION */
+        #no-more-tables2 table,
+        #no-more-tables2 thead,
+        #no-more-tables2 tbody,
+        #no-more-tables2 th,
+        #no-more-tables2 td,
+        #no-more-tables2 tr {
+          display: block;
+        }
+        #no-more-tables2 table {
+          margin-right: 10px;
+        }
+        //        Hide table headers (but not display: none;, for accessibility)
+        #no-more-tables2 thead tr {
+          position: absolute;
+          top: -9999px;
+          left: -9999px;
+        }
+        #no-more-tables2 tr {
+          border: 1px solid #ccc;
+        }
+        #no-more-tables2 td {
+          //          Behave  like a "row"
+          border: none;
+          border-bottom: 1px solid #eee;
+          position: relative;
+          padding-left: 50%;
+          white-space: normal;
+          text-align: left;
+          padding-right: 10px;
+          font-size: 14px;
+          .btn-default {
+            background-color: #aab2c0;
+            color: white;
+            border: none;
+            &:hover {
+              background-color: rgba(182, 190, 206, 0.90);
+              border: none;
+            }
+          }
+          .btn:focus, .btn:active:focus, .btn.active:focus {
+            outline: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+          }
+          input {
+            border: 2px solid @fieldborder;
+            padding: 2px;
+            background: white;
+            margin: 2px 5px 2px 0px;
+            outline: none;
+            height: 27px;
+            box-shadow: none;
+            border-radius: 0px;
+            &:focus {
+              border: 2px solid @darkfield;
+              background-color: white;
+            }
+          }
+          ul {
+            padding-left: 6px;
+            li {
+              margin-left: 6px;
+              span {
+                font-size: 14px;
+              }
+            }
+          }
+        }
+        .table-bordered {
+          border: 0px;
+        }
+        #no-more-tables2 td:before {
+          //          Now like a table header
+          position: absolute;
+          // Top/left values mimic padding //
+          top: 6px;
+          left: 6px;
+          width: 45%;
+          padding-right: 10px;
+          white-space: nowrap;
+          text-align: left;
+          font-weight: 400;
+          color: @ambiance;
+        }
+        //        Label the data
+        #no-more-tables2 td:before {
+          content: attr(data-title);
+        }
+        .table-responsive {
+          margin-left: -10px;
+          margin-right: -10px;
+        }
+        span {
+          color: @attributes;
+          display: block;
+        }
+        }
+        /*Input field style */
+        .propertyinput {
+          border: 2px solid @fieldborder;
+          padding: 2px;
+          background: white;
+          margin: 2px 5px 20px 0px;
+          outline: none;
+          &:focus {
+            border: 2px solid @darkfield;
+            background-color: white;
+          }
         }
       }
 
-    }
+
     .right-column-bottom {
       width: 300px;
       //      Search Input Style
