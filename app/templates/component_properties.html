@@ -16,8 +16,9 @@
   </div>
 
   <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
-    <img width="100" ng-src="{{types.complex[prop.type].Display.image}}"/>
-    <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
+    <drag-property
+      property="prop"
+      property-types="types.complex[prop.type]"
+      ></drag-property>
   </div>
-  <!--<p>{{prop.name}} : {{prop.type}}</p>-->
 </div>

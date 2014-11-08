@@ -56,13 +56,14 @@ app.directive('tableProperty', [function () {
     scope: {
       property: '=',
       propertyTypes: '=',
-      resourceProperties: "="
+      resourceProperties: '='
     },
     templateUrl: '../../templates/table_properties.html',
     link: function (scope) {
       scope.removeFromTable = function () {
-        alert('i delete');
+
       };
+
       scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
 
         var allFields = neededFields.required;
@@ -82,5 +83,18 @@ app.directive('tableProperty', [function () {
       };
 
     }
+  };
+}]);
+
+app.directive('dragProperty', [function () {
+  return {
+    replace: true,
+    restrict: 'E',
+    transclude: true,
+    scope: {
+      property: '=',
+      propertyTypes: '='
+    },
+    templateUrl: '../../templates/drag_properties.html'
   };
 }]);

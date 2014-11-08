@@ -1,17 +1,18 @@
 <div ui-layout class="layout-mock" ng-init="init()">
   <ui-layout options="{ flow : 'column' }">
 
-    <!--Json editor on the left-->
+    <!----------------------------------------------------------->
+    <!--                     Code Editor                       -->
+    <!----------------------------------------------------------->
     <div class="left-column" size="300px">
-      <div ui-ace="{
-        theme:'ambiance',
-        mode: 'json',
-        onChange: templateStringChanged}"
+      <div ui-ace="{theme:'ambiance', mode: 'json', onChange: templateStringChanged}"
            ng-model="templateString">
       </div>
     </div>
 
-    <!--Canvas in the middle -->
+    <!----------------------------------------------------------->
+    <!--                     Canvas                            -->
+    <!----------------------------------------------------------->
     <div ng-drop="true"
          ng-drop-success="onDropComplete($data,$event)"
          id="container"
@@ -33,21 +34,22 @@
            data-identifier="{{component.id}}"
            data-component-name={{component.name}}
         >
-
         <img width="100" ng-src="{{component.image}}"/>
 
         <p class="title">{{component.name}}</p>
 
         <div plumb-connect class="ep"></div>
       </div>
-
     </div>
-    <!--Right side panel-->
+
     <div
       ui-layout="{flow: 'row'}"
       size="300px"
       class="right-column">
 
+      <!----------------------------------------------------------->
+      <!--                  Resource Properties                  -->
+      <!----------------------------------------------------------->
       <div class="right-column-top">
         <div ng-show="selectedComponent">
           <div class="cd-fixed-bg">
@@ -63,116 +65,22 @@
 
           <h5 class="contenth5">Optional Parameters</h5>
 
-          <div ng-repeat="prop in selectedComponent.optional" class="content">
-
-            <div ng-if="prop.type === 'String'">
-              <span tooltip="{{prop.description}}" class="tablename">
-                {{prop.name}}
-              </span>
-              <input type="text"
-                     name=""
-                     ng-model="template.Resources[selectedComponent.name].Properties[prop.name]"
-                     class="propertyinput">
-              <br>
-            </div>
-
-            <accordion ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'"
-                       close-others="true"
-                       class="propertiesaccordion">
-              <accordion-group is-open="status.open">
-                <accordion-heading>
-                  <div>
-                        <span tooltip="{{types.complex[prop.type].Description}}">
-                          {{prop.name}}
-                        </span>
-                    <i class="pull-right glyphicon"
-                       ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}">
-                    </i>
-                  </div>
-                </accordion-heading>
-                <div class="table-responsive" id="no-more-tables2">
-                  <table class="table table-striped table-bordered">
-                    <thead>
-                    <tr>
-                      <th ng-repeat="tableHeading in types.complex[prop.type].types.required"
-                          tooltip="{{tableHeading.description}}">{{tableHeading.name}}
-                      </th>
-                      <th>Edit</th>
-                    </tr>
-                    <tr>
-                      <th ng-repeat="tableHeading in types.complex[prop.type].types.optional"
-                          tooltip="{{tableHeading.description}}">{{tableHeading.name}}
-                      </th>
-                      <th>Edit</th>
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    <tr ng-repeat="tableProp in template.Resources[selectedComponent.name].Properties[prop.name]">
-                      <td ng-repeat="tableHeading in types.complex[prop.type].types.required"
-                          data-title={{tableHeading.name}}>
-                    <span
-                      editable-text="template.Resources[selectedComponent.name].Properties[prop.name][tableHeading.name]"
-                      e-name="tableHeading.name" e-form="rowform" e-required>
-                      {{tableProp[tableHeading.name]}}
-                    </span>
-                      </td>
-                      <td style="white-space: nowrap">
-                        <!-- form -->
-                        <form editable-form
-                              name="rowform"
-                              onbeforesave="saveUser($data, user.id)"
-                              ng-show="rowform.$visible"
-                              class="form-buttons form-inline"
-                              shown="inserted == user">
-                          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-                            save
-                          </button>
-                          <button
-                            type="button"
-                            ng-disabled="rowform.$waiting"
-                            ng-click="rowform.$cancel()"
-                            class="btn btn-default">
-                            cancel
-                          </button>
-                        </form>
-
-                        <div class="buttons" ng-show="!rowform.$visible">
-                          <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-                          <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
-                        </div>
-                      </td>
-                    </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <button class="btn btn-default new"
-                        ng-click="AddToTable(template.Resources[selectedComponent.name].Properties, prop.name, types.complex[prop.type].types.optional)">
-                  <span class="glyphicon glyphicon-plus"></span>
-                </button>
-
-              </accordion-group>
-            </accordion>
-
-            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
-              <img width="100" ng-src="{{types.complex[prop.type].Display.image}}"/>
-              <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
-            </div>
-          </div>
-
-
+          <component-properties
+            component-properties="selectedComponent.optional"
+            resource-properties="template.Resources[selectedComponent.name].Properties"
+            types="types"></component-properties>
         </div>
       </div>
 
+      <!----------------------------------------------------------->
+      <!--                  Component Library                    -->
+      <!----------------------------------------------------------->
       <div class="right-column-bottom">
         <form id="searchbox">
           <p class="fieldset">
             <label class="glyphicon glyphicon-search"></label>
           </p>
           <input ng-model="searchText" type="text" placeholder="Search..." required class="search">
-          <!--<button type="submit" class="button">-->
-          <!--<i class="glyphicon glyphicon-search" visibility="hidden-xs"></i>-->
-          <!--</button>-->
         </form>
         <tabset justified="true">
 
@@ -213,7 +121,6 @@
               </div>
             </div>
           </tab>
-
         </tabset>
       </div>
     </div>
