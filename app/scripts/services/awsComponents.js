@@ -8,6 +8,17 @@
 var app = angular.module('nestorApp.services');
 app.service('AWSComponents', function () {
 
+    this.createInitialTemplate = function() {
+      return {
+        AWSTemplateFormatVersion: '2010-09-09',
+        Description: 'Created By Nestor',
+        Parameters: {},
+        Mappings: {},
+        Conditions: {},
+        Resources: {},
+        Outputs: {}
+      };
+    };
     this.tasks = [
       {
         name: 'Setup a machine and connect it to a DNS Address'

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', 'AWSComponents','UIComponents',
+  .controller('MainCtrl', ['$scope', 'AWSComponents', 'UIComponents',
     function ($scope, AWSComponents, UIComponents) {
 
 
@@ -10,39 +10,26 @@ angular.module('nestorApp')
         UIComponents.setupJSPlumb($scope);
       };
 
+      //create initial template
+      $scope.template = AWSComponents.createInitialTemplate();
+      $scope.templateString = JSON.stringify($scope.template, null, 4);
+
       $scope.addedComponents = {};
 
-      //we use this to make sure that components are named
-      //sequencially : Dynamo1, Dynamo2
+      //add initial DS
       $scope.componentNameCounters = {};
-
-      //available components in the library
       $scope.components = AWSComponents.components;
       $scope.componentMetadata = AWSComponents.componentMetadata;
       $scope.types = AWSComponents.propertyTypes;
-
-      //tasks can be and together
       $scope.tasks = AWSComponents.tasks;
 
-      //main CF template
-      $scope.template = {
-        AWSTemplateFormatVersion: '2010-09-09',
-        Description: 'Created By Nestor',
-        Parameters: {},
-        Mappings: {},
-        Conditions: {},
-        Resources: {},
-        Outputs: {}
-      };
-
-      $scope.templateString = JSON.stringify($scope.template, null, 4);
-
-      //make sure each component has a unique name
+      //--------------------------------------
+      // Helpers
+      //--------------------------------------
       function generateComponentName(type) {
         if (!$scope.componentNameCounters.type) {
           $scope.componentNameCounters.type = 1;
         }
-
         var counter = $scope.componentNameCounters.type;
         $scope.componentNameCounters.type++;
         return type + '-' + counter;
@@ -51,15 +38,12 @@ angular.module('nestorApp')
       function addComponentToTemplate(blueprint, c) {
 
         $scope.addedComponents[c.name] = c;
-
         var componentName = c.name;
-
         var aMetadata = $scope.componentMetadata[blueprint.name];
         $scope.template.Resources[componentName] = {
           Type: aMetadata.type
         };
         $scope.template.Resources[componentName].Properties = {};
-
 
         //add the possible outputs
         _.each(aMetadata.outputs, function (outputMetdata) {
@@ -79,7 +63,6 @@ angular.module('nestorApp')
         $scope.selectedComponent = component;
       }
 
-      // add a module to the schema
       var addComponent = function (blueprint, posX, posY) {
 
         var uniqueId = _.uniqueId(blueprint.name + '-');
@@ -98,6 +81,11 @@ angular.module('nestorApp')
         itemSelected(c);
       };
 
+
+
+      //--------------------------------------
+      // UI Events
+      //--------------------------------------
       $scope.onDragComplete = function ($data, $event) {
         addComponent($data, $event.x, $event.y);
       };
@@ -106,20 +94,46 @@ angular.module('nestorApp')
         itemSelected(component);
       };
 
-      $scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
-
-        var item = {};
-        _.each(neededFields, function (property) {
-          item[property.name] = property.type;
-        });
-
-        if (!listToAddTo[propertyName]) {
-          listToAddTo[propertyName] = [];
+      $scope.connectionEstablished = function (sourceName, targetName) {
+        var sourceType = AWSComponents.typeMappings[$scope.template.Resources[sourceName].Type];
+        var targetType = AWSComponents.typeMappings[$scope.template.Resources[targetName].Type];
+        var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
+        if (!incomingConnectionProperies.isProperty) {
+          if (incomingConnectionProperies.value === 'Name') {
+            $scope.template.Resources[targetName][incomingConnectionProperies.name] = sourceName;
+            $scope.$digest();
+          }
         }
-
-        listToAddTo[propertyName].push(item);
+        return incomingConnectionProperies.overlays;
       };
 
+      $scope.connectionDetached = function (sourceName, targetName) {
+        var sourceType = AWSComponents.typeMappings[$scope.template.Resources[sourceName].Type];
+        var targetType = AWSComponents.typeMappings[$scope.template.Resources[targetName].Type];
+        var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
+
+        if (!incomingConnectionProperies.isProperty) {
+          if (incomingConnectionProperies.value === 'Name') {
+            delete $scope.template.Resources[targetName][incomingConnectionProperies.name];
+            $scope.$digest();
+          }
+        }
+      };
+
+      $scope.connectionMovedFromSource = function (/*originalSourceName, newSourceName, targetName*/) {
+        //in this case we need to change the name of the property on the target to
+        //the new source
+      };
+
+      $scope.connectionMovedFromTarget = function (sourceName, originalTargetName) {
+        //in ths case we need to remove the connection from target
+        $scope.connectionDetached(sourceName, originalTargetName);
+
+      };
+
+      //-----------------------------------------------------
+      // Synchrnoization between editor json and object model
+      //-----------------------------------------------------
       $scope.$watch('template', function (newValue, oldValue) {
         if (newValue !== oldValue) {
           $scope.templateString = JSON.stringify($scope.template, null, 4);
@@ -158,7 +172,6 @@ angular.module('nestorApp')
               if (component.name === blueprintName) {
 
                 found = true;
-
                 var blueprint = component;
                 var uniqueId = _.uniqueId(blueprint.name + '-');
                 var c = new UIComponents.Component(
@@ -177,51 +190,6 @@ angular.module('nestorApp')
               }
             });
           }
-
         });
-
-      };
-
-      $scope.connectionEstablished = function (sourceName, targetName) {
-        var sourceType = AWSComponents.typeMappings[$scope.template.Resources[sourceName].Type];
-        var targetType = AWSComponents.typeMappings[$scope.template.Resources[targetName].Type];
-        var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
-        if (!incomingConnectionProperies.isProperty) {
-          if (incomingConnectionProperies.value === 'Name') {
-            $scope.template.Resources[targetName][incomingConnectionProperies.name] = sourceName;
-            $scope.$digest();
-          }
-        }
-
-        return incomingConnectionProperies.overlays;
-      };
-
-      $scope.connectionDetached = function (sourceName, targetName) {
-
-        var sourceType = AWSComponents.typeMappings[$scope.template.Resources[sourceName].Type];
-        var targetType = AWSComponents.typeMappings[$scope.template.Resources[targetName].Type];
-        var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
-
-        if (!incomingConnectionProperies.isProperty) {
-          if (incomingConnectionProperies.value === 'Name') {
-            delete $scope.template.Resources[targetName][incomingConnectionProperies.name];
-            $scope.$digest();
-          }
-        }
-
-      };
-
-      $scope.connectionMovedFromSource = function (/*originalSourceName, newSourceName, targetName*/) {
-
-        //in this case we need to change the name of the property on the target to
-        //the new source
-        //alert('moved source from ' + originalSourceName + ' to ' + newSourceName);
-      };
-
-      $scope.connectionMovedFromTarget = function (sourceName, originalTargetName) {
-
-        //in ths case we need to remove the connection from target
-        $scope.connectionDetached(sourceName, originalTargetName);
-
       };
     }]);
