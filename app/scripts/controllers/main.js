@@ -5,7 +5,7 @@ angular.module('nestorApp')
     function ($scope, AWSComponents) {
 
       //The draggable component on the canvas
-      function Component(id, type, name, image, metadata,  description, x, y) {
+      function Component(id, type, name, image, metadata, description, x, y) {
         this.id = id;
         this.type = type;
         this.name = name;
@@ -31,7 +31,7 @@ angular.module('nestorApp')
       };
 
 
-      $scope.addedComponents = [];
+      $scope.addedComponents = {};
 
       //we use this to make sure that components are named
       //sequencially : Dynamo1, Dynamo2
@@ -71,7 +71,7 @@ angular.module('nestorApp')
 
       function addComponentToTemplate(blueprint, c) {
 
-        $scope.addedComponents.push(c);
+        $scope.addedComponents[c.name] = c;
 
         var componentName = c.name;
 
@@ -127,10 +127,10 @@ angular.module('nestorApp')
         itemSelected(component);
       };
 
-      $scope.AddToTable = function(listToAddTo,  propertyName, neededFields) {
+      $scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
 
         var item = {};
-        _.each(neededFields, function(property) {
+        _.each(neededFields, function (property) {
           item[property.name] = property.type;
         });
 
@@ -141,17 +141,58 @@ angular.module('nestorApp')
         listToAddTo[propertyName].push(item);
       };
 
-      $scope.$watch('template', function(newValue, oldValue){
-        if (newValue !== oldValue){
+      $scope.$watch('template', function (newValue, oldValue) {
+        if (newValue !== oldValue) {
           $scope.templateString = JSON.stringify($scope.template, null, 4);
         }
       }, true);
 
-      $scope.templateStringChanged = function() {
+      $scope.templateStringChanged = function () {
         try {
           $scope.template = JSON.parse($scope.templateString);
-        }catch(err) {
-          //no big deal, people make mistake when typin
+        } catch (err) {
+          console.log(err);
         }
+
+        _.each($scope.addedComponents, function(component, componentName){
+
+          if (!$scope.template.Resources[componentName]) {
+            delete $scope.addedComponents[componentName];
+          }
+        });
+
+        _.each($scope.template.Resources, function (resourceObj, resourceName) {
+          if (!$scope.addedComponents[resourceName]) {
+            var blueprintName = AWSComponents.typeMappings[resourceObj.Type];
+            if (!blueprintName) {
+              return;
+            }
+
+            var found = false;
+            _.each(AWSComponents.components, function(component) {
+              if (component.name === blueprintName) {
+
+                found = true;
+
+                var blueprint = component;
+                var uniqueId = _.uniqueId(blueprint.name + '-');
+                var c = new Component(
+                  uniqueId,
+                  blueprint.name,
+                  resourceName,
+                  blueprint.image,
+                  $scope.componentMetadata[blueprint.name],
+                  blueprint.description,
+                  100,
+                  100);
+
+                itemSelected(c);
+
+                $scope.addedComponents[c.name] = c;
+              }
+            });
+          }
+        });
+
       };
     }]);

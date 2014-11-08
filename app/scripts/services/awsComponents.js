@@ -117,6 +117,15 @@ app.service('AWSComponents', function () {
       }
     ];
 
+    this.typeMappings = {
+      'AWS::DynamoDB::Table' : 'DynamoDb',
+      'AWS::AutoScaling::AutoScalingGroup' : 'Autoscaling Group',
+      'AWS::EC2::Instance' : 'EC2',
+      'AWS::EC2::EIP' : 'Elastic IP',
+      'AWS::ElasticLoadBalancing::LoadBalancer': 'ELB',
+      'AWS::EC2::VPC' : 'VPC'
+    };
+
     //add component specific metadat here
     this.componentMetadata = {
 
