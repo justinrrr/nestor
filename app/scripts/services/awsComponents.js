@@ -111,6 +111,11 @@ app.service('AWSComponents', function () {
       //  description: 'Fast, reliable, scalable, fully managed message queuing service'
       //},
       {
+        name: 'SecurityGroup',
+        image: 'images/aws/securityGroup.gif',
+        description: 'Creates an Amazon EC2 security group'
+      },
+      {
         name: 'VPC',
         image: 'images/aws/vpc.png',
         description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define'
@@ -191,8 +196,8 @@ app.service('AWSComponents', function () {
             {name: 'GroupDescription', type: 'String', description: 'Description of the security group'}
           ],
           optional: [
-            {name: 'SecurityGroupEgress', type: 'SecurityGroupRule', description: 'A list of Amazon EC2 security group outgoing connection rules'},
-            {name: 'SecurityGroupIngress', type: 'SecurityGroupRule', description: 'A list of Amazon EC2 security group incoming connection rules'},
+            {name: 'SecurityGroupEgress', type: 'SecurityGroupEgress', description: 'A list of Amazon EC2 security group outgoing connection rules'},
+            {name: 'SecurityGroupIngress', type: 'SecurityGroupIngress', description: 'A list of Amazon EC2 security group incoming connection rules'},
             {name: 'Tags', type: 'Tags', description: 'The tags that you want to attach to the resource'}
             //TODO: take this item back when we add support for VPC
 //          {name: 'VcpId', type: 'String', description: 'The physical ID of the VPC. Can be obtained by using a reference to an AWS::EC2::VPC, such as: { "Ref" : "myVPC" }'}
@@ -213,7 +218,10 @@ app.service('AWSComponents', function () {
         IncomingConnection: {
           //if dynamoDB got connected
           'DynamoDb': {
-            overlays: [['Arrow', {direction: -1, location: 0}], [ 'Label', { label:'Depends On' }]],
+            overlays: [
+              ['Arrow', {direction: -1, location: 0}],
+              [ 'Label', { label: 'Depends On' }]
+            ],
             //set a field named 'DependsOn'
             name: 'DependsOn',
             //to the 'Name' property of the connected DynamoDB
@@ -402,7 +410,6 @@ app.service('AWSComponents', function () {
           Description: 'A list of AttributeName and AttributeType objects that describe the key schema for the table and indexes',
           types: {
             required: [
-
               {
                 name: 'AttributeType',
                 type: 'String',
