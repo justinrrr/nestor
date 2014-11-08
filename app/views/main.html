@@ -62,10 +62,12 @@
               <br>
             </div>
 
-            <accordion close-others="oneAtATime" class="propertiesaccordion">
+            <accordion ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'"
+                       close-others="true"
+                       class="propertiesaccordion">
               <accordion-group is-open="status.open">
                 <accordion-heading>
-                  <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
+                  <div>
                         <span tooltip="{{types.complex[prop.type].Description}}">
                           {{prop.name}}
                         </span>
@@ -74,60 +76,60 @@
                     </i>
                   </div>
                 </accordion-heading>
-                  <div class="table-responsive" id="no-more-tables1">
-                    <table class="table table-striped table-bordered">
-                      <thead>
-                      <tr>
-                        <th ng-repeat="tableHeading in types.complex[prop.type].types.required"
-                            tooltip="{{tableHeading.description}}">{{tableHeading.name}}
-                        </th>
-                        <th>Edit</th>
-                      </tr>
-                      </thead>
+                <div class="table-responsive" id="no-more-tables1">
+                  <table class="table table-striped table-bordered">
+                    <thead>
+                    <tr>
+                      <th ng-repeat="tableHeading in types.complex[prop.type].types.required"
+                          tooltip="{{tableHeading.description}}">{{tableHeading.name}}
+                      </th>
+                      <th>Edit</th>
+                    </tr>
+                    </thead>
 
-                      <tbody>
-                      <tr ng-repeat="tableProp in template.Resources[selectedComponent.name].Properties[prop.name]">
-                        <td ng-repeat="tableHeading in types.complex[prop.type].types.required"
-                            data-title={{tableHeading.name}}>
+                    <tbody>
+                    <tr ng-repeat="tableProp in template.Resources[selectedComponent.name].Properties[prop.name]">
+                      <td ng-repeat="tableHeading in types.complex[prop.type].types.required"
+                          data-title={{tableHeading.name}}>
                     <span
                       editable-text="template.Resources[selectedComponent.name].Properties[prop.name][tableHeading.name]"
                       e-name="tableHeading.name" e-form="rowform" e-required>
                       {{tableProp[tableHeading.name]}}
                     </span>
-                        </td>
-                        <td style="white-space: nowrap">
-                          <!-- form -->
-                          <form editable-form
-                                name="rowform"
-                                onbeforesave="saveUser($data, user.id)"
-                                ng-show="rowform.$visible"
-                                class="form-buttons form-inline"
-                                shown="inserted == user">
-                            <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
-                              save
-                            </button>
-                            <button
-                              type="button"
-                              ng-disabled="rowform.$waiting"
-                              ng-click="rowform.$cancel()"
-                              class="btn btn-default">
-                              cancel
-                            </button>
-                          </form>
+                      </td>
+                      <td style="white-space: nowrap">
+                        <!-- form -->
+                        <form editable-form
+                              name="rowform"
+                              onbeforesave="saveUser($data, user.id)"
+                              ng-show="rowform.$visible"
+                              class="form-buttons form-inline"
+                              shown="inserted == user">
+                          <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                            save
+                          </button>
+                          <button
+                            type="button"
+                            ng-disabled="rowform.$waiting"
+                            ng-click="rowform.$cancel()"
+                            class="btn btn-default">
+                            cancel
+                          </button>
+                        </form>
 
-                          <div class="buttons" ng-show="!rowform.$visible">
-                            <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-                            <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
-                          </div>
-                        </td>
-                      </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <button class="btn btn-default new"
-                          ng-click="AddToTable(template.Resources[selectedComponent.name].Properties, prop.name, types.complex[prop.type].types.required)">
-                    <span class="glyphicon glyphicon-plus"></span>
-                  </button>
+                        <div class="buttons" ng-show="!rowform.$visible">
+                          <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+                          <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+                        </div>
+                      </td>
+                    </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <button class="btn btn-default new"
+                        ng-click="AddToTable(template.Resources[selectedComponent.name].Properties, prop.name, types.complex[prop.type].types.required)">
+                  <span class="glyphicon glyphicon-plus"></span>
+                </button>
 
               </accordion-group>
             </accordion>

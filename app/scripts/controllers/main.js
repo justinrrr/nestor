@@ -30,12 +30,6 @@ angular.module('nestorApp')
         });
       };
 
-      //accordion
-      $scope.oneAtATime = true;
-      $scope.status = {
-        isFirstOpen: true,
-        isFirstDisabled: false
-      };
 
       $scope.addedComponents = [];
 
@@ -159,5 +153,5 @@ angular.module('nestorApp')
         }catch(err) {
           //no big deal, people make mistake when typin
         }
-      }
+      };
     }]);
