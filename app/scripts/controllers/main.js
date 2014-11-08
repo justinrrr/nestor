@@ -147,6 +147,10 @@ angular.module('nestorApp')
       }, true);
 
       $scope.templateStringChanged = function() {
-        $scope.template = JSON.parse($scope.templateString);
+        try {
+          $scope.template = JSON.parse($scope.templateString);
+        }catch(err) {
+          //no big deal, people make mistake when typin
+        }
       }
     }]);
