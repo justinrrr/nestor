@@ -23,10 +23,18 @@ app.directive('plumbListeners', function () {
       jsPlumb.bind('connection', function (info) {
         var sourceName = info.source.attributes.getNamedItem('data-component-name').value;
         var targetName = info.target.attributes.getNamedItem('data-component-name').value;
-        $scope.onConnectionEstablished({
+        var overlays = $scope.onConnectionEstablished({
           sourceName: sourceName,
           targetName: targetName
         });
+
+
+        var connection = info.connection;
+        _.each(overlays, function(overlay) {
+          connection.addOverlay(overlay);
+        });
+        connection.addOverlay();
+        //connection.addOverlay();
       });
 
       jsPlumb.bind('connectionDetached', function (info) {
@@ -77,13 +85,6 @@ app.directive('plumbListeners', function () {
           );
         }
 
-        //var sourceName = info.source.attributes.getNamedItem('data-component-name').value;
-        //var targetName = info.target.attributes.getNamedItem('data-component-name').value;
-
-        //$scope.onConnectionMoved({
-        //  sourceName: sourceName,
-        //  targetName: targetName
-        //});
       });
 
 

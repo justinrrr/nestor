@@ -213,6 +213,8 @@ angular.module('nestorApp')
             $scope.$digest();
           }
         }
+
+        return incomingConnectionProperies.overlays;
       };
 
       $scope.connectionDetached = function(sourceName, targetName) {
@@ -227,6 +229,7 @@ angular.module('nestorApp')
             $scope.$digest();
           }
         }
+
       };
 
       $scope.connectionMovedFromSource = function(/*originalSourceName, newSourceName, targetName*/) {

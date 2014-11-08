@@ -213,6 +213,7 @@ app.service('AWSComponents', function () {
         IncomingConnection: {
           //if dynamoDB got connected
           'DynamoDb': {
+            overlays: [['Arrow', {direction: -1, location: 0}], [ 'Label', { label:'Depends On' }]],
             //set a field named 'DependsOn'
             name: 'DependsOn',
             //to the 'Name' property of the connected DynamoDB
