@@ -201,18 +201,26 @@ body {
               .panel-collapse {
                  .panel-body {
                    border-top: none;
+                   padding: 5px 15px 15px 15px;
                    .new {
                      width: 30px;
                      height: 30px;
                      border-radius: 50%;
-                     background-color: #d95353;
+                     background-color: #00c29d;
                      transition: background-color 0.2s;
+                     border: none;
+                     &:hover {
+                       background-color: rgba(0, 194, 157, 0.81);
+                       outline: 0;
+                       border: none;
+                     }
                      &:focus {
                        outline: 0;
+                       border: none;
                      }
                      span {
                        top: 0px;
-                       right: 4.5px;
+                       right: 3.5px;
                        color: white;
                      }
                    }
@@ -261,6 +269,34 @@ body {
           text-align: left;
           padding-right: 10px;
           font-size: 14px;
+          .btn-default {
+            background-color: #aab2c0;
+            color: white;
+            border: none;
+            &:hover {
+              background-color: rgba(182, 190, 206, 0.90);
+              border: none;
+            }
+          }
+          .btn:focus, .btn:active:focus, .btn.active:focus {
+            outline: 0;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+          }
+          input {
+            border: 2px solid @fieldborder;
+            padding: 2px;
+            background: white;
+            margin: 2px 5px 2px 0px;
+            outline: none;
+            height: 27px;
+            box-shadow: none;
+            border-radius: 0px;
+            &:focus {
+              border: 2px solid @darkfield;
+              background-color: white;
+            }
+          }
           ul {
             padding-left: 6px;
             li {
