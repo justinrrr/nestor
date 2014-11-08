@@ -17,7 +17,9 @@
          id="container"
          plumb-listeners
          on-connection-established="connectionEstablished(sourceName, targetName)"
-         on-connection-Detached="connectionDetached(sourceName, targetName)"
+         on-connection-detached="connectionDetached(sourceName, targetName)"
+         on-connection-moved-from-source="connectionMovedFromSource(originalSourceName, newSourceName, targetName)"
+         on-connection-moved-from-target="connectionMovedFromTarget(sourceName, originalTargetName, newTargetName)"
          class="center-column">
 
 
