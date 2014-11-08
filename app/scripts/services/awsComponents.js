@@ -136,11 +136,10 @@ app.service('AWSComponents', function () {
 
       'NameOfTheComponent': {
         type: 'AWS::Component::Table',
-
-        // When the user drags a link from another object (source) to connect it to this component (target) use the following rules
+        // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
         IncomingConnection: {
 
-          'IncomingComponentName': {    // e.g. EC2, DynamoDB
+          'SourceComponentName': {    // e.g. EC2, DynamoDB
 
             // if this connection is a one-way connection or bi-directional
             type: 'oneWay/twoWay',
@@ -149,7 +148,10 @@ app.service('AWSComponents', function () {
             targetPropName: 'the name of the property on Target to be modified',
 
             //optional, don't set if it doesn't apply
-            targetPropValue: 'the value that needs to be assigned to targetPropName',
+            targetPropValue: 'name of the property on Source which its value needs to be assigned to targetPropName',
+
+            //optional, defaults to "pure"
+            targetPropValueMethod: 'how to interpret targetPropValue:  pure/ref/attribute',
 
             // how to update targetPropName with targetPropValue
             targetPolicy: 'assign/append',
@@ -158,15 +160,16 @@ app.service('AWSComponents', function () {
             sourcePropName: 'the name of the property on Source to be modified',
 
             //optional, don't set if it doesn't apply
-            sourcePropValue: 'the value that needs to be assigned to sourcePropName',
+            sourcePropValue: 'name of the property on Target which its value needs to be assigned to sourcePropName',
+
+            //optional, defaults to "pure"
+            sourcePropValueMethod: 'how to interpret sourcePropValue:  pure/ref/attribute',
 
             // how to update sourcePropName with sourcePropValue
-            sourcePolicy: 'assign/append',
+            sourcePolicy: 'assign/append'
 
-            isProperty: true
           }
         },
-
         properties: {
           required: [
             {
@@ -197,15 +200,25 @@ app.service('AWSComponents', function () {
       'SecurityGroup': {
         type: 'AWS::EC2::SecurityGroup',
 
+        // When the user drags a link from another object (source) to connect it to this component (target) use the following rules
         IncomingConnection: {
-          //read this from components object aove
+
           'EC2': {
-            //name of the property on the this object (target object) to set
-            name: 'SecurityGroups',
-            //the name of the property on the source object whose value we will set to the value of the target object
-            value: 'Name',
-            //whether this is part of the Properties of the Resource
-            isProperty: true
+            // if this connection is a one-way connection or bi-directional
+            type: 'twoWay',
+
+            //the name of the property on Source to be modified
+            sourcePropName: 'SecurityGroups',
+
+            //name of the property on Target which its value needs to be assigned to sourcePropName
+            sourcePropValue: 'name',
+
+            //how to interpret sourcePropValue:  pure/ref/attribute
+            sourcePropValueMethod: 'ref',
+
+            // how to update sourcePropName with sourcePropValue
+            sourcePolicy: 'append'
+
           }
         },
 
@@ -230,7 +243,6 @@ app.service('AWSComponents', function () {
         ]
       },
 
-
       'DynamoDb': {
         type: 'AWS::DynamoDB::Table',
         IncomingConnection: {
@@ -240,12 +252,20 @@ app.service('AWSComponents', function () {
               ['Arrow', {direction: -1, location: 0}],
               [ 'Label', { label: 'Depends On' }]
             ],
-            //set a field named 'DependsOn'
-            name: 'DependsOn',
-            //to the 'Name' property of the connected DynamoDB
-            value: 'Name',
-            //its not in the properties
-            isProperty: false
+            // if this connection is a one-way connection or bi-directional
+            type: 'oneWay',
+
+            //the name of the property on Target to be modified
+            targetPropName: 'DependsOn',
+
+            //name of the property on Source which its value needs to be assigned to targetPropName
+            targetPropValue: 'Name',
+
+            //how to interpret targetPropValue
+            targetPropValueMethod: 'pure',
+
+            // how to update targetPropName with targetPropValue
+            targetPolicy: 'assign'
           }
         },
         properties: {
@@ -273,14 +293,24 @@ app.service('AWSComponents', function () {
         type: 'AWS::EC2::Instance',
 
         IncomingConnection: {
-          //read this from components object above
-          'ConnectionSourceName': {
-            //name of the property on the this object (target object) to set
-            name: 'SecurityGroupName',
-            //the name of the property on the source object whose value we will set to the value of the target object
-            value: 'Name',
-            //whether this is part of the Properties of the Resource
-            isProperty: true
+
+          'SecurityGroup': {
+
+            // if this connection is a one-way connection or bi-directional
+            type: 'twoWay',
+
+            //the name of the property on Target to be modified
+            targetPropName: 'SecurityGroups',
+
+            //name of the property on Source which its value needs to be assigned to targetPropName
+            targetPropValue: 'name',
+
+            //how to interpret targetPropValue
+            targetPropValueMethod: 'ref',
+
+            // how to update targetPropName with targetPropValue
+            targetPolicy: 'append'
+
           }
         },
 
