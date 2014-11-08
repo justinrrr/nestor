@@ -15,7 +15,22 @@ app.directive('componentProperties', [function () {
       resourceProperties: '=',
       types: '='
     },
-    templateUrl: 'templates/component_properties.html'
+    templateUrl: 'templates/component_properties.html',
+    link: function (scope) {
+      scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
+
+        var item = {};
+        _.each(neededFields, function (property) {
+          item[property.name] = property.type;
+        });
+
+        if (!listToAddTo[propertyName]) {
+          listToAddTo[propertyName] = [];
+        }
+
+        listToAddTo[propertyName].push(item);
+      };
+    }
   };
 
 }]);
@@ -30,6 +45,38 @@ app.directive('primitiveProperty', [function () {
       property: '=',
       model: '='
     },
-    templateUrl: '../../templates/primitive_inputs.html'
+    templateUrl: '../../templates/primitive_properties.html'
+  };
+}]);
+
+app.directive('tableProperty', [function () {
+  return {
+    replace: true,
+    restrict: 'E',
+    scope: {
+      property: '=',
+      propertyTypes: '=',
+      resourceProperties: "="
+    },
+    templateUrl: '../../templates/table_properties.html',
+    link: function (scope) {
+      scope.removeFromTable = function () {
+        alert('i delete');
+      };
+      scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
+
+        var item = {};
+        _.each(neededFields, function (property) {
+          item[property.name] = property.type;
+        });
+
+        if (!listToAddTo[propertyName]) {
+          listToAddTo[propertyName] = [];
+        }
+
+        listToAddTo[propertyName].push(item);
+      };
+
+    }
   };
 }]);
