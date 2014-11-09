@@ -270,7 +270,7 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td .editable-controls {
   margin-right: 10px;
-  margin-left: 4px;
+  margin-left: 0px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td .btn-default {
   background-color: #aab2c0;
