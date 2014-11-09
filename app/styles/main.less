@@ -212,6 +212,7 @@ body {
               border: none;
               .panel-heading {
                 background-color: white;
+                color: black;
                 border-radius: 0px;
                 border-top: 1px solid #ddd;
                 border-bottom: 1px solid #ddd;
@@ -294,11 +295,11 @@ body {
         #no-more-tables1 tr {
           border: 1px solid rgba(204, 204, 204, 0.31);
           background-color: rgba(221, 221, 213, 0);
+          border-top: none;
         }
         #no-more-tables1 td {
           //          Behave  like a "row"
           border: none;
-          border-bottom: 1px solid #eee;
           position: relative;
           padding-left: 50%;
           white-space: normal;
@@ -397,11 +398,11 @@ body {
         }
         #no-more-tables2 tr {
           border: 1px solid #ccc;
+          border-top: none;
         }
         #no-more-tables2 td {
           //          Behave  like a "row"
           border: none;
-          border-bottom: 1px solid #eee;
           position: relative;
           padding-left: 50%;
           white-space: normal;
@@ -734,4 +735,15 @@ body {
 
 .ace-ambiance .ace_variable {
   color: #89A1D0 !important;
+}
+
+/*These are for the complex properties that you need to drag*/
+.empty-container-property {
+  width: 300px;
+  height: 80px;
+  position: absolute;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(233, 230, 234, 0.19);
 }
