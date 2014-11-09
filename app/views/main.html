@@ -141,15 +141,15 @@
               </accordion-group>
             </accordion>
 
-
-            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
-              <img width="100" ng-src="{{types.complex[prop.type].Display.image}}"/>
-              <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
+            <div class="component-item" ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
+              <div class="imgdiv"><img width="50" ng-src="{{types.complex[prop.type].Display.image}}"/></div>
+              <div class="pdiv"><span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span></div>
             </div>
+
             <!--<p>{{prop.name}} : {{prop.type}}</p>-->
           </div>
 
-          <h5 class="contenth5">Optional Parameters</h5>
+          <h5 class="contenth6">Optional Parameters</h5>
 
           <div ng-repeat="prop in selectedComponent.optional" class="content">
 
@@ -167,7 +167,7 @@
             <accordion ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'"
                        close-others="true"
                        class="propertiesaccordion">
-              <accordion-group is-open="status.open">
+              <accordion-group is-open="status.open" class="optionalheading">
                 <accordion-heading>
                   <div>
                         <span tooltip="{{types.complex[prop.type].Description}}">
@@ -242,9 +242,9 @@
               </accordion-group>
             </accordion>
 
-            <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
-              <img width="100" ng-src="{{types.complex[prop.type].Display.image}}"/>
-              <span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span>
+            <div class="component-item"ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
+              <div class="imgdiv"><img width="50" ng-src="{{types.complex[prop.type].Display.image}}"/></div>
+              <div class="pdiv"><span tooltip="{{types.complex[prop.type].Description}}">{{prop.name}}</span></div>
             </div>
           </div>
 
