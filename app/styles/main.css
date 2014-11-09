@@ -183,7 +183,7 @@ body {
   border-radius: 0px;
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
-  border-left: 10px solid beige;
+  border-left: 6px solid #ddd;
   margin-top: -2px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading .table-responsive {
@@ -204,7 +204,7 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body {
   border-top: none;
-  padding: 5px 15px 15px 15px;
+  padding: 0px 10px 15px 10px;
   background-color: rgba(221, 221, 213, 0.1);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new {
@@ -251,7 +251,8 @@ body {
   left: -9999px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 tr {
-  border: 1px solid #ccc;
+  border: 1px solid rgba(204, 204, 204, 0.31);
+  background-color: rgba(221, 221, 213, 0);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td {
   border: none;
@@ -262,6 +263,9 @@ body {
   text-align: left;
   padding-right: 10px;
   font-size: 14px;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td .editable-controls {
+  margin-right: 6px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td .btn-default {
   background-color: #aab2c0;
@@ -307,10 +311,11 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td:before {
   position: absolute;
-  top: 6px;
-  left: 6px;
+  top: 14px;
+  left: 10px;
   width: 45%;
   padding-right: 10px;
+  padding-left: 10px;
   white-space: nowrap;
   text-align: left;
   font-weight: 400;
