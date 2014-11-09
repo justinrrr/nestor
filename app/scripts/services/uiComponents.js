@@ -41,9 +41,16 @@ app.service('UIComponents', function () {
       jsPlumb.connect({
         source: sourceElement.id,
         target: targetElement.id,
-        anchors:["Bottom", [0.75,0,0,-1]],
-        paintStyle:{lineWidth:15,strokeStyle:'rgb(243,230,18)'},
-        endpointStyle:{fillStyle:'rgb(243,229,0)'}
+        //anchors:["Bottom", [0.75,0,0,-1]],
+        paintStyle: {
+          strokeStyle: '#225588',
+          fillStyle: 'transparent',
+          radius: 4,
+          lineWidth: 1,
+          dashstyle:"2 6"
+        }
+        //paintStyle:{ }
+        //endpointStyle:{fillStyle:'rgb(243,229,0)'}
       });
     }, 100);
   };
