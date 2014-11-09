@@ -268,7 +268,7 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td .editable-controls {
   margin-right: 10px;
-  margin-left: -8px;
+  margin-left: 4px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td .btn-default {
   background-color: #aab2c0;
@@ -290,7 +290,7 @@ body {
   border: 2px solid rgba(122, 122, 147, 0.36);
   padding: 2px;
   background: white;
-  margin: 2px 5px 2px 0px;
+  margin: 2px 5px 2px 8px;
   outline: none;
   height: 27px;
   box-shadow: none;
@@ -315,7 +315,7 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td:before {
   position: absolute;
   top: 14px;
-  left: 10px;
+  left: 12px;
   width: 45%;
   padding-right: 10px;
   padding-left: 10px;
