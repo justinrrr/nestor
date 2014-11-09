@@ -650,6 +650,9 @@ body {
   width: 60px;
   height: 60px;
 }
+.dragging .component-item .imgdiv img.component-image:hover {
+  text-decoration: none;
+}
 .ace-ambiance .ace_variable {
   color: #89A1D0 !important;
 }
@@ -663,5 +666,4 @@ body {
   font-weight: 700;
   border-bottom: 1px solid rgba(233, 230, 234, 0.19);
   margin-left: -15px;
-  padding-right: 10px;
 }
