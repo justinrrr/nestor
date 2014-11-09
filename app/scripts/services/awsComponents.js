@@ -728,7 +728,7 @@ app.service('AWSComponents', function () {
 
         PrivateIpAddressSpecification: {
           Display: { type: 'table', maxSize: -1 },
-          Description: 'private IP address specification',
+          Description: 'Private IP address specification',
           types: {
             required: [
               {name: 'Primary', type: 'Integer', description: 'Sets the private IP address as the primary private address. You can set only one primary private IP address. If you do not specify a primary private IP address, Amazon EC2 automatically assigns a primary private IP address'},
