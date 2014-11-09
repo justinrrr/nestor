@@ -652,3 +652,19 @@ body {
 .ace-ambiance .ace_variable {
   color: #89A1D0 !important;
 }
+
+/*These are for the complex properties that you need to drag*/
+.empty-container-property {
+  width: 300px;
+  height: 80px;
+  position: absolute;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(233, 230, 234, 0.19);
+}
+
+.empty-container:hover {
+  cursor: pointer;
+  background-color: rgba(233, 230, 234, 0.19);
+}
