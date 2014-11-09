@@ -61,6 +61,8 @@
           <component-properties
             component-properties="selectedComponent.required"
             resource-properties="template.Resources[selectedComponent.name].Properties"
+            on-property-drag="propertyDidDrag(data, event)"
+            property-name="selectedComponent.name"
             types="types"></component-properties>
 
           <h5 class="contenth5">Optional Parameters</h5>
@@ -68,6 +70,8 @@
           <component-properties
             component-properties="selectedComponent.optional"
             resource-properties="template.Resources[selectedComponent.name].Properties"
+            on-property-drag="propertyDidDrag(data, event)"
+            property-name="selectedComponent.name"
             types="types"></component-properties>
         </div>
       </div>
