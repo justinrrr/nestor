@@ -7,7 +7,7 @@ var app = angular.module('nestorApp.services');
 
 app.service('UIComponents', function () {
   //The draggable component on the canvas
-  this.Component = function (id, type, name, image, metadata, description, x, y) {
+  this.Component = function (id, type, name, image, requiredMetadata, optionalMetadata, description, x, y) {
     this.id = id;
     this.type = type;
     this.name = name;
@@ -16,8 +16,8 @@ app.service('UIComponents', function () {
     this.x = x;
     this.y = y;
     //this.metadata = metadata;
-    this.required = metadata.properties.required;
-    this.optional = metadata.properties.optional;
+    this.required = requiredMetadata;
+    this.optional = optionalMetadata;
   };
 
   this.setupJSPlumb = function($scope) {

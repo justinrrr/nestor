@@ -71,7 +71,8 @@ angular.module('nestorApp')
           blueprint.name,
           generateComponentName(blueprint.name),
           blueprint.image,
-          $scope.componentMetadata[blueprint.name],
+          $scope.componentMetadata[blueprint.name].properties.required,
+          $scope.componentMetadata[blueprint.name].properties.optional,
           blueprint.description,
           posX,
           posY);
@@ -236,8 +237,37 @@ angular.module('nestorApp')
         $scope.connectionDetached(sourceName, originalTargetName);
       };
 
-      $scope.propertyDragged = function($data, $event) {
-        alert('lala');
+      $scope.propertyDidDrag = function(data, event) {
+
+        var leftPanelWidth = angular.element('#left-column')[0].clientWidth;
+
+        var uniqueId = _.uniqueId(data.name + '-');
+
+        var c = new UIComponents.Component(
+          uniqueId,
+          data.name,
+          generateComponentName(data.name),
+          data.image,
+          $scope.types.complex[data.name].types.required,
+          $scope.types.complex[data.name].types.optional,
+          data.description,
+          event.x - leftPanelWidth,
+          event.y
+        );
+
+        $scope.addedComponents[c.name] = c;
+
+        var parentName = data.parent;
+
+        if (!$scope.template.Resources[parentName].Properties[data.name]) {
+          $scope.template.Resources[parentName].Properties[data.name]  = [];
+        }
+
+        var newEntry = {};
+        newEntry[c.name] = {};
+        $scope.template.Resources[parentName].Properties[data.name].push(newEntry);
+
+        itemSelected(c);
       };
 
       //-----------------------------------------------------
@@ -288,7 +318,8 @@ angular.module('nestorApp')
                   blueprint.name,
                   resourceName,
                   blueprint.image,
-                  $scope.componentMetadata[blueprint.name],
+                  $scope.componentMetadata[blueprint.name].properties.required,
+                  $scope.componentMetadata[blueprint.name].properties.optional,
                   blueprint.description,
                   100,
                   100);

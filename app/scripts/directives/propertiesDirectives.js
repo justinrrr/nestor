@@ -9,8 +9,8 @@ app.directive('componentProperties', [function () {
   return {
     replace: true,
     restrict: 'E',
-    transclude: true,
     scope: {
+      propertyName: '=',
       componentProperties: '=',
       resourceProperties: '=',
       onPropertyDrag: '&',
@@ -32,8 +32,9 @@ app.directive('componentProperties', [function () {
         listToAddTo[propertyName].push(item);
       };
 
-      scope.dragFinished = function() {
-        scope.onPropertyDrag();
+      scope.dragFinished = function($data, $event) {
+        $data.parent = scope.propertyName;
+        scope.onPropertyDrag({data: $data, event : $event});
       }
     }
   };
@@ -111,7 +112,7 @@ app.directive('dragProperty', [function () {
       };
 
       scope.dragCompleted = function($data, $event) {
-        scope.onDragComplete();
+        scope.onDragComplete({$data : $data, $event : $event});
       }
     }
   };
