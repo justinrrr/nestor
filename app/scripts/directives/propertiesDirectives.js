@@ -95,6 +95,14 @@ app.directive('dragProperty', [function () {
       property: '=',
       propertyTypes: '='
     },
-    templateUrl: '../../templates/drag_properties.html'
+    templateUrl: '../../templates/drag_properties.html',
+    link : function(scope) {
+      scope.dragData = {
+        name: scope.property.name,
+        image: scope.propertyTypes.Display.image,
+        belongsTo:  'me'
+        //description: scope.propertyTypes.Description
+      };
+    }
   };
 }]);
