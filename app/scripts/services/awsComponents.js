@@ -8,7 +8,7 @@
 var app = angular.module('nestorApp.services');
 app.service('AWSComponents', function () {
 
-    this.createInitialTemplate = function() {
+    this.createInitialTemplate = function () {
       return {
         AWSTemplateFormatVersion: '2010-09-09',
         Description: 'Created By Nestor',
@@ -59,6 +59,11 @@ app.service('AWSComponents', function () {
         name: 'DynamoDb',
         image: 'images/aws/dynamo.png',
         description: 'NoSQL database service'
+      },
+      {
+        name: 'EIP',
+        image: 'images/aws/eip.png',
+        description: 'Elastic IP'
       },
       //{
       //  name: 'EBS',
@@ -137,7 +142,7 @@ app.service('AWSComponents', function () {
       'AWS::DynamoDB::Table': 'DynamoDb',
       'AWS::AutoScaling::AutoScalingGroup': 'Autoscaling Group',
       'AWS::EC2::Instance': 'EC2',
-      'AWS::EC2::EIP': 'Elastic IP',
+      'AWS::EC2::EIP': 'EIP',
       'AWS::ElasticLoadBalancing::LoadBalancer': 'ELB',
       'AWS::EC2::VPC': 'VPC',
       'AWS::EC2::SecurityGroup': 'SecurityGroup'
@@ -327,7 +332,28 @@ app.service('AWSComponents', function () {
             // how to update targetPropName with targetPropValue
             targetPolicy: 'append'
 
+          },
+
+          'EIP': {    // e.g. EC2, DynamoDB
+            overlays: [
+              ['Arrow', {direction: 0, location: 0}],
+              [ 'Label', { label: 'Depends On' }]
+            ],
+
+            //the name of the property on Source to be modified
+            sourcePropName: 'InstanceId',
+
+            //name of the property on Target which its value needs to be assigned to sourcePropName
+            sourcePropValue: 'Name',
+
+            //how to interpret sourcePropValue:  pure/ref/attribute
+            sourcePropValueMethod: 'ref',
+
+            // how to update sourcePropName with sourcePropValue
+            sourcePolicy: 'assign'
+
           }
+
         },
 
         properties: {
@@ -400,8 +426,57 @@ app.service('AWSComponents', function () {
             description: 'Name of the EC2 instance'
           }
         ]
-      }
+      },
 
+      'EIP': {
+        type: 'AWS::EC2::EIP',
+        // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
+        IncomingConnection: {
+
+          'EC2': {    // e.g. EC2, DynamoDB
+            overlays: [
+              ['Arrow', {direction: -1, location: 0}],
+              [ 'Label', { label: 'PublicIP' }]
+            ],
+
+            //the name of the property on Target to be modified
+            targetPropName: 'InstanceId',
+
+            //name of the property on Source which its value needs to be assigned to targetPropName
+            targetPropValue: 'Name',
+
+            //how to interpret targetPropValue:  pure/ref/attribute
+            targetPropValueMethod: 'ref',
+
+            // how to update targetPropName with targetPropValue
+            targetPolicy: 'assign'
+
+          }
+        },
+        properties: {
+          required: [
+            {
+              name: 'InstanceId',
+              type: 'String',
+              description: 'The Instance ID of the Amazon EC2 instance that you want to associate with this Elastic IP address'
+            }
+          ],
+          optional: [
+            {
+              name: 'Domain',
+              type: 'String',
+              description: 'Set to vpc to allocate the address to your Virtual Private Cloud (VPC). No other values are supported'
+            }
+          ]
+        },
+        Outputs: [
+          {
+            type: 'Ref',
+            name: 'Public IP',
+            description: 'returns the value of the PublicIp for the EC2 instance'
+          }
+        ]
+      }
     };
 
     this.propertyTypes = {
