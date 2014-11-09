@@ -133,8 +133,8 @@ app.directive('plumbConnect', function () {
           radius: 4,
           lineWidth: 1
         }
-
       });
+
 
     }
   };

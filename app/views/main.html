@@ -38,7 +38,10 @@
 
         <p class="title">{{component.name}}</p>
 
-        <div plumb-connect class="ep"></div>
+        <div plumb-connect
+             data-parent-name="{{component.parent}}"
+             class="ep"
+          ></div>
       </div>
     </div>
 
