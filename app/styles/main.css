@@ -208,8 +208,8 @@ body {
   background-color: rgba(221, 221, 213, 0.1);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new {
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
   border-radius: 50%;
   background-color: #00c29d;
   transition: background-color 0.2s;
@@ -225,9 +225,10 @@ body {
   border: none;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new span {
-  top: 0px;
-  right: 3.5px;
+  top: -1px;
+  right: 5.5px;
   color: white;
+  font-size: 12px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content .pull-right {
   top: -15px;
@@ -265,7 +266,8 @@ body {
   font-size: 14px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td .editable-controls {
-  margin-right: 6px;
+  margin-right: 10px;
+  margin-left: -8px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td .btn-default {
   background-color: #aab2c0;
@@ -649,22 +651,4 @@ body {
 }
 .ace-ambiance .ace_variable {
   color: #89A1D0 !important;
-}
-
-
-
-/*These are for the complex properties that you need to drag*/
-.empty-container-property {
-  width: 300px;
-  height: 80px;
-  position: absolute;
-  color: #ffffff;
-  cursor: pointer;
-  font-weight: 700;
-  border-bottom: 1px solid rgba(233, 230, 234, 0.19);
-}
-
-.empty-container:hover {
-  cursor: pointer;
-  background-color: rgba(233, 230, 234, 0.19);
 }
