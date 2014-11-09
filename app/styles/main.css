@@ -115,6 +115,8 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg #titleh4 {
   font-size: 16px;
   margin-top: 4px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 600;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg #titleh5 {
   font-size: 12px;
@@ -492,26 +494,26 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a {
   text-decoration: none;
   cursor: pointer;
-  background-color: #6a7ea3;
-  color: white;
+  background-color: beige;
+  color: rgba(106, 126, 163, 0.65);
   font-weight: 600;
   border: none;
-  border-top: 4px solid #C9CFD8;
-  border-bottom: 4px solid #C9CFD8;
+  border-top: 2px solid rgba(95, 101, 145, 0.99);
+  border-bottom: 2px solid rgba(95, 101, 145, 0.99);
   border-radius: 0;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a:hover {
-  color: #dbdbdb;
+  color: #6a7ea3;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a {
-  background-color: #6a7ea3;
+  background-color: beige;
   border-bottom: none;
-  border-top: 4px solid #C9CFD8;
-  border-bottom: 4px solid #C9CFD8;
-  color: #ffffff;
+  border-top: 2px solid rgba(95, 101, 145, 0.99);
+  border-bottom: 2px solid rgba(95, 101, 145, 0.99);
+  color: #627494;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a:hover {
-  color: #ffffff;
+  color: #627494;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content {
   background-color: #6a7ea3;
