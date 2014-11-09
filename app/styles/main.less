@@ -212,10 +212,11 @@ body {
               border: none;
               .panel-heading {
                 background-color: white;
+                color: black;
                 border-radius: 0px;
                 border-top: 1px solid #ddd;
                 border-bottom: 1px solid #ddd;
-                border-left: 10px solid beige;
+                border-left: 6px solid #ddd;
                 margin-top: -2px;
                 .table-responsive {
                   border-top: 0px;
@@ -237,11 +238,11 @@ body {
               .panel-collapse {
                 .panel-body {
                   border-top: none;
-                  padding: 5px 15px 15px 15px;
+                  padding: 0px 10px 15px 10px;
                   background-color: rgba(221, 221, 213, 0.1);
                   .new {
-                    width: 30px;
-                    height: 30px;
+                    width: 25px;
+                    height: 25px;
                     border-radius: 50%;
                     background-color: #00c29d;
                     transition: background-color 0.2s;
@@ -256,9 +257,10 @@ body {
                       border: none;
                     }
                     span {
-                      top: 0px;
-                      right: 3.5px;
+                      top: -1px;
+                      right: 5.5px;
                       color: white;
+                      font-size: 12px;
                     }
                   }
                 }
@@ -291,18 +293,23 @@ body {
           left: -9999px;
         }
         #no-more-tables1 tr {
-          border: 1px solid #ccc;
+          border: 1px solid rgba(204, 204, 204, 0.31);
+          background-color: rgba(221, 221, 213, 0);
+          border-top: none;
         }
         #no-more-tables1 td {
           //          Behave  like a "row"
           border: none;
-          border-bottom: 1px solid #eee;
           position: relative;
           padding-left: 50%;
           white-space: normal;
           text-align: left;
           padding-right: 10px;
           font-size: 14px;
+          .editable-controls {
+            margin-right: 10px;
+            margin-left: 4px;
+          }
           .btn-default {
             background-color: #aab2c0;
             color: white;
@@ -321,7 +328,7 @@ body {
             border: 2px solid @fieldborder;
             padding: 2px;
             background: white;
-            margin: 2px 5px 2px 0px;
+            margin: 2px 5px 2px 8px;
             outline: none;
             height: 27px;
             box-shadow: none;
@@ -348,10 +355,11 @@ body {
           //          Now like a table header
           position: absolute;
           // Top/left values mimic padding //
-          top: 6px;
-          left: 6px;
+          top: 14px;
+          left: 12px;
           width: 45%;
           padding-right: 10px;
+          padding-left: 10px;
           white-space: nowrap;
           text-align: left;
           font-weight: 400;
@@ -390,11 +398,11 @@ body {
         }
         #no-more-tables2 tr {
           border: 1px solid #ccc;
+          border-top: none;
         }
         #no-more-tables2 td {
           //          Behave  like a "row"
           border: none;
-          border-bottom: 1px solid #eee;
           position: relative;
           padding-left: 50%;
           white-space: normal;
@@ -720,6 +728,9 @@ body {
       img.component-image {
         width: 60px;
         height: 60px;
+        &:hover {
+          text-decoration: none;
+        }
       }
     }
   }
@@ -727,4 +738,16 @@ body {
 
 .ace-ambiance .ace_variable {
   color: #89A1D0 !important;
+}
+
+/*These are for the complex properties that you need to drag*/
+.empty-container-property {
+  width: 300px;
+  height: 80px;
+  position: absolute;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(233, 230, 234, 0.19);
+  margin-left: -15px;
 }

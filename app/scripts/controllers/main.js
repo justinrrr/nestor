@@ -86,7 +86,12 @@ angular.module('nestorApp')
       // UI Events
       //--------------------------------------
       $scope.onDragComplete = function ($data, $event) {
-        addComponent($data, $event.x, $event.y);
+
+        //because of the fucking directive for ui layout
+        //I need to use jquery here to compensate for the extra offset
+        //caused by the editor
+        var leftPanelWidth = angular.element('#left-column')[0].clientWidth;
+        addComponent($data, $event.x - leftPanelWidth, $event.y);
       };
 
       $scope.clickCallback = function (component) {
