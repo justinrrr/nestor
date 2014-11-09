@@ -215,6 +215,88 @@ app.service('AWSComponents', function () {
         ]
       },
 
+      'RecordSet': {
+        type: 'AWS::Route53::RecordSet',
+        // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
+        IncomingConnection: {
+
+          'SourceComponentName': {    // e.g. EC2, DynamoDB
+            overlays: [
+              ['Arrow', {direction: -1, location: 0}],
+              [ 'Label', { label: 'Depends On' }]
+            ],
+
+            //optional, don't set if it doesn't apply
+            targetPropName: 'the name of the property on Target to be modified',
+
+            //optional, don't set if it doesn't apply
+            targetPropValue: 'name of the property on Source which its value needs to be assigned to targetPropName',
+
+            //optional, defaults to "pure"
+            targetPropValueMethod: 'how to interpret targetPropValue:  pure/ref/attribute',
+
+            // how to update targetPropName with targetPropValue
+            targetPolicy: 'assign/append',
+
+            //optional, don't set if it doesn't apply
+            sourcePropName: 'the name of the property on Source to be modified',
+
+            //optional, don't set if it doesn't apply
+            sourcePropValue: 'name of the property on Target which its value needs to be assigned to sourcePropName',
+
+            //optional, defaults to "pure"
+            sourcePropValueMethod: 'how to interpret sourcePropValue:  pure/ref/attribute',
+
+            // how to update sourcePropName with sourcePropValue
+            sourcePolicy: 'assign/append'
+
+          }
+        },
+        properties: {
+          required: [
+            {
+              name: 'HostedZoneName',
+              type: 'String',
+              description: 'The name of the domain for the hosted zone where you want to add the record set'
+            },
+            {
+              name: 'Type',
+              type: 'String',
+              description: 'The type of records to add'
+            },
+            {
+              name: 'Name',
+              type: 'String',
+              description: 'The name of the domain. This must be a fully specified domain, ending with a period as the last label indication. If you omit the final period, Amazon Route 53 assumes the domain is relative to the root'
+            }
+          ],
+          optional: [
+            {
+              name: 'TTL',
+              type: 'String',
+              description: 'The resource record cache time to live (TTL), in seconds'
+            },
+            {
+              name: 'ResourceRecords',
+              type: 'StringList',
+              description: 'List of resource records to add. Each record should be in the format appropriate for the record type specified by the Type property'
+            },
+            {
+              name: 'Comment',
+              type: 'String',
+              description: 'Any comments you want to include about the hosted zone'
+            }
+          ]
+        },
+        Outputs: [
+          {
+            type: 'acceptable values are Ref and GetAtt',
+            name: 'userFriendlyNameOfOutput',
+            description: 'userFriendlyDescriptionOfOutput'
+          }
+        ]
+      },
+
       'SecurityGroup': {
         type: 'AWS::EC2::SecurityGroup',
 
