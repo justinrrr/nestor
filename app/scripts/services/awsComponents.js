@@ -139,7 +139,8 @@ app.service('AWSComponents', function () {
       'AWS::EC2::Instance': 'EC2',
       'AWS::EC2::EIP': 'Elastic IP',
       'AWS::ElasticLoadBalancing::LoadBalancer': 'ELB',
-      'AWS::EC2::VPC': 'VPC'
+      'AWS::EC2::VPC': 'VPC',
+      'AWS::EC2::SecurityGroup': 'SecurityGroup'
     };
 
     //add component specific metadat here
@@ -151,9 +152,10 @@ app.service('AWSComponents', function () {
         IncomingConnection: {
 
           'SourceComponentName': {    // e.g. EC2, DynamoDB
-
-            // if this connection is a one-way connection or bi-directional
-            type: 'oneWay/twoWay',
+            overlays: [
+              ['Arrow', {direction: -1, location: 0}],
+              [ 'Label', { label: 'Depends On' }]
+            ],
 
             //optional, don't set if it doesn't apply
             targetPropName: 'the name of the property on Target to be modified',
@@ -215,8 +217,10 @@ app.service('AWSComponents', function () {
         IncomingConnection: {
 
           'EC2': {
-            // if this connection is a one-way connection or bi-directional
-            type: 'twoWay',
+            overlays: [
+              ['Arrow', {direction: -1, location: 0}],
+              [ 'Label', { label: 'Belongs to' }]
+            ],
 
             //the name of the property on Source to be modified
             sourcePropName: 'SecurityGroups',
@@ -306,9 +310,10 @@ app.service('AWSComponents', function () {
         IncomingConnection: {
 
           'SecurityGroup': {
-
-            // if this connection is a one-way connection or bi-directional
-            type: 'twoWay',
+            overlays: [
+              ['Arrow', {direction: -1, location: 0}],
+              [ 'Label', { label: 'Belongs' }]
+            ],
 
             //the name of the property on Target to be modified
             targetPropName: 'SecurityGroups',

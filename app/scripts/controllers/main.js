@@ -82,7 +82,6 @@ angular.module('nestorApp')
       };
 
 
-
       //--------------------------------------
       // UI Events
       //--------------------------------------
@@ -95,29 +94,131 @@ angular.module('nestorApp')
       };
 
       $scope.connectionEstablished = function (sourceName, targetName) {
-        var sourceType = AWSComponents.typeMappings[$scope.template.Resources[sourceName].Type];
-        var targetType = AWSComponents.typeMappings[$scope.template.Resources[targetName].Type];
-        var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
-        if (!incomingConnectionProperies.isProperty) {
-          if (incomingConnectionProperies.value === 'Name') {
-            $scope.template.Resources[targetName][incomingConnectionProperies.name] = sourceName;
-            $scope.$digest();
+        var sourceObject = $scope.template.Resources[sourceName];
+        var sourceType = AWSComponents.typeMappings[sourceObject.Type];
+
+        var targetObject = $scope.template.Resources[targetName];
+        var targetType = AWSComponents.typeMappings[targetObject.Type];
+
+        var incomingProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
+
+
+        //source: securitygroupd
+        //target: ec2
+
+        // If this connection needs to update Target
+        if (incomingProperies.hasOwnProperty('targetPropName') &&
+          incomingProperies.hasOwnProperty('targetPropValue') &&
+          incomingProperies.hasOwnProperty('targetPropValueMethod') &&
+          incomingProperies.hasOwnProperty('targetPolicy')) {
+
+          if (incomingProperies.targetPropValueMethod === 'pure') {
+            if (incomingProperies.targetPolicy === 'append') {
+
+              if (targetObject.hasOwnProperty(incomingProperies.targetPropName)) {
+                targetObject[incomingProperies.targetPropName].push(sourceObject[incomingProperies.targetPropValue]);
+              }
+              else {
+                targetObject[incomingProperies.targetPropName] = [sourceObject[incomingProperies.targetPropValue]];
+              }
+            } else { //assign
+
+              //edge case:
+              if (incomingProperies.targetPropValue === 'Name') {
+                targetObject[incomingProperies.targetPropName] = sourceName;
+              }
+              else {
+                targetObject[incomingProperies.targetPropName] = sourceObject[incomingProperies.targetPropValue];
+              }
+            }
           }
+          else if (incomingProperies.targetPropValueMethod === 'ref') {
+            if (incomingProperies.targetPolicy === 'append') {
+
+              if (targetObject.hasOwnProperty(incomingProperies.targetPropName)) {
+                targetObject[incomingProperies.targetPropName].push({ Ref: sourceName});
+              }
+              else {
+                targetObject[incomingProperies.targetPropName] = [
+                  { Ref: sourceName}
+                ];
+              }
+
+            } else { //assign
+              targetObject[incomingProperies.targetPropName] = { Ref: sourceName};
+            }
+          }
+          else if (incomingProperies.targetPropValueMethod === 'attribute') {
+            //TODO: NYI
+          }
+          $scope.$digest();
+
         }
-        return incomingConnectionProperies.overlays;
+
+
+        // If this connection needs to update Source
+        if (incomingProperies.hasOwnProperty('sourcePropName') &&
+          incomingProperies.hasOwnProperty('sourcePropValue') &&
+          incomingProperies.hasOwnProperty('sourcePropValueMethod') &&
+          incomingProperies.hasOwnProperty('sourcePolicy')) {
+
+          if (incomingProperies.sourcePropValueMethod === 'pure') {
+            if (incomingProperies.sourcePolicy === 'append') {
+
+              if (sourceObject.hasOwnProperty(incomingProperies.sourcePropName)) {
+                sourceObject[incomingProperies.sourcePropName].push(targetObject[incomingProperies.sourcePropValue]);
+              }
+              else {
+                sourceObject[incomingProperies.sourcePropName] = [targetObject[incomingProperies.sourcePropValue]];
+              }
+            } else { //assign
+              if (incomingProperies.sourcePropValue === 'Name') {
+                sourceObject[incomingProperies.sourcePropName] = targetName;
+              } else {
+                sourceObject[incomingProperies.sourcePropName] = targetObject[incomingProperies.sourcePropValue];
+              }
+            }
+          }
+          else if (incomingProperies.sourcePropValueMethod === 'ref') {
+            if (incomingProperies.sourcePolicy === 'append') {
+
+              if (sourceObject.hasOwnProperty(incomingProperies.sourcePropName)) {
+                sourceObject[incomingProperies.sourcePropName].push({ Ref: targetName});
+              }
+              else {
+                sourceObject[incomingProperies.sourcePropName] = [
+                  { Ref: targetName}
+                ];
+              }
+            } else { //assign
+              sourceObject[incomingProperies.sourcePropName] = { Ref: targetName};
+            }
+          }
+          else if (incomingProperies.sourcePropValueMethod === 'attribute') {
+            //TODO: NYI
+          }
+          $scope.$digest();
+
+        }
+
+
+//            $scope.template.Resources[targetName][incomingConnectionProperies.name] = sourceName;
+        return incomingProperies.overlays;
       };
 
       $scope.connectionDetached = function (sourceName, targetName) {
-        var sourceType = AWSComponents.typeMappings[$scope.template.Resources[sourceName].Type];
-        var targetType = AWSComponents.typeMappings[$scope.template.Resources[targetName].Type];
-        var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
+        /*
+         var sourceType = AWSComponents.typeMappings[$scope.template.Resources[sourceName].Type];
+         var targetType = AWSComponents.typeMappings[$scope.template.Resources[targetName].Type];
+         var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
 
-        if (!incomingConnectionProperies.isProperty) {
-          if (incomingConnectionProperies.value === 'Name') {
-            delete $scope.template.Resources[targetName][incomingConnectionProperies.name];
-            $scope.$digest();
-          }
-        }
+         if (!incomingConnectionProperies.isProperty) {
+         if (incomingConnectionProperies.value === 'Name') {
+         delete $scope.template.Resources[targetName][incomingConnectionProperies.name];
+         $scope.$digest();
+         }
+         }
+         */
       };
 
       $scope.connectionMovedFromSource = function (/*originalSourceName, newSourceName, targetName*/) {
