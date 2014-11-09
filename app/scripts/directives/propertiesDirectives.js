@@ -13,6 +13,7 @@ app.directive('componentProperties', [function () {
     scope: {
       componentProperties: '=',
       resourceProperties: '=',
+      onPropertyDrag: '&',
       types: '='
     },
     templateUrl: 'templates/component_properties.html',
@@ -30,6 +31,10 @@ app.directive('componentProperties', [function () {
 
         listToAddTo[propertyName].push(item);
       };
+
+      scope.dragFinished = function() {
+        scope.onPropertyDrag();
+      }
     }
   };
 
@@ -93,7 +98,8 @@ app.directive('dragProperty', [function () {
     transclude: true,
     scope: {
       property: '=',
-      propertyTypes: '='
+      propertyTypes: '=',
+      onDragComplete: '&'
     },
     templateUrl: '../../templates/drag_properties.html',
     link : function(scope) {
@@ -103,6 +109,10 @@ app.directive('dragProperty', [function () {
         belongsTo:  'me'
         //description: scope.propertyTypes.Description
       };
+
+      scope.dragCompleted = function($data, $event) {
+        scope.onDragComplete();
+      }
     }
   };
 }]);

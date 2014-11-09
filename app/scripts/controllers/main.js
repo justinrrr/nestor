@@ -133,7 +133,10 @@ angular.module('nestorApp')
       $scope.connectionMovedFromTarget = function (sourceName, originalTargetName) {
         //in ths case we need to remove the connection from target
         $scope.connectionDetached(sourceName, originalTargetName);
+      };
 
+      $scope.propertyDragged = function($data, $event) {
+        alert('lala');
       };
 
       //-----------------------------------------------------
