@@ -215,7 +215,7 @@ body {
                 border-radius: 0px;
                 border-top: 1px solid #ddd;
                 border-bottom: 1px solid #ddd;
-                border-left: 10px solid beige;
+                border-left: 6px solid #ddd;
                 margin-top: -2px;
                 .table-responsive {
                   border-top: 0px;
@@ -237,11 +237,11 @@ body {
               .panel-collapse {
                 .panel-body {
                   border-top: none;
-                  padding: 5px 15px 15px 15px;
+                  padding: 0px 10px 15px 10px;
                   background-color: rgba(221, 221, 213, 0.1);
                   .new {
-                    width: 30px;
-                    height: 30px;
+                    width: 25px;
+                    height: 25px;
                     border-radius: 50%;
                     background-color: #00c29d;
                     transition: background-color 0.2s;
@@ -256,9 +256,10 @@ body {
                       border: none;
                     }
                     span {
-                      top: 0px;
-                      right: 3.5px;
+                      top: -1px;
+                      right: 5.5px;
                       color: white;
+                      font-size: 12px;
                     }
                   }
                 }
@@ -291,7 +292,8 @@ body {
           left: -9999px;
         }
         #no-more-tables1 tr {
-          border: 1px solid #ccc;
+          border: 1px solid rgba(204, 204, 204, 0.31);
+          background-color: rgba(221, 221, 213, 0);
         }
         #no-more-tables1 td {
           //          Behave  like a "row"
@@ -303,6 +305,10 @@ body {
           text-align: left;
           padding-right: 10px;
           font-size: 14px;
+          .editable-controls {
+            margin-right: 10px;
+            margin-left: -8px;
+          }
           .btn-default {
             background-color: #aab2c0;
             color: white;
@@ -348,10 +354,11 @@ body {
           //          Now like a table header
           position: absolute;
           // Top/left values mimic padding //
-          top: 6px;
-          left: 6px;
+          top: 14px;
+          left: 10px;
           width: 45%;
           padding-right: 10px;
+          padding-left: 10px;
           white-space: nowrap;
           text-align: left;
           font-weight: 400;
