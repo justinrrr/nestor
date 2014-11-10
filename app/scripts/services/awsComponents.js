@@ -102,7 +102,7 @@ app.service('AWSComponents', function () {
       //  description: 'fully managed, petabyte-scale data warehouse solution'
       //},
       {
-        name: 'route53',
+        name: 'Route53',
         image: 'images/aws/route53.png',
         description: 'highly available and scalable Domain Name System (DNS)'
       },
@@ -145,7 +145,8 @@ app.service('AWSComponents', function () {
       'AWS::EC2::EIP': 'EIP',
       'AWS::ElasticLoadBalancing::LoadBalancer': 'ELB',
       'AWS::EC2::VPC': 'VPC',
-      'AWS::EC2::SecurityGroup': 'SecurityGroup'
+      'AWS::EC2::SecurityGroup': 'SecurityGroup',
+      'AWS::Route53::RecordSet': 'Route53'
     };
 
     //add component specific metadat here
@@ -215,7 +216,7 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'RecordSet': {
+      'Route53': {
         type: 'AWS::Route53::RecordSet',
         // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
         IncomingConnection: {
