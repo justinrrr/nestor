@@ -24,7 +24,7 @@ angular.module('nestorApp')
       $scope.tasks = AWSComponents.tasks;
 
       //--------------------------------------
-      // Helpers
+      // Helpers functions
       //--------------------------------------
       function generateComponentName(type) {
         if (!$scope.componentNameCounters.type) {
@@ -63,7 +63,7 @@ angular.module('nestorApp')
         $scope.selectedComponent = component;
       }
 
-      var addComponent = function (blueprint, posX, posY) {
+      function addComponent(blueprint, posX, posY) {
 
         var uniqueId = _.uniqueId(blueprint.name + '-');
         var c = new UIComponents.Component(
@@ -82,6 +82,58 @@ angular.module('nestorApp')
         itemSelected(c);
       };
 
+      function connectObjectsThroughProps(propName, propValue, propValueMethod, updatePolicy, targetObject, sourceObject, resourceName) {
+
+        // return immediate if any of the incoming arguments are not defined
+        if (propName === undefined ||
+          propValue === undefined ||
+          propValueMethod === undefined ||
+          updatePolicy === undefined) {
+          return false;
+        }
+
+        if (propValueMethod === 'pure') {
+          if (updatePolicy === 'append') {
+
+            if (targetObject.hasOwnProperty(propName)) {
+              targetObject[propName].push(sourceObject[propValue]);
+            }
+            else {
+              targetObject[propName] = [sourceObject[propValue]];
+            }
+          } else { //assign
+
+            //edge case:
+            if (propValue === 'Name') {
+              targetObject[propName] = resourceName;
+            }
+            else {
+              targetObject[propName] = sourceObject[propValue];
+            }
+          }
+        }
+        else if (propValueMethod === 'ref') {
+          if (updatePolicy === 'append') {
+
+            if (targetObject.hasOwnProperty(propName)) {
+              targetObject[propName].push({ Ref: resourceName});
+            }
+            else {
+              targetObject[propName] = [
+                { Ref: resourceName}
+              ];
+            }
+
+          } else { //assign
+            targetObject[propName] = { Ref: resourceName};
+          }
+        }
+        else if (propValueMethod === 'attribute') {
+          //TODO: NYI
+        }
+
+        return true;
+      }
 
       //--------------------------------------
       // UI Events
@@ -109,108 +161,29 @@ angular.module('nestorApp')
         var incomingProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
 
 
-        //source: securitygroupd
-        //target: ec2
+        var connectionHappened;
 
         // If this connection needs to update Target
-        if (incomingProperies.hasOwnProperty('targetPropName') &&
-          incomingProperies.hasOwnProperty('targetPropValue') &&
-          incomingProperies.hasOwnProperty('targetPropValueMethod') &&
-          incomingProperies.hasOwnProperty('targetPolicy')) {
-
-          if (incomingProperies.targetPropValueMethod === 'pure') {
-            if (incomingProperies.targetPolicy === 'append') {
-
-              if (targetObject.hasOwnProperty(incomingProperies.targetPropName)) {
-                targetObject[incomingProperies.targetPropName].push(sourceObject[incomingProperies.targetPropValue]);
-              }
-              else {
-                targetObject[incomingProperies.targetPropName] = [sourceObject[incomingProperies.targetPropValue]];
-              }
-            } else { //assign
-
-              //edge case:
-              if (incomingProperies.targetPropValue === 'Name') {
-                targetObject[incomingProperies.targetPropName] = sourceName;
-              }
-              else {
-                targetObject[incomingProperies.targetPropName] = sourceObject[incomingProperies.targetPropValue];
-              }
-            }
-          }
-          else if (incomingProperies.targetPropValueMethod === 'ref') {
-            if (incomingProperies.targetPolicy === 'append') {
-
-              if (targetObject.hasOwnProperty(incomingProperies.targetPropName)) {
-                targetObject[incomingProperies.targetPropName].push({ Ref: sourceName});
-              }
-              else {
-                targetObject[incomingProperies.targetPropName] = [
-                  { Ref: sourceName}
-                ];
-              }
-
-            } else { //assign
-              targetObject[incomingProperies.targetPropName] = { Ref: sourceName};
-            }
-          }
-          else if (incomingProperies.targetPropValueMethod === 'attribute') {
-            //TODO: NYI
-          }
-          $scope.$digest();
-
-        }
+        connectionHappened = connectObjectsThroughProps(incomingProperies.targetPropName, incomingProperies.targetPropValue,
+          incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
+          targetObject, sourceObject, sourceName);
 
 
         // If this connection needs to update Source
-        if (incomingProperies.hasOwnProperty('sourcePropName') &&
-          incomingProperies.hasOwnProperty('sourcePropValue') &&
-          incomingProperies.hasOwnProperty('sourcePropValueMethod') &&
-          incomingProperies.hasOwnProperty('sourcePolicy')) {
+        connectionHappened = connectionHappened || connectObjectsThroughProps(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
+          incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
+          targetObject, sourceObject, targetName);
 
-          if (incomingProperies.sourcePropValueMethod === 'pure') {
-            if (incomingProperies.sourcePolicy === 'append') {
 
-              if (sourceObject.hasOwnProperty(incomingProperies.sourcePropName)) {
-                sourceObject[incomingProperies.sourcePropName].push(targetObject[incomingProperies.sourcePropValue]);
-              }
-              else {
-                sourceObject[incomingProperies.sourcePropName] = [targetObject[incomingProperies.sourcePropValue]];
-              }
-            } else { //assign
-              if (incomingProperies.sourcePropValue === 'Name') {
-                sourceObject[incomingProperies.sourcePropName] = targetName;
-              } else {
-                sourceObject[incomingProperies.sourcePropName] = targetObject[incomingProperies.sourcePropValue];
-              }
-            }
-          }
-          else if (incomingProperies.sourcePropValueMethod === 'ref') {
-            if (incomingProperies.sourcePolicy === 'append') {
-
-              if (sourceObject.hasOwnProperty(incomingProperies.sourcePropName)) {
-                sourceObject[incomingProperies.sourcePropName].push({ Ref: targetName});
-              }
-              else {
-                sourceObject[incomingProperies.sourcePropName] = [
-                  { Ref: targetName}
-                ];
-              }
-            } else { //assign
-              sourceObject[incomingProperies.sourcePropName] = { Ref: targetName};
-            }
-          }
-          else if (incomingProperies.sourcePropValueMethod === 'attribute') {
-            //TODO: NYI
-          }
+        if (connectionHappened) {
           $scope.$digest();
-
+          return incomingProperies.overlays;
         }
 
-
 //            $scope.template.Resources[targetName][incomingConnectionProperies.name] = sourceName;
-        return incomingProperies.overlays;
+        return [];
       };
+
 
       $scope.connectionDetached = function (sourceName, targetName) {
         /*
@@ -237,7 +210,7 @@ angular.module('nestorApp')
         $scope.connectionDetached(sourceName, originalTargetName);
       };
 
-      $scope.propertyDidDrag = function(data, event) {
+      $scope.propertyDidDrag = function (data, event) {
 
         var leftPanelWidth = angular.element('#left-column')[0].clientWidth;
 
@@ -256,12 +229,15 @@ angular.module('nestorApp')
           data.parent
         );
 
+        //determines whether the component is standalone or derived
+        c.isDerived = true;
+
         $scope.addedComponents[c.name] = c;
 
         var parentName = data.parent;
 
         if (!$scope.template.Resources[parentName].Properties[data.name]) {
-          $scope.template.Resources[parentName].Properties[data.name]  = [];
+          $scope.template.Resources[parentName].Properties[data.name] = [];
         }
 
         var newEntry = {};

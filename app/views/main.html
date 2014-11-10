@@ -59,18 +59,18 @@
             <h4 id="titleh4">{{selectedComponent.name}} </h4>
             <h5 id="titleh5">Type: {{selectedComponent.type}}</h5>
           </div>
-          <h5 class="contenth5">Required Parameters</h5>
+          <h5 class="contenth5" ng-show="selectedComponent.required">Required Parameters</h5>
 
-          <component-properties
+          <component-properties ng-if="!selectedComponent.isDerived"
             component-properties="selectedComponent.required"
             resource-properties="template.Resources[selectedComponent.name].Properties"
             on-property-drag="propertyDidDrag(data, event)"
             property-name="selectedComponent.name"
             types="types"></component-properties>
 
-          <h5 class="contenth5">Optional Parameters</h5>
+          <h5 class="contenth5" ng-show="selectedComponent.optional">Optional Parameters</h5>
 
-          <component-properties
+          <component-properties ng-if="!selectedComponent.isDerived"
             component-properties="selectedComponent.optional"
             resource-properties="template.Resources[selectedComponent.name].Properties"
             on-property-drag="propertyDidDrag(data, event)"
