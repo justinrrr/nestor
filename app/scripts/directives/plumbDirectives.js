@@ -131,7 +131,7 @@ app.directive('plumbConnect', function () {
           strokeStyle: '#D7B371',
           fillStyle: 'transparent',
           radius: 2,
-          lineWidth: 1
+          lineWidth:  1
         }
       });
 
