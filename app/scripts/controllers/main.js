@@ -154,11 +154,22 @@ angular.module('nestorApp')
           return;
         }
 
+
         if (updatePolicy === 'append') {
-          removeValueFromListPropertyOfObject(targetObj, propName, sourceObj[propValue]);
-        } else { //assign
+          if (propValueMethod === 'pure') {
+            removeValueFromListPropertyOfObject(targetObj, propName, sourceObj[propValue]);
+          }
+          else if (propValueMethod === 'ref') {
+            removeValueFromListPropertyOfObject(targetObj, propName, { Ref: resourceName});
+          }
+          else if (propValueMethod === 'attribute') {
+            removeValueFromListPropertyOfObject(targetObj, propName, { 'Fn::GetAtt': [resourceName, propValue] });
+          }
+        } else {
           delete targetObj[propName];
         }
+
+
       }
 
       //--------------------------------------
