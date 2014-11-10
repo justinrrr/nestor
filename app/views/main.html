@@ -38,7 +38,10 @@
 
         <p class="title">{{component.name}}</p>
 
-        <div plumb-connect class="ep"></div>
+        <div plumb-connect
+             data-parent-name="{{component.parent}}"
+             class="ep"
+          ></div>
       </div>
     </div>
 
@@ -56,7 +59,7 @@
             <h4 id="titleh4">{{selectedComponent.name}} </h4>
             <h5 id="titleh5">Type: {{selectedComponent.type}}</h5>
           </div>
-          <h5 class="contenth5">Required Parameters</h5>
+          <h5 class="contenth5" ng-show="selectedComponent.required">Required Parameters</h5>
 
           <component-properties
             component-properties="selectedComponent.required"
@@ -65,7 +68,7 @@
             property-name="selectedComponent.name"
             types="types"></component-properties>
 
-          <h5 class="contenth5">Optional Parameters</h5>
+          <h5 class="contenth5" ng-show="selectedComponent.optional">Optional Parameters</h5>
 
           <component-properties
             component-properties="selectedComponent.optional"

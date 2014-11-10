@@ -224,8 +224,9 @@ angular.module('nestorApp')
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,
           data.description,
-            event.x - leftPanelWidth,
-          event.y
+          event.x - leftPanelWidth,
+          event.y,
+          data.parent
         );
 
         $scope.addedComponents[c.name] = c;
@@ -240,6 +241,7 @@ angular.module('nestorApp')
         newEntry[c.name] = {};
         $scope.template.Resources[parentName].Properties[data.name].push(newEntry);
 
+        UIComponents.connectComponents(parentName, c.name);
         itemSelected(c);
       };
 

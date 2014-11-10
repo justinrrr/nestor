@@ -104,9 +104,9 @@ app.directive('plumbItem', function () {
       jsPlumb.makeTarget(element, {
         anchor: 'Continuous',
         paintStyle: {
-          strokeStyle: '#225588',
-          fillStyle: 'transparent',
-          radius: 4,
+          strokeStyle: '#D7B371',
+          //fillStyle: 'transparent',
+          radius: 2,
           lineWidth: 1
         }
       });
@@ -128,13 +128,13 @@ app.directive('plumbConnect', function () {
         parent: $(element).parent(),
         anchor: ['Continuous', {faces: ['right', 'left', 'top']}],
         paintStyle: {
-          strokeStyle: '#225588',
+          strokeStyle: '#D7B371',
           fillStyle: 'transparent',
-          radius: 4,
+          radius: 2,
           lineWidth: 1
         }
-
       });
+
 
     }
   };
