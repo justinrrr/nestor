@@ -159,7 +159,7 @@ app.service('AWSComponents', function () {
 
           'SourceComponentName': {    // e.g. EC2, DynamoDB
             overlays: [
-              ['Arrow', {direction: -1, location: 0}],
+              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
               [ 'Label', { label: 'Depends On' }]
             ],
 
@@ -225,8 +225,7 @@ app.service('AWSComponents', function () {
 
           'EIP': {    // e.g. EC2, DynamoDB
             overlays: [
-              ['Arrow', {direction: -1, location: 0}],
-              [ 'Label', { label: '' }]
+              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
             ],
 
             //the name of the property on Target to be modified
@@ -247,8 +246,7 @@ app.service('AWSComponents', function () {
 
           'EC2': {
             overlays: [
-              ['Arrow', {direction: -1, location: 0}],
-              [ 'Label', { label: '' }]
+              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
             ],
 
             //the name of the property on Target to be modified
@@ -321,7 +319,7 @@ app.service('AWSComponents', function () {
 
           'EC2': {
             overlays: [
-              ['Arrow', {direction: -1, location: 0}],
+              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
               [ 'Label', { label: 'Belongs to' }]
             ],
 
@@ -369,7 +367,7 @@ app.service('AWSComponents', function () {
           //if dynamoDB got connected
           'DynamoDb': {
             overlays: [
-              ['Arrow', {direction: -1, location: 0}],
+              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
               [ 'Label', { label: 'Depends On' }]
             ],
             // if this connection is a one-way connection or bi-directional
@@ -419,7 +417,7 @@ app.service('AWSComponents', function () {
 
           'SecurityGroup': {
             overlays: [
-              ['Arrow', {direction: -1, location: 0}],
+              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
               [ 'Label', { label: 'Belongs' }]
             ],
 
@@ -441,8 +439,7 @@ app.service('AWSComponents', function () {
 
           'EIP': {    // e.g. EC2, DynamoDB
             overlays: [
-              ['Arrow', {direction: 0, location: 0}],
-              [ 'Label', { label: '' }]
+              ['PlainArrow', {direction: 0, location: 0, width:10, length: 10}],
             ],
 
             //the name of the property on Source to be modified
@@ -463,8 +460,7 @@ app.service('AWSComponents', function () {
 
           'Route53': {
             overlays: [
-              ['Arrow', {direction: -1, location: 0}],
-              [ 'Label', { label: '' }]
+              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
             ],
 
             //the name of the property on Source to be modified
@@ -566,7 +562,7 @@ app.service('AWSComponents', function () {
 
           'EC2': {    // e.g. EC2, DynamoDB
             overlays: [
-              ['Arrow', {direction: -1, location: 0}],
+              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
               [ 'Label', { label: 'PublicIP' }]
             ],
 
