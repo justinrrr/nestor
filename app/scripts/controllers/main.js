@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', 'AWSComponents', 'UIComponents',
-    function ($scope, AWSComponents, UIComponents) {
+  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents',
+    function ($scope, $modal, AWSComponents, UIComponents) {
 
 
       //set up jsPlumb
@@ -82,7 +82,7 @@ angular.module('nestorApp')
         addComponentToTemplate(blueprint, c);
 
         itemSelected(c);
-      };
+      }
 
       // adds 'val' to a list called 'listProp' on object 'obj'
       function addValueToListPropertyOfObject(obj, listProp, val) {
@@ -188,6 +188,13 @@ angular.module('nestorApp')
         addComponent($data, $event.x - leftPanelWidth-85, $event.y-50);
       };
 
+      $scope.showModal = function() {
+        $modal.open({
+          templateUrl: '../templates/modal_view.html',
+          controller: 'CodeGenCtrl',
+          size: 'lg'
+        });
+      };
       $scope.clickCallback = function (component) {
         itemSelected(component);
       };
