@@ -35,7 +35,7 @@ app.directive('componentProperties', [function () {
       scope.dragFinished = function ($data, $event) {
         $data.parent = scope.propertyName;
         scope.onPropertyDrag({data: $data, event: $event});
-      }
+      };
     }
   };
 
@@ -118,6 +118,21 @@ app.directive('tableProperty', [function () {
         listToAddTo[propertyName].push(item);
       };
 
+      scope.saveEntry = function($data, $index) {
+        var resourceProperties = scope.resourceProperties[scope.property.name][$index];
+        _.each($data, function(enteredValue, enteredName) {
+
+          resourceProperties[enteredName] = enteredValue;
+        });
+      };
+
+      scope.removeRow = function($index) {
+
+        scope.resourceProperties[scope.property.name].splice($index,1);
+      };
+
+
+
     }
   };
 }]);
@@ -143,7 +158,7 @@ app.directive('dragProperty', [function () {
 
       scope.dragCompleted = function ($data, $event) {
         scope.onDragComplete({$data: $data, $event: $event});
-      }
+      };
     }
   };
 }]);
