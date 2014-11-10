@@ -128,7 +128,7 @@ app.service('AWSComponents', function () {
       //},
       {
         name: 'SecurityGroup',
-        image: 'images/aws/securityGroup.gif',
+        image: 'images/aws/securityGroup.png',
         description: 'Creates an Amazon EC2 security group'
       },
       {
