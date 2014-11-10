@@ -171,7 +171,7 @@ angular.module('nestorApp')
         //caused by the editor
         var leftPanelWidth = angular.element('#left-column')[0].clientWidth;
 
-        //HACK: These numbers are used to align some shit. We have to read it dynamically 
+        //HACK: These numbers are used to align some shit. We have to read it dynamically
         addComponent($data, $event.x - leftPanelWidth-85, $event.y-50);
       };
 
