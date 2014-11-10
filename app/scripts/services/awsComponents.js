@@ -226,7 +226,7 @@ app.service('AWSComponents', function () {
           'EIP': {    // e.g. EC2, DynamoDB
             overlays: [
               ['Arrow', {direction: -1, location: 0}],
-              [ 'Label', { label: 'Depends On' }]
+              [ 'Label', { label: '' }]
             ],
 
             //the name of the property on Target to be modified
@@ -248,7 +248,7 @@ app.service('AWSComponents', function () {
           'EC2': {
             overlays: [
               ['Arrow', {direction: -1, location: 0}],
-              [ 'Label', { label: 'Depends On' }]
+              [ 'Label', { label: '' }]
             ],
 
             //the name of the property on Target to be modified
@@ -442,7 +442,7 @@ app.service('AWSComponents', function () {
           'EIP': {    // e.g. EC2, DynamoDB
             overlays: [
               ['Arrow', {direction: 0, location: 0}],
-              [ 'Label', { label: 'Depends On' }]
+              [ 'Label', { label: '' }]
             ],
 
             //the name of the property on Source to be modified
@@ -459,7 +459,31 @@ app.service('AWSComponents', function () {
 
             // should the new value be added under "Properties" or be a new field on the affected object
             isProperty: 'true'
+          },
+
+          'Route53': {
+            overlays: [
+              ['Arrow', {direction: -1, location: 0}],
+              [ 'Label', { label: '' }]
+            ],
+
+            //the name of the property on Source to be modified
+            sourcePropName: 'ResourceRecords',
+
+            //name of the property on Target which its value needs to be assigned to sourcePropName
+            sourcePropValue: 'PublicIp',
+
+            //how to interpret sourcePropValue:  pure/ref/attribute
+            sourcePropValueMethod: 'attribute',
+
+            // how to update sourcePropName with sourcePropValue
+            sourcePolicy: 'append',
+
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           }
+
+
 
         },
 
