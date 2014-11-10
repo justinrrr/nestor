@@ -163,14 +163,14 @@ app.service('AWSComponents', function () {
               [ 'Label', { label: 'Depends On' }]
             ],
 
-            //optional, don't set if it doesn't apply
-            targetPropName: 'the name of the property on Target to be modified',
+            //the name of the property on Target to be modified
+            targetPropName: 'optional, do not set if it does not apply',
 
-            //optional, don't set if it doesn't apply
-            targetPropValue: 'name of the property on Source which its value needs to be assigned to targetPropName',
+            //name of the property on Source which its value needs to be assigned to targetPropName
+            targetPropValue: 'optional, do not set if it does not apply',
 
-            //optional, defaults to "pure"
-            targetPropValueMethod: 'how to interpret targetPropValue:  pure/ref/attribute',
+            //how to interpret targetPropValue:  pure/ref/attribute
+            targetPropValueMethod: 'optional, do not set if it does not apply',
 
             // how to update targetPropName with targetPropValue
             targetPolicy: 'assign/append',
@@ -185,8 +185,10 @@ app.service('AWSComponents', function () {
             sourcePropValueMethod: 'how to interpret sourcePropValue:  pure/ref/attribute',
 
             // how to update sourcePropName with sourcePropValue
-            sourcePolicy: 'assign/append'
+            sourcePolicy: 'assign/append',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true/false'
           }
         },
         properties: {
@@ -249,8 +251,10 @@ app.service('AWSComponents', function () {
             sourcePropValueMethod: 'how to interpret sourcePropValue:  pure/ref/attribute',
 
             // how to update sourcePropName with sourcePropValue
-            sourcePolicy: 'assign/append'
+            sourcePolicy: 'assign/append',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           }
         },
         properties: {
@@ -320,8 +324,10 @@ app.service('AWSComponents', function () {
             sourcePropValueMethod: 'ref',
 
             // how to update sourcePropName with sourcePropValue
-            sourcePolicy: 'append'
+            sourcePolicy: 'append',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           }
         },
 
@@ -368,7 +374,10 @@ app.service('AWSComponents', function () {
             targetPropValueMethod: 'pure',
 
             // how to update targetPropName with targetPropValue
-            targetPolicy: 'assign'
+            targetPolicy: 'assign',
+
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'false'
           }
         },
         properties: {
@@ -413,8 +422,10 @@ app.service('AWSComponents', function () {
             targetPropValueMethod: 'ref',
 
             // how to update targetPropName with targetPropValue
-            targetPolicy: 'append'
+            targetPolicy: 'append',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           },
 
           'EIP': {    // e.g. EC2, DynamoDB
@@ -433,8 +444,10 @@ app.service('AWSComponents', function () {
             sourcePropValueMethod: 'ref',
 
             // how to update sourcePropName with sourcePropValue
-            sourcePolicy: 'assign'
+            sourcePolicy: 'assign',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           }
 
         },
@@ -532,8 +545,10 @@ app.service('AWSComponents', function () {
             targetPropValueMethod: 'ref',
 
             // how to update targetPropName with targetPropValue
-            targetPolicy: 'assign'
+            targetPolicy: 'assign',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           }
         },
         properties: {
