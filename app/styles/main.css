@@ -92,16 +92,19 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg ._jsPlumb.connector > path {
   fill: #6a7ea3;
+  z-index: -1;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg circle {
   fill: #6a7ea3;
   stroke: #6a7ea3;
   stroke-width: 1px;
+  z-index: 1;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg ._jsPlumb_endpoint._jsPlumb_endpoint_anchor_.ui-droppable.ui-draggable.ui-draggable-handle._jsPlumb_endpoint_connected._jsPlumb_endpoint_full circle {
   fill: #6a7ea3;
   stroke: #6a7ea3;
   stroke-width: 2px;
+  z-index: 1;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg path {
   stroke: #6a7ea3;
@@ -124,6 +127,7 @@ body {
   width: 300px;
   padding: 5px 10px 5px 15px;
   color: #ffffff;
+  margin: 0px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg #titleh4 {
   font-size: 16px;
@@ -134,6 +138,30 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg #titleh5 {
   font-size: 12px;
   margin-top: 10px;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg .action {
+  padding-right: 5px;
+  text-align: left;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg .action .label {
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 0 0 1px rgba(68, 77, 101, 0.4);
+  color: white;
+  background-color: transparent;
+  padding: .6em;
+  border-radius: 0.25em;
+  transition: border-color 0.2s, background-color 0.2s;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg .action .label:hover,
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .cd-fixed-bg .action .label:focus {
+  text-decoration: none;
+  background-color: white;
+  color: #6a7ea3;
+  outline: 0;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .contenth5 {
   padding: 10px 10px 15px 15px;
