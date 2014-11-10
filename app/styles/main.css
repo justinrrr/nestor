@@ -82,9 +82,10 @@ body {
   color: #2e2633;
 }
 .layout-mock > .stretch.ui-layout-column .center-column ._jsPlumb_overlay {
-  background-color: lightgoldenrodyellow;
+  background-color: white;
   padding: 5px;
   border-radius: 10px;
+  border: 1px solid lightsteelblue;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg {
   pointer-events: all;
