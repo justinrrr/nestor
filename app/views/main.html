@@ -68,6 +68,15 @@
             property-name="selectedComponent.name"
             types="types"></component-properties>
 
+          <!--<pre>{{template.Resources[selectedComponent.parent].Properties[selectedComponent.type] | json}}</pre>-->
+          <pre>{{template.Resources[selectedComponent.parent].Properties[selectedComponent.type] | json}}</pre>
+          <derived-properties
+            ng-if="selectedComponent.isDerived"
+                                component-properties="selectedComponent.required"
+                                resource-properties="template.Resources[selectedComponent.parent].Properties[selectedComponent.type]"
+                                property-name="selectedComponent.name"
+                                types="types"></derived-properties>
+
           <h5 class="contenth5" ng-show="selectedComponent.optional">Optional Parameters</h5>
 
           <component-properties ng-if="!selectedComponent.isDerived"
@@ -76,6 +85,13 @@
             on-property-drag="propertyDidDrag(data, event)"
             property-name="selectedComponent.name"
             types="types"></component-properties>
+
+          <derived-properties
+            ng-if="selectedComponent.isDerived"
+            component-properties="selectedComponent.optional"
+            resource-properties="template.Resources[selectedComponent.parent].Properties[selectedComponent.name]"
+            property-name="selectedComponent.name"
+            types="types"></derived-properties>
         </div>
       </div>
 
