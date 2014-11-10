@@ -82,6 +82,16 @@ angular.module('nestorApp')
         itemSelected(c);
       };
 
+      // adds 'val' to a list called 'listProp' on object 'obj'
+      function addValueToListPropertyOfObject (obj,listProp,val){
+        if (obj.hasOwnProperty(listProp)) {
+          obj[listProp].push(val);
+        }
+        else {
+          obj[listProp] = [val];
+        }
+      }
+
       function connectObjectsThroughProps(propName, propValue, propValueMethod, updatePolicy, targetObj, sourceObj, resourceName) {
 
         // return immediate if any of the incoming arguments are not defined
@@ -95,15 +105,8 @@ angular.module('nestorApp')
 
         if (propValueMethod === 'pure') {
           if (updatePolicy === 'append') {
-
-            if (targetObj.hasOwnProperty(propName)) {
-              targetObj[propName].push(sourceObj[propValue]);
-            }
-            else {
-              targetObj[propName] = [sourceObj[propValue]];
-            }
+            addValueToListPropertyOfObject (targetObj, propName, sourceObj[propValue]);
           } else { //assign
-
             //edge case:
             if (propValue === 'Name') {
               targetObj[propName] = resourceName;
@@ -115,22 +118,19 @@ angular.module('nestorApp')
         }
         else if (propValueMethod === 'ref') {
           if (updatePolicy === 'append') {
-
-            if (targetObj.hasOwnProperty(propName)) {
-              targetObj[propName].push({ Ref: resourceName});
-            }
-            else {
-              targetObj[propName] = [
-                { Ref: resourceName}
-              ];
-            }
-
+            addValueToListPropertyOfObject (targetObj,propName,{ Ref: resourceName});
           } else { //assign
             targetObj[propName] = { Ref: resourceName};
           }
         }
         else if (propValueMethod === 'attribute') {
-          //TODO: NYI
+
+          if (updatePolicy === 'append') {
+            addValueToListPropertyOfObject (targetObj, propName, { 'Fn::GetAtt' : [resourceName, propValue] });
+          } else { //assign
+            targetObj[propName] = { Ref: resourceName};
+          }
+
         }
 
         return true;
