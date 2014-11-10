@@ -1,0 +1,26 @@
+<div>
+  <div ng-repeat="prop in componentProperties" class="content">
+
+    <div ng-if="prop.type === 'String'">
+      <primitive-property
+        property="prop"
+        model="resourceProperties[0]"
+        ></primitive-property>
+    </div>
+
+    <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">
+      <table-property property="prop"
+                      property-types="types.complex[prop.type]"
+                      resource-properties="resourceProperties"
+        ></table-property>
+    </div>
+
+    <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'drag'">
+      <drag-property
+        property="prop"
+        property-types="types.complex[prop.type]"
+        on-drag-complete="dragFinished($data, $event)"
+        ></drag-property>
+    </div>
+  </div>
+</div>

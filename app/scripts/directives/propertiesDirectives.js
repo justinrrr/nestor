@@ -32,15 +32,45 @@ app.directive('componentProperties', [function () {
         listToAddTo[propertyName].push(item);
       };
 
-      scope.dragFinished = function($data, $event) {
+      scope.dragFinished = function ($data, $event) {
         $data.parent = scope.propertyName;
-        scope.onPropertyDrag({data: $data, event : $event});
+        scope.onPropertyDrag({data: $data, event: $event});
       }
     }
   };
 
 }]);
 
+
+app.directive('derivedProperties', [function () {
+  return {
+    replace: true,
+    restrict: 'E',
+    scope: {
+      propertyName: '=',
+      componentProperties: '=',
+      resourceProperties: '=',
+      types: '='
+    },
+    templateUrl: 'templates/derived_properties.html',
+    link: function (scope) {
+      scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
+
+        var item = {};
+        _.each(neededFields, function (property) {
+          item[property.name] = property.type;
+        });
+
+        if (!listToAddTo[propertyName]) {
+          listToAddTo[propertyName] = [];
+        }
+
+        listToAddTo[propertyName].push(item);
+      };
+    }
+  };
+
+}]);
 
 app.directive('primitiveProperty', [function () {
   return {
@@ -103,16 +133,16 @@ app.directive('dragProperty', [function () {
       onDragComplete: '&'
     },
     templateUrl: '../../templates/drag_properties.html',
-    link : function(scope) {
+    link: function (scope) {
       scope.dragData = {
         name: scope.property.name,
         image: scope.propertyTypes.Display.image,
-        belongsTo:  'me'
+        belongsTo: 'me'
         //description: scope.propertyTypes.Description
       };
 
-      scope.dragCompleted = function($data, $event) {
-        scope.onDragComplete({$data : $data, $event : $event});
+      scope.dragCompleted = function ($data, $event) {
+        scope.onDragComplete({$data: $data, $event: $event});
       }
     }
   };
