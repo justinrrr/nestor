@@ -46,7 +46,7 @@ body {
       width: 170px;
       height: 100px;
       font-size: 80%;
-      background-color: @lambiance;
+      background-color: white;
       text-align: center;
       display: inline-block;
       -webkit-transition-duration: 0.02s;
@@ -60,8 +60,8 @@ body {
       -moz-box-shadow: 2px 2px 3px 1px #AAA;
       -webkit-box-shadow: 2px 2px 3px 1px #AAA;
       box-shadow: 2px 2px 3px 1px #AAA;
-      border: 1px dashed @ambiance;
-      border-radius: 0.25em;
+      border: 1px solid rgba(106, 126, 163, 0.58);
+      border-radius: 1em;
       img {
         position: relative;
         width: 40px;
@@ -70,7 +70,7 @@ body {
         margin-bottom: -4px;
       }
       .title {
-        font-weight: 300;
+        font-weight: 500;
         font-family: sans-serif;
         font-size: 12px;
         letter-spacing: 0.19px;
@@ -79,60 +79,60 @@ body {
         margin-bottom: 0px;
         cursor: move;
         color: @dambiance;
-        bottom: 40px;
+        bottom: 34px;
       }
       .ep {
         position: absolute;
         bottom: 45%;
-        right: -6px;
-        border: 2px solid @orange;
+        right: 4px;
+        border: 2px solid orange;
+        box-shadow: 0px 0px 2px black;
         width: 10px;
         height: 10px;
-        border-radius: 50%;
-        background-color: @orange;
+        border-radius: 20%;
+        background-color: orange;
         cursor: pointer;
-        box-shadow: 0px 0px 2px @clouds;
         -webkit-transition: -webkit-box-shadow 0.25s ease-in;
         -moz-transition: -moz-box-shadow 0.25s ease-in;
         transition: box-shadow 0.25s ease-in;
       }
     }
     .selectedComponent {
-      background-color: @ambiance;
+      background-color: lightgoldenrodyellow;
       -moz-box-shadow: 2px 2px 3px 1px #AAA;
       -webkit-box-shadow: 2px 2px 3px 1px #AAA;
       box-shadow: 2px 2px 3px 1px #AAA;
-      border: 1px dashed @lambiance;
-      border-radius: 0.25em;
+      border: 1px solid rgba(106, 126, 163, 0.58);
+      border-radius: 1em;
       .title {
-        color: @snow;
+        color: @evening;
       }
     }
     ._jsPlumb_overlay {
-      background-color: beige;
+      background-color: lightgoldenrodyellow;
       padding: 5px;
       border-radius: 10px;
     }
 
     svg {
       ._jsPlumb.connector > path {
-        fill: @orange;
+        fill: @ambiance;
       }
       circle {
-        fill: @orange;
-        stroke: @orange;
+        fill: @ambiance;
+        stroke: @ambiance;
         stroke-width: 1px;
       }
       ._jsPlumb_endpoint._jsPlumb_endpoint_anchor_.ui-droppable.ui-draggable.ui-draggable-handle._jsPlumb_endpoint_connected._jsPlumb_endpoint_full {
         circle {
-          fill: @orange;
-          stroke: @orange;
-          stroke-width: 1px;
+          fill: @ambiance;
+          stroke: @ambiance;
+          stroke-width: 2px;
         }
       }
       path {
         stroke: @ambiance;
-        stroke-width: 2px;
+        stroke-width: 1.5px;
       }
       pointer-events: all;
 
@@ -169,7 +169,7 @@ body {
 
       .contenth5 {
         padding: 10px 10px 15px 15px;
-        background-color: beige;
+        background-color: lightgoldenrodyellow;
         margin-top: 0px;
         margin-bottom: 0px;
       }
@@ -572,19 +572,19 @@ body {
           font-weight: 600;
           border: none;
           border-radius: 0;
-          border-bottom: 1px solid beige;
+          border-bottom: 1px solid lightgoldenrodyellow;
           &:hover {
             color: white;
           }
         }
         .active > a {
           background-color: @ambiance;
-          -moz-box-shadow: inset 0 -4px beige, inset 0 0px 0px beige;
-          -webkit-box-shadow: inset 0 -4px beige, inset 0 0px 0px beige;
-          box-shadow: inset 0 -4px beige, inset 0 0px 0px beige;
+          -moz-box-shadow: inset 0 -4px lightgoldenrodyellow, inset 0 0px 0px lightgoldenrodyellow;
+          -webkit-box-shadow: inset 0 -4px lightgoldenrodyellow, inset 0 0px 0px lightgoldenrodyellow;
+          box-shadow: inset 0 -4px lightgoldenrodyellow, inset 0 0px 0px lightgoldenrodyellow;
           color: white;
           &:hover {
-            color: beige;
+            color: lightgoldenrodyellow;
           }
         }
       }
@@ -709,7 +709,7 @@ body {
 *************************************/
 
 .dragging {
-  background-color: @lambiance;
+  background-color: white;
   border-bottom-color: rgba(112, 100, 130, 0.78);
   .component-item {
     display: table-cell;

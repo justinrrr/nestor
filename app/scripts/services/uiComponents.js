@@ -47,7 +47,7 @@ app.service('UIComponents', function () {
           fillStyle: 'transparent',
           radius: 4,
           lineWidth: 1,
-          dashstyle:"2 6"
+          dashstyle:"8 6"
         }
         //paintStyle:{ }
         //endpointStyle:{fillStyle:'rgb(243,229,0)'}
