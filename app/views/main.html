@@ -61,7 +61,7 @@
           </div>
           <h5 class="contenth5" ng-show="selectedComponent.required">Required Parameters</h5>
 
-          <component-properties
+          <component-properties ng-if="!selectedComponent.isDerived"
             component-properties="selectedComponent.required"
             resource-properties="template.Resources[selectedComponent.name].Properties"
             on-property-drag="propertyDidDrag(data, event)"
@@ -70,7 +70,7 @@
 
           <h5 class="contenth5" ng-show="selectedComponent.optional">Optional Parameters</h5>
 
-          <component-properties
+          <component-properties ng-if="!selectedComponent.isDerived"
             component-properties="selectedComponent.optional"
             resource-properties="template.Resources[selectedComponent.name].Properties"
             on-property-drag="propertyDidDrag(data, event)"
