@@ -12,7 +12,8 @@ angular.module('nestorApp')
 
       //create initial template
       $scope.template = AWSComponents.createInitialTemplate();
-      $scope.templateString = JSON.stringify($scope.template, null, 4);
+      $scope.templateString= angular.toJson($scope.template, true);
+      //$scope.templateString = JSON.stringify($scope.template, null, 4);
 
       $scope.addedComponents = {};
 
@@ -56,7 +57,8 @@ angular.module('nestorApp')
           }
         });
 
-        $scope.templateString = JSON.stringify($scope.template, null, 4);
+        $scope.templateString = angular.toJson($scope.template, true);
+        //$scope.templateString = JSON.stringify($scope.template, null, 4);
       }
 
       function itemSelected(component) {
@@ -339,7 +341,10 @@ angular.module('nestorApp')
       //-----------------------------------------------------
       $scope.$watch('template', function (newValue, oldValue) {
         if (newValue !== oldValue) {
-          $scope.templateString = JSON.stringify($scope.template, null, 4);
+            var test = angular.toJson($scope.template, true);
+
+          $scope.templateString = test;
+          //$scope.templateString = JSON.stringify($scope.template, null, 4);
         }
       }, true);
 

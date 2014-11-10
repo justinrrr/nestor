@@ -33,7 +33,7 @@
                 data-title={{tableHeading.name}}>
                     <span
                       editable-text="resourceProperties[property.name][tableHeading.name]"
-                      e-name="tableHeading.name" e-form="rowform" e-required>
+                      e-name="{{tableHeading.name}}" e-form="rowform" e-required>
                       {{tableProp[tableHeading.name]}}
                     </span>
             </td>
@@ -41,7 +41,7 @@
                 data-title={{tableHeading.name}}>
                     <span
                       editable-text="resourceProperties[property.name][tableHeading.name]"
-                      e-name="tableHeading.name" e-form="rowform">
+                      e-name="{{tableHeading.name}}" e-form="rowform">
                       {{tableProp[tableHeading.name]}}
                     </span>
             </td>
@@ -49,10 +49,10 @@
               <!-- form -->
               <form editable-form
                     name="rowform"
-                    onbeforesave="saveUser($data, user.id)"
+                    onbeforesave="saveEntry($data, $index)"
                     ng-show="rowform.$visible"
-                    class="form-buttons form-inline"
-                    shown="inserted == user">
+                    class="form-buttons form-inline">
+                    <!--shown="inserted == user">-->
                 <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                   save
                 </button>
@@ -67,7 +67,7 @@
 
               <div class="buttons" ng-show="!rowform.$visible">
                 <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-                <button class="btn btn-danger" ng-click="removeUser($index)">del</button>
+                <button class="btn btn-danger" ng-click="removeRow($index)">del</button>
               </div>
             </td>
           </tr>
