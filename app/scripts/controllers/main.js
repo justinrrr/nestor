@@ -256,7 +256,6 @@ angular.module('nestorApp')
         }
 
         var newEntry = {};
-        newEntry[c.name] = {};
         $scope.template.Resources[parentName].Properties[data.name].push(newEntry);
 
         UIComponents.connectComponents(parentName, c.name);
