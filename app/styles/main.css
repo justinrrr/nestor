@@ -467,7 +467,7 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox .fieldset > label {
   position: absolute;
   left: 18px;
-  top: 20px;
+  top: 18px;
   color: rgba(112, 100, 130, 0.78);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox input:focus::-webkit-input-placeholder {
