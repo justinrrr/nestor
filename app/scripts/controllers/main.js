@@ -82,7 +82,25 @@ angular.module('nestorApp')
         itemSelected(c);
       };
 
-      function connectObjectsThroughProps(propName, propValue, propValueMethod, updatePolicy, targetObject, sourceObject, resourceName) {
+      // adds 'val' to a list called 'listProp' on object 'obj'
+      function addValueToListPropertyOfObject(obj, listProp, val) {
+        if (obj.hasOwnProperty(listProp)) {
+          obj[listProp].push(val);
+        }
+        else {
+          obj[listProp] = [val];
+        }
+      }
+
+      // removes 'val' from a list called 'listProp' on object 'obj'
+      function removeValueFromListPropertyOfObject(obj, listProp, val) {
+        var idx = obj[listProp].indexOf(val);
+        if (idx > -1) {
+          obj[listProp].splice(idx, 1);
+        }
+      }
+
+      function connectObjectsThroughProps(propName, propValue, propValueMethod, updatePolicy, targetObj, sourceObj, resourceName) {
 
         // return immediate if any of the incoming arguments are not defined
         if (propName === undefined ||
@@ -92,47 +110,55 @@ angular.module('nestorApp')
           return false;
         }
 
+
         if (propValueMethod === 'pure') {
           if (updatePolicy === 'append') {
-
-            if (targetObject.hasOwnProperty(propName)) {
-              targetObject[propName].push(sourceObject[propValue]);
-            }
-            else {
-              targetObject[propName] = [sourceObject[propValue]];
-            }
+            addValueToListPropertyOfObject(targetObj, propName, sourceObj[propValue]);
           } else { //assign
-
             //edge case:
             if (propValue === 'Name') {
-              targetObject[propName] = resourceName;
+              targetObj[propName] = resourceName;
             }
             else {
-              targetObject[propName] = sourceObject[propValue];
+              targetObj[propName] = sourceObj[propValue];
             }
           }
         }
         else if (propValueMethod === 'ref') {
           if (updatePolicy === 'append') {
-
-            if (targetObject.hasOwnProperty(propName)) {
-              targetObject[propName].push({ Ref: resourceName});
-            }
-            else {
-              targetObject[propName] = [
-                { Ref: resourceName}
-              ];
-            }
-
+            addValueToListPropertyOfObject(targetObj, propName, { Ref: resourceName});
           } else { //assign
-            targetObject[propName] = { Ref: resourceName};
+            targetObj[propName] = { Ref: resourceName};
           }
         }
         else if (propValueMethod === 'attribute') {
-          //TODO: NYI
+
+          if (updatePolicy === 'append') {
+            addValueToListPropertyOfObject(targetObj, propName, { 'Fn::GetAtt': [resourceName, propValue] });
+          } else { //assign
+            targetObj[propName] = { Ref: resourceName};
+          }
+
         }
 
         return true;
+      }
+
+      function deleteBinding(propName, propValue, propValueMethod, updatePolicy, targetObj, sourceObj, resourceName) {
+
+        // return immediate if any of the incoming arguments are not defined
+        if (propName === undefined ||
+          propValue === undefined ||
+          propValueMethod === undefined ||
+          updatePolicy === undefined) {
+          return;
+        }
+
+        if (updatePolicy === 'append') {
+          removeValueFromListPropertyOfObject(targetObj, propName, sourceObj[propValue]);
+        } else { //assign
+          delete targetObj[propName];
+        }
       }
 
       //--------------------------------------
@@ -162,19 +188,33 @@ angular.module('nestorApp')
 
         var incomingProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
 
-
+        var finalTarget;
         var connectionHappened;
 
         // If this connection needs to update Target
+        if (incomingProperies.isProperty === 'true') {
+          finalTarget = targetObject['Properties'];
+        }
+        else {
+          finalTarget = targetObject;
+        }
+
         connectionHappened = connectObjectsThroughProps(incomingProperies.targetPropName, incomingProperies.targetPropValue,
           incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
-          targetObject, sourceObject, sourceName);
+          finalTarget, sourceObject, sourceName);
 
 
         // If this connection needs to update Source
+        if (incomingProperies.isProperty === 'true') {
+          finalTarget = sourceObject['Properties'];
+        }
+        else {
+          finalTarget = sourceObject;
+        }
+
         connectionHappened = connectionHappened || connectObjectsThroughProps(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
           incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
-          targetObject, sourceObject, targetName);
+          finalTarget, targetObject, targetName);
 
 
         if (connectionHappened) {
@@ -182,16 +222,12 @@ angular.module('nestorApp')
           return incomingProperies.overlays;
         }
 
-//            $scope.template.Resources[targetName][incomingConnectionProperies.name] = sourceName;
         return [];
       };
 
 
       $scope.connectionDetached = function (sourceName, targetName) {
         /*
-         var sourceType = AWSComponents.typeMappings[$scope.template.Resources[sourceName].Type];
-         var targetType = AWSComponents.typeMappings[$scope.template.Resources[targetName].Type];
-         var incomingConnectionProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
 
          if (!incomingConnectionProperies.isProperty) {
          if (incomingConnectionProperies.value === 'Name') {
@@ -200,6 +236,44 @@ angular.module('nestorApp')
          }
          }
          */
+        var sourceObject = $scope.template.Resources[sourceName];
+        var sourceType = AWSComponents.typeMappings[sourceObject.Type];
+
+        var targetObject = $scope.template.Resources[targetName];
+        var targetType = AWSComponents.typeMappings[targetObject.Type];
+
+        var incomingProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
+
+        var finalTarget;
+
+        // If this connection needs to update Target
+        if (incomingProperies.isProperty === 'true') {
+          finalTarget = targetObject['Properties'];
+        }
+        else {
+          finalTarget = targetObject;
+        }
+
+        deleteBinding(incomingProperies.targetPropName, incomingProperies.targetPropValue,
+          incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
+          finalTarget, sourceObject, sourceName);
+
+
+        // If this connection needs to update Source
+        if (incomingProperies.isProperty === 'true') {
+          finalTarget = sourceObject['Properties'];
+        }
+        else {
+          finalTarget = sourceObject;
+        }
+
+        deleteBinding(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
+          incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
+          finalTarget, targetObject, targetName);
+
+
+        $scope.$digest();
+
       };
 
       $scope.connectionMovedFromSource = function (/*originalSourceName, newSourceName, targetName*/) {
@@ -226,7 +300,7 @@ angular.module('nestorApp')
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,
           data.description,
-          event.x - leftPanelWidth,
+            event.x - leftPanelWidth,
           event.y,
           data.parent
         );
@@ -243,7 +317,6 @@ angular.module('nestorApp')
         }
 
         var newEntry = {};
-        newEntry[c.name] = {};
         $scope.template.Resources[parentName].Properties[data.name].push(newEntry);
 
         UIComponents.connectComponents(parentName, c.name);

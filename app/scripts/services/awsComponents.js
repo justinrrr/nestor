@@ -163,14 +163,14 @@ app.service('AWSComponents', function () {
               [ 'Label', { label: 'Depends On' }]
             ],
 
-            //optional, don't set if it doesn't apply
-            targetPropName: 'the name of the property on Target to be modified',
+            //the name of the property on Target to be modified
+            targetPropName: 'optional, do not set if it does not apply',
 
-            //optional, don't set if it doesn't apply
-            targetPropValue: 'name of the property on Source which its value needs to be assigned to targetPropName',
+            //name of the property on Source which its value needs to be assigned to targetPropName
+            targetPropValue: 'optional, do not set if it does not apply',
 
-            //optional, defaults to "pure"
-            targetPropValueMethod: 'how to interpret targetPropValue:  pure/ref/attribute',
+            //how to interpret targetPropValue:  pure/ref/attribute
+            targetPropValueMethod: 'optional, do not set if it does not apply',
 
             // how to update targetPropName with targetPropValue
             targetPolicy: 'assign/append',
@@ -185,8 +185,10 @@ app.service('AWSComponents', function () {
             sourcePropValueMethod: 'how to interpret sourcePropValue:  pure/ref/attribute',
 
             // how to update sourcePropName with sourcePropValue
-            sourcePolicy: 'assign/append'
+            sourcePolicy: 'assign/append',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true/false'
           }
         },
         properties: {
@@ -221,37 +223,50 @@ app.service('AWSComponents', function () {
         // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
         IncomingConnection: {
 
-          'SourceComponentName': {    // e.g. EC2, DynamoDB
+          'EIP': {    // e.g. EC2, DynamoDB
             overlays: [
               ['Arrow', {direction: -1, location: 0}],
-              [ 'Label', { label: 'Depends On' }]
+              [ 'Label', { label: '' }]
             ],
 
-            //optional, don't set if it doesn't apply
-            targetPropName: 'the name of the property on Target to be modified',
+            //the name of the property on Target to be modified
+            targetPropName: 'ResourceRecords',
 
-            //optional, don't set if it doesn't apply
-            targetPropValue: 'name of the property on Source which its value needs to be assigned to targetPropName',
+            //name of the property on Source which its value needs to be assigned to targetPropName
+            targetPropValue: 'PublicIp',
 
-            //optional, defaults to "pure"
-            targetPropValueMethod: 'how to interpret targetPropValue:  pure/ref/attribute',
+            //how to interpret targetPropValue:  pure/ref/attribute
+            targetPropValueMethod: 'ref',
 
             // how to update targetPropName with targetPropValue
-            targetPolicy: 'assign/append',
+            targetPolicy: 'append',
 
-            //optional, don't set if it doesn't apply
-            sourcePropName: 'the name of the property on Source to be modified',
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
+          },
 
-            //optional, don't set if it doesn't apply
-            sourcePropValue: 'name of the property on Target which its value needs to be assigned to sourcePropName',
+          'EC2': {
+            overlays: [
+              ['Arrow', {direction: -1, location: 0}],
+              [ 'Label', { label: '' }]
+            ],
 
-            //optional, defaults to "pure"
-            sourcePropValueMethod: 'how to interpret sourcePropValue:  pure/ref/attribute',
+            //the name of the property on Target to be modified
+            targetPropName: 'ResourceRecords',
 
-            // how to update sourcePropName with sourcePropValue
-            sourcePolicy: 'assign/append'
+            //name of the property on Source which its value needs to be assigned to targetPropName
+            targetPropValue: 'PublicIp',
 
+            //how to interpret targetPropValue:  pure/ref/attribute
+            targetPropValueMethod: 'attribute',
+
+            // how to update targetPropName with targetPropValue
+            targetPolicy: 'append',
+
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           }
+
         },
         properties: {
           required: [
@@ -320,8 +335,10 @@ app.service('AWSComponents', function () {
             sourcePropValueMethod: 'ref',
 
             // how to update sourcePropName with sourcePropValue
-            sourcePolicy: 'append'
+            sourcePolicy: 'append',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           }
         },
 
@@ -368,7 +385,10 @@ app.service('AWSComponents', function () {
             targetPropValueMethod: 'pure',
 
             // how to update targetPropName with targetPropValue
-            targetPolicy: 'assign'
+            targetPolicy: 'assign',
+
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'false'
           }
         },
         properties: {
@@ -413,14 +433,16 @@ app.service('AWSComponents', function () {
             targetPropValueMethod: 'ref',
 
             // how to update targetPropName with targetPropValue
-            targetPolicy: 'append'
+            targetPolicy: 'append',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           },
 
           'EIP': {    // e.g. EC2, DynamoDB
             overlays: [
               ['Arrow', {direction: 0, location: 0}],
-              [ 'Label', { label: 'Depends On' }]
+              [ 'Label', { label: '' }]
             ],
 
             //the name of the property on Source to be modified
@@ -433,9 +455,35 @@ app.service('AWSComponents', function () {
             sourcePropValueMethod: 'ref',
 
             // how to update sourcePropName with sourcePropValue
-            sourcePolicy: 'assign'
+            sourcePolicy: 'assign',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
+          },
+
+          'Route53': {
+            overlays: [
+              ['Arrow', {direction: -1, location: 0}],
+              [ 'Label', { label: '' }]
+            ],
+
+            //the name of the property on Source to be modified
+            sourcePropName: 'ResourceRecords',
+
+            //name of the property on Target which its value needs to be assigned to sourcePropName
+            sourcePropValue: 'PublicIp',
+
+            //how to interpret sourcePropValue:  pure/ref/attribute
+            sourcePropValueMethod: 'attribute',
+
+            // how to update sourcePropName with sourcePropValue
+            sourcePolicy: 'append',
+
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           }
+
+
 
         },
 
@@ -532,8 +580,10 @@ app.service('AWSComponents', function () {
             targetPropValueMethod: 'ref',
 
             // how to update targetPropName with targetPropValue
-            targetPolicy: 'assign'
+            targetPolicy: 'assign',
 
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true'
           }
         },
         properties: {
