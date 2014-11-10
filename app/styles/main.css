@@ -71,7 +71,7 @@ body {
   transition: box-shadow 0.25s ease-in;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent {
-  background-color: lightgoldenrodyellow;
+  background-color: beige;
   -moz-box-shadow: 2px 2px 3px 1px #AAA;
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
@@ -137,7 +137,7 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .contenth5 {
   padding: 10px 10px 15px 15px;
-  background-color: lightgoldenrodyellow;
+  background-color: beige;
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -467,7 +467,7 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox .fieldset > label {
   position: absolute;
   left: 18px;
-  top: 20px;
+  top: 18px;
   color: rgba(112, 100, 130, 0.78);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom #searchbox input:focus::-webkit-input-placeholder {
@@ -512,20 +512,20 @@ body {
   font-weight: 600;
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid lightgoldenrodyellow;
+  border-bottom: 1px solid beige;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a:hover {
   color: white;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a {
   background-color: #6a7ea3;
-  -moz-box-shadow: inset 0 -4px #fafad2, inset 0 0px 0px #fafad2;
-  -webkit-box-shadow: inset 0 -4px #fafad2, inset 0 0px 0px #fafad2;
-  box-shadow: inset 0 -4px #fafad2, inset 0 0px 0px #fafad2;
+  -moz-box-shadow: inset 0 -4px #f5f5dc, inset 0 0px 0px #f5f5dc;
+  -webkit-box-shadow: inset 0 -4px #f5f5dc, inset 0 0px 0px #f5f5dc;
+  box-shadow: inset 0 -4px #f5f5dc, inset 0 0px 0px #f5f5dc;
   color: white;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a:hover {
-  color: lightgoldenrodyellow;
+  color: beige;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content {
   background-color: rgba(221, 221, 213, 0);

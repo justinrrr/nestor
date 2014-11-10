@@ -181,7 +181,9 @@ angular.module('nestorApp')
         //I need to use jquery here to compensate for the extra offset
         //caused by the editor
         var leftPanelWidth = angular.element('#left-column')[0].clientWidth;
-        addComponent($data, $event.x - leftPanelWidth, $event.y);
+
+        //HACK: These numbers are used to align some shit. We have to read it dynamically 
+        addComponent($data, $event.x - leftPanelWidth-85, $event.y-50);
       };
 
       $scope.clickCallback = function (component) {
@@ -326,7 +328,6 @@ angular.module('nestorApp')
         }
 
         var newEntry = {};
-        newEntry[c.name] = {};
         $scope.template.Resources[parentName].Properties[data.name].push(newEntry);
 
         UIComponents.connectComponents(parentName, c.name);
