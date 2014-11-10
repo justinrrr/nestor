@@ -59,6 +59,7 @@
             <h4 id="titleh4">{{selectedComponent.name}} </h4>
             <h5 id="titleh5">Type: {{selectedComponent.type}}</h5>
             <div class="action" ng-show="selectedComponent.type === 'EC2'"><button ng-click="showModal()" class="label">Generate Scaffolding Code</button></div>
+            <div class="action" ng-show="selectedComponent.type === 'EC2'"><button ng-click="showModal()" class="label">Deploy Code</button></div>
           </div>
           <h5 class="contenth5" ng-show="selectedComponent.required">Required Parameters</h5>
 

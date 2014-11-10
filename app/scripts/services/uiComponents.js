@@ -41,6 +41,7 @@ app.service('UIComponents', function () {
       jsPlumb.connect({
         source: sourceElement.id,
         target: targetElement.id,
+        connector: [ "StateMachine", { curviness:10 } ],
         //anchors:["Bottom", [0.75,0,0,-1]],
         paintStyle: {
           strokeStyle: '#225588',
