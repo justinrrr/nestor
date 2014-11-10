@@ -108,7 +108,16 @@ body {
         color: @snow;
       }
     }
+    ._jsPlumb_overlay {
+      background-color: beige;
+      padding: 5px;
+      border-radius: 10px;
+    }
+
     svg {
+      ._jsPlumb.connector > path {
+        fill: @orange;
+      }
       circle {
         fill: @orange;
         stroke: @orange;
@@ -122,9 +131,11 @@ body {
         }
       }
       path {
-        stroke: @orange;
+        stroke: @ambiance;
         stroke-width: 2px;
       }
+      pointer-events: all;
+
     }
   }
 
@@ -750,3 +761,5 @@ body {
   border-bottom: 1px solid rgba(233, 230, 234, 0.19);
   margin-left: -15px;
 }
+
+

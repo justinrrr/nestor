@@ -81,6 +81,17 @@ body {
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent .title {
   color: #ffffff;
 }
+.layout-mock > .stretch.ui-layout-column .center-column ._jsPlumb_overlay {
+  background-color: beige;
+  padding: 5px;
+  border-radius: 10px;
+}
+.layout-mock > .stretch.ui-layout-column .center-column svg {
+  pointer-events: all;
+}
+.layout-mock > .stretch.ui-layout-column .center-column svg ._jsPlumb.connector > path {
+  fill: #d7b371;
+}
 .layout-mock > .stretch.ui-layout-column .center-column svg circle {
   fill: #d7b371;
   stroke: #d7b371;
@@ -92,7 +103,7 @@ body {
   stroke-width: 1px;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg path {
-  stroke: #d7b371;
+  stroke: #6a7ea3;
   stroke-width: 2px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column {

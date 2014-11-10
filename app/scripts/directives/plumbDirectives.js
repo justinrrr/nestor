@@ -105,7 +105,7 @@ app.directive('plumbItem', function () {
         anchor: 'Continuous',
         paintStyle: {
           strokeStyle: '#D7B371',
-          //fillStyle: 'transparent',
+          fillStyle: 'transparent',
           radius: 2,
           lineWidth: 1
         }
