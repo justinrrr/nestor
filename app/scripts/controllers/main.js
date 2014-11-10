@@ -163,7 +163,7 @@ angular.module('nestorApp')
             removeValueFromListPropertyOfObject(targetObj, propName, { Ref: resourceName});
           }
           else if (propValueMethod === 'attribute') {
-            addValueToListPropertyOfObject(targetObj, propName, { 'Fn::GetAtt': [resourceName, propValue] });
+            removeValueFromListPropertyOfObject(targetObj, propName, { 'Fn::GetAtt': [resourceName, propValue] });
           }
         } else {
           delete targetObj[propName];
