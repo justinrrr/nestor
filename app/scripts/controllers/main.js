@@ -244,6 +244,9 @@ angular.module('nestorApp')
           data.parent
         );
 
+        //determines whether the component is standalone or derived
+        c.isDerived = true;
+
         $scope.addedComponents[c.name] = c;
 
         var parentName = data.parent;

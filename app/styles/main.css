@@ -19,7 +19,7 @@ body {
   width: 170px;
   height: 100px;
   font-size: 80%;
-  background-color: #e9e6ea;
+  background-color: white;
   text-align: center;
   display: inline-block;
   -webkit-transition-duration: 0.02s;
@@ -33,8 +33,8 @@ body {
   -moz-box-shadow: 2px 2px 3px 1px #AAA;
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
-  border: 1px dashed #6a7ea3;
-  border-radius: 0.25em;
+  border: 1px solid rgba(106, 126, 163, 0.58);
+  border-radius: 1em;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .item img {
   position: relative;
@@ -44,7 +44,7 @@ body {
   margin-bottom: -4px;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .item .title {
-  font-weight: 300;
+  font-weight: 500;
   font-family: sans-serif;
   font-size: 12px;
   letter-spacing: 0.19px;
@@ -53,47 +53,59 @@ body {
   margin-bottom: 0px;
   cursor: move;
   color: #404c62;
-  bottom: 40px;
+  bottom: 34px;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .item .ep {
   position: absolute;
   bottom: 45%;
-  right: -6px;
-  border: 2px solid #d7b371;
+  right: 4px;
+  border: 2px solid orange;
+  box-shadow: 0px 0px 2px black;
   width: 10px;
   height: 10px;
-  border-radius: 50%;
-  background-color: #d7b371;
+  border-radius: 20%;
+  background-color: orange;
   cursor: pointer;
-  box-shadow: 0px 0px 2px #e0dfdf;
   -webkit-transition: -webkit-box-shadow 0.25s ease-in;
   -moz-transition: -moz-box-shadow 0.25s ease-in;
   transition: box-shadow 0.25s ease-in;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent {
-  background-color: #6a7ea3;
+  background-color: lightgoldenrodyellow;
   -moz-box-shadow: 2px 2px 3px 1px #AAA;
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
-  border: 1px dashed #e9e6ea;
-  border-radius: 0.25em;
+  border: 1px solid rgba(106, 126, 163, 0.58);
+  border-radius: 1em;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent .title {
-  color: #ffffff;
+  color: #2e2633;
+}
+.layout-mock > .stretch.ui-layout-column .center-column ._jsPlumb_overlay {
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  border: 1px solid lightsteelblue;
+}
+.layout-mock > .stretch.ui-layout-column .center-column svg {
+  pointer-events: all;
+}
+.layout-mock > .stretch.ui-layout-column .center-column svg ._jsPlumb.connector > path {
+  fill: #6a7ea3;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg circle {
-  fill: #d7b371;
-  stroke: #d7b371;
+  fill: #6a7ea3;
+  stroke: #6a7ea3;
   stroke-width: 1px;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg ._jsPlumb_endpoint._jsPlumb_endpoint_anchor_.ui-droppable.ui-draggable.ui-draggable-handle._jsPlumb_endpoint_connected._jsPlumb_endpoint_full circle {
-  fill: #d7b371;
-  stroke: #d7b371;
-  stroke-width: 1px;
+  fill: #6a7ea3;
+  stroke: #6a7ea3;
+  stroke-width: 2px;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg path {
-  stroke: #d7b371;
-  stroke-width: 2px;
+  stroke: #6a7ea3;
+  stroke-width: 1.5px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column {
   background-color: #6a7ea3;
@@ -125,7 +137,7 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .contenth5 {
   padding: 10px 10px 15px 15px;
-  background-color: beige;
+  background-color: lightgoldenrodyellow;
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -500,20 +512,20 @@ body {
   font-weight: 600;
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid beige;
+  border-bottom: 1px solid lightgoldenrodyellow;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a:hover {
   color: white;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a {
   background-color: #6a7ea3;
-  -moz-box-shadow: inset 0 -4px #f5f5dc, inset 0 0px 0px #f5f5dc;
-  -webkit-box-shadow: inset 0 -4px #f5f5dc, inset 0 0px 0px #f5f5dc;
-  box-shadow: inset 0 -4px #f5f5dc, inset 0 0px 0px #f5f5dc;
+  -moz-box-shadow: inset 0 -4px #fafad2, inset 0 0px 0px #fafad2;
+  -webkit-box-shadow: inset 0 -4px #fafad2, inset 0 0px 0px #fafad2;
+  box-shadow: inset 0 -4px #fafad2, inset 0 0px 0px #fafad2;
   color: white;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a:hover {
-  color: beige;
+  color: lightgoldenrodyellow;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content {
   background-color: rgba(221, 221, 213, 0);
@@ -619,7 +631,7 @@ body {
  This is the visual of the component card while its being dragged
 *************************************/
 .dragging {
-  background-color: #e9e6ea;
+  background-color: white;
   border-bottom-color: rgba(112, 100, 130, 0.78);
 }
 .dragging .component-item {
