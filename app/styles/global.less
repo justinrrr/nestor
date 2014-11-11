@@ -2,6 +2,7 @@
   Colors
 *************************************/
 @ambiance: #646988;
+@accent: #E2E2E2;
 @dambiance: #404C62;
 @lambiance: #E9E6EA;
 @clouds: #E0DFDF;
@@ -130,7 +131,7 @@ body {
       }
     }
     .selectedComponent {
-      background-color: #f2ecbd;
+      background-color: @accent;
       -moz-box-shadow: 2px 2px 3px 1px #AAA;
       -webkit-box-shadow: 2px 2px 3px 1px #AAA;
       box-shadow: 2px 2px 3px 1px #AAA;
@@ -230,7 +231,7 @@ body {
 
       .contenth5 {
         padding: 10px 10px 15px 15px;
-        background-color: #f2ecbd;
+        background-color: @accent;
         margin-top: 0px;
         margin-bottom: 0px;
       }
@@ -291,7 +292,7 @@ body {
                 border-radius: 0px;
                 border-top: 1px solid #ddd;
                 border-bottom: 1px solid #ddd;
-                border-left: 6px solid #ddd;
+                border-left: 6px solid rgba(100, 105, 136, 0.72);
                 margin-top: -2px;
                 .table-responsive {
                   border-top: 0px;
