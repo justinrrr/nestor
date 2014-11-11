@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents',
-    function ($scope, $modal, AWSComponents, UIComponents) {
+  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents' , '$window',
+    function ($scope, $modal, AWSComponents, UIComponents, $window) {
 
 
       //set up jsPlumb
@@ -408,4 +408,8 @@ angular.module('nestorApp')
           }
         });
       };
+
+      $scope.download = function(){
+          $window.open("data:text/text;charset=utf-8," + encodeURIComponent($scope.templateString));
+      }
     }]);
