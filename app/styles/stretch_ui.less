@@ -1,0 +1,38 @@
+/**
+  Resizable bar between each column & row
+*************************************/
+.stretch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Can be changed by hand ;)*/
+  overflow: auto;
+  background-color: transparent;
+  z-index: 1;
+}
+
+//style for all splitbars
+.ui-splitbar {
+  display: block;
+  right: auto;
+  position: absolute;
+  z-index: 99999;
+}
+
+//horizontal splitbar style
+.ui-layout-row > .ui-splitbar {
+  height: 4px !important;
+  width: 100%;
+  cursor: row-resize;
+  background-color: #C9CFD8;
+}
+
+//vertical splitbar style
+.ui-layout-column > .ui-splitbar {
+  width: 3px !important;
+  height: 100%;
+  cursor: col-resize;
+
+}

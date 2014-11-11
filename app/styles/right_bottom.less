@@ -1,0 +1,158 @@
+
+//  Right Bottom Column Style
+.layout-mock > .stretch.ui-layout-column {
+  .right-column {
+    .right-column-bottom {
+      width: 300px;
+      border-top: 4px solid @ambiance;
+      //      Search Input Style
+      #searchbox {
+        margin: 4px 0px 4px 0px;
+        display: inline-flex;
+        width: 300px;
+        border: 2px solid @ambiance;
+        .fieldset > label {
+          position: absolute;
+          left: 18px;
+          top: 18px;
+          color: rgba(112, 100, 130, 0.78);
+        }
+        input:focus::-webkit-input-placeholder {
+          color: transparent;
+        }
+        .search {
+          padding: 8px 15px 8px 34px;
+          background-color: white;
+          color: rgba(112, 100, 130, 0.78);
+          border: 1px solid @ambiance;
+          font-weight: 500;
+          outline: none;
+          width: 97.2%;
+          margin-left: 4px;
+          &:focus {
+            border: 1px solid #61708C;
+            color: @ambiance;
+          }
+        }
+        .button {
+          position: relative;
+          padding: 8px 15px;
+          border: 0px solid #dbdbdb;
+          left: -45px;
+          color: #cbe2cb;
+          text-decoration: none;
+          background-color: transparent;
+          .glyphicon {
+            display: inline-block;
+            cursor: pointer;
+            color: rgba(112, 100, 130, 0.78);;
+          }
+          .glyphicon:hover {
+            color: rgba(112, 100, 130, 0.78);;
+          }
+        }
+      }
+
+      //      Nav Pills for Components
+      ul.nav-tabs.nav-justified {
+        .components-tab {
+          //          padding-left: 7px;
+        }
+        .tasks-tab {
+          //          padding-right: 6px;
+        }
+        li > a {
+          text-decoration: none;
+          cursor: pointer;
+          background-color: @ambiance;
+          color: white;
+          font-weight: 400;
+          border: none;
+          border-radius: 0;
+          border-bottom: 1px solid rgba(229, 229, 229, 0.3);
+          &:hover {
+            color: #FF9690;
+          }
+        }
+        .active > a {
+          background-color: @ambiance;
+          -moz-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
+          -webkit-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
+          box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
+          color: white;
+          &:hover {
+            color: #f2ecbd;
+          }
+        }
+      }
+
+      //       Components Style
+      .tab-content {
+        background-color: rgba(221, 221, 213, 0);
+        border-bottom-color: rgba(112, 100, 130, 0.78);
+        .tab-pane {
+          padding: 0px;
+          .empty-container {
+            width: 300px;
+            height: 80px;
+            position: absolute;
+            color: @snow;
+            cursor: pointer;
+            border-bottom: 1px solid @listhover;
+            &:hover {
+              cursor: pointer;
+              background-color: @listhover;
+            }
+          }
+          .component-item {
+            display: table-cell;
+            vertical-align: middle;
+            color: @snow;
+            font-weight: 400;
+            width: 300px;
+            height: 80px;
+            padding: 15px 15px 0px 15px;
+            &:hover {
+              cursor: pointer;
+              background-color: @lambiance;
+            }
+            .pdiv {
+              float: left;
+              width: 220px;
+              vertical-align: middle;
+              p {
+                font-size: 13px;
+                vertical-align: middle;
+                letter-spacing: 0.19px;
+              }
+            }
+            .imgdiv {
+              float: left;
+              width: 50px;
+              img.component-image {
+                width: 40px;
+                height: 40px;
+              }
+            }
+          }
+          .task-item {
+            padding: 10px 15px 10px 15px;
+            display: table-cell;
+            vertical-align: middle;
+            color: @snow;
+            cursor: pointer;
+            font-weight: 400;
+            width: 300px;
+            height: 80px;
+            p {
+              font-size: 13px;
+              vertical-align: middle;
+              letter-spacing: 0.19px;
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
