@@ -42,6 +42,35 @@ body {
   }
   //   Center column style
   .center-column {
+    .canvasbtns {
+      padding: 10px;
+      .btn-warning {
+        background-color: #b6bece;
+        border: #b6bece;
+        color: white;
+        font-weight: 200;
+        &:hover {
+          background-color: rgba(182, 190, 206, 0.76);
+        }
+        .btn:focus, .btn:active:focus, .btn.active:focus {
+          background-color: rgba(182, 190, 206, 0.76);
+          outline: 0;
+        }
+      }
+      .btn-primary {
+        background-color: #fc7169;
+        border: #fc7169;
+        color: white;
+        font-weight: 200;
+        &:hover {
+          background-color: rgba(252, 113, 105, 0.72);
+        }
+        .btn:focus, .btn:active:focus, .btn.active:focus {
+          background-color: rgba(252, 113, 105, 0.72);
+          outline: 0;
+        }
+      }
+    }
     .item {
       position: absolute;
       width: 170px;
@@ -383,6 +412,21 @@ body {
               background-color: white;
             }
           }
+          .propertyselect {
+            border: 2px solid @fieldborder;
+            padding: 2px;
+            background: white;
+            margin: 2px 5px 12px 0px;
+            outline: none;
+            height: 27px;
+            box-shadow: none;
+            border-radius: 0px;
+            width: 57%;
+            &:focus {
+              border: 2px solid @darkfield;
+              background-color: white;
+            }
+          }
           ul {
             padding-left: 6px;
             li {
@@ -482,6 +526,21 @@ body {
               background-color: white;
             }
           }
+          .propertyselect {
+            border: 2px solid @fieldborder;
+            padding: 2px;
+            background: white;
+            margin: 2px 5px 12px 0px;
+            outline: none;
+            height: 27px;
+            box-shadow: none;
+            border-radius: 0px;
+            width: 57%;
+            &:focus {
+              border: 2px solid @darkfield;
+              background-color: white;
+            }
+          }
           ul {
             padding-left: 6px;
             li {
@@ -521,6 +580,10 @@ body {
           display: block;
         }
       }
+      .tooltip.top {
+        margin-left: -50px;
+        margin-top: 0px;
+      }
       /*Input field style */
       .propertyinput {
         border: 2px solid @fieldborder;
@@ -528,6 +591,21 @@ body {
         background: white;
         margin: 2px 5px 20px 0px;
         outline: none;
+        &:focus {
+          border: 2px solid @darkfield;
+          background-color: white;
+        }
+      }
+      .propertyselect {
+        border: 2px solid @fieldborder;
+        padding: 2px;
+        background: white;
+        margin: 2px 5px 12px 0px;
+        outline: none;
+        height: 27px;
+        box-shadow: none;
+        border-radius: 0px;
+        width: 57%;
         &:focus {
           border: 2px solid @darkfield;
           background-color: white;

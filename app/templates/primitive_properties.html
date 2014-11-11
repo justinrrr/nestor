@@ -1,12 +1,13 @@
 <div>
 <span tooltip="{{property.description}}" class="tablename">
-                {{property.name}}
+             {{property.name}}
               </span>
   <select
     ng-if="showSelect"
     ng-model="x"
     ng-change="itemSelected(x)"
     ng-options="value.name for value in allowableValues"
+    class="propertyselect"
     ></select>
 
   <!--For some weired reason if remove this div the input won't work
