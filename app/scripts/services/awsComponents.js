@@ -555,7 +555,82 @@ app.service('AWSComponents', function () {
             {name: 'EbsOptimized', type: 'Boolean', description: 'Description for tooltip'},
             {name: 'IamInstanceProfile', type: 'String', description: 'Description for tooltip'},
             {name: 'InstanceInitiatedShutdownBehavior', type: 'String', description: 'Description for tooltip'},
-            {name: 'InstanceType', type: 'String', description: 'Description for tooltip'},
+            {
+              name: 'InstanceType',
+              type: 'String',
+              description: 'Description for tooltip',
+              allowableValues: [
+                {
+                  't2.micro': 't2.micro'
+                },
+                {
+                  't2.small': 't2.small'
+                },
+                {
+                  't2.medium': 't2.medium'
+                },
+                {
+                  'm3.medium': 'm3.medium'
+                },
+                {
+                  'm3.large': 'm3.large'
+                },
+                {
+                  'm3.xlarge': 'm3.xlarge'
+                },
+                {
+                  'm3.2xlarge': 'm3.2xlarge'
+                },
+                {
+                  'c3.large': 'c3.large'
+                },
+                {
+                  'c3.xlarge': 'c3.xlarge'
+                },
+                {
+                  'c3.2xlarge': 'c3.2xlarge'
+                },
+                {
+                  'c3.4xlarge': 'c3.4xlarge'
+                },
+                {
+                  'c3.8xlarge': ' c3.8xlarge'
+                },
+                {
+                  'r3.large': 'r3.large'
+                },
+                {
+                  'r3.xlarge': 'r3.xlarge'
+                },
+                {
+                  'r3.2xlarge': 'r3.2xlarge'
+                },
+                {
+                  'r3.4xlarge': 'r3.4xlarge'
+                },
+                {
+                  'r3.8xlarge': 'r3.8xlarge'
+                },
+                {
+                  'i2.xlarge': 'i2.xlarge'
+                },
+                {
+                  'i2.2xlarge': 'i2.2xlarge'
+                },
+                {
+                  'i2.4xlarge': 'i2.4xlarge'
+                },
+                {
+                  'i2.8xlarge': 'i2.8xlarge'
+                },
+                {
+                  'hs1.8xlarge': 'hs1.8xlarge'
+                },
+                {
+                  'g2.2xlarge': 'g2.2xlarge'
+                }
+              ]
+            },
             {name: 'KernelId', type: 'String', description: 'Description for tooltip'},
             {name: 'KeyName', type: 'String', description: 'Description for tooltip'},
             {name: 'Monitoring', type: 'Boolean', description: 'Description for tooltip'},

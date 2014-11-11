@@ -8,10 +8,14 @@
     ng-change="itemSelected(x)"
     ng-options="value.name for value in allowableValues"
     ></select>
-  <input ng-if="showSimple"
-         type="text"
-         name=""
-         ng-model="model"
-         class="propertyinput">
-  <br>
+
+  <!--For some weired reason if remove this div the input won't work
+  Talk to me (dragon) if it is abseoloutly neccessary to remove it-->
+  <div ng-show="showSimple">
+    <input
+      type="text"
+      name=""
+      ng-model="model"
+      class="propertyinput"/>
+    <br></div>
 </div>
