@@ -105,7 +105,7 @@ body {
   transition: box-shadow 0.25s ease-in;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent {
-  background-color: beige;
+  background-color: #f2ecbd;
   -moz-box-shadow: 2px 2px 3px 1px #AAA;
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
@@ -198,7 +198,7 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .contenth5 {
   padding: 10px 10px 15px 15px;
-  background-color: beige;
+  background-color: #f2ecbd;
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -629,13 +629,13 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a {
   background-color: #646988;
-  -moz-box-shadow: inset 0 -4px #f5f5dc, inset 0 0px 0px #f5f5dc;
-  -webkit-box-shadow: inset 0 -4px #f5f5dc, inset 0 0px 0px #f5f5dc;
-  box-shadow: inset 0 -4px #f5f5dc, inset 0 0px 0px #f5f5dc;
+  -moz-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
+  -webkit-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
+  box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
   color: white;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a:hover {
-  color: beige;
+  color: #f2ecbd;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tab-content {
   background-color: rgba(221, 221, 213, 0);
@@ -793,8 +793,8 @@ body {
   font-size: 24px;
   line-height: 69px;
   color: white;
-  background: #5e6e8d;
-  border: solid 1px #5e6e8d;
+  background: #646988;
+  border: solid 1px #646988;
   border-radius: 5px 5px 0px 0px;
   margin: 0;
   z-index: 999;
