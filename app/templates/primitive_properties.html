@@ -2,7 +2,14 @@
 <span tooltip="{{property.description}}" class="tablename">
                 {{property.name}}
               </span>
-  <input type="text"
+  <select
+    ng-if="showSelect"
+    ng-model="x"
+    ng-change="itemSelected(x)"
+    ng-options="value.name for value in allowableValues"
+    ></select>
+  <input ng-if="showSimple"
+         type="text"
          name=""
          ng-model="model"
          class="propertyinput">
