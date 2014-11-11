@@ -386,6 +386,7 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 57%;
+  color: #646988;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables1 td .propertyselect:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
@@ -495,6 +496,7 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 57%;
+  color: #646988;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .content #no-more-tables2 td .propertyselect:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
@@ -559,6 +561,7 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 57%;
+  color: #646988;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .propertyselect:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
