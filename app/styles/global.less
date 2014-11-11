@@ -1,7 +1,7 @@
 /**
   Colors
 *************************************/
-@ambiance: #6A7EA3;
+@ambiance: #646988;
 @dambiance: #404C62;
 @lambiance: #E9E6EA;
 @clouds: #E0DFDF;
@@ -18,11 +18,14 @@
 @linkhover: rgba(38, 35, 42, 0.75);
 @snow: white;
 @attributes: #6F7B91;
+@salmon: #f58780;
 
 
 //Font
 body {
-  font-family: 'Lato', sans-serif;
+  font-family: 'PT Sans', sans-serif;
+  letter-spacing: 0.65px;
+  font-weight: 400;
 }
 
 /* Center column style */
@@ -101,7 +104,6 @@ body {
       }
       .title {
         font-weight: 500;
-        font-family: sans-serif;
         font-size: 12px;
         letter-spacing: 0.19px;
         position: relative;
@@ -193,7 +195,6 @@ body {
         #titleh4 {
           font-size: 16px;
           margin-top: 4px;
-          font-family: 'Lato', sans-serif;
           font-weight: 600;
         }
         #titleh5 {
@@ -678,7 +679,7 @@ body {
           cursor: pointer;
           background-color: @ambiance;
           color: white;
-          font-weight: 600;
+          font-weight: 400;
           border: none;
           border-radius: 0;
           border-bottom: 1px solid rgba(229, 229, 229, 0.3);
@@ -710,7 +711,6 @@ body {
             position: absolute;
             color: @snow;
             cursor: pointer;
-            font-weight: 700;
             border-bottom: 1px solid @listhover;
             &:hover {
               cursor: pointer;
@@ -721,7 +721,7 @@ body {
             display: table-cell;
             vertical-align: middle;
             color: @snow;
-            font-weight: 700;
+            font-weight: 400;
             width: 300px;
             height: 80px;
             padding: 15px 15px 0px 15px;
@@ -734,8 +734,6 @@ body {
               width: 220px;
               vertical-align: middle;
               p {
-                font-weight: 300;
-                font-family: sans-serif;
                 font-size: 13px;
                 vertical-align: middle;
                 letter-spacing: 0.19px;
@@ -756,12 +754,10 @@ body {
             vertical-align: middle;
             color: @snow;
             cursor: pointer;
-            font-weight: 700;
+            font-weight: 400;
             width: 300px;
             height: 80px;
             p {
-              font-weight: 300;
-              font-family: sans-serif;
               font-size: 13px;
               vertical-align: middle;
               letter-spacing: 0.19px;
@@ -826,7 +822,7 @@ body {
     vertical-align: middle;
     color: @dambiance;
     cursor: pointer;
-    font-weight: 700;
+    font-weight: 400;
     border: 1px dashed @dambiance;
     width: 300px;
     height: 80px;
@@ -836,7 +832,6 @@ body {
       vertical-align: middle;
       p {
         font-weight: 300;
-        font-family: sans-serif;
         font-size: 12px;
         vertical-align: middle;
         letter-spacing: 0.19px;
@@ -867,7 +862,7 @@ body {
   position: absolute;
   color: #ffffff;
   cursor: pointer;
-  font-weight: 700;
+  font-weight: 400;
   border-bottom: 1px solid rgba(233, 230, 234, 0.19);
   margin-left: -15px;
 }
