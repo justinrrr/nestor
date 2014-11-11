@@ -21,17 +21,54 @@ app.service('AWSComponents', function () {
     };
     this.tasks = [
       {
-        name: 'Setup a machine and connect it to a DNS Address'
+        name: 'Simple static website',
+        image: 'images/aws/customtask.jpg'
       },
       {
-        name: 'Setup a VPC'
+        name: 'A group of servers that scale automatically',
+        image: 'images/aws/customtask.jpg'
       },
       {
-        name: 'Setup a machine and connect it to dynamoDB databases'
+        name: 'Simple web server with database access',
+        image: 'images/aws/customtask.jpg'
       },
       {
-        name: 'Create a server cluster with ELBs'
+        name: 'Group of servers with a single load balancer',
+        image: 'images/aws/customtask.jpg'
+      },
+      {
+        name: 'Publisher/Subscriber group of workers',
+        image: 'images/aws/customtask.jpg'
+      },
+      {
+        name: 'Group of workers reading off of queues',
+        image: 'images/aws/customtask.jpg'
+      },
+      {
+        name: 'Webserver with Distributed cache and database',
+        image: 'images/aws/customtask.jpg'
+      },
+      {
+        name: 'Search infrastructure',
+        image: 'images/aws/customtask.jpg'
+      },
+      {
+        name: 'Continous Deployment Pipleline',
+        image: 'images/aws/customtask.jpg'
+      },
+      {
+        name: 'A simple MapReduce system',
+        image: 'images/aws/customtask.jpg'
+      },
+      {
+        name: 'A pipeline for processing streams of big data',
+        image: 'images/aws/customtask.jpg'
+      },
+      {
+        name: 'Big calculating machines for big boys',
+        image: 'images/aws/customtask.jpg'
       }
+
     ];
 
     this.components = [
