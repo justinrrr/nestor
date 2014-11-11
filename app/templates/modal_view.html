@@ -3,34 +3,15 @@
   <h4>Description of the item</h4>
 </div>
 <div class="modal-body">
-  <!-- Choices -->
+  <!-- BackEnd language preference -->
   <div class="row">
-    <h4>Language Preference</h4>
-
+    <h4>Back-End Language Preferences</h4>
     <div class="col-lg-3">
       <div class="input-group">
       <span class="input-group-addon">
         <input type="radio">
       </span>
-        <img class="android" src="images/android_thumb.jpg"> Android
-      </div>
-      <!-- /input-group -->
-    </div>
-    <div class="col-lg-3">
-      <div class="input-group">
-      <span class="input-group-addon">
-        <input type="radio">
-      </span>
-        <img class="angular" src="images/angular_thumb.png"> Angular
-      </div>
-      <!-- /input-group -->
-    </div>
-    <div class="col-lg-3">
-      <div class="input-group">
-      <span class="input-group-addon">
-        <input type="radio">
-      </span>
-        <img class="goland" src="images/golang.sh-600x600_thumb.png"> Goland
+        <img class="goland" src="images/golang.sh-600x600_thumb.png"> Go
       </div>
       <!-- /input-group -->
     </div>
@@ -40,15 +21,6 @@
         <input type="radio">
       </span>
         <img class="goland" src="images/java.png"> Java
-      </div>
-      <!-- /input-group -->
-    </div>
-    <div class="col-lg-3">
-      <div class="input-group">
-      <span class="input-group-addon">
-        <input type="radio">
-      </span>
-        <img class="ios" src="images/ios_thumb.png"> IOS
       </div>
       <!-- /input-group -->
     </div>
@@ -82,6 +54,42 @@
   </div>
   <!-- /.row -->
   <hr>
+
+  <!-- Frontend languaguge preference -->
+  <div class="row">
+    <h4>Front-End Language Preferences</h4>
+    <div class="col-lg-3">
+      <div class="input-group">
+      <span class="input-group-addon">
+        <input type="radio">
+      </span>
+        <img class="android" src="images/android_thumb.jpg"> Android
+      </div>
+      <!-- /input-group -->
+    </div>
+    <div class="col-lg-3">
+      <div class="input-group">
+      <span class="input-group-addon">
+        <input type="radio">
+      </span>
+        <img class="angular" src="images/angular_thumb.png"> Angular
+      </div>
+      <!-- /input-group -->
+    </div>
+    <div class="col-lg-3">
+      <div class="input-group">
+      <span class="input-group-addon">
+        <input type="radio">
+      </span>
+        <img class="ios" src="images/ios_thumb.png"> IOS
+      </div>
+      <!-- /input-group -->
+    </div>
+  </div>
+  <!-- /.row -->
+  <hr>
+
+  <!--Resource preference-->
   <div class="row">
     <h4>Resource Preferences</h4>
 
@@ -138,6 +146,8 @@
     <hr>
   </div>
   <hr>
+
+  <!--Download Preference-->
   <div class="row">
     <h4>Download Preferences</h4>
 
@@ -165,7 +175,7 @@
 <div class="modal-footer">
   <hr>
   <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-  <button class="btn btn-primary" ng-click="ok()">OK</button>
+  <button class="btn btn-primary" ng-click="ok()">Do Magic Stuff</button>
 </div>
 
 
