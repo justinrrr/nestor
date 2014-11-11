@@ -540,7 +540,7 @@ body {
   font-weight: 600;
   border: none;
   border-radius: 0;
-  border-bottom: 1px solid beige;
+  border-bottom: 1px solid rgba(229, 229, 229, 0.3);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a:hover {
   color: white;
@@ -708,4 +708,35 @@ body {
   font-weight: 700;
   border-bottom: 1px solid rgba(233, 230, 234, 0.19);
   margin-left: -15px;
+}
+.modal-header {
+  font-size: 24px;
+  line-height: 69px;
+  color: white;
+  text-shadow: #4f9aaa 0px 2px 0px;
+  background: #2fb0d7;
+  border: solid 1px #2fb0d7;
+  border-radius: 5px 5px 0px 0px;
+  margin: 0;
+}
+.modal-body > .row h4 {
+  padding: 10px 10px 10px 20px;
+}
+.modal-body > .row .col-lg-3 > .input-group > .input-group-addon {
+  padding: 0 0 0 20px;
+  background-color: white;
+  border: none;
+}
+.modal-body > .row .col-lg-3 > .input-group > .input-group-addon input {
+  margin-right: 10px;
+  font-size: 16px;
+}
+.modal-body > .row .col-lg-6 > .input-group > .input-group-addon {
+  padding: 0 0 0 20px;
+  background-color: white;
+  border: none;
+}
+.modal-body > .row .col-lg-6 > .input-group > .input-group-addon input {
+  margin-right: 10px;
+  font-size: 16px;
 }
