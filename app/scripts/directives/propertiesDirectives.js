@@ -115,10 +115,16 @@ app.directive('tableProperty', [function () {
     },
     templateUrl: '../../templates/table_properties.html',
     link: function (scope) {
-      scope.removeFromTable = function () {
+
+      scope.loadAllowableValues = function(item) {
+        item.valueMap = [];
+        _.each(item.allowableValues, function(valueObj){
+          _.each(valueObj, function(value, key) {
+            item.valueMap.push({name: value, value: key});
+          });
+        });
 
       };
-
       scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
 
         var allFields = neededFields.required;
@@ -140,7 +146,9 @@ app.directive('tableProperty', [function () {
       scope.saveEntry = function($data, $index) {
         var resourceProperties = scope.resourceProperties[scope.property.name][$index];
         _.each($data, function(enteredValue, enteredName) {
-
+          if (enteredValue.value) {
+            enteredValue = enteredValue.value;
+          }
           resourceProperties[enteredName] = enteredValue;
         });
       };
