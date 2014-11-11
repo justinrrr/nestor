@@ -81,26 +81,7 @@ app.directive('primitiveProperty', [function () {
       property: '=',
       model: '='
     },
-    templateUrl: '../../templates/primitive_properties.html',
-    link: function(scope) {
-
-      scope.itemSelected = function(selectedItem) {
-        var actualValue = selectedItem.value;
-        scope.model = actualValue;
-      };
-      if (scope.property.allowableValues) {
-        scope.showSelect = true;
-        scope.allowableValues = [];
-        _.each(scope.property.allowableValues, function( valueObj ) {
-          _.each(valueObj, function(value, key) {
-            //scope.allowableValues.push(value);
-            scope.allowableValues.push({name:value, value: key});
-          });
-        });
-      } else {
-        scope.showSimple = true;
-      }
-    }
+    templateUrl: '../../templates/primitive_properties.html'
   };
 }]);
 
