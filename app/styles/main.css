@@ -625,7 +625,7 @@ body {
   border-bottom: 1px solid rgba(229, 229, 229, 0.3);
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified li > a:hover {
-  color: white;
+  color: #FF9690;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom ul.nav-tabs.nav-justified .active > a {
   background-color: #646988;
