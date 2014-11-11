@@ -63,7 +63,7 @@ app.service('AWSComponents', function () {
       {
         name: 'EIP',
         image: 'images/aws/eip.png',
-        description: 'Elastic IP'
+        description: 'Elastic(Static) IP address that are dynamically allocated'
       },
       //{
       //  name: 'EBS',
@@ -75,11 +75,6 @@ app.service('AWSComponents', function () {
         name: 'EC2',
         image: 'images/aws/ec2.png',
         description: 'Resizable compute machines'
-      },
-      {
-        name: 'Elastic IP',
-        image: 'images/aws/eip.png',
-        description: 'Static IP address that are dynamically allocated'
       },
       //{
       //  name: 'Elasticache',
