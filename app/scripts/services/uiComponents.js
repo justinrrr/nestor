@@ -33,23 +33,28 @@ app.service('UIComponents', function () {
     });
   };
 
-  this.connectComponents = function(sourceName, targetName) {
+  this.connectComponents = function(sourceName, targetName, isDashed) {
     window.setTimeout(function() {
       var sourceElement = angular.element('[data-identifier =' + sourceName + ']')[0];
       var targetElement = angular.element('[data-identifier =' + targetName + ']')[0];
+
+      var paintStyleObj = {
+        strokeStyle: '#225588',
+        fillStyle: 'transparent',
+        radius: 4,
+        lineWidth: 1
+      };
+
+      if (isDashed) {
+        paintStyleObj.dashstyle = '8 6';
+      }
 
       jsPlumb.connect({
         source: sourceElement.id,
         target: targetElement.id,
         connector: [ "StateMachine", { curviness:10 } ],
         //anchors:["Bottom", [0.75,0,0,-1]],
-        paintStyle: {
-          strokeStyle: '#225588',
-          fillStyle: 'transparent',
-          radius: 4,
-          lineWidth: 1,
-          dashstyle:'8 6'
-        }
+        paintStyle: paintStyleObj
         //paintStyle:{ }
         //endpointStyle:{fillStyle:'rgb(243,229,0)'}
       });

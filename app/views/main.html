@@ -57,6 +57,18 @@
       <!----------------------------------------------------------->
       <!--                  Resource Properties                  -->
       <!----------------------------------------------------------->
+
+      <div>
+        <p>{{template}}</p>
+        <hr>
+        <p>-------------------</p>
+        <hr>
+        <p>{{addedComponents}}</p>
+        <hr>
+        <p>Connections -------------------</p>
+        {{connections}}
+        <p>-------------------</p>
+      </div>
       <div class="right-column-top">
         <div ng-show="selectedComponent">
           <div class="cd-fixed-bg">
@@ -141,14 +153,7 @@
           </tab>
 
           <tab heading="Solutions" class="tasks-tab">
-            <div ng-repeat="task in tasks | filter:searchText">
-              <div
-                class="empty-container"
-                ng-drag="true"
-                ng-drag-data="task"
-                ng-center-anchor="false">
-              </div>
-
+            <div ng-click="taskSelected(task)" ng-repeat="task in tasks | filter:searchText">
               <div class="task-item">
                 <p>
                   <span class="glyphicon glyphicon-task"></span> {{task.name}}

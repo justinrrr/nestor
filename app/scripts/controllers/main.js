@@ -16,6 +16,7 @@ angular.module('nestorApp')
       //$scope.templateString = JSON.stringify($scope.template, null, 4);
 
       $scope.addedComponents = {};
+      $scope.connections = [];
 
       //add initial DS
       $scope.componentNameCounters = {};
@@ -184,9 +185,19 @@ angular.module('nestorApp')
         //caused by the editor
         var leftPanelWidth = angular.element('#left-column')[0].clientWidth;
 
-        //HACK: These numbers are used to align some shit. We have to read it dynamically
         addComponent($data, $event.x - leftPanelWidth-85, $event.y-50);
+
       };
+      $scope.taskSelected = function(task) {
+        $scope.template = task.template;
+        $scope.addedComponents = task.components;
+        $scope.connections = task.connections;
+
+        _.each($scope.connections, function(connection) {
+          UIComponents.connectComponents(connection.source, connection.target, false);
+        });
+      };
+
 
       $scope.showModal = function() {
         $modal.open({
@@ -200,6 +211,9 @@ angular.module('nestorApp')
       };
 
       $scope.connectionEstablished = function (sourceName, targetName) {
+
+        $scope.connections.push({source: sourceName, target: targetName});
+
         var sourceObject = $scope.template.Resources[sourceName];
         var sourceType = AWSComponents.typeMappings[sourceObject.Type];
 
@@ -339,7 +353,7 @@ angular.module('nestorApp')
         var newEntry = {};
         $scope.template.Resources[parentName].Properties[data.name].push(newEntry);
 
-        UIComponents.connectComponents(parentName, c.name);
+        UIComponents.connectComponents(parentName, c.name, true);
         itemSelected(c);
       };
 
@@ -358,6 +372,16 @@ angular.module('nestorApp')
 
       $scope.templateStringChanged = function () {
         try {
+          if ($scope.templateString === '') {
+
+            $scope.template = AWSComponents.createInitialTemplate();
+            $scope.templateString= angular.toJson($scope.template, true);
+            //$scope.templateString = JSON.stringify($scope.template, null, 4);
+
+            $scope.addedComponents = {};
+            $scope.connections = [];
+
+          }
           $scope.template = JSON.parse($scope.templateString);
         } catch (err) {
           console.log(err);
@@ -411,5 +435,5 @@ angular.module('nestorApp')
 
       $scope.download = function(){
           $window.open("data:text/text;charset=utf-8," + encodeURIComponent($scope.templateString));
-      }
+      };
     }]);

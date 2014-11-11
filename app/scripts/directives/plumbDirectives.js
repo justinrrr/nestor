@@ -127,7 +127,7 @@ app.directive('plumbConnect', function () {
 
       jsPlumb.makeSource(element, {
         parent: $(element).parent(),
-        anchor: ['Continuous', {faces: ['right', 'left', 'top']}],
+        anchor: ['Continuous', {faces: ['right', 'left', 'top', 'bottom']}],
         connector: [ "StateMachine", { curviness:10 } ],
         paintStyle: {
           strokeStyle: '#D7B371',
