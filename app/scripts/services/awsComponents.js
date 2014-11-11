@@ -159,8 +159,8 @@ app.service('AWSComponents', function () {
 
           'SourceComponentName': {    // e.g. EC2, DynamoDB
             overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
-              [ 'Label', { label: 'Depends On' }]
+              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
+              ['Label', {label: 'Depends On'}]
             ],
 
             //the name of the property on Target to be modified
@@ -209,7 +209,7 @@ app.service('AWSComponents', function () {
             {name: 'nameOfProperty', type: 'typeOfTheProperty', description: 'Description for tooltip'}
           ]
         },
-        Outputs: [
+        outputs: [
           {
             type: 'acceptable values are Ref and GetAtt',
             name: 'userFriendlyNameOfOutput',
@@ -225,7 +225,7 @@ app.service('AWSComponents', function () {
 
           'EIP': {    // e.g. EC2, DynamoDB
             overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
+              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
             ],
 
             //the name of the property on Target to be modified
@@ -246,7 +246,7 @@ app.service('AWSComponents', function () {
 
           'EC2': {
             overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
+              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
             ],
 
             //the name of the property on Target to be modified
@@ -302,7 +302,7 @@ app.service('AWSComponents', function () {
             }
           ]
         },
-        Outputs: [
+        outputs: [
           {
             type: 'acceptable values are Ref and GetAtt',
             name: 'userFriendlyNameOfOutput',
@@ -319,8 +319,8 @@ app.service('AWSComponents', function () {
 
           'EC2': {
             overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
-              [ 'Label', { label: 'Belongs to' }]
+              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
+              ['Label', {label: 'Belongs to'}]
             ],
 
             //the name of the property on Source to be modified
@@ -345,14 +345,22 @@ app.service('AWSComponents', function () {
             {name: 'GroupDescription', type: 'String', description: 'Description of the security group'}
           ],
           optional: [
-            {name: 'SecurityGroupEgress', type: 'SecurityGroupEgress', description: 'A list of Amazon EC2 security group outgoing connection rules'},
-            {name: 'SecurityGroupIngress', type: 'SecurityGroupIngress', description: 'A list of Amazon EC2 security group incoming connection rules'},
+            {
+              name: 'SecurityGroupEgress',
+              type: 'SecurityGroupEgress',
+              description: 'A list of Amazon EC2 security group outgoing connection rules'
+            },
+            {
+              name: 'SecurityGroupIngress',
+              type: 'SecurityGroupIngress',
+              description: 'A list of Amazon EC2 security group incoming connection rules'
+            },
             {name: 'Tags', type: 'Tags', description: 'The tags that you want to attach to the resource'}
             //TODO: take this item back when we add support for VPC
 //          {name: 'VcpId', type: 'String', description: 'The physical ID of the VPC. Can be obtained by using a reference to an AWS::EC2::VPC, such as: { "Ref" : "myVPC" }'}
           ]
         },
-        Outputs: [
+        outputs: [
           {
             type: 'Ref',
             name: 'security group identifier',
@@ -367,8 +375,8 @@ app.service('AWSComponents', function () {
           //if dynamoDB got connected
           'DynamoDb': {
             overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
-              [ 'Label', { label: 'Depends On' }]
+              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
+              ['Label', {label: 'Depends On'}]
             ],
             // if this connection is a one-way connection or bi-directional
             type: 'oneWay',
@@ -417,8 +425,8 @@ app.service('AWSComponents', function () {
 
           'SecurityGroup': {
             overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
-              [ 'Label', { label: 'Belongs' }]
+              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
+              ['Label', {label: 'Belongs'}]
             ],
 
             //the name of the property on Target to be modified
@@ -439,7 +447,7 @@ app.service('AWSComponents', function () {
 
           'EIP': {    // e.g. EC2, DynamoDB
             overlays: [
-              ['PlainArrow', {direction: 0, location: 0, width:10, length: 10}],
+              ['PlainArrow', {direction: 0, location: 0, width: 10, length: 10}],
             ],
 
             //the name of the property on Source to be modified
@@ -460,7 +468,7 @@ app.service('AWSComponents', function () {
 
           'Route53': {
             overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
+              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
             ],
 
             //the name of the property on Source to be modified
@@ -480,7 +488,6 @@ app.service('AWSComponents', function () {
           }
 
 
-
         },
 
         properties: {
@@ -490,13 +497,28 @@ app.service('AWSComponents', function () {
           optional: [
 
             {name: 'BlockDeviceMappings', type: 'BlockDeviceMappings', description: 'tooltip??'},
-            {name: 'NetworkInterfaces', type: 'NetworkInterfaces', description: 'A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance'},
-            {name: 'SecurityGroupIds', type: 'StringList', description: 'A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property'},
-            {name: 'SecurityGroups', type: 'StringList', description: 'Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template'},
+            {
+              name: 'NetworkInterfaces',
+              type: 'NetworkInterfaces',
+              description: 'A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance'
+            },
+            {
+              name: 'SecurityGroupIds',
+              type: 'StringList',
+              description: 'A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property'
+            },
+            {
+              name: 'SecurityGroups',
+              type: 'StringList',
+              description: 'Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template'
+            },
             {name: 'Tags', type: 'Tags', description: 'tooltip??'},
             {name: 'Volumes', type: 'Volumes', description: 'tooltip??'},
 
-            {name: 'AvailabilityZone', type: 'String', description: 'Specifies the name of the Availability Zone in which the instance is located',
+            {
+              name: 'AvailabilityZone',
+              type: 'String',
+              description: 'Specifies the name of the Availability Zone in which the instance is located',
               // a list of allowable values
               allowableValues: [
                 {
@@ -546,10 +568,10 @@ app.service('AWSComponents', function () {
             {name: 'UserData', type: 'String', description: 'Description for tooltip'}
           ]
         },
-        Outputs: [
+        outputs: [
           {
             type: 'Ref',
-            name: 'ImageID',
+            name: 'ImageId',
             description: 'Name of the EC2 instance'
           }
         ]
@@ -562,8 +584,8 @@ app.service('AWSComponents', function () {
 
           'EC2': {    // e.g. EC2, DynamoDB
             overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width:10, length: 10}],
-              [ 'Label', { label: 'PublicIP' }]
+              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
+              ['Label', {label: 'PublicIP'}]
             ],
 
             //the name of the property on Target to be modified
@@ -598,7 +620,7 @@ app.service('AWSComponents', function () {
             }
           ]
         },
-        Outputs: [
+        outputs: [
           {
             type: 'Ref',
             name: 'Public IP',
@@ -898,50 +920,102 @@ app.service('AWSComponents', function () {
           Description: 'Rules on incoming connections',
           types: {
             required: [
-              {name: 'FromPort', type: 'Integer', description: 'The start of port range for the TCP and UDP protocols, or an ICMP type number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP type number)'},
-              {name: 'toPort', type: 'Integer', description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'},
-              {name: 'IpProtocol', type: 'String', description: 'An IP protocol name or number'}
+              {
+                name: 'FromPort',
+                type: 'Integer',
+                description: 'The start of port range for the TCP and UDP protocols, or an ICMP type number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP type number)'
+              },
+              {
+                name: 'toPort',
+                type: 'Integer',
+                description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'
+              },
+              {
+                name: 'IpProtocol',
+                type: 'String',
+                description: 'An IP protocol name or number'
+              }
             ],
             mutuallyExclusive: {
               A: [
-                {name: 'CidrIp', type: 'String', description: 'When you create a VPC, you specify the set of IP addresses for the VPC in the form of a Classless Inter-Domain Routing (CIDR) block (for example, 10.0.0.0/16)'}
+                {
+                  name: 'CidrIp',
+                  type: 'String',
+                  description: 'When you create a VPC, you specify the set of IP addresses for the VPC in the form of a Classless Inter-Domain Routing (CIDR) block (for example, 10.0.0.0/16)'
+                }
               ],
               B: [
-                {name: 'SourceSecurityGroupId', type: 'String', description: 'For VPC security groups only. Specifies the ID of the Amazon EC2 Security Group to allow access. You can use the Ref intrinsic function to refer to the logical ID of a security group defined in the same template'},
-                {name: 'SourceSecurityGroupName', type: 'String', description: 'For non-VPC security groups only. Specifies the name of the Amazon EC2 Security Group to use for access. You can use the Ref intrinsic function to refer to the logical name of a security group that is defined in the same template'},
-                {name: 'SourceSecurityGroupOwnerId', type: 'String', description: 'Specifies the AWS Account ID of the owner of the Amazon EC2 Security Group that is specified in the SourceSecurityGroupName property.'}
+                {
+                  name: 'SourceSecurityGroupId',
+                  type: 'String',
+                  description: 'For VPC security groups only. Specifies the ID of the Amazon EC2 Security Group to allow access. You can use the Ref intrinsic function to refer to the logical ID of a security group defined in the same template'
+                },
+                {
+                  name: 'SourceSecurityGroupName',
+                  type: 'String',
+                  description: 'For non-VPC security groups only. Specifies the name of the Amazon EC2 Security Group to use for access. You can use the Ref intrinsic function to refer to the logical name of a security group that is defined in the same template'
+                },
+                {
+                  name: 'SourceSecurityGroupOwnerId',
+                  type: 'String',
+                  description: 'Specifies the AWS Account ID of the owner of the Amazon EC2 Security Group that is specified in the SourceSecurityGroupName property.'
+                }
               ]
             }
           }
         },
 
         SecurityGroupEgress: {
-          Display: { type: 'table', maxSize: -1 },
+          Display: {type: 'table', maxSize: -1},
           Description: 'Rules on outgoing connections',
           types: {
             required: [
-              {name: 'FromPort', type: 'Integer', description: 'The start of port range for the TCP and UDP protocols, or an ICMP type number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP type number)'},
-              {name: 'toPort', type: 'Integer', description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'},
+              {
+                name: 'FromPort',
+                type: 'Integer',
+                description: 'The start of port range for the TCP and UDP protocols, or an ICMP type number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP type number)'
+              },
+              {
+                name: 'toPort',
+                type: 'Integer',
+                description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'
+              },
               {name: 'IpProtocol', type: 'String', description: 'An IP protocol name or number'}
             ],
             mutuallyExclusive: {
               A: [
-                {name: 'DestinationSecurityGroupId', type: 'String', description: 'Specifies the group ID of the destination Amazon VPC security group'}
+                {
+                  name: 'DestinationSecurityGroupId',
+                  type: 'String',
+                  description: 'Specifies the group ID of the destination Amazon VPC security group'
+                }
               ],
               B: [
-                {name: 'CidrIp', type: 'String', description: 'When you create a VPC, you specify the set of IP addresses for the VPC in the form of a Classless Inter-Domain Routing (CIDR) block (for example, 10.0.0.0/16)'}
+                {
+                  name: 'CidrIp',
+                  type: 'String',
+                  description: 'When you create a VPC, you specify the set of IP addresses for the VPC in the form of a Classless Inter-Domain Routing (CIDR) block (for example, 10.0.0.0/16)'
+                }
               ]
             }
           }
         },
 
         PrivateIpAddressSpecification: {
-          Display: { type: 'table', maxSize: -1 },
+          Display: {type: 'table', maxSize: -1},
           Description: 'Private IP address specification',
           types: {
             required: [
-              {name: 'Primary', type: 'Integer', description: 'Sets the private IP address as the primary private address. You can set only one primary private IP address. If you do not specify a primary private IP address, Amazon EC2 automatically assigns a primary private IP address'},
-              {name: 'PrivateIpAddress', type: 'String', description: 'The private IP address of the network interface.'}
+              {
+                name: 'Primary',
+                type: 'Integer',
+                description: 'Sets the private IP address as the primary private address. You can set only one primary private IP address. If you do not specify a primary private IP address, Amazon EC2 automatically assigns a primary private IP address'
+              },
+              {
+                name: 'PrivateIpAddress',
+                type: 'String',
+                description: 'The private IP address of the network interface.'
+              }
             ]
           }
 
