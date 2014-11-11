@@ -1,0 +1,39 @@
+
+
+// This is the visual of the component card while its being dragged
+.dragging {
+  background-color: white;
+  border-bottom-color: rgba(112, 100, 130, 0.78);
+  .component-item {
+    display: table-cell;
+    vertical-align: middle;
+    color: @dambiance;
+    cursor: pointer;
+    font-weight: 400;
+    border: 1px dashed @dambiance;
+    width: 300px;
+    height: 80px;
+    .pdiv {
+      float: left;
+      width: 200px;
+      vertical-align: middle;
+      p {
+        font-weight: 300;
+        font-size: 12px;
+        vertical-align: middle;
+        letter-spacing: 0.19px;
+      }
+    }
+    .imgdiv {
+      float: left;
+      width: 70px;
+      img.component-image {
+        width: 60px;
+        height: 60px;
+        &:hover {
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
