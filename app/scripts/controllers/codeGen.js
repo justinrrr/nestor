@@ -2,14 +2,23 @@
  * Created by Fathalian on 11/10/14.
  */
 angular.module('nestorApp')
-.controller('CodeGenCtrl', ['$scope', '$modalInstance',
-    function($scope, $modalInstance){
+  .controller('CodeGenCtrl', ['$scope', '$rootScope','$modalInstance', '$timeout',
+    function ($scope, $rootScope, $modalInstance, $timeout) {
 
-    $scope.ok = function () {
-      $modalInstance.close();
-    };
+      $scope.downloadReady = false;
+      $scope.ok = function () {
 
-    $scope.cancel = function () {
-      $modalInstance.dismiss('cancel');
-    };
-  }]);
+        if ($scope.downloadReady) {
+          $modalInstance.close();
+        }
+        else {
+          $timeout(function(){
+            $scope.downloadReady = true;
+          }, 1000);
+        }
+      };
+
+      $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+      };
+    }]);
