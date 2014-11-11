@@ -492,7 +492,22 @@ app.service('AWSComponents', function () {
 
         properties: {
           required: [
-            {name: 'ImageId', type: 'String', description: 'Name of the EC2 instance'}
+            {
+              name: 'ImageId',
+              type: 'String',
+              description: 'Name of the EC2 instance',
+              allowableValues: [
+                {'ami-77581047': 'Stewie'},
+                {'ami-67334857': 'Jenkins'},
+                {'ami-67334857': 'MyCustomAmi'},
+                {'dummy': '---Standard AMIs---'},
+                {'ami-b5a7ea85': 'Amazon Linux AMI 2014.09.1 (HVM)'},
+                {'ami-99bef1a9': 'Red Hat Enterprise Linux 7.0 (HVM)'},
+                {'ami-d7450be7': 'SuSE Linux Enterprise Server 12 (HVM)'},
+                {'ami-3d50120d': 'Ubuntu Server 14.04 LTS (HVM)'},
+                {'ami-21f0bc11': 'Microsoft Windows Server 2012 R2 Base'}
+              ]
+            }
           ],
           optional: [
 
@@ -639,7 +654,19 @@ app.service('AWSComponents', function () {
             {name: 'RamdiskId', type: 'String', description: 'Description for tooltip'},
             {name: 'SourceDestCheck', type: 'Boolean', description: 'Description for tooltip'},
             {name: 'SubnetId', type: 'String', description: 'Description for tooltip'},
-            {name: 'Tenancy', type: 'String', description: 'Description for tooltip'},
+            {
+              name: 'Tenancy',
+              type: 'String',
+              description: 'Description for tooltip',
+              allowableValues: [
+                {
+                  'default': 'default'
+                },
+                {
+                  'dedicated': 'dedicated'
+                }
+              ]
+            },
             {name: 'UserData', type: 'String', description: 'Description for tooltip'}
           ]
         },
