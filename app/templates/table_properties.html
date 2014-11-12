@@ -53,11 +53,25 @@
             </td>
             <td ng-repeat="tableHeading in propertyTypes.types.optional"
                 data-title={{tableHeading.name}}>
+              <div ng-if="!tableHeading.hasOwnProperty('allowableValues')">
                     <span
                       editable-text="resourceProperties[property.name][tableHeading.name]"
-                      e-name="{{tableHeading.name}}" e-form="rowform">
+                      e-name="{{tableHeading.name}}" e-form="rowform" e-required>
                       {{tableProp[tableHeading.name]}}
                     </span>
+
+              </div>
+              <div>
+              <span ng-if="tableHeading.hasOwnProperty('allowableValues')"
+                    editable-select="resourceProperties[property.name][tableHeading.name]"
+                    e-name="{{tableHeading.name}}"
+                    onshow="loadAllowableValues(tableHeading)"
+                    e-form="rowform" e-required
+                    e-ng-options="value.name for value in tableHeading.valueMap">
+                      {{tableProp[tableHeading.name]}}
+                    </span>
+
+              </div>
             </td>
             <td style="white-space: nowrap">
               <!-- form -->

@@ -326,12 +326,29 @@ app.service('AWSComponents', function () {
             {
               name: 'HostedZoneName',
               type: 'String',
-              description: 'The name of the domain for the hosted zone where you want to add the record set'
+              description: 'The name of the domain for the hosted zone where you want to add the record set',
+              allowableValues: [
+                {'pdestal.com.': 'pdestal.com'}
+              ]
+
+
             },
             {
               name: 'Type',
               type: 'String',
-              description: 'The type of records to add'
+              description: 'The type of records to add',
+              allowableValues: [
+                {'A': 'A'},
+                {'AAAA': 'AAAA'},
+                {'CNAME': 'CNAME'},
+                {'MX': 'MX'},
+                {'NS': 'NS'},
+                {'PTR': 'PTR'},
+                {'SOA': 'SOA'},
+                {'SPF': 'SPF'},
+                {'SRC': 'SRV'},
+                {'TXT': 'TXT'}
+              ]
             },
             {
               name: 'Name',
@@ -342,8 +359,9 @@ app.service('AWSComponents', function () {
           optional: [
             {
               name: 'TTL',
-              type: 'String',
-              description: 'The resource record cache time to live (TTL), in seconds'
+              type: 'Integer',
+              description: 'The resource record cache time to live (TTL), in seconds',
+              default : ["300"]
             },
             {
               name: 'ResourceRecords',
@@ -621,10 +639,6 @@ app.service('AWSComponents', function () {
               ]
 
             },
-            {name: 'DisableApiTermination', type: 'Boolean', description: 'Description for tooltip'},
-            {name: 'EbsOptimized', type: 'Boolean', description: 'Description for tooltip'},
-            {name: 'IamInstanceProfile', type: 'String', description: 'Description for tooltip'},
-            {name: 'InstanceInitiatedShutdownBehavior', type: 'String', description: 'Description for tooltip'},
             {
               name: 'InstanceType',
               type: 'String',
@@ -701,9 +715,13 @@ app.service('AWSComponents', function () {
                 }
               ]
             },
-            {name: 'KernelId', type: 'String', description: 'Description for tooltip'},
             {name: 'KeyName', type: 'String', description: 'Description for tooltip'},
+            {name: 'EbsOptimized', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'IamInstanceProfile', type: 'String', description: 'Description for tooltip'},
+            {name: 'DisableApiTermination', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'KernelId', type: 'String', description: 'Description for tooltip'},
             {name: 'Monitoring', type: 'Boolean', description: 'Description for tooltip'},
+            {name: 'InstanceInitiatedShutdownBehavior', type: 'String', description: 'Description for tooltip'},
             {name: 'PlacementGroupName', type: 'String', description: 'Description for tooltip'},
             {name: 'PrivateIpAddress', type: 'String', description: 'Description for tooltip'},
             {name: 'RamdiskId', type: 'String', description: 'Description for tooltip'},
@@ -1009,7 +1027,37 @@ app.service('AWSComponents', function () {
               {
                 name: 'AvailabilityZone',
                 type: 'String',
-                description: ''
+                description: '',
+                allowableValues: [
+                  {
+                    'ap-northeast-1': 'Asia Pacific (Tokyo)'
+                  },
+                  {
+                    'ap-southeast-1': 'Asia Pacific (Singapore)'
+                  },
+                  {
+                    'ap-southeast-2': 'Asia Pacific (Sydney)'
+                  },
+                  {
+                    'eu-central-1': 'EU (Frankfurt)'
+                  },
+                  {
+                    'eu-west-1': 'EU (Ireland)'
+                  },
+                  {
+                    'sa-east-1': 'South America (Sao Paulo)'
+                  },
+                  {
+                    'us-east-1': 'US East (N. Virginia)'
+                  },
+                  {
+                    'us-west-1': 'US West (N. California)'
+                  },
+                  {
+                    'us-west-2': 'US West (Oregon)'
+                  }
+                ]
+
               }
             ],
             optional: [

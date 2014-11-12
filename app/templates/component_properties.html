@@ -1,10 +1,11 @@
 <div ng-repeat="prop in componentProperties" class="content">
 
-  <div ng-if="prop.type === 'String'">
+  <div ng-if="prop.type === 'String' || prop.type =='Integer' || prop.type=='Boolean'">
     <primitive-property
       property="prop"
       model="resourceProperties[prop.name]"
-      ></primitive-property>
+      >
+    </primitive-property>
   </div>
 
   <div ng-if="types.complex[prop.type] && types.complex[prop.type].Display.type === 'table'">

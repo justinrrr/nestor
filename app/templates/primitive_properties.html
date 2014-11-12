@@ -7,15 +7,16 @@
     ng-model="x"
     ng-change="itemSelected(x)"
     ng-options="value.name for value in allowableValues"
-    class="propertyselect"
-    ></select>
+    class="propertyselect">
+    </select>
 
   <!--For some weired reason if remove this div the input won't work
   Talk to me (dragon) if it is abseoloutly neccessary to remove it-->
   <div ng-show="showSimple">
     <input
-      type="text"
+      type="{{inputType}}"
       name=""
+      value="{{property.default[0]}}"
       ng-model="model"
       class="propertyinput"/>
     <br></div>

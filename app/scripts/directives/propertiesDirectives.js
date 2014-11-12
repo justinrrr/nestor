@@ -18,6 +18,7 @@ app.directive('componentProperties', [function () {
     },
     templateUrl: 'templates/component_properties.html',
     link: function (scope) {
+
       scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
 
         var item = {};
@@ -84,10 +85,21 @@ app.directive('primitiveProperty', [function () {
     templateUrl: '../../templates/primitive_properties.html',
     link: function(scope) {
 
+      if (scope.property.type === 'Boolean') {
+        scope.inputType = 'checkbox';
+      } else if (scope.property.type === 'Integer') {
+        scope.inputType = 'number';
+      } else {
+        scope.inputType = 'text';
+      }
+      if (!scope.model && scope.property.default) {
+        scope.model = scope.property.default[0];
+      }
       scope.itemSelected = function(selectedItem) {
         var actualValue = selectedItem.value;
         scope.model = actualValue;
       };
+
       if (scope.property.allowableValues) {
         scope.showSelect = true;
         scope.allowableValues = [];
@@ -97,6 +109,8 @@ app.directive('primitiveProperty', [function () {
             scope.allowableValues.push({name:value, value: key});
           });
         });
+
+        scope.x = scope.allowableValues[0].name;
       } else {
         scope.showSimple = true;
       }
