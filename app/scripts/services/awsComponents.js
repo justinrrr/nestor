@@ -436,7 +436,7 @@ app.service('AWSComponents', function () {
         outputs: [
           {
             type: 'Ref',
-            name: 'security group identifier',
+            name: 'securityGroupIdentifier',
             description: 'the security group name (for EC2-classic) or the security group ID (for EC2-VPC)'
           }
         ]
@@ -798,7 +798,7 @@ app.service('AWSComponents', function () {
         outputs: [
           {
             type: 'Ref',
-            name: 'Public IP',
+            name: 'PublicIP',
             description: 'returns the value of the PublicIp for the EC2 instance'
           }
         ]
@@ -946,7 +946,7 @@ app.service('AWSComponents', function () {
             optional: [
               {
                 name: 'NonKeyAttributes',
-                type: 'StringList',
+                type: 'String',
                 description: 'The non-key attribute names that are projected into the index.For local secondary indexes, the total count of NonKeyAttributes summed across all of the local secondary indexes must not exceed 20. If you project the same attribute into two different indexes, this counts as two distinct attributes in determining the total.'
               },
               {
@@ -1138,7 +1138,12 @@ app.service('AWSComponents', function () {
               {
                 name: 'IpProtocol',
                 type: 'String',
-                description: 'An IP protocol name or number'
+                description: 'An IP protocol name or number',
+                allowableValues: [
+                  {'TCP': 'TCP'},
+                  {'UDP': 'UDP'},
+                  {'ICMP': 'ICMP'}
+                ]
               }
             ],
             mutuallyExclusive: {
@@ -1185,7 +1190,16 @@ app.service('AWSComponents', function () {
                 type: 'Integer',
                 description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'
               },
-              {name: 'IpProtocol', type: 'String', description: 'An IP protocol name or number'}
+              {
+                name: 'IpProtocol',
+                type: 'String',
+                description: 'An IP protocol name or number',
+                allowableValues: [
+                  {'TCP': 'TCP'},
+                  {'UDP': 'UDP'},
+                  {'ICMP': 'ICMP'}
+                ]
+              }
             ],
             mutuallyExclusive: {
               A: [
