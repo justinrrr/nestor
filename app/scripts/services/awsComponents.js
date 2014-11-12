@@ -588,31 +588,31 @@ app.service('AWSComponents', function () {
               // a list of allowable values
               allowableValues: [
                 {
-                  'ap-northeast-1': 'Asia Pacific (Tokyo)'
+                  'ap-northeast-1b': 'Asia Pacific (Tokyo)'
                 },
                 {
-                  'ap-southeast-1': 'Asia Pacific (Singapore)'
+                  'ap-southeast-1b': 'Asia Pacific (Singapore)'
                 },
                 {
-                  'ap-southeast-2': 'Asia Pacific (Sydney)'
+                  'ap-southeast-2b': 'Asia Pacific (Sydney)'
                 },
                 {
-                  'eu-central-1': 'EU (Frankfurt)'
+                  'eu-central-1b': 'EU (Frankfurt)'
                 },
                 {
-                  'eu-west-1': 'EU (Ireland)'
+                  'eu-west-1b': 'EU (Ireland)'
                 },
                 {
-                  'sa-east-1': 'South America (Sao Paulo)'
+                  'sa-east-1b': 'South America (Sao Paulo)'
                 },
                 {
-                  'us-east-1': 'US East (N. Virginia)'
+                  'us-east-1b': 'US East (N. Virginia)'
                 },
                 {
-                  'us-west-1': 'US West (N. California)'
+                  'us-west-1b': 'US West (N. California)'
                 },
                 {
-                  'us-west-2': 'US West (Oregon)'
+                  'us-west-2b': 'US West (Oregon)'
                 }
               ]
 
@@ -1105,7 +1105,7 @@ app.service('AWSComponents', function () {
                 description: 'The start of port range for the TCP and UDP protocols, or an ICMP type number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP type number)'
               },
               {
-                name: 'toPort',
+                name: 'ToPort',
                 type: 'Integer',
                 description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'
               },
@@ -1160,7 +1160,7 @@ app.service('AWSComponents', function () {
                 description: 'The start of port range for the TCP and UDP protocols, or an ICMP type number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP type number)'
               },
               {
-                name: 'toPort',
+                name: 'ToPort',
                 type: 'Integer',
                 description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'
               },
