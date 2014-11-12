@@ -22,8 +22,24 @@ body {
   border-radius: 5px 5px 0px 0px;
   margin: 0;
   z-index: 999;
-  text-align: center;
   padding: 12px;
+  text-align: center;
+}
+.modal-body .input {
+  border: 2px solid rgba(122, 122, 147, 0.36);
+  padding: 2px;
+  background: white;
+  margin: 2px 5px 12px 0px;
+  outline: none;
+  height: 27px;
+  box-shadow: none;
+  border-radius: 0px;
+  width: 40%;
+  color: #646988;
+}
+.modal-body .input:focus {
+  border: 2px solid rgba(122, 122, 147, 0.64);
+  background-color: white;
 }
 .modal-body hr {
   margin: 10px;
@@ -573,6 +589,10 @@ body {
   padding-right: 10px;
   font-size: 14px;
 }
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .editable {
+  margin-top: 6px;
+  margin-left: 20px;
+}
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .editable-controls {
   margin-right: 10px;
   margin-left: 0px;
@@ -620,6 +640,22 @@ body {
   color: #646988;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .propertyselect:focus {
+  border: 2px solid rgba(122, 122, 147, 0.64);
+  background-color: white;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .editable-input {
+  border: 2px solid rgba(122, 122, 147, 0.36);
+  padding: 2px;
+  background: white;
+  margin: 2px 5px 12px 0px;
+  outline: none;
+  height: 27px;
+  box-shadow: none;
+  border-radius: 0px;
+  width: 90%;
+  color: #646988;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .editable-input:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
   background-color: white;
 }

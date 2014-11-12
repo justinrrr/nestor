@@ -11,11 +11,27 @@
   border-radius: 5px 5px 0px 0px;
   margin: 0;
   z-index: 999;
-  text-align: center;
   padding: 12px;
+  text-align: center;
 }
 
 .modal-body {
+  .input {
+    border: 2px solid @fieldborder;
+    padding: 2px;
+    background: white;
+    margin: 2px 5px 12px 0px;
+    outline: none;
+    height: 27px;
+    box-shadow: none;
+    border-radius: 0px;
+    width: 40%;
+    color: @ambiance;
+    &:focus {
+      border: 2px solid @darkfield;
+      background-color: white;
+    }
+  }
   hr {
     margin: 10px;
     border-top: 1px solid rgba(100, 105, 136, 0.11);

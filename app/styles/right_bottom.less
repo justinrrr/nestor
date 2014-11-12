@@ -207,6 +207,10 @@
           text-align: left;
           padding-right: 10px;
           font-size: 14px;
+          .editable {
+            margin-top: 6px;
+            margin-left: 20px;
+          }
           .editable-controls {
             margin-right: 10px;
             margin-left: 0px;
@@ -249,6 +253,22 @@
             box-shadow: none;
             border-radius: 0px;
             width: 57%;
+            color: @ambiance;
+            &:focus {
+              border: 2px solid @darkfield;
+              background-color: white;
+            }
+          }
+          .editable-input {
+            border: 2px solid @fieldborder;
+            padding: 2px;
+            background: white;
+            margin: 2px 5px 12px 0px;
+            outline: none;
+            height: 27px;
+            box-shadow: none;
+            border-radius: 0px;
+            width: 90%;
             color: @ambiance;
             &:focus {
               border: 2px solid @darkfield;
