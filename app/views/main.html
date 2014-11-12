@@ -56,13 +56,21 @@
 
       <div>
         <p>=============</p>
+
         <p>=============</p>
+
         <p>{{template}}</p>
+
         <p>=============</p>
+
         <p>=============</p>
+
         <p>{{addedComponents}}</p>
+
         <p>=============</p>
+
         <p>=============</p>
+
         <p>{{connections}}</p>
 
       </div>
@@ -103,9 +111,11 @@
           <tab heading="Solutions" class="tasks-tab">
             <div ng-click="taskSelected(task)" ng-repeat="task in tasks | filter:searchText">
               <div class="task-item">
-                <p>
-                  <span class="glyphicon glyphicon-task"></span> {{task.name}}
-                </p>
+
+                <a href="">
+                     {{task.name}}
+                  </a>
+
               </div>
             </div>
           </tab>
