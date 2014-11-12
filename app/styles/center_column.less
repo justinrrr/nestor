@@ -4,6 +4,9 @@
   .center-column {
     .canvasbtns {
       padding: 10px;
+      .btn:focus, .btn:active:focus, .btn.active:focus {
+        outline: none !important;
+      }
       .btn-warning {
         background-color: #b6bece;
         border: #b6bece;
@@ -11,10 +14,6 @@
         font-weight: 200;
         &:hover {
           background-color: rgba(182, 190, 206, 0.76);
-        }
-        .btn:focus, .btn:active:focus, .btn.active:focus {
-          background-color: rgba(182, 190, 206, 0.76);
-          outline: 0;
         }
       }
       .btn-primary {
@@ -24,10 +23,6 @@
         font-weight: 200;
         &:hover {
           background-color: rgba(252, 113, 105, 0.72);
-        }
-        .btn:focus, .btn:active:focus, .btn.active:focus {
-          background-color: rgba(252, 113, 105, 0.72);
-          outline: 0;
         }
       }
     }
