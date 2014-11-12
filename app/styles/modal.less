@@ -77,6 +77,9 @@
     margin: 10px;
     border-top: 1px solid rgba(100, 105, 136, 0.11);
   }
+  .btn:focus, .btn:active:focus, .btn.active:focus {
+    outline: 0;
+  }
   .btn-warning {
     background-color: #b6bece;
     border: #b6bece;
@@ -84,10 +87,6 @@
     font-weight: 200;
     &:hover {
       background-color: rgba(182, 190, 206, 0.76);
-    }
-    .btn:focus, .btn:active:focus, .btn.active:focus {
-      background-color: rgba(182, 190, 206, 0.76);
-      outline: 0;
     }
   }
   .btn-primary {
@@ -97,10 +96,6 @@
     font-weight: 200;
     &:hover {
       background-color: rgba(252, 113, 105, 0.72);
-    }
-    .btn:focus, .btn:active:focus, .btn.active:focus {
-      background-color: rgba(252, 113, 105, 0.72);
-      outline: 0;
     }
   }
 }
