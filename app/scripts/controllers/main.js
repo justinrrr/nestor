@@ -34,7 +34,7 @@ angular.module('nestorApp')
         }
         var counter = $scope.componentNameCounters.type;
         $scope.componentNameCounters.type++;
-        return type + '-' + counter;
+        return type + counter;
       }
 
       function addComponentToTemplate(blueprint, c) {
@@ -68,11 +68,11 @@ angular.module('nestorApp')
 
       function addComponent(blueprint, posX, posY) {
 
-        var uniqueId = _.uniqueId(blueprint.name + '-');
+        var uniqueId = generateComponentName(blueprint.name);
         var c = new UIComponents.Component(
           uniqueId,
           blueprint.name,
-          generateComponentName(blueprint.name),
+          uniqueId,
           blueprint.image,
           $scope.componentMetadata[blueprint.name].properties.required,
           $scope.componentMetadata[blueprint.name].properties.optional,
@@ -324,12 +324,13 @@ angular.module('nestorApp')
 
         var leftPanelWidth = angular.element('#left-column')[0].clientWidth;
 
-        var uniqueId = _.uniqueId(data.name + '-');
+
+        var uniqueId = generateComponentName(data.name);
 
         var c = new UIComponents.Component(
           uniqueId,
           data.name,
-          generateComponentName(data.name),
+          uniqueId,
           data.image,
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,

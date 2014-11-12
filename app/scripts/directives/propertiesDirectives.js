@@ -141,7 +141,7 @@ app.directive('tableProperty', [function () {
       };
       scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
 
-        var allFields = neededFields.required;
+        var allFields = neededFields.required || [];
         if (neededFields.optional) {
           allFields.concat(neededFields.optional);
         }
@@ -160,7 +160,7 @@ app.directive('tableProperty', [function () {
       scope.saveEntry = function($data, $index) {
         var resourceProperties = scope.resourceProperties[scope.property.name][$index];
         _.each($data, function(enteredValue, enteredName) {
-          if (enteredValue.value) {
+          if (enteredValue && enteredValue.value) {
             enteredValue = enteredValue.value;
           }
           resourceProperties[enteredName] = enteredValue;
