@@ -279,9 +279,6 @@ app.service('AWSComponents', function () {
         IncomingConnection: {
 
           'EIP': {    // e.g. EC2, DynamoDB
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-            ],
 
             //the name of the property on Target to be modified
             targetPropName: 'ResourceRecords',
@@ -300,9 +297,6 @@ app.service('AWSComponents', function () {
           },
 
           'EC2': {
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-            ],
 
             //the name of the property on Target to be modified
             targetPropName: 'ResourceRecords',
@@ -391,10 +385,6 @@ app.service('AWSComponents', function () {
         IncomingConnection: {
 
           'EC2': {
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-              ['Label', {label: 'Belongs to'}]
-            ],
 
             //the name of the property on Source to be modified
             sourcePropName: 'SecurityGroups',
@@ -497,11 +487,6 @@ app.service('AWSComponents', function () {
         IncomingConnection: {
 
           'SecurityGroup': {
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-              ['Label', {label: 'Belongs'}]
-            ],
-
             //the name of the property on Target to be modified
             targetPropName: 'SecurityGroups',
 
@@ -519,9 +504,6 @@ app.service('AWSComponents', function () {
           },
 
           'EIP': {    // e.g. EC2, DynamoDB
-            overlays: [
-              ['PlainArrow', {direction: 0, location: 0, width: 10, length: 10}],
-            ],
 
             //the name of the property on Source to be modified
             sourcePropName: 'InstanceId',
@@ -540,10 +522,6 @@ app.service('AWSComponents', function () {
           },
 
           'Route53': {
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-            ],
-
             //the name of the property on Source to be modified
             sourcePropName: 'ResourceRecords',
 
@@ -758,10 +736,6 @@ app.service('AWSComponents', function () {
         IncomingConnection: {
 
           'EC2': {    // e.g. EC2, DynamoDB
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-              ['Label', {label: 'PublicIP'}]
-            ],
 
             //the name of the property on Target to be modified
             targetPropName: 'InstanceId',
