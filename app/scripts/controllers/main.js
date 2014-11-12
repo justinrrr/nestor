@@ -54,7 +54,7 @@ angular.module('nestorApp')
               Description: outputMetdata.description,
               Value: {Ref: componentName}
             };
-            $scope.template.Outputs[componentName + '-' + outputMetdata.name] = outputObj;
+            $scope.template.Outputs[componentName +  outputMetdata.name] = outputObj;
           }
         });
 
