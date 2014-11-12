@@ -386,10 +386,25 @@ body {
   width: 300px;
   height: 80px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item p {
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.12);
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item:active {
+  border-left: 2px solid #f2ecbd;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item a {
+  color: white;
   font-size: 13px;
   vertical-align: middle;
   letter-spacing: 0.19px;
+  text-decoration: none;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item a:hover {
+  text-decoration: none;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item a:active {
+  color: #f2ecbd;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom {
   background-color: white;
