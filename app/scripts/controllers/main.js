@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents' , '$window',
-    function ($scope, $modal, AWSComponents, UIComponents, $window) {
+  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents' , 'ConnectionUtils', '$window',
+    function ($scope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
 
 
       //set up jsPlumb
@@ -85,95 +85,6 @@ angular.module('nestorApp')
         itemSelected(c);
       }
 
-      // adds 'val' to a list called 'listProp' on object 'obj'
-      function addValueToListPropertyOfObject(obj, listProp, val) {
-        if (obj.hasOwnProperty(listProp)) {
-          obj[listProp].push(val);
-        }
-        else {
-          obj[listProp] = [val];
-        }
-      }
-
-      // removes 'val' from a list called 'listProp' on object 'obj'
-      function removeValueFromListPropertyOfObject(obj, listProp, val) {
-        var idx = obj[listProp].indexOf(val);
-        if (idx > -1) {
-          obj[listProp].splice(idx, 1);
-        }
-      }
-
-      function connectObjectsThroughProps(propName, propValue, propValueMethod, updatePolicy, targetObj, sourceObj, resourceName) {
-
-        // return immediate if any of the incoming arguments are not defined
-        if (propName === undefined ||
-          propValue === undefined ||
-          propValueMethod === undefined ||
-          updatePolicy === undefined) {
-          return false;
-        }
-
-
-        if (propValueMethod === 'pure') {
-          if (updatePolicy === 'append') {
-            addValueToListPropertyOfObject(targetObj, propName, sourceObj[propValue]);
-          } else { //assign
-            //edge case:
-            if (propValue === 'Name') {
-              targetObj[propName] = resourceName;
-            }
-            else {
-              targetObj[propName] = sourceObj[propValue];
-            }
-          }
-        }
-        else if (propValueMethod === 'ref') {
-          if (updatePolicy === 'append') {
-            addValueToListPropertyOfObject(targetObj, propName, { Ref: resourceName});
-          } else { //assign
-            targetObj[propName] = { Ref: resourceName};
-          }
-        }
-        else if (propValueMethod === 'attribute') {
-
-          if (updatePolicy === 'append') {
-            addValueToListPropertyOfObject(targetObj, propName, { 'Fn::GetAtt': [resourceName, propValue] });
-          } else { //assign
-            targetObj[propName] = { Ref: resourceName};
-          }
-
-        }
-
-        return true;
-      }
-
-      function deleteBinding(propName, propValue, propValueMethod, updatePolicy, targetObj, sourceObj, resourceName) {
-
-        // return immediate if any of the incoming arguments are not defined
-        if (propName === undefined ||
-          propValue === undefined ||
-          propValueMethod === undefined ||
-          updatePolicy === undefined) {
-          return;
-        }
-
-
-        if (updatePolicy === 'append') {
-          if (propValueMethod === 'pure') {
-            removeValueFromListPropertyOfObject(targetObj, propName, sourceObj[propValue]);
-          }
-          else if (propValueMethod === 'ref') {
-            removeValueFromListPropertyOfObject(targetObj, propName, { Ref: resourceName});
-          }
-          else if (propValueMethod === 'attribute') {
-            removeValueFromListPropertyOfObject(targetObj, propName, { 'Fn::GetAtt': [resourceName, propValue] });
-          }
-        } else {
-          delete targetObj[propName];
-        }
-
-
-      }
 
       //--------------------------------------
       // UI Events
@@ -233,7 +144,7 @@ angular.module('nestorApp')
           finalTarget = targetObject;
         }
 
-        connectionHappened = connectObjectsThroughProps(incomingProperies.targetPropName, incomingProperies.targetPropValue,
+        connectionHappened = ConnectionUtils.connectObjectsThroughProps(incomingProperies.targetPropName, incomingProperies.targetPropValue,
           incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
           finalTarget, sourceObject, sourceName);
 
@@ -246,7 +157,7 @@ angular.module('nestorApp')
           finalTarget = sourceObject;
         }
 
-        connectionHappened = connectionHappened || connectObjectsThroughProps(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
+        connectionHappened = connectionHappened || ConnectionUtils.connectObjectsThroughProps(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
           incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
           finalTarget, targetObject, targetName);
 
@@ -288,7 +199,7 @@ angular.module('nestorApp')
           finalTarget = targetObject;
         }
 
-        deleteBinding(incomingProperies.targetPropName, incomingProperies.targetPropValue,
+        ConnectionUtils.deleteBinding(incomingProperies.targetPropName, incomingProperies.targetPropValue,
           incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
           finalTarget, sourceObject, sourceName);
 
@@ -301,7 +212,7 @@ angular.module('nestorApp')
           finalTarget = sourceObject;
         }
 
-        deleteBinding(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
+        ConnectionUtils.deleteBinding(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
           incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
           finalTarget, targetObject, targetName);
 
