@@ -5,6 +5,23 @@
 
 var app = angular.module('nestorApp.directives');
 
+app.directive('properties', [function () {
+  return {
+    replace: true,
+    restrict: 'E',
+    scope: {
+      component: '='
+    },
+    templateUrl: 'templates/properties.html',
+    link: function (scope) {
+
+      scope.name = scope.component.name;
+      scope.type = scope.component.type;
+
+    }
+  };
+}]);
+
 app.directive('componentProperties', [function () {
   return {
     replace: true,

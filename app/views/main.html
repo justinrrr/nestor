@@ -53,7 +53,7 @@
       ui-layout="{flow: 'row'}"
       size="300px"
       class="right-column">
-      
+
       <!----------------------------------------------------------->
       <!--                  Resource Properties                  -->
       <!----------------------------------------------------------->
@@ -93,8 +93,8 @@
               <div class="task-item">
 
                 <a href="">
-                     {{task.name}}
-                  </a>
+                  {{task.name}}
+                </a>
 
               </div>
             </div>
@@ -107,51 +107,7 @@
       <!----------------------------------------------------------->
       <div class="right-column-bottom">
         <div ng-show="selectedComponent">
-          <div class="cd-fixed-bg">
-            <h4 id="titleh4">{{selectedComponent.name}} </h4>
-            <h5 id="titleh5">Type: {{selectedComponent.type}}</h5>
-
-            <div class="row generate">
-              <div class="action col-sm-7" ng-show="selectedComponent.type === 'EC2'">
-                <button ng-click="showModal()" class="label">Generate Scaffolding Code</button>
-              </div>
-              <div class="action col-sm-5" ng-show="selectedComponent.type === 'EC2'">
-                <button ng-click="showModal()" class="label">Deploy Code</button>
-              </div>
-            </div>
-          </div>
-          <h5 class="contenth5" ng-show="selectedComponent.required">Required Parameters</h5>
-
-          <component-properties ng-if="!selectedComponent.isDerived"
-                                component-properties="selectedComponent.required"
-                                resource-properties="template.Resources[selectedComponent.name].Properties"
-                                on-property-drag="propertyDidDrag(data, event)"
-                                property-name="selectedComponent.name"
-                                types="types"></component-properties>
-
-          <!--<pre>{{template.Resources[selectedComponent.parent].Properties[selectedComponent.type] | json}}</pre>-->
-          <derived-properties
-            ng-if="selectedComponent.isDerived"
-            component-properties="selectedComponent.required"
-            resource-properties="template.Resources[selectedComponent.parent].Properties[selectedComponent.type]"
-            property-name="selectedComponent.name"
-            types="types"></derived-properties>
-
-          <h5 class="contenth5" ng-show="selectedComponent.optional">Optional Parameters</h5>
-
-          <component-properties ng-if="!selectedComponent.isDerived"
-                                component-properties="selectedComponent.optional"
-                                resource-properties="template.Resources[selectedComponent.name].Properties"
-                                on-property-drag="propertyDidDrag(data, event)"
-                                property-name="selectedComponent.name"
-                                types="types"></component-properties>
-
-          <derived-properties
-            ng-if="selectedComponent.isDerived"
-            component-properties="selectedComponent.optional"
-            resource-properties="template.Resources[selectedComponent.parent].Properties[selectedComponent.type]"
-            property-name="selectedComponent.name"
-            types="types"></derived-properties>
+          <properties component="selectedComponent"></properties>
         </div>
       </div>
     </div>
