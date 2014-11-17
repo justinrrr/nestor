@@ -1,47 +1,53 @@
 <div>
-  <accordion
-    close-others="true"
-    class="propertiesaccordion">
+  <accordion close-others="true" class="propertiesaccordion">
     <accordion-group is-open="status.open">
+
+      <!--The title of the table-->
       <accordion-heading>
         <div>
-                        <span tooltip="{{propertyTypes.Description}}">
-                          {{property.name}}
-                        </span>
+            <span tooltip="{{propertyTypes.Description}}">
+              {{property.name}}
+            </span>
           <i class="pull-right glyphicon"
              ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}">
           </i>
         </div>
       </accordion-heading>
+
       <div class="table-responsive" id="no-more-tables1">
         <table class="table table-striped table-bordered">
+
+          <!--Titles of table row-->
           <thead>
           <tr>
-            <th ng-repeat="tableHeading in propertyTypes.types.required"
+            <th ng-repeat="tableHeading in propertyHeadings.required"
                 tooltip="{{tableHeading.description}}">{{tableHeading.name}}
             </th>
-            <th ng-repeat="tableHeading in propertyTypes.types.optional"
-                tooltip="{{tableHeading.description}}">{{tableHeading.name}}
+            <th ng-repeat="tableHeading in propertyHeadings.optional"
+                tooltip="{{tableHeading.description}}">{{tableHeading.name}} (optional)
             </th>
             <th>Edit</th>
           </tr>
           </thead>
 
+          <!--the actual table data-->
           <tbody>
-          <tr ng-repeat="tableProp in resourceProperties[property.name]">
-            <td ng-repeat="tableHeading in propertyTypes.types.required"
+          <tr ng-repeat="tableProp in propertyModel[property.name]">
+            <td ng-repeat="tableHeading in propertyHeadings.required"
                 data-title={{tableHeading.name}}>
               <div ng-if="!tableHeading.hasOwnProperty('allowableValues')">
                     <span
-                      editable-text="resourceProperties[property.name][tableHeading.name]"
-                      e-name="{{tableHeading.name}}" e-form="rowform" e-required class="editable">
+                      editable-text="propertyModel[property.name][tableHeading.name]"
+                      e-name="{{tableHeading.name}}"
+                      e-form="rowform"
+                      e-required class="editable">
                       {{tableProp[tableHeading.name]}}
                     </span>
 
               </div>
               <div>
               <span ng-if="tableHeading.hasOwnProperty('allowableValues')"
-                    editable-select="resourceProperties[property.name][tableHeading.name]"
+                    editable-select="propertyModel[property.name][tableHeading.name]"
                     e-name="{{tableHeading.name}}"
                     onshow="loadAllowableValues(tableHeading)"
                     e-form="rowform" e-required
@@ -51,28 +57,30 @@
 
               </div>
             </td>
-            <td ng-repeat="tableHeading in propertyTypes.types.optional"
+            <td ng-repeat="tableHeading in propertyHeadings.optional"
                 data-title={{tableHeading.name}}>
               <div ng-if="!tableHeading.hasOwnProperty('allowableValues')">
                     <span
-                      editable-text="resourceProperties[property.name][tableHeading.name]"
-                      e-name="{{tableHeading.name}}" e-form="rowform" e-required>
+                      editable-text="propertyModel[property.name][tableHeading.name]"
+                      e-name="{{tableHeading.name}}" e-form="rowform">
                       {{tableProp[tableHeading.name]}}
                     </span>
 
               </div>
               <div>
               <span ng-if="tableHeading.hasOwnProperty('allowableValues')"
-                    editable-select="resourceProperties[property.name][tableHeading.name]"
+                    editable-select="propertyModel[property.name][tableHeading.name]"
                     e-name="{{tableHeading.name}}"
                     onshow="loadAllowableValues(tableHeading)"
-                    e-form="rowform" e-required
+                    e-form="rowform"
                     e-ng-options="value.name for value in tableHeading.valueMap">
                       {{tableProp[tableHeading.name]}}
-                    </span>
-
+              </span>
               </div>
             </td>
+
+
+            <!--These are the edit buttons-->
             <td style="white-space: nowrap">
               <!-- form -->
               <form editable-form
@@ -92,18 +100,22 @@
                   cancel
                 </button>
               </form>
-
               <div class="buttons" ng-show="!rowform.$visible">
                 <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
                 <button class="btn btn-danger" ng-click="removeRow($index)">del</button>
               </div>
             </td>
+
+
           </tr>
+
           </tbody>
         </table>
       </div>
+
+
       <button class="btn btn-default new"
-              ng-click="AddToTable(resourceProperties, property.name, propertyTypes.types)">
+              ng-click="AddToTable(propertyModel, property.name, propertyTypes.types)">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
 
