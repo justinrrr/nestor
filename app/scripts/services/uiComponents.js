@@ -46,7 +46,7 @@ app.service('UIComponents', function () {
           return true;
         }
         return false;
-      }
+      };
 
       if (info.sourceId == info.targetId) {
         return false;

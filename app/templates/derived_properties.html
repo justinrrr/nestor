@@ -1,9 +1,7 @@
 <div>
   <div ng-repeat="prop in componentProperties" class="content">
 
-    <!--<pre>{{componentModel | json}}</pre>-->
-    <pre>{{componentName}}</pre>
-
+    <pre>{{prop.name}} -- {{componentName}}</pre>
     <div ng-if="prop.type === 'String'">
       <primitive-property
         property="prop"
