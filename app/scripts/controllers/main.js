@@ -12,7 +12,7 @@ angular.module('nestorApp')
 
       //create initial template
       $scope.template = AWSComponents.createInitialTemplate();
-      $scope.templateString= angular.toJson($scope.template, true);
+      $scope.templateString = angular.toJson($scope.template, true);
       //$scope.templateString = JSON.stringify($scope.template, null, 4);
 
       $scope.addedComponents = {};
@@ -54,7 +54,7 @@ angular.module('nestorApp')
               Description: outputMetdata.description,
               Value: {Ref: componentName}
             };
-            $scope.template.Outputs[componentName +  outputMetdata.name] = outputObj;
+            $scope.template.Outputs[componentName + outputMetdata.name] = outputObj;
           }
         });
 
@@ -96,21 +96,21 @@ angular.module('nestorApp')
         //caused by the editor
         var leftPanelWidth = angular.element('#left-column')[0].clientWidth;
 
-        addComponent($data, $event.x - leftPanelWidth-85, $event.y-50);
+        addComponent($data, $event.x - leftPanelWidth - 85, $event.y - 50);
 
       };
-      $scope.taskSelected = function(task) {
+      $scope.taskSelected = function (task) {
         $scope.template = task.template;
         $scope.addedComponents = task.components;
         $scope.connections = task.connections;
 
-        _.each($scope.connections, function(connection) {
+        _.each($scope.connections, function (connection) {
           UIComponents.connectComponents(connection.source, connection.target, false);
         });
       };
 
 
-      $scope.showModal = function() {
+      $scope.showModal = function () {
         $modal.open({
           templateUrl: '../templates/modal_view.html',
           controller: 'CodeGenCtrl',
@@ -122,14 +122,23 @@ angular.module('nestorApp')
         itemSelected(component);
       };
 
-      $scope.deleteClicked = function (component){
+      $scope.deleteClicked = function (component) {
 
-        var toBeDeletedElem =  angular.element('[data-identifier =' + component.id + ']')[0];
+        var toBeDeletedElem = angular.element('[data-identifier =' + component.id + ']')[0];
         jsPlumb.detachAllConnections(toBeDeletedElem.id);
         jsPlumb.removeAllEndpoints(toBeDeletedElem.id);
 
         delete $scope.addedComponents[component.name];
         delete $scope.template.Resources[component.name];
+
+        var allOutputs = Object.keys($scope.template.Outputs);
+        for (var i = 0; i < allOutputs.length; i += 1) {
+          if ($scope.template.Outputs[allOutputs[i]].Value.Ref === component.name) {
+            delete $scope.template.Outputs[allOutputs[i]];
+            break;
+          }
+        }
+
       };
 
       $scope.connectionEstablished = function (sourceName, targetName) {
@@ -271,7 +280,7 @@ angular.module('nestorApp')
       //-----------------------------------------------------
       $scope.$watch('template', function (newValue, oldValue) {
         if (newValue !== oldValue) {
-            var test = angular.toJson($scope.template, true);
+          var test = angular.toJson($scope.template, true);
 
           $scope.templateString = test;
           //$scope.templateString = JSON.stringify($scope.template, null, 4);
@@ -284,7 +293,7 @@ angular.module('nestorApp')
           if ($scope.templateString === '') {
 
             $scope.template = AWSComponents.createInitialTemplate();
-            $scope.templateString= angular.toJson($scope.template, true);
+            $scope.templateString = angular.toJson($scope.template, true);
             //$scope.templateString = JSON.stringify($scope.template, null, 4);
 
             $scope.addedComponents = {};
@@ -342,7 +351,7 @@ angular.module('nestorApp')
         });
       };
 
-      $scope.download = function(){
-          $window.open('data:text/text;charset=utf-8,' + encodeURIComponent($scope.templateString));
+      $scope.download = function () {
+        $window.open('data:text/text;charset=utf-8,' + encodeURIComponent($scope.templateString));
       };
     }]);
