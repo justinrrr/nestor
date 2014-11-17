@@ -17,6 +17,7 @@ app.directive('properties', [function () {
     templateUrl: 'templates/properties.html',
     link: function (scope) {
 
+      //select the type of property
       if(scope.component.isDerived) {
         scope.componentModel = scope.template.Resources[scope.component.parent].Properties[scope.type];
       } else {
@@ -26,9 +27,6 @@ app.directive('properties', [function () {
       scope.propertyDragged = function($data, $event) {
         scope.onPropertyDrag({data: $data, event: $event});
       };
-
-
-
     }
   };
 }]);
@@ -48,19 +46,6 @@ app.directive('componentProperties', ['AWSComponents', function (AWSComponents) 
 
       scope.types = AWSComponents.propertyTypes;
 
-      scope.AddToTable = function (listToAddTo, componentName, neededFields) {
-
-        var item = {};
-        _.each(neededFields, function (property) {
-          item[property.name] = property.type;
-        });
-
-        if (!listToAddTo[componentName]) {
-          listToAddTo[componentName] = [];
-        }
-
-        listToAddTo[componentName].push(item);
-      };
 
       scope.dragFinished = function ($data, $event) {
         $data.parent = scope.componentName;
@@ -100,20 +85,6 @@ app.directive('derivedProperties', ['AWSComponents',
       scope.types = AWSComponents.propertyTypes;
 
       scope.model = scope.componentModel[scope.component.type][scope.component.index];
-      scope.AddToTable = function (listToAddTo, componentName, neededFields) {
-
-        var item = {};
-        _.each(neededFields, function (property) {
-          item[property.name] = property.type;
-        });
-
-        if (!listToAddTo[componentName]) {
-          listToAddTo[componentName] = [];
-        }
-
-        listToAddTo[componentName].push(item);
-      };
-
 
       scope.isTable = function(prop) {
         return scope.types.complex[prop.type] &&
@@ -180,11 +151,15 @@ app.directive('tableProperty', [function () {
     scope: {
       property: '=',
       propertyTypes: '=',
-      resourceProperties: '='
+      propertyModel: '='
     },
     templateUrl: '../../templates/table_properties.html',
     link: function (scope) {
 
+      scope.propertyHeadings = {
+        required: scope.propertyTypes.types.required,
+        optional: scope.propertyTypes.types.optional
+      };
       scope.loadAllowableValues = function(item) {
         item.valueMap = [];
         _.each(item.allowableValues, function(valueObj){
@@ -192,8 +167,8 @@ app.directive('tableProperty', [function () {
             item.valueMap.push({name: value, value: key});
           });
         });
-
       };
+
       scope.AddToTable = function (listToAddTo, componentName, neededFields) {
 
         var allFields = neededFields.required || [];
@@ -213,7 +188,7 @@ app.directive('tableProperty', [function () {
       };
 
       scope.saveEntry = function($data, $index) {
-        var resourceProperties = scope.resourceProperties[scope.property.name][$index];
+        var resourceProperties = scope.propertyModel[scope.property.name][$index];
         _.each($data, function(enteredValue, enteredName) {
           if (enteredValue && enteredValue.value) {
             enteredValue = enteredValue.value;
@@ -223,12 +198,8 @@ app.directive('tableProperty', [function () {
       };
 
       scope.removeRow = function($index) {
-
-        scope.resourceProperties[scope.property.name].splice($index,1);
+        scope.propertyModel[scope.property.name].splice($index,1);
       };
-
-
-
     }
   };
 }]);
@@ -247,9 +218,7 @@ app.directive('dragProperty', [function () {
     link: function (scope) {
       scope.dragData = {
         name: scope.property.name,
-        image: scope.propertyTypes.Display.image,
-        belongsTo: 'me'
-        //description: scope.propertyTypes.Description
+        image: scope.propertyTypes.Display.image
       };
 
       scope.dragCompleted = function ($data, $event) {
