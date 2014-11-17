@@ -117,9 +117,19 @@ angular.module('nestorApp')
           size: 'lg'
         });
       };
+
       $scope.clickCallback = function (component) {
         itemSelected(component);
       };
+
+      $scope.deleteClicked = function (component){
+
+        var toBeDeletedElem =  angular.element('[data-identifier =' + component.id + ']')[0];
+        jsPlumb.detachAllConnections(toBeDeletedElem.id);
+        jsPlumb.removeAllEndpoints(toBeDeletedElem.id);
+
+        delete $scope.addedComponents[component.name];
+      }
 
       $scope.connectionEstablished = function (sourceName, targetName) {
 
@@ -128,7 +138,7 @@ angular.module('nestorApp')
         var sourceObject = $scope.template.Resources[sourceName];
         var targetObject = $scope.template.Resources[targetName];
 
-        var incomingProperies = $scope.componentMetadata[targetObject.type].IncomingConnection[sourceObject.type];
+        var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
         var finalTarget;
         var connectionHappened;
