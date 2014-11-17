@@ -11,14 +11,14 @@
     ng-if="!component.isDerived"
     component-name="component.name"
     component-properties="component.required"
-    component-model="componentModel"
+    component-model="template.Resources[component.name].Properties"
     on-property-drag="propertyDragged(data, event)"
     ></component-properties>
 
   <derived-properties
     ng-if="component.isDerived"
     component-properties="component.required"
-    component-model="componentModel"
+    component-model="template.Resources[component.parent].Properties[type]"
     component="component"
     ></derived-properties>
 
@@ -28,14 +28,14 @@
     ng-if="!component.isDerived"
     component-name="component.name"
     component-properties="component.optional"
-    component-model="componentModel"
+    component-model="template.Resources[component.name].Properties"
     on-property-drag="propertyDragged(data, event)"
     ></component-properties>
 
   <derived-properties
     ng-if="component.isDerived"
     component-properties="component.optional"
-    component-model="componentModel"
+    component-model="template.Resources[component.parent].Properties[type]"
     component="component.name"
     ></derived-properties>
 </div>

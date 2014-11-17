@@ -16,15 +16,7 @@ app.directive('properties', [function () {
     },
     templateUrl: 'templates/properties.html',
     link: function (scope) {
-
-      //select the type of property
-      if(scope.component.isDerived) {
-        scope.componentModel = scope.template.Resources[scope.component.parent].Properties[scope.type];
-      } else {
-        scope.componentModel = scope.template.Resources[scope.component.name].Properties;
-      }
-
-      scope.propertyDragged = function($data, $event) {
+      scope.propertyDragged = function ($data, $event) {
         scope.onPropertyDrag({data: $data, event: $event});
       };
     }
@@ -52,15 +44,15 @@ app.directive('componentProperties', ['AWSComponents', function (AWSComponents) 
         scope.onPropertyDrag({data: $data, event: $event});
       };
 
-      scope.isTable = function(prop) {
+      scope.isTable = function (prop) {
         return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'table';
       };
 
-      scope.isPrimitive = function(prop) {
+      scope.isPrimitive = function (prop) {
         return prop.type === 'String' || prop.type === 'Integer' || prop.type === 'Boolean';
       };
 
-      scope.isDrager = function(prop) {
+      scope.isDrager = function (prop) {
         return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'drag';
       };
     }
@@ -71,33 +63,33 @@ app.directive('componentProperties', ['AWSComponents', function (AWSComponents) 
 
 app.directive('derivedProperties', ['AWSComponents',
   function (AWSComponents) {
-  return {
-    replace: true,
-    restrict: 'E',
-    scope: {
-      component: '=',
-      componentProperties: '=',
-      componentModel: '='
-    },
-    templateUrl: 'templates/derived_properties.html',
-    link: function (scope) {
+    return {
+      replace: true,
+      restrict: 'E',
+      scope: {
+        component: '=',
+        componentProperties: '=',
+        componentModel: '='
+      },
+      templateUrl: 'templates/derived_properties.html',
+      link: function (scope) {
 
-      scope.types = AWSComponents.propertyTypes;
+        scope.types = AWSComponents.propertyTypes;
 
-      scope.model = scope.componentModel[scope.component.type][scope.component.index];
+        scope.model = scope.componentModel[scope.component.type][scope.component.index];
 
-      scope.isTable = function(prop) {
-        return scope.types.complex[prop.type] &&
-          scope.types.complex[prop.type].Display.type === 'table';
-      };
+        scope.isTable = function (prop) {
+          return scope.types.complex[prop.type] &&
+            scope.types.complex[prop.type].Display.type === 'table';
+        };
 
-      scope.isPrimitive = function(prop) {
-        return prop.type === 'String' || prop.type === 'Integer' || prop.type === 'Boolean';
-      };
-    }
-  };
+        scope.isPrimitive = function (prop) {
+          return prop.type === 'String' || prop.type === 'Integer' || prop.type === 'Boolean';
+        };
+      }
+    };
 
-}]);
+  }]);
 
 app.directive('primitiveProperty', [function () {
   return {
@@ -109,7 +101,7 @@ app.directive('primitiveProperty', [function () {
       model: '='
     },
     templateUrl: '../../templates/primitive_properties.html',
-    link: function(scope) {
+    link: function (scope) {
 
       if (scope.property.type === 'Boolean') {
         scope.inputType = 'checkbox';
@@ -127,13 +119,13 @@ app.directive('primitiveProperty', [function () {
 
         scope.showSelect = true;
         scope.allowableValues = [];
-        _.each(scope.property.allowableValues, function( valueObj ) {
-          _.each(valueObj, function(value, key) {
+        _.each(scope.property.allowableValues, function (valueObj) {
+          _.each(valueObj, function (value, key) {
             if (scope.model === value) {
-              scope.selectedItem = {name:key, value: value};
+              scope.selectedItem = {name: key, value: value};
             }
             //scope.allowableValues.push(value);
-            scope.allowableValues.push({name:value, value: key});
+            scope.allowableValues.push({name: value, value: key});
           });
         });
 
@@ -143,7 +135,7 @@ app.directive('primitiveProperty', [function () {
       }
 
 
-      scope.itemSelected = function(selectedItem) {
+      scope.itemSelected = function (selectedItem) {
         scope.model = selectedItem;
       };
     }
@@ -166,10 +158,10 @@ app.directive('tableProperty', [function () {
         required: scope.propertyTypes.types.required,
         optional: scope.propertyTypes.types.optional
       };
-      scope.loadAllowableValues = function(item) {
+      scope.loadAllowableValues = function (item) {
         item.valueMap = [];
-        _.each(item.allowableValues, function(valueObj){
-          _.each(valueObj, function(value, key) {
+        _.each(item.allowableValues, function (valueObj) {
+          _.each(valueObj, function (value, key) {
             item.valueMap.push({name: value, value: key});
           });
         });
@@ -193,9 +185,9 @@ app.directive('tableProperty', [function () {
         listToAddTo[componentName].push(item);
       };
 
-      scope.saveEntry = function($data, $index) {
+      scope.saveEntry = function ($data, $index) {
         var resourceProperties = scope.propertyModel[scope.property.name][$index];
-        _.each($data, function(enteredValue, enteredName) {
+        _.each($data, function (enteredValue, enteredName) {
           if (enteredValue && enteredValue.value) {
             enteredValue = enteredValue.value;
           }
@@ -203,8 +195,8 @@ app.directive('tableProperty', [function () {
         });
       };
 
-      scope.removeRow = function($index) {
-        scope.propertyModel[scope.property.name].splice($index,1);
+      scope.removeRow = function ($index) {
+        scope.propertyModel[scope.property.name].splice($index, 1);
       };
     }
   };
