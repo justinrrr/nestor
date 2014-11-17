@@ -15,10 +15,11 @@
     on-property-drag="propertyDragged(data, event)"
     ></component-properties>
 
+  {{template.Resources[component.parent].Properties[component.type]}}
   <derived-properties
     ng-if="component.isDerived"
     component-properties="component.required"
-    component-model="template.Resources[component.parent].Properties[type]"
+    component-model="template.Resources[component.parent].Properties[component.type]"
     component="component"
     ></derived-properties>
 
@@ -35,7 +36,7 @@
   <derived-properties
     ng-if="component.isDerived"
     component-properties="component.optional"
-    component-model="template.Resources[component.parent].Properties[type]"
+    component-model="template.Resources[component.parent].Properties[component.type]"
     component="component.name"
     ></derived-properties>
 </div>

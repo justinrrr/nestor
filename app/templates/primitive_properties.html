@@ -4,11 +4,14 @@
               </span>
 
   <select
+    id="{{property.name}}-{{componentName}}"
     ng-if="showSelect"
     ng-model="item"
     ng-change="itemSelected(item)"
     class="propertyselect">
-    <option ng-repeat="value in allowableValues" value="{{value.value}}" ng-selected="model === value.value">
+    <option></option>
+    <option ng-repeat="value in allowableValues" value="{{value.value}}"
+            ng-selected="model === value.value">
       {{value.name}}
     </option>
     </select>

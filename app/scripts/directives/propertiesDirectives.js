@@ -76,7 +76,7 @@ app.directive('derivedProperties', ['AWSComponents',
 
         scope.types = AWSComponents.propertyTypes;
 
-        scope.model = scope.componentModel[scope.component.type][scope.component.index];
+        scope.model = scope.componentModel[scope.component.index];
 
         scope.isTable = function (prop) {
           return scope.types.complex[prop.type] &&
@@ -98,7 +98,8 @@ app.directive('primitiveProperty', [function () {
     transclude: true,
     scope: {
       property: '=',
-      model: '='
+      model: '=',
+      componentName: '='
     },
     templateUrl: '../../templates/primitive_properties.html',
     link: function (scope) {
@@ -121,15 +122,11 @@ app.directive('primitiveProperty', [function () {
         scope.allowableValues = [];
         _.each(scope.property.allowableValues, function (valueObj) {
           _.each(valueObj, function (value, key) {
-            if (scope.model === value) {
-              scope.selectedItem = {name: key, value: value};
-            }
             //scope.allowableValues.push(value);
             scope.allowableValues.push({name: value, value: key});
           });
         });
 
-        scope.x = scope.allowableValues[0].name;
       } else {
         scope.showSimple = true;
       }
