@@ -129,6 +129,7 @@ angular.module('nestorApp')
         jsPlumb.removeAllEndpoints(toBeDeletedElem.id);
 
         delete $scope.addedComponents[component.name];
+        delete $scope.template.Resources[component.name]
       };
 
       $scope.connectionEstablished = function (sourceName, targetName) {
