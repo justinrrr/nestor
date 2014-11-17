@@ -108,7 +108,8 @@
 
 
           </tr>
-          <tr ng-if="isSingleCellTable()">
+          <!--Show the cell only if there is a value -->
+          <tr ng-if="isSingleCellTable() && propertyModel[property.name]">
             <td ng-repeat="tableHeading in propertyHeadings.required"
                 data-title={{tableHeading.name}}>
               <div ng-if="!tableHeading.hasOwnProperty('allowableValues')">
@@ -189,7 +190,7 @@
       </div>
 
 
-      <button class="btn btn-default new"
+      <button ng-show="!propertyModel[property.name]" class="btn btn-default new"
               ng-click="AddToTable(propertyModel, property.name, propertyTypes.types)">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
