@@ -93,6 +93,48 @@ app.service('AWSComponents', function () {
         description: 'Scale your EC2 capacity up or down automatically according to conditions you define',
         type: 'resource'
       },
+      {
+        name: 'DynamoDb',
+        image: 'images/aws/dynamo.png',
+        description: 'NoSQL database service',
+        type: 'AWS::DynamoDB::Table'
+      },
+      {
+        name: 'EIP',
+        image: 'images/aws/eip.png',
+        description: 'Elastic(Static) IP address that are dynamically allocated',
+        type: 'AWS::EC2::EIP'
+      },
+      {
+        name: 'EC2',
+        image: 'images/aws/ec2.png',
+        description: 'Resizable compute machines',
+        type: 'AWS::EC2::Instance'
+      },
+      {
+        name: 'ELB',
+        image: 'images/aws/elb.png',
+        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+        type: 'resource'
+      },
+      {
+        name: 'Route53',
+        image: 'images/aws/route53.png',
+        description: 'highly available and scalable Domain Name System (DNS)',
+        type: 'AWS::Route53::RecordSet'
+      },
+      {
+        name: 'SecurityGroup',
+        image: 'images/aws/securityGroup.png',
+        description: 'Creates an Amazon EC2 security group',
+        type: 'AWS::EC2::SecurityGroup'
+      },
+      {
+        name: 'VPC',
+        image: 'images/aws/vpc.png',
+        description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
+        type: 'resource'
+      }
       //{
       //  name: 'Cloud Formation',
       //  image: 'images/aws/cloudformation.png',
@@ -108,41 +150,17 @@ app.service('AWSComponents', function () {
       //  image: 'images/aws/cloudsearch.png',
       //  description: 'Service to set up, manage, and scale a custom search solution'
       //},
-      {
-        name: 'DynamoDb',
-        image: 'images/aws/dynamo.png',
-        description: 'NoSQL database service',
-        type: 'resource'
-      },
-      {
-        name: 'EIP',
-        image: 'images/aws/eip.png',
-        description: 'Elastic(Static) IP address that are dynamically allocated',
-        type: 'resource'
-      },
       //{
       //  name: 'EBS',
       //  image: 'images/aws/ebs.png',
       //  description: 'Persistent block level storage volumes for EC2 instances'
       //
       //},
-      {
-        name: 'EC2',
-        image: 'images/aws/ec2.png',
-        description: 'Resizable compute machines',
-        type: 'resource'
-      },
       //{
       //  name: 'Elasticache',
       //  image: 'images/aws/elasticache.png',
       //  description: 'Deploy, operate, and scale an in-memory cache'
       //},
-      {
-        name: 'ELB',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
       //{
       //  name: 'rds',
       //  image: 'images/aws/rds.png',
@@ -153,12 +171,6 @@ app.service('AWSComponents', function () {
       //  image: 'images/aws/redshift.png',
       //  description: 'fully managed, petabyte-scale data warehouse solution'
       //},
-      {
-        name: 'Route53',
-        image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'resource'
-      },
       //{
       //  name: 'S3',
       //  image: 'images/aws/s3.png',
@@ -179,30 +191,7 @@ app.service('AWSComponents', function () {
       //  image: 'images/aws/sqs.png',
       //  description: 'Fast, reliable, scalable, fully managed message queuing service'
       //},
-      {
-        name: 'SecurityGroup',
-        image: 'images/aws/securityGroup.png',
-        description: 'Creates an Amazon EC2 security group',
-        type: 'resource'
-      },
-      {
-        name: 'VPC',
-        image: 'images/aws/vpc.png',
-        description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
-        type: 'resource'
-      }
     ];
-
-    this.typeMappings = {
-      'AWS::DynamoDB::Table': 'DynamoDb',
-      'AWS::AutoScaling::AutoScalingGroup': 'Autoscaling Group',
-      'AWS::EC2::Instance': 'EC2',
-      'AWS::EC2::EIP': 'EIP',
-      'AWS::ElasticLoadBalancing::LoadBalancer': 'ELB',
-      'AWS::EC2::VPC': 'VPC',
-      'AWS::EC2::SecurityGroup': 'SecurityGroup',
-      'AWS::Route53::RecordSet': 'Route53'
-    };
 
     //add component specific metadat here
     this.componentMetadata = {
@@ -273,12 +262,12 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'Route53': {
+      'AWS::Route53::RecordSet': {
         type: 'AWS::Route53::RecordSet',
         // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
         IncomingConnection: {
 
-          'EIP': {    // e.g. EC2, DynamoDB
+          'AWS::EC2::EIP': {    // e.g. EC2, DynamoDB
 
             //the name of the property on Target to be modified
             targetPropName: 'ResourceRecords',
@@ -296,7 +285,7 @@ app.service('AWSComponents', function () {
             isProperty: 'true'
           },
 
-          'EC2': {
+          'AWS::EC2::Instance': {
 
             //the name of the property on Target to be modified
             targetPropName: 'ResourceRecords',
@@ -378,13 +367,13 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'SecurityGroup': {
+      'AWS::EC2::SecurityGroup': {
         type: 'AWS::EC2::SecurityGroup',
 
         // When the user drags a link from another object (source) to connect it to this component (target) use the following rules
         IncomingConnection: {
 
-          'EC2': {
+          'AWS::EC2::Instance': {
 
             //the name of the property on Source to be modified
             sourcePropName: 'SecurityGroups',
@@ -432,11 +421,11 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'DynamoDb': {
+      'AWS::DynamoDB::Table': {
         type: 'AWS::DynamoDB::Table',
         IncomingConnection: {
           //if dynamoDB got connected
-          'DynamoDb': {
+          'AWS::DynamoDB::Table': {
             overlays: [
               ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
               ['Label', {label: 'Depends On'}]
@@ -481,12 +470,12 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'EC2': {
+      'AWS::EC2::Instance': {
         type: 'AWS::EC2::Instance',
 
         IncomingConnection: {
 
-          'SecurityGroup': {
+          'AWS::EC2::SecurityGroup': {
             //the name of the property on Target to be modified
             targetPropName: 'SecurityGroups',
 
@@ -503,7 +492,7 @@ app.service('AWSComponents', function () {
             isProperty: 'true'
           },
 
-          'EIP': {    // e.g. EC2, DynamoDB
+          'AWS::EC2::EIP': {    // e.g. EC2, DynamoDB
 
             //the name of the property on Source to be modified
             sourcePropName: 'InstanceId',
@@ -521,7 +510,7 @@ app.service('AWSComponents', function () {
             isProperty: 'true'
           },
 
-          'Route53': {
+          'AWS::Route53::RecordSet': {
             //the name of the property on Source to be modified
             sourcePropName: 'ResourceRecords',
 
@@ -730,12 +719,12 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'EIP': {
+      'AWS::EC2::EIP': {
         type: 'AWS::EC2::EIP',
         // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
         IncomingConnection: {
 
-          'EC2': {    // e.g. EC2, DynamoDB
+          'AWS::EC2::Instance': {    // e.g. EC2, DynamoDB
 
             //the name of the property on Target to be modified
             targetPropName: 'InstanceId',

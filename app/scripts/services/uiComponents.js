@@ -22,7 +22,7 @@ app.service('UIComponents', function () {
     this.parent = parentName || '';
   };
 
-  this.setupJSPlumb = function($scope) {
+  this.setupJSPlumb = function ($scope) {
     jsPlumb.bind('ready', function () {
       console.log('Set up jsPlumb listeners (should be only done once)');
       jsPlumb.bind('connection', function () {
@@ -31,10 +31,41 @@ app.service('UIComponents', function () {
         });
       });
     });
+
+    jsPlumb.bind("beforeDrop", function (info) {
+      var getComponentTypeWithNominalName = function (nominalName) {
+        if ($scope.addedComponents[nominalName])
+          return $scope.addedComponents[nominalName].type;
+
+        return '';
+      };
+
+      var areTypesMatch = function (sourceType, targetType) {
+        var targetObj = $scope.componentMetadata[targetType];
+        if (targetObj && targetObj.IncomingConnection.hasOwnProperty(sourceType)) {
+          return true;
+        }
+        return false;
+      }
+
+      if (info.sourceId == info.targetId) {
+        return false;
+      }
+
+      var sourceNominalName = info.source.attributes['data-identifier'].nodeValue;
+      var sourceType = getComponentTypeWithNominalName(sourceNominalName);
+
+      var targetNominalName = info.target.attributes['data-identifier'].nodeValue;
+      var targetType = getComponentTypeWithNominalName(targetNominalName);
+
+      return areTypesMatch(sourceType, targetType);
+    });
+
+
   };
 
-  this.connectComponents = function(sourceName, targetName, isDashed) {
-    window.setTimeout(function() {
+  this.connectComponents = function (sourceName, targetName, isDashed) {
+    window.setTimeout(function () {
       var sourceElement = angular.element('[data-identifier =' + sourceName + ']')[0];
       var targetElement = angular.element('[data-identifier =' + targetName + ']')[0];
 
@@ -52,7 +83,7 @@ app.service('UIComponents', function () {
       jsPlumb.connect({
         source: sourceElement.id,
         target: targetElement.id,
-        connector: [ "StateMachine", { curviness:10 } ],
+        connector: [ "StateMachine", { curviness: 10 } ],
         //anchors:["Bottom", [0.75,0,0,-1]],
         paintStyle: paintStyleObj
         //paintStyle:{ }
