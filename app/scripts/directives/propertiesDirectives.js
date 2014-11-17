@@ -121,16 +121,17 @@ app.directive('primitiveProperty', [function () {
       if (!scope.model && scope.property.default) {
         scope.model = scope.property.default[0];
       }
-      scope.itemSelected = function(selectedItem) {
-        var actualValue = selectedItem.value;
-        scope.model = actualValue;
-      };
+
 
       if (scope.property.allowableValues) {
+
         scope.showSelect = true;
         scope.allowableValues = [];
         _.each(scope.property.allowableValues, function( valueObj ) {
           _.each(valueObj, function(value, key) {
+            if (scope.model === value) {
+              scope.selectedItem = {name:key, value: value};
+            }
             //scope.allowableValues.push(value);
             scope.allowableValues.push({name:value, value: key});
           });
@@ -140,6 +141,11 @@ app.directive('primitiveProperty', [function () {
       } else {
         scope.showSimple = true;
       }
+
+
+      scope.itemSelected = function(selectedItem) {
+        scope.model = selectedItem;
+      };
     }
   };
 }]);
