@@ -17,12 +17,10 @@ app.directive('properties', [function () {
     templateUrl: 'templates/properties.html',
     link: function (scope) {
 
-      scope.name = scope.component.name;
-      scope.type = scope.component.type;
       if(scope.component.isDerived) {
         scope.componentModel = scope.template.Resources[scope.component.parent].Properties[scope.type];
       } else {
-        scope.componentModel = scope.template.Resources[scope.name].Properties;
+        scope.componentModel = scope.template.Resources[scope.component.name].Properties;
       }
 
       scope.propertyDragged = function($data, $event) {
@@ -78,7 +76,7 @@ app.directive('derivedProperties', ['AWSComponents',
     replace: true,
     restrict: 'E',
     scope: {
-      componentName: '=',
+      component: '=',
       componentProperties: '=',
       componentModel: '='
     },

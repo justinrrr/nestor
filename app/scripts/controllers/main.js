@@ -260,6 +260,7 @@ angular.module('nestorApp')
         }
 
         var newEntry = {};
+        c.index = $scope.template.Resources[parentName].Properties[data.name].length;
         $scope.template.Resources[parentName].Properties[data.name].push(newEntry);
 
         UIComponents.connectComponents(parentName, c.name, true);
