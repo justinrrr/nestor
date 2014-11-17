@@ -103,7 +103,7 @@ app.directive('plumbItem', function () {
 
       jsPlumb.makeTarget(element, {
         anchor: 'Continuous',
-        connector: [ "StateMachine", { curviness:10 } ],
+        connector: [ 'StateMachine', { curviness:10 } ],
         paintStyle: {
           strokeStyle: '#D7B371',
           fillStyle: 'transparent',
@@ -128,7 +128,7 @@ app.directive('plumbConnect', function () {
       jsPlumb.makeSource(element, {
         parent: $(element).parent(),
         anchor: ['Continuous', {faces: ['right', 'left', 'top', 'bottom']}],
-        connector: [ "StateMachine", { curviness:10 } ],
+        connector: [ 'StateMachine', { curviness:10 } ],
         paintStyle: {
           strokeStyle: '#D7B371',
           fillStyle: 'transparent',

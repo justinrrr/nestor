@@ -32,10 +32,11 @@ app.service('UIComponents', function () {
       });
     });
 
-    jsPlumb.bind("beforeDrop", function (info) {
+    jsPlumb.bind('beforeDrop', function (info) {
       var getComponentTypeWithNominalName = function (nominalName) {
-        if ($scope.addedComponents[nominalName])
+        if ($scope.addedComponents[nominalName]){
           return $scope.addedComponents[nominalName].type;
+        }
 
         return '';
       };
@@ -46,9 +47,9 @@ app.service('UIComponents', function () {
           return true;
         }
         return false;
-      }
+      };
 
-      if (info.sourceId == info.targetId) {
+      if (info.sourceId === info.targetId) {
         return false;
       }
 
@@ -83,7 +84,7 @@ app.service('UIComponents', function () {
       jsPlumb.connect({
         source: sourceElement.id,
         target: targetElement.id,
-        connector: [ "StateMachine", { curviness: 10 } ],
+        connector: [ 'StateMachine', { curviness: 10 } ],
         //anchors:["Bottom", [0.75,0,0,-1]],
         paintStyle: paintStyleObj
         //paintStyle:{ }

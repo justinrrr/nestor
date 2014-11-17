@@ -1,0 +1,41 @@
+<div>
+  <div class="cd-fixed-bg">
+    <h4 id="titleh4">Name: {{component.name}} </h4>
+    <h5 id="titleh5">Type: {{component.type}}</h5>
+  </div>
+
+
+  <h5 class="contenth5" ng-show="component.required">Required Parameters</h5>
+
+  <component-properties
+    ng-if="!component.isDerived"
+    component-name="component.name"
+    component-properties="component.required"
+    component-model="componentModel"
+    on-property-drag="propertyDragged(data, event)"
+    ></component-properties>
+
+  <derived-properties
+    ng-if="component.isDerived"
+    component-properties="component.required"
+    component-model="componentModel"
+    component="component"
+    ></derived-properties>
+
+  <h5 class="contenth5" ng-show="component.optional">Optional Parameters</h5>
+
+  <component-properties
+    ng-if="!component.isDerived"
+    component-name="component.name"
+    component-properties="component.optional"
+    component-model="componentModel"
+    on-property-drag="propertyDragged(data, event)"
+    ></component-properties>
+
+  <derived-properties
+    ng-if="component.isDerived"
+    component-properties="component.optional"
+    component-model="componentModel"
+    component="component.name"
+    ></derived-properties>
+</div>
