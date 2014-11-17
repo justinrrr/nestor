@@ -114,7 +114,7 @@
       <!--                  Component Library                    -->
       <!----------------------------------------------------------->
       <div class="right-column-bottom">
-        <div ng-show="selectedComponent">
+        <div ng-if="selectedComponent !== undefined">
           <properties
             component="selectedComponent"
             template="template"
