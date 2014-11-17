@@ -85,6 +85,7 @@ app.directive('derivedProperties', ['AWSComponents',
 
       scope.types = AWSComponents.propertyTypes;
 
+      scope.model = scope.componentModel[scope.component.type][scope.component.index];
       scope.AddToTable = function (listToAddTo, componentName, neededFields) {
 
         var item = {};
