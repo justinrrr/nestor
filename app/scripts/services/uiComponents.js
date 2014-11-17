@@ -23,6 +23,22 @@ app.service('UIComponents', function () {
   };
 
   this.setupJSPlumb = function ($scope) {
+    var getComponentTypeWithNominalName = function (nominalName) {
+      if ($scope.addedComponents[nominalName]){
+        return $scope.addedComponents[nominalName].type;
+      }
+
+      return '';
+    };
+
+    var areTypesMatch = function (sourceType, targetType) {
+      var targetObj = $scope.componentMetadata[targetType];
+      if (targetObj && targetObj.IncomingConnection.hasOwnProperty(sourceType)) {
+        return true;
+      }
+      return false;
+    };
+
     jsPlumb.bind('ready', function () {
       console.log('Set up jsPlumb listeners (should be only done once)');
       jsPlumb.bind('connection', function () {
@@ -33,21 +49,6 @@ app.service('UIComponents', function () {
     });
 
     jsPlumb.bind('beforeDrop', function (info) {
-      var getComponentTypeWithNominalName = function (nominalName) {
-        if ($scope.addedComponents[nominalName]){
-          return $scope.addedComponents[nominalName].type;
-        }
-
-        return '';
-      };
-
-      var areTypesMatch = function (sourceType, targetType) {
-        var targetObj = $scope.componentMetadata[targetType];
-        if (targetObj && targetObj.IncomingConnection.hasOwnProperty(sourceType)) {
-          return true;
-        }
-        return false;
-      };
 
       if (info.sourceId === info.targetId) {
         return false;
@@ -62,6 +63,16 @@ app.service('UIComponents', function () {
       return areTypesMatch(sourceType, targetType);
     });
 
+    jsPlumb.bind('beforeDetach', function(info){
+      var sourceNominalName = info.source.attributes['data-identifier'].nodeValue;
+      var targetNominalName = info.target.attributes['data-identifier'].nodeValue;
+
+      $scope.onConnectionDetached({
+        sourceName: sourceNominalName,
+        targetName: targetNominalName
+      });
+
+    });
 
   };
 

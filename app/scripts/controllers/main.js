@@ -179,22 +179,10 @@ angular.module('nestorApp')
 
 
       $scope.connectionDetached = function (sourceName, targetName) {
-        /*
-
-         if (!incomingConnectionProperies.isProperty) {
-         if (incomingConnectionProperies.value === 'Name') {
-         delete $scope.template.Resources[targetName][incomingConnectionProperies.name];
-         $scope.$digest();
-         }
-         }
-         */
         var sourceObject = $scope.template.Resources[sourceName];
-        var sourceType = AWSComponents.typeMappings[sourceObject.Type];
-
         var targetObject = $scope.template.Resources[targetName];
-        var targetType = AWSComponents.typeMappings[targetObject.Type];
 
-        var incomingProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
+        var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
         var finalTarget;
 
