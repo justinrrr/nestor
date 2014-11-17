@@ -135,7 +135,7 @@ angular.module('nestorApp')
 
         // If this connection needs to update Target
         if (incomingProperies.isProperty === 'true') {
-          finalTarget = targetObject['Properties'];
+          finalTarget = targetObject.Properties;
         }
         else {
           finalTarget = targetObject;
@@ -148,7 +148,7 @@ angular.module('nestorApp')
 
         // If this connection needs to update Source
         if (incomingProperies.isProperty === 'true') {
-          finalTarget = sourceObject['Properties'];
+          finalTarget = sourceObject.Properties;
         }
         else {
           finalTarget = sourceObject;
@@ -190,7 +190,7 @@ angular.module('nestorApp')
 
         // If this connection needs to update Target
         if (incomingProperies.isProperty === 'true') {
-          finalTarget = targetObject['Properties'];
+          finalTarget = targetObject.Properties;
         }
         else {
           finalTarget = targetObject;
@@ -203,7 +203,7 @@ angular.module('nestorApp')
 
         // If this connection needs to update Source
         if (incomingProperies.isProperty === 'true') {
-          finalTarget = sourceObject['Properties'];
+          finalTarget = sourceObject.Properties;
         }
         else {
           finalTarget = sourceObject;
@@ -344,6 +344,6 @@ angular.module('nestorApp')
       };
 
       $scope.download = function(){
-          $window.open("data:text/text;charset=utf-8," + encodeURIComponent($scope.templateString));
+          $window.open('data:text/text;charset=utf-8,' + encodeURIComponent($scope.templateString));
       };
     }]);

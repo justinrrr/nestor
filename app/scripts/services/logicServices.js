@@ -96,7 +96,7 @@ app.service('ConnectionUtils', function () {
     }
 
 
-  }
+  };
 
 
 });

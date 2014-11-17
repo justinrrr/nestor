@@ -68,19 +68,15 @@ app.directive('componentProperties', ['AWSComponents', function (AWSComponents) 
       };
 
       scope.isTable = function(prop) {
-        return scope.types.complex[prop.type] &&
-          scope.types.complex[prop.type].Display.type === 'table';
+        return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'table';
       };
 
       scope.isPrimitive = function(prop) {
-        return prop.type === 'String'
-          || prop.type =='Integer'
-          || prop.type=='Boolean';
+        return prop.type === 'String' || prop.type === 'Integer' || prop.type === 'Boolean';
       };
 
       scope.isDrager = function(prop) {
-        return scope.types.complex[prop.type]
-          && scope.types.complex[prop.type].Display.type === 'drag';
+        return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'drag';
       };
     }
   };
@@ -125,9 +121,7 @@ app.directive('derivedProperties', ['AWSComponents',
       };
 
       scope.isPrimitive = function(prop) {
-        return prop.type === 'String'
-          || prop.type =='Integer'
-          || prop.type=='Boolean';
+        return prop.type === 'String' || prop.type === 'Integer' || prop.type === 'Boolean';
       };
     }
   };
