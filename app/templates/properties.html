@@ -1,39 +1,41 @@
 <div>
   <div class="cd-fixed-bg">
-    <h4 id="titleh4">{{name}} </h4>
+    <h4 id="titleh4">Name: {{name}} </h4>
     <h5 id="titleh5">Type: {{type}}</h5>
   </div>
 
+
   <h5 class="contenth5" ng-show="component.required">Required Parameters</h5>
 
-  <component-properties ng-if="!component.isDerived"
-                        component-properties="component.required"
-                        resource-properties="template.Resources[name].Properties"
-                        on-property-drag="propertyDidDrag(data, event)"
-                        property-name="name"
-                        types="types"></component-properties>
+  <component-properties
+    ng-if="!component.isDerived"
+    component-name="name"
+    component-properties="component.required"
+    component-model="componentModel"
+    on-property-drag="propertyDragged(data, event)"
+    ></component-properties>
 
   <derived-properties
     ng-if="component.isDerived"
     component-properties="component.required"
-    resource-properties="template.Resources[component.parent].Properties[type]"
-    property-name="name"
-    types="types"></derived-properties>
+    component-model="componentModel"
+    component-name="name"
+    ></derived-properties>
 
   <h5 class="contenth5" ng-show="component.optional">Optional Parameters</h5>
 
-  <component-properties ng-if="!component.isDerived"
-                        component-properties="component.optional"
-                        resource-properties="template.Resources[name].Properties"
-                        on-property-drag="propertyDidDrag(data, event)"
-                        property-name="name"
-                        types="types"></component-properties>
+  <component-properties
+    ng-if="!component.isDerived"
+    component-name="name"
+    component-properties="component.optional"
+    component-model="componentModel"
+    on-property-drag="propertyDragged(data, event)"
+    ></component-properties>
 
   <derived-properties
-
     ng-if="component.isDerived"
     component-properties="component.optional"
-    resource-properties="template.Resources[component.parent].Properties[type]"
-    property-name="name"
-    types="types"></derived-properties>
+    component-model="componentModel"
+    component-name="name"
+    ></derived-properties>
 </div>

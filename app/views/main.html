@@ -106,8 +106,12 @@
       <!--                  Component Library                    -->
       <!----------------------------------------------------------->
       <div class="right-column-bottom">
-        <div ng-show="selectedComponent">
-          <properties component="selectedComponent"></properties>
+        <div ng-if="selectedComponent">
+          <properties
+            component="selectedComponent"
+            template="template"
+            on-property-drag="propertyDidDrag(data, event)"
+            ></properties>
         </div>
       </div>
     </div>

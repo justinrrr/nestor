@@ -10,48 +10,60 @@ app.directive('properties', [function () {
     replace: true,
     restrict: 'E',
     scope: {
-      component: '='
+      component: '=',
+      template: '=',
+      onPropertyDrag: '&'
     },
     templateUrl: 'templates/properties.html',
     link: function (scope) {
 
       scope.name = scope.component.name;
       scope.type = scope.component.type;
+      if(scope.component.isDerived) {
+        scope.componentModel = scope.template.Resources[scope.component.parent].Properties[scope.type];
+      } else {
+        scope.componentModel = scope.template.Resources[scope.name].Properties;
+      }
+
+      scope.propertyDragged = function($data, $event) {
+        scope.onPropertyDrag({data: $data, event: $event});
+      }
 
     }
   };
 }]);
 
-app.directive('componentProperties', [function () {
+app.directive('componentProperties', ['AWSComponents', function (AWSComponents) {
   return {
     replace: true,
     restrict: 'E',
     scope: {
-      propertyName: '=',
+      componentName: '=',
       componentProperties: '=',
-      resourceProperties: '=',
-      onPropertyDrag: '&',
-      types: '='
+      componentModel: '=',
+      onPropertyDrag: '&'
     },
     templateUrl: 'templates/component_properties.html',
     link: function (scope) {
 
-      scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
+      scope.types = AWSComponents.propertyTypes;
+
+      scope.AddToTable = function (listToAddTo, componentName, neededFields) {
 
         var item = {};
         _.each(neededFields, function (property) {
           item[property.name] = property.type;
         });
 
-        if (!listToAddTo[propertyName]) {
-          listToAddTo[propertyName] = [];
+        if (!listToAddTo[componentName]) {
+          listToAddTo[componentName] = [];
         }
 
-        listToAddTo[propertyName].push(item);
+        listToAddTo[componentName].push(item);
       };
 
       scope.dragFinished = function ($data, $event) {
-        $data.parent = scope.propertyName;
+        $data.parent = scope.componentName;
         scope.onPropertyDrag({data: $data, event: $event});
       };
     }
@@ -60,30 +72,33 @@ app.directive('componentProperties', [function () {
 }]);
 
 
-app.directive('derivedProperties', [function () {
+app.directive('derivedProperties', ['AWSComponents',
+  function (AWSComponents) {
   return {
     replace: true,
     restrict: 'E',
     scope: {
-      propertyName: '=',
+      componentName: '=',
       componentProperties: '=',
-      resourceProperties: '=',
-      types: '='
+      componentModel: '='
     },
     templateUrl: 'templates/derived_properties.html',
     link: function (scope) {
-      scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
+
+      scope.types = AWSComponents.propertyTypes;
+
+      scope.AddToTable = function (listToAddTo, componentName, neededFields) {
 
         var item = {};
         _.each(neededFields, function (property) {
           item[property.name] = property.type;
         });
 
-        if (!listToAddTo[propertyName]) {
-          listToAddTo[propertyName] = [];
+        if (!listToAddTo[componentName]) {
+          listToAddTo[componentName] = [];
         }
 
-        listToAddTo[propertyName].push(item);
+        listToAddTo[componentName].push(item);
       };
     }
   };
@@ -156,7 +171,7 @@ app.directive('tableProperty', [function () {
         });
 
       };
-      scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
+      scope.AddToTable = function (listToAddTo, componentName, neededFields) {
 
         var allFields = neededFields.required || [];
         if (neededFields.optional) {
@@ -167,11 +182,11 @@ app.directive('tableProperty', [function () {
           item[property.name] = property.type;
         });
 
-        if (!listToAddTo[propertyName]) {
-          listToAddTo[propertyName] = [];
+        if (!listToAddTo[componentName]) {
+          listToAddTo[componentName] = [];
         }
 
-        listToAddTo[propertyName].push(item);
+        listToAddTo[componentName].push(item);
       };
 
       scope.saveEntry = function($data, $index) {
