@@ -5,7 +5,7 @@
 
 var app = angular.module('nestorApp.services');
 
-app.service('UIComponents', function () {
+app.service('UIComponents', ['PlumbStyles', function (PlumbStyles) {
   //The draggable component on the canvas
   //only set parent name if its a draggable property
   this.Component = function (id, type, name, image, requiredMetadata, optionalMetadata, description, x, y, parentName) {
@@ -81,26 +81,14 @@ app.service('UIComponents', function () {
       var sourceElement = angular.element('[data-identifier =' + sourceName + ']')[0];
       var targetElement = angular.element('[data-identifier =' + targetName + ']')[0];
 
-      var paintStyleObj = {
-        strokeStyle: '#225588',
-        fillStyle: 'transparent',
-        radius: 4,
-        lineWidth: 1
-      };
-
-      if (isDashed) {
-        paintStyleObj.dashstyle = '8 6';
-      }
+      var paintStyle = isDashed ? PlumbStyles.dashedPaintStyle : PlumbStyles.normalPaintStyle;
 
       jsPlumb.connect({
         source: sourceElement.id,
         target: targetElement.id,
-        connector: [ 'StateMachine', { curviness: 10 } ],
-        //anchors:["Bottom", [0.75,0,0,-1]],
-        paintStyle: paintStyleObj
-        //paintStyle:{ }
-        //endpointStyle:{fillStyle:'rgb(243,229,0)'}
+        connector: PlumbStyles.derivedConnectorStyle,
+        paintStyle: paintStyle
       });
     }, 100);
   };
-});
+}]);

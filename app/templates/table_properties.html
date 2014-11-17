@@ -32,12 +32,12 @@
 
           <!--the actual table data-->
           <tbody>
-          <tr ng-repeat="tableProp in propertyModel[property.name]">
+          <tr ng-if="!isSingleCellTable()" ng-repeat="tableProp in propertyModel[property.name]">
             <td ng-repeat="tableHeading in propertyHeadings.required"
                 data-title={{tableHeading.name}}>
               <div ng-if="!tableHeading.hasOwnProperty('allowableValues')">
                     <span
-                      editable-text="propertyModel[property.name][tableHeading.name]"
+                      editable-text="tableProp[tableHeading.name]"
                       e-name="{{tableHeading.name}}"
                       e-form="rowform"
                       e-required class="editable">
@@ -61,7 +61,7 @@
                 data-title={{tableHeading.name}}>
               <div ng-if="!tableHeading.hasOwnProperty('allowableValues')">
                     <span
-                      editable-text="propertyModel[property.name][tableHeading.name]"
+                      editable-text="tableProp[tableHeading.name]"
                       e-name="{{tableHeading.name}}" e-form="rowform">
                       {{tableProp[tableHeading.name]}}
                     </span>
@@ -108,7 +108,82 @@
 
 
           </tr>
+          <tr ng-if="isSingleCellTable()">
+            <td ng-repeat="tableHeading in propertyHeadings.required"
+                data-title={{tableHeading.name}}>
+              <div ng-if="!tableHeading.hasOwnProperty('allowableValues')">
+                    <span
+                      editable-text="propertyModel[property.name][tableHeading.name]"
+                      e-name="{{tableHeading.name}}"
+                      e-form="rowform"
+                      e-required class="editable">
+                      {{propertyModel[property.name][tableHeading.name]}}
+                    </span>
 
+              </div>
+              <div>
+              <span ng-if="tableHeading.hasOwnProperty('allowableValues')"
+                    editable-select="propertyModel[property.name][tableHeading.name]"
+                    e-name="{{tableHeading.name}}"
+                    onshow="loadAllowableValues(tableHeading)"
+                    e-form="rowform" e-required
+                    e-ng-options="value.name for value in tableHeading.valueMap">
+                      {{propertyModel[property.name][tableHeading.name]}}
+                    </span>
+
+              </div>
+            </td>
+            <td ng-repeat="tableHeading in propertyHeadings.optional"
+                data-title={{tableHeading.name}}>
+              <div ng-if="!tableHeading.hasOwnProperty('allowableValues')">
+                    <span
+                      editable-text="propertyModel[property.name][tableHeading.name]"
+                      e-name="{{tableHeading.name}}" e-form="rowform">
+                      {{propertyModel[property.name][tableHeading.name]}}
+                    </span>
+
+              </div>
+              <div>
+              <span ng-if="tableHeading.hasOwnProperty('allowableValues')"
+                    editable-select="propertyModel[property.name][tableHeading.name]"
+                    e-name="{{tableHeading.name}}"
+                    onshow="loadAllowableValues(tableHeading)"
+                    e-form="rowform"
+                    e-ng-options="value.name for value in tableHeading.valueMap">
+                      {{propertyModel[property.name][tableHeading.name]}}
+              </span>
+              </div>
+            </td>
+
+
+            <!--These are the edit buttons-->
+            <td style="white-space: nowrap">
+              <!-- form -->
+              <form editable-form
+                    name="rowform"
+                    onbeforesave="saveEntry($data, $index)"
+                    ng-show="rowform.$visible"
+                    class="form-buttons form-inline">
+                <!--shown="inserted == user">-->
+                <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
+                  save
+                </button>
+                <button
+                  type="button"
+                  ng-disabled="rowform.$waiting"
+                  ng-click="rowform.$cancel()"
+                  class="btn btn-default">
+                  cancel
+                </button>
+              </form>
+              <div class="buttons" ng-show="!rowform.$visible">
+                <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
+                <button class="btn btn-danger" ng-click="removeRow($index)">del</button>
+              </div>
+            </td>
+
+
+          </tr>
           </tbody>
         </table>
       </div>

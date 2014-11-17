@@ -155,6 +155,8 @@ app.directive('tableProperty', [function () {
         required: scope.propertyTypes.types.required,
         optional: scope.propertyTypes.types.optional
       };
+
+
       scope.loadAllowableValues = function (item) {
         item.valueMap = [];
         _.each(item.allowableValues, function (valueObj) {
@@ -162,6 +164,10 @@ app.directive('tableProperty', [function () {
             item.valueMap.push({name: value, value: key});
           });
         });
+      };
+
+      scope.isSingleCellTable = function() {
+        return scope.propertyTypes.Display.maxSize === 1;
       };
 
       scope.AddToTable = function (listToAddTo, componentName, neededFields) {
@@ -175,15 +181,25 @@ app.directive('tableProperty', [function () {
           item[property.name] = property.type;
         });
 
-        if (!listToAddTo[componentName]) {
-          listToAddTo[componentName] = [];
+        //the maximum size of the table is either 1 or more than 1.
+        //in the case that the maximum size is 1 we shouldn't add values anymore
+        //and should not add the value to a list
+        if (scope.isSingleCellTable()) {
+          listToAddTo[componentName] = item;
+        } else {
+          if (!listToAddTo[componentName]) {
+            listToAddTo[componentName] = [];
+          }
+          listToAddTo[componentName].push(item);
         }
-
-        listToAddTo[componentName].push(item);
       };
 
       scope.saveEntry = function ($data, $index) {
-        var resourceProperties = scope.propertyModel[scope.property.name][$index];
+
+        var resourceProperties = scope.isSingleCellTable() ?
+          scope.propertyModel[scope.property.name] :
+          scope.propertyModel[scope.property.name][$index];
+
         _.each($data, function (enteredValue, enteredName) {
           if (enteredValue && enteredValue.value) {
             enteredValue = enteredValue.value;
@@ -193,7 +209,11 @@ app.directive('tableProperty', [function () {
       };
 
       scope.removeRow = function ($index) {
-        scope.propertyModel[scope.property.name].splice($index, 1);
+        if(scope.isSingleCellTable) {
+          delete scope.propertyModel[scope.property.name];
+        } else {
+          scope.propertyModel[scope.property.name].splice($index, 1);
+        }
       };
     }
   };
