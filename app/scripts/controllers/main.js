@@ -93,8 +93,9 @@ angular.module('nestorApp')
       // UI Events
       //--------------------------------------
 
-      $scope.componentPressed = function () {
+      $scope.componentPressed = function (component) {
         $scope.isShowingTop = false;
+        $scope.nestedComponent = component;
       };
 
       $scope.componentBackPressed = function () {

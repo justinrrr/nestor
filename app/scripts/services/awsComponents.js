@@ -95,123 +95,123 @@ app.service('AWSComponents', function () {
         description: 'Resizable compute machines',
         subcomponents: [
           {
-            name: 'EC2 DHCP options',
+            name: 'Instance',
             group: 'EC2',
             image: 'images/aws/ec2.png',
             description: 'Resizable compute machines',
             type: 'AWS::EC2::Instance'
           },
           {
-            name: 'EC2 EIP',
+            name: 'Security Group',
+            group: 'EC2',
+            image: 'images/aws/securygroup.png',
+            description: 'Virtual firewall',
+            type: 'AWS::EC2::SecurityGroup'
+          },
+          {
+            name: 'EIP',
             group: 'EC2',
             image: 'images/aws/eip.png',
+            description: 'Static IP address',
+            type: 'AWS::EC2::EIP'
+          },
+          {
+            name: 'Volume',
+            group: 'EC2',
+            image: 'images/aws/ebs.png',
+            description: 'Elastic Block Store volume',
+            type: 'AWS::EC2::Volume'
+          },
+          {
+            name: 'VPC',
+            group: 'EC2',
+            image: 'images/aws/vpc.png',
+            description: 'Logically isolated virtual network',
+            type: 'AWS::EC2::VPC'
+          },
+          {
+            name: 'Subnet',
+            group: 'EC2',
+            image: 'images/aws/subnet.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Subnet'
+          },
+          {
+            name: 'EIP Association',
+            group: 'EC2',
+            image: 'images/aws/eipassociation.png',
             description: 'Elastic(Static) IP address that are dynamically allocated',
             type: 'AWS::EC2::EIP'
           },
           {
-            name: 'EC2 EIP Association',
+            name: 'Volume Attachment',
             group: 'EC2',
-            image: 'images/aws/eip.png',
-            description: 'Elastic(Static) IP address that are dynamically allocated',
-            type: 'AWS::EC2::EIP'
-          },
-          {
-            name: 'EC2 Instance',
-            group: 'EC2',
-            image: 'images/aws/ec2.png',
+            image: 'images/aws/ebsassociation.png',
             description: 'Resizable compute machines',
             type: 'AWS::EC2::Instance'
           },
           {
-            name: 'EC2 Internet Gateway',
+            name: 'SecurityGroup Ingress',
             group: 'EC2',
-            image: 'images/aws/ec2.png',
-            description: 'Resizable compute machines',
-            type: 'AWS::EC2::Instance'
-          },
-          {
-            name: 'EC2 Route',
-            group: 'EC2',
-            image: 'images/aws/ec2.png',
-            description: 'Resizable compute machines',
-            type: 'AWS::EC2::Instance'
-          },
-          {
-            name: 'EC2 Route Table',
-            group: 'EC2',
-            image: 'images/aws/ec2.png',
-            description: 'Resizable compute machines',
-            type: 'AWS::EC2::Instance'
-          },
-          {
-            name: 'EC2 SecurityGroup',
-            group: 'EC2',
-            image: 'images/aws/securityGroup.png',
+            image: 'images/aws/securitygroupingress.png',
             description: 'Creates an Amazon EC2 security group',
-            type: 'AWS::EC2::SecurityGroup'
+            type: 'AWS::EC2::SecurityGroupIngress'
           },
           {
-            name: 'EC2 SecurityGroup Ingress',
+            name: 'SecurityGroup Egress',
             group: 'EC2',
-            image: 'images/aws/securityGroup.png',
+            image: 'images/aws/securitygroupegress.png',
             description: 'Creates an Amazon EC2 security group',
-            type: 'AWS::EC2::SecurityGroup'
+            type: 'AWS::EC2::SecurityGroupEgress'
           },
           {
-            name: 'EC2 SecurityGroup Egress',
+            name: 'Route',
             group: 'EC2',
-            image: 'images/aws/securityGroup.png',
-            description: 'Creates an Amazon EC2 security group',
-            type: 'AWS::EC2::SecurityGroup'
+            image: 'images/aws/route.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Route'
           },
           {
-            name: 'EC2 Subnet',
+            name: 'Route Table',
+            group: 'EC2',
+            image: 'images/aws/routetable.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::RouteTable'
+          },
+          {
+            name: 'Subnet-RouteTable Association',
             group: 'EC2',
             image: 'images/aws/ec2.png',
             description: 'Resizable compute machines',
-            type: 'AWS::EC2::Instance'
+            type: 'AWS::EC2::SubnetRouteTableAssociation'
           },
           {
-            name: 'EC2 SubnetRouteTableAssociation',
+            name: 'Internet Gateway',
             group: 'EC2',
-            image: 'images/aws/ec2.png',
+            image: 'images/aws/internetgateway.png',
             description: 'Resizable compute machines',
-            type: 'AWS::EC2::Instance'
+            type: 'AWS::EC2::InternetGateway'
           },
           {
-            name: 'EC2 Volume',
-            group: 'EC2',
-            image: 'images/aws/ec2.png',
-            description: 'Resizable compute machines',
-            type: 'AWS::EC2::Instance'
-          },
-          {
-            name: 'EC2 Volume Attachment',
-            group: 'EC2',
-            image: 'images/aws/ec2.png',
-            description: 'Resizable compute machines',
-            type: 'AWS::EC2::Instance'
-          },
-          {
-            name: 'EC2 VPC',
+            name: 'VPC-Gateway Attacment',
             group: 'EC2',
             image: 'images/aws/vpc.png',
             description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
-            type: 'resource'
+            type: 'AWS::EC2::VPCGatewayAttachment'
           },
           {
-            name: 'EC2 VPCGatewayAttacment',
+            name: 'DHCP Options',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::DHCPOptions'
+          },
+          {
+            name: 'VPC-DHCP Options Association',
             group: 'EC2',
             image: 'images/aws/vpc.png',
             description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
-            type: 'resource'
-          },
-          {
-            name: 'EC2 VPC DHCP Options Association',
-            group: 'EC2',
-            image: 'images/aws/vpc.png',
-            description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
-            type: 'resource'
+            type: 'AWS::EC2::VPCDHCPOptionsAssociation'
           }
         ]
       },
