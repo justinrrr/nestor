@@ -19,6 +19,7 @@ app.service('AWSComponents', function () {
         Outputs: {}
       };
     };
+
     this.tasks = [
       {
         name: 'Simple static website',
@@ -86,469 +87,515 @@ app.service('AWSComponents', function () {
 
     ];
 
+    this.groups = [];
     this.components = [
       {
-        name: 'Autoscaling Group',
-        group: 'Autoscaling',
-        image: 'images/aws/autoscaling.png',
-        description: 'Scale your EC2 capacity up or down automatically according to conditions you define',
-        type: 'resource'
-      },
-      {
-        name: 'Autoscaling Launch Configuration',
-        group: 'Autoscaling',
-        image: 'images/aws/autoscaling.png',
-        description: 'Auto Scaling launch configuration',
-        type: 'resource'
-      },
-      {
-        name: 'Autoscaling Scaling Policy',
-        group: 'Autoscaling',
-        image: 'images/aws/autoscaling.png',
-        description: 'scaling policy to an auto scaling group',
-        type: 'resource'
-      },
-      {
-        name: 'Autoscaling Scheduled Action',
-        group: 'Autoscaling',
-        image: 'images/aws/autoscaling.png',
-        description: 'scaling policy to an auto scaling group',
-        type: 'resource'
-      },
-      {
-        name: 'CloudFormation Authentication',
-        group: 'Cloudformation',
-        image: 'images/aws/autoscaling.png',
-        description: 'scaling policy to an auto scaling group',
-        type: 'resource'
-      },
-      {
-        name: 'CloudFormation Custom Resource',
-        group: 'Cloudformation',
-        image: 'images/aws/autoscaling.png',
-        description: '',
-        type: 'resource'
-      },
-      {
-        name: 'CloudFormation Init',
-        group: 'Cloudformation',
-        image: 'images/aws/autoscaling.png',
-        description: '',
-        type: 'resource'
-      },
-      {
-        name: 'CloudFormation WaitCondition',
-        group: 'Cloudformation',
-        image: 'images/aws/autoscaling.png',
-        description: '',
-        type: 'resource'
-      },
-      {
-        name: 'CloudFormation WaitCondition Handle',
-        group: 'Cloudformation',
-        image: 'images/aws/autoscaling.png',
-        description: '',
-        type: 'resource'
-      },
-      {
-        name: 'Cloudfront Distribution',
-        group: 'Cloudfront',
-        image: 'images/aws/autoscaling.png',
-        description: '',
-        type: 'resource'
-      },
-      {
-        name: 'Cloudwatch Alarm',
-        group: 'Cloudwatch',
-        image: 'images/aws/autoscaling.png',
-        description: '',
-        type: 'resource'
-      },
-      {
-        name: 'DynamoDb Table',
-        group:'DynamoDb',
-        image: 'images/aws/dynamo.png',
-        description: 'NoSQL database service',
-        type: 'AWS::DynamoDB::Table'
-      },
-      {
-        name: 'EC2 DHCP options',
-        group: 'EC2',
+        name: 'EC2',
         image: 'images/aws/ec2.png',
         description: 'Resizable compute machines',
-        type: 'AWS::EC2::Instance'
+        subcomponents: [
+          {
+            name: 'EC2 DHCP options',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'EC2 EIP',
+            group: 'EC2',
+            image: 'images/aws/eip.png',
+            description: 'Elastic(Static) IP address that are dynamically allocated',
+            type: 'AWS::EC2::EIP'
+          },
+          {
+            name: 'EC2 EIP Association',
+            group: 'EC2',
+            image: 'images/aws/eip.png',
+            description: 'Elastic(Static) IP address that are dynamically allocated',
+            type: 'AWS::EC2::EIP'
+          },
+          {
+            name: 'EC2 Instance',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'EC2 Internet Gateway',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'EC2 Route',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'EC2 Route Table',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'EC2 SecurityGroup',
+            group: 'EC2',
+            image: 'images/aws/securityGroup.png',
+            description: 'Creates an Amazon EC2 security group',
+            type: 'AWS::EC2::SecurityGroup'
+          },
+          {
+            name: 'EC2 SecurityGroup Ingress',
+            group: 'EC2',
+            image: 'images/aws/securityGroup.png',
+            description: 'Creates an Amazon EC2 security group',
+            type: 'AWS::EC2::SecurityGroup'
+          },
+          {
+            name: 'EC2 SecurityGroup Egress',
+            group: 'EC2',
+            image: 'images/aws/securityGroup.png',
+            description: 'Creates an Amazon EC2 security group',
+            type: 'AWS::EC2::SecurityGroup'
+          },
+          {
+            name: 'EC2 Subnet',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'EC2 SubnetRouteTableAssociation',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'EC2 Volume',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'EC2 Volume Attachment',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'EC2 VPC',
+            group: 'EC2',
+            image: 'images/aws/vpc.png',
+            description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
+            type: 'resource'
+          },
+          {
+            name: 'EC2 VPCGatewayAttacment',
+            group: 'EC2',
+            image: 'images/aws/vpc.png',
+            description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
+            type: 'resource'
+          },
+          {
+            name: 'EC2 VPC DHCP Options Association',
+            group: 'EC2',
+            image: 'images/aws/vpc.png',
+            description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
+            type: 'resource'
+          }
+        ]
       },
       {
-        name: 'EC2 EIP',
-        group: 'EC2',
-        image: 'images/aws/eip.png',
-        description: 'Elastic(Static) IP address that are dynamically allocated',
-        type: 'AWS::EC2::EIP'
-      },
-      {
-        name: 'EC2 EIP Association',
-        group: 'EC2',
-        image: 'images/aws/eip.png',
-        description: 'Elastic(Static) IP address that are dynamically allocated',
-        type: 'AWS::EC2::EIP'
-      },
-      {
-        name: 'EC2 Instance',
-        group: 'EC2',
-        image: 'images/aws/ec2.png',
-        description: 'Resizable compute machines',
-        type: 'AWS::EC2::Instance'
-      },
-      {
-        name: 'EC2 Internet Gateway',
-        group: 'EC2',
-        image: 'images/aws/ec2.png',
-        description: 'Resizable compute machines',
-        type: 'AWS::EC2::Instance'
-      },
-      {
-        name: 'EC2 Route',
-        group: 'EC2',
-        image: 'images/aws/ec2.png',
-        description: 'Resizable compute machines',
-        type: 'AWS::EC2::Instance'
-      },
-      {
-        name: 'EC2 Route Table',
-        group: 'EC2',
-        image: 'images/aws/ec2.png',
-        description: 'Resizable compute machines',
-        type: 'AWS::EC2::Instance'
-      },
-      {
-        name: 'EC2 SecurityGroup',
-        group: 'EC2',
-        image: 'images/aws/securityGroup.png',
-        description: 'Creates an Amazon EC2 security group',
-        type: 'AWS::EC2::SecurityGroup'
-      },
-      {
-        name: 'EC2 SecurityGroup Ingress',
-        group: 'EC2',
-        image: 'images/aws/securityGroup.png',
-        description: 'Creates an Amazon EC2 security group',
-        type: 'AWS::EC2::SecurityGroup'
-      },
-      {
-        name: 'EC2 SecurityGroup Egress',
-        group: 'EC2',
-        image: 'images/aws/securityGroup.png',
-        description: 'Creates an Amazon EC2 security group',
-        type: 'AWS::EC2::SecurityGroup'
-      },
-      {
-        name: 'EC2 Subnet',
-        group: 'EC2',
-        image: 'images/aws/ec2.png',
-        description: 'Resizable compute machines',
-        type: 'AWS::EC2::Instance'
-      },
-      {
-        name: 'EC2 SubnetRouteTableAssociation',
-        group: 'EC2',
-        image: 'images/aws/ec2.png',
-        description: 'Resizable compute machines',
-        type: 'AWS::EC2::Instance'
-      },
-      {
-        name: 'EC2 Volume',
-        group: 'EC2',
-        image: 'images/aws/ec2.png',
-        description: 'Resizable compute machines',
-        type: 'AWS::EC2::Instance'
-      },
-      {
-        name: 'EC2 Volume Attachment',
-        group: 'EC2',
-        image: 'images/aws/ec2.png',
-        description: 'Resizable compute machines',
-        type: 'AWS::EC2::Instance'
-      },
-      {
-        name: 'EC2 VPC',
-        group: 'EC2',
-        image: 'images/aws/vpc.png',
-        description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
-        type: 'resource'
-      },
-      {
-        name: 'EC2 VPCGatewayAttacment',
-        group: 'EC2',
-        image: 'images/aws/vpc.png',
-        description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
-        type: 'resource'
-      },
-      {
-        name: 'EC2 VPC DHCP Options Association',
-        group: 'EC2',
-        image: 'images/aws/vpc.png',
-        description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
-        type: 'resource'
-      },
-      {
-        name: 'Elasticache Cache Cluster',
-        group: 'Elasticache',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'Elasticache Parameter Group',
-        group: 'Elasticache',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'Elasticache Security Group',
-        group: 'Elasticache',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'Elasticache Security Group Ingress',
-        group: 'Elasticache',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'Elasticache Subnet Group',
-        group: 'Elasticache',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
+
+        name: 'Autoscaling',
+        image: 'images/aws/autoscaling.png',
+        description: 'Scale your capacity up or down',
+        subcomponents: [
+          {
+            name: 'Autoscaling Group',
+            group: 'Autoscaling',
+            image: 'images/aws/autoscaling.png',
+            description: 'Scale your EC2 capacity up or down',
+            type: 'AWS::AutoScaling::AutoScalingGroup'
+          },
+          {
+            name: 'Autoscaling Launch Config',
+            group: 'Autoscaling',
+            image: 'images/aws/launchconf.png',
+            description: 'Auto Scaling launch configuration',
+            type: 'AWS::AutoScaling::LaunchConfiguration'
+          },
+          {
+            name: 'Autoscaling Scaling Policy',
+            group: 'Autoscaling',
+            image: 'images/aws/autoscalingpolicy.png',
+            description: 'scaling policy to an auto scaling group',
+            type: 'AWS::AutoScaling::ScalingPolicy'
+          },
+          {
+            name: 'Autoscaling Scheduled Action',
+            group: 'Autoscaling',
+            image: 'images/aws/autoscalingschedule.png',
+            description: 'Creates a scheduled scaling action for an Auto Scaling group',
+            type: 'AWS::AutoScaling::ScheduledAction'
+          }
+        ]
       },
       {
         name: 'Elastic Load Balancer',
-        group: 'ELB',
         image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
+        description: 'Distributes traffic across instances',
+        subcomponents: [
+          {
+            name: 'Elastic Load Balancer',
+            group: 'ELB',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          }
+        ]
       },
       {
-        name: 'IAM Access Key',
-        group: 'IAM',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'IAM Group',
-        group: 'IAM',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'IAM InstanceProfile',
-        group: 'IAM',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'IAM Policy',
-        group: 'IAM',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'IAM Role',
-        group: 'IAM',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'IAM User',
-        group: 'IAM',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'IAM User To Group Addition',
-        group: 'IAM',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'IAM User To Group Addition',
-        group: 'ELB',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'RDS DB Instance',
-        group: 'RDS',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'RDS DB Parameter Group',
-        group: 'RDS',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'RDS DB Subnet Group',
-        group: 'RDS',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'RDS DB Security Group',
-        group: 'RDS',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'RDS DB Security Group Ingress',
-        group: 'RDS',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
-      },
-      {
-        name: 'Route53 Record Set',
-        group: 'Route53',
+        name: 'Route53',
         image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        description: 'Domain Name System Service',
+        subcomponents: [
+          {
+            name: 'Route53 Record Set',
+            group: 'Route53',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'Route53 HealthCheck',
+            group: 'Route53',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'Route53 HostedZone',
+            group: 'Route53',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'Route53 Record Set Group',
+            group: 'Route53',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          }
+        ]
       },
       {
-        name: 'Route53 HealthCheck',
-        group: 'Route53',
-        image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        name: 'DynamoDB',
+        image: 'images/aws/dynamo.png',
+        description: 'NoSQL database service',
+        subcomponents: [
+          {
+            name: 'DynamoDb Table',
+            group: 'DynamoDb',
+            image: 'images/aws/dynamo.png',
+            description: 'NoSQL database service',
+            type: 'AWS::DynamoDB::Table'
+          }
+        ]
       },
       {
-        name: 'Route53 HostedZone',
-        group: 'Route53',
-        image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        name: 'RDS',
+        image: 'images/aws/rds.png',
+        description: 'Relational Database service',
+        subcomponents: [
+          {
+            name: 'RDS DB Instance',
+            group: 'RDS',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'RDS DB Parameter Group',
+            group: 'RDS',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'RDS DB Subnet Group',
+            group: 'RDS',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'RDS DB Security Group',
+            group: 'RDS',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'RDS DB Security Group Ingress',
+            group: 'RDS',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          }
+        ]
       },
       {
-        name: 'Route53 Record Set Group',
-        group: 'Route53',
-        image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        name: 'Elasticache',
+        image: 'images/aws/elasticache.png',
+        description: 'Distributed cache',
+        subcomponents: [
+          {
+            name: 'Elasticache Cache Cluster',
+            group: 'Elasticache',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'Elasticache Parameter Group',
+            group: 'Elasticache',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'Elasticache Security Group',
+            group: 'Elasticache',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'Elasticache Security Group Ingress',
+            group: 'Elasticache',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'Elasticache Subnet Group',
+            group: 'Elasticache',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          }
+        ]
       },
       {
-        name: 'S3 Bucket',
-        group: 'S3',
-        image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        name: 'SNS',
+        image: 'images/aws/sns.png',
+        description: 'push messaging service',
+        subcomponents: [
+          {
+            name: 'SNS Topic',
+            group: 'SNS',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'SNS Topic Policy',
+            group: 'SNS',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          }
+        ]
       },
       {
-        name: 'S3 Bucket Policy',
-        group: 'S3',
-        image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        name: 'SQS',
+        image: 'images/aws/sqs.png',
+        description: 'message queuing service',
+        subcomponents: [
+          {
+            name: 'SQS Queue',
+            group: 'SQS',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'SQS Queue Policy',
+            group: 'SQS',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          }
+        ]
       },
       {
-        name: 'SNS Topic',
-        group: 'SNS',
-        image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        name: 'S3',
+        image: 'images/aws/s3.png',
+        description: 'Storage service',
+        subcomponents: [
+          {
+            name: 'S3 Bucket',
+            group: 'S3',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'S3 Bucket Policy',
+            group: 'S3',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          }
+        ]
       },
       {
-        name: 'SNS Topic Policy',
-        group: 'SNS',
-        image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        name: 'Cloudfront',
+        image: 'images/aws/cloudfront.png',
+        description: 'Content delivery web service',
+        subcomponents: [
+          {
+            name: 'Cloudfront Distribution',
+            group: 'Cloudfront',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          }
+        ]
+      },
+
+      {
+        name: 'IAM',
+        image: 'images/aws/IAM.png',
+        description: 'Identity & access management',
+        subcomponents: [
+          {
+            name: 'IAM Access Key',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM Group',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM InstanceProfile',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM Policy',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM Role',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM User',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM User To Group Addition',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM User To Group Addition',
+            group: 'ELB',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          }
+        ]
       },
       {
-        name: 'SQS Queue',
-        group: 'SQS',
-        image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        name: 'Cloudwatch',
+        image: 'images/aws/cloudwatch.png',
+        description: 'Monitoring service',
+        subcomponents: [
+          {
+            name: 'Cloudwatch Alarm',
+            group: 'Cloudwatch',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          }
+        ]
       },
       {
-        name: 'SQS Queue Policy',
-        group: 'SQS',
-        image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        name: 'Cloudformation',
+        image: 'images/aws/cloudformation.png',
+        description: 'Create and manage resources',
+        subcomponents: [
+          {
+            name: 'CloudFormation Authentication',
+            group: 'Cloudformation',
+            image: 'images/aws/cloudformationauthentication.png',
+            description: 'scaling policy to an auto scaling group',
+            type: 'resource'
+          },
+          {
+            name: 'CloudFormation Custom Resource',
+            group: 'Cloudformation',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          },
+          {
+            name: 'CloudFormation Init',
+            group: 'Cloudformation',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          },
+          {
+            name: 'CloudFormation WaitCondition',
+            group: 'Cloudformation',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          },
+          {
+            name: 'CloudFormation WaitCondition Handle',
+            group: 'Cloudformation',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          }
+        ]
       }
-      //{
-      //  name: 'Cloud Formation',
-      //  image: 'images/aws/cloudformation.png',
-      //  description: 'Import existing infrastructure templates'
-      //},
-      //{
-      //  name: 'Cloud Front',
-      //  image: 'images/aws/cloudfront.png',
-      //  description: 'Content Delivery Network for your AWS resources'
-      //},
-      //{
-      //  name: 'Cloud Search',
-      //  image: 'images/aws/cloudsearch.png',
-      //  description: 'Service to set up, manage, and scale a custom search solution'
-      //},
-      //{
-      //  name: 'EBS',
-      //  image: 'images/aws/ebs.png',
-      //  description: 'Persistent block level storage volumes for EC2 instances'
-      //
-      //},
-      //{
-      //  name: 'Elasticache',
-      //  image: 'images/aws/elasticache.png',
-      //  description: 'Deploy, operate, and scale an in-memory cache'
-      //},
-      //{
-      //  name: 'rds',
-      //  image: 'images/aws/rds.png',
-      //  description: 'Set up, operate, and scale a relational database'
-      //},
-      //{
-      //  name: 'redshift',
-      //  image: 'images/aws/redshift.png',
-      //  description: 'fully managed, petabyte-scale data warehouse solution'
-      //},
-      //{
-      //  name: 'S3',
-      //  image: 'images/aws/s3.png',
-      //  description: 'Secure, durable, highly-scalable object storage'
-      //},
-      //{
-      //  name: 'SES',
-      //  image: 'images/aws/ses.png',
-      //  description: 'Outbound-only email-sending service'
-      //},
-      //{
-      //  name: 'SNS',
-      //  image: 'images/aws/sns.png',
-      //  description: 'Fully managed push messaging service'
-      //},
-      //{
-      //  name: 'SQS',
-      //  image: 'images/aws/sqs.png',
-      //  description: 'Fast, reliable, scalable, fully managed message queuing service'
-      //},
+
     ];
 
     //add component specific metadat here
@@ -702,7 +749,7 @@ app.service('AWSComponents', function () {
               name: 'TTL',
               type: 'Integer',
               description: 'The resource record cache time to live (TTL), in seconds',
-              default : ['300']
+              default: ['300']
             },
             {
               name: 'ResourceRecords',

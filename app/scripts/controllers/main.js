@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents' , 'ConnectionUtils', '$window',
+  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents', 'ConnectionUtils', '$window',
     function ($scope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
 
 
@@ -24,6 +24,9 @@ angular.module('nestorApp')
       $scope.componentMetadata = AWSComponents.componentMetadata;
       $scope.types = AWSComponents.propertyTypes;
       $scope.tasks = AWSComponents.tasks;
+
+      //UI State
+      $scope.isShowingTop = true;
 
       //--------------------------------------
       // Helpers functions
@@ -89,6 +92,15 @@ angular.module('nestorApp')
       //--------------------------------------
       // UI Events
       //--------------------------------------
+
+      $scope.componentPressed = function () {
+        $scope.isShowingTop = false;
+      };
+
+      $scope.componentBackPressed = function () {
+        $scope.isShowingTop = true;
+      };
+
       $scope.onDragComplete = function ($data, $event) {
 
         //because of the fucking directive for ui layout
@@ -251,7 +263,7 @@ angular.module('nestorApp')
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,
           data.description,
-            event.x - leftPanelWidth,
+          event.x - leftPanelWidth,
           event.y,
           data.parent
         );
