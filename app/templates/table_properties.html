@@ -190,7 +190,8 @@
       </div>
 
 
-      <button ng-show="!propertyModel[property.name]" class="btn btn-default new"
+      <button ng-show="!isSingleCellTable() || (isSingleCellTable() && !propertyModel[property.name])"
+              class="btn btn-default new"
               ng-click="AddToTable(propertyModel, property.name, propertyTypes.types)">
         <span class="glyphicon glyphicon-plus"></span>
       </button>
