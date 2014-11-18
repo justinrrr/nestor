@@ -134,15 +134,30 @@ angular.module('nestorApp')
         itemSelected(component);
       };
 
+      /* this function is available on the scope so the UI (i.e. html) can call
+       to completely delete a component:
+       1) remove all the connections from UI
+       2) remove the component from the UI
+       3) update model to remove the component's data and all the references to the deleted component
+       4) update the final CloudFormation Template */
       $scope.deleteClicked = function (component) {
-
+        // find the UI element
         var toBeDeletedElem = angular.element('[data-identifier =' + component.id + ']')[0];
+
+        // call "detach" on all the connections to/from this element to safely drop them (update the model)
         jsPlumb.detachAllConnections(toBeDeletedElem.id);
+
+        // now remove all the connections to/from this element on the UI
         jsPlumb.removeAllEndpoints(toBeDeletedElem.id);
 
+        // remove the component's data from the list of all components
         delete $scope.addedComponents[component.name];
+
+        // update the actual template: remove from the components
+        // TODO: what if the to-be-deleted component wasn't a "resource"?
         delete $scope.template.Resources[component.name];
 
+        // update the "Output" secion in our CloudFormation template
         var allOutputs = Object.keys($scope.template.Outputs);
         for (var i = 0; i < allOutputs.length; i += 1) {
           if ($scope.template.Outputs[allOutputs[i]].Value.Ref === component.name) {
