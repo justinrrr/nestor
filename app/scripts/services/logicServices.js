@@ -26,6 +26,17 @@ app.service('ConnectionUtils', function () {
     }
   };
 
+  var removeRefObjectFromListPropertyOfObject = function (obj, listProp, refObject){
+    var targetArray = obj[listProp];
+    var idx;
+    for ( idx = 0; idx < targetArray.length; idx +=1 ) {
+      if ( targetArray[idx]['Ref'] === refObject['Ref'] ) {
+        targetArray.splice(idx,1);
+        break;
+      }
+    }
+  }
+
   this.connectObjectsThroughProps = function (propName, propValue, propValueMethod, updatePolicy, targetObj, sourceObj, resourceName) {
 
     // return immediate if any of the incoming arguments are not defined
@@ -86,7 +97,7 @@ app.service('ConnectionUtils', function () {
         removeValueFromListPropertyOfObject(targetObj, propName, sourceObj[propValue]);
       }
       else if (propValueMethod === 'ref') {
-        removeValueFromListPropertyOfObject(targetObj, propName, { Ref: resourceName});
+        removeRefObjectFromListPropertyOfObject(targetObj, propName, { Ref: resourceName});
       }
       else if (propValueMethod === 'attribute') {
         removeValueFromListPropertyOfObject(targetObj, propName, { 'Fn::GetAtt': [resourceName, propValue] });
