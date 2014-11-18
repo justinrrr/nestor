@@ -140,77 +140,77 @@ app.service('AWSComponents', function () {
             name: 'EIP Association',
             group: 'EC2',
             image: 'images/aws/eipassociation.png',
-            description: 'Elastic(Static) IP address that are dynamically allocated',
+            description: 'Associate static ip with an instance',
             type: 'AWS::EC2::EIP'
           },
           {
             name: 'Volume Attachment',
             group: 'EC2',
             image: 'images/aws/ebsassociation.png',
-            description: 'Resizable compute machines',
+            description: 'Attach a volume to an instance',
             type: 'AWS::EC2::Instance'
           },
           {
             name: 'SecurityGroup Ingress',
             group: 'EC2',
             image: 'images/aws/securitygroupingress.png',
-            description: 'Creates an Amazon EC2 security group',
+            description: 'Rules for incoming traffic',
             type: 'AWS::EC2::SecurityGroupIngress'
           },
           {
             name: 'SecurityGroup Egress',
             group: 'EC2',
             image: 'images/aws/securitygroupegress.png',
-            description: 'Creates an Amazon EC2 security group',
+            description: 'Rules for outgoing traffic',
             type: 'AWS::EC2::SecurityGroupEgress'
-          },
-          {
-            name: 'Route',
-            group: 'EC2',
-            image: 'images/aws/route.png',
-            description: 'Resizable compute machines',
-            type: 'AWS::EC2::Route'
           },
           {
             name: 'Route Table',
             group: 'EC2',
             image: 'images/aws/routetable.png',
-            description: 'Resizable compute machines',
+            description: 'Table for routing traffics in VPC',
             type: 'AWS::EC2::RouteTable'
+          },
+          {
+            name: 'Route',
+            group: 'EC2',
+            image: 'images/aws/route.png',
+            description: 'A route entry for the route table',
+            type: 'AWS::EC2::Route'
           },
           {
             name: 'Subnet-RouteTable Association',
             group: 'EC2',
-            image: 'images/aws/ec2.png',
-            description: 'Resizable compute machines',
+            image: 'images/aws/subnetroute.png',
+            description: 'Associate a subnet with a route table',
             type: 'AWS::EC2::SubnetRouteTableAssociation'
           },
           {
             name: 'Internet Gateway',
             group: 'EC2',
             image: 'images/aws/internetgateway.png',
-            description: 'Resizable compute machines',
+            description: 'The gateway to public internet',
             type: 'AWS::EC2::InternetGateway'
           },
           {
             name: 'VPC-Gateway Attacment',
             group: 'EC2',
-            image: 'images/aws/vpc.png',
-            description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
+            image: 'images/aws/vpcgateway.png',
+            description: 'Attach a gateway to VPC',
             type: 'AWS::EC2::VPCGatewayAttachment'
           },
           {
             name: 'DHCP Options',
             group: 'EC2',
-            image: 'images/aws/ec2.png',
-            description: 'Resizable compute machines',
+            image: 'images/aws/dhcp.png',
+            description: 'Creates a set of DHCP options for VPC',
             type: 'AWS::EC2::DHCPOptions'
           },
           {
             name: 'VPC-DHCP Options Association',
             group: 'EC2',
-            image: 'images/aws/vpc.png',
-            description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
+            image: 'images/aws/vpcdhcp.png',
+            description: 'Associate DHCP optins with VPC',
             type: 'AWS::EC2::VPCDHCPOptionsAssociation'
           }
         ]
