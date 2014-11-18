@@ -2,16 +2,20 @@
 <span tooltip="{{property.description}}" class="tablename">
              {{property.name}}
               </span>
+
   <select
+    id="{{property.name}}-{{componentName}}"
     ng-if="showSelect"
-    ng-model="x"
-    ng-change="itemSelected(x)"
-    ng-options="value.name for value in allowableValues"
+    ng-model="item"
+    ng-change="itemSelected(item)"
     class="propertyselect">
+    <option></option>
+    <option ng-repeat="value in allowableValues" value="{{value.value}}"
+            ng-selected="model === value.value">
+      {{value.name}}
+    </option>
     </select>
 
-  <!--For some weired reason if remove this div the input won't work
-  Talk to me (dragon) if it is abseoloutly neccessary to remove it-->
   <div ng-show="showSimple">
     <input
       type="{{inputType}}"

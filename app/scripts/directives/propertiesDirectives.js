@@ -5,73 +5,91 @@
 
 var app = angular.module('nestorApp.directives');
 
-app.directive('componentProperties', [function () {
+app.directive('properties', [function () {
   return {
     replace: true,
     restrict: 'E',
     scope: {
-      propertyName: '=',
-      componentProperties: '=',
-      resourceProperties: '=',
-      onPropertyDrag: '&',
-      types: '='
+      component: '=',
+      template: '=',
+      onPropertyDrag: '&'
     },
-    templateUrl: 'templates/component_properties.html',
+    templateUrl: 'templates/properties.html',
     link: function (scope) {
-
-      scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
-
-        var item = {};
-        _.each(neededFields, function (property) {
-          item[property.name] = property.type;
-        });
-
-        if (!listToAddTo[propertyName]) {
-          listToAddTo[propertyName] = [];
-        }
-
-        listToAddTo[propertyName].push(item);
-      };
-
-      scope.dragFinished = function ($data, $event) {
-        $data.parent = scope.propertyName;
+      scope.propertyDragged = function ($data, $event) {
         scope.onPropertyDrag({data: $data, event: $event});
       };
     }
   };
-
 }]);
 
-
-app.directive('derivedProperties', [function () {
+app.directive('componentProperties', ['AWSComponents', function (AWSComponents) {
   return {
     replace: true,
     restrict: 'E',
     scope: {
-      propertyName: '=',
+      componentName: '=',
       componentProperties: '=',
-      resourceProperties: '=',
-      types: '='
+      componentModel: '=',
+      onPropertyDrag: '&'
     },
-    templateUrl: 'templates/derived_properties.html',
+    templateUrl: 'templates/component_properties.html',
     link: function (scope) {
-      scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
 
-        var item = {};
-        _.each(neededFields, function (property) {
-          item[property.name] = property.type;
-        });
+      scope.types = AWSComponents.propertyTypes;
 
-        if (!listToAddTo[propertyName]) {
-          listToAddTo[propertyName] = [];
-        }
 
-        listToAddTo[propertyName].push(item);
+      scope.dragFinished = function ($data, $event) {
+        $data.parent = scope.componentName;
+        scope.onPropertyDrag({data: $data, event: $event});
+      };
+
+      scope.isTable = function (prop) {
+        return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'table';
+      };
+
+      scope.isPrimitive = function (prop) {
+        return prop.type === 'String' || prop.type === 'Integer' || prop.type === 'Boolean';
+      };
+
+      scope.isDrager = function (prop) {
+        return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'drag';
       };
     }
   };
 
 }]);
+
+
+app.directive('derivedProperties', ['AWSComponents',
+  function (AWSComponents) {
+    return {
+      replace: true,
+      restrict: 'E',
+      scope: {
+        component: '=',
+        componentProperties: '=',
+        componentModel: '='
+      },
+      templateUrl: 'templates/derived_properties.html',
+      link: function (scope) {
+
+        scope.types = AWSComponents.propertyTypes;
+
+        scope.model = scope.componentModel[scope.component.index];
+
+        scope.isTable = function (prop) {
+          return scope.types.complex[prop.type] &&
+            scope.types.complex[prop.type].Display.type === 'table';
+        };
+
+        scope.isPrimitive = function (prop) {
+          return prop.type === 'String' || prop.type === 'Integer' || prop.type === 'Boolean';
+        };
+      }
+    };
+
+  }]);
 
 app.directive('primitiveProperty', [function () {
   return {
@@ -80,10 +98,11 @@ app.directive('primitiveProperty', [function () {
     transclude: true,
     scope: {
       property: '=',
-      model: '='
+      model: '=',
+      componentName: '='
     },
     templateUrl: '../../templates/primitive_properties.html',
-    link: function(scope) {
+    link: function (scope) {
 
       if (scope.property.type === 'Boolean') {
         scope.inputType = 'checkbox';
@@ -95,25 +114,27 @@ app.directive('primitiveProperty', [function () {
       if (!scope.model && scope.property.default) {
         scope.model = scope.property.default[0];
       }
-      scope.itemSelected = function(selectedItem) {
-        var actualValue = selectedItem.value;
-        scope.model = actualValue;
-      };
+
 
       if (scope.property.allowableValues) {
+
         scope.showSelect = true;
         scope.allowableValues = [];
-        _.each(scope.property.allowableValues, function( valueObj ) {
-          _.each(valueObj, function(value, key) {
+        _.each(scope.property.allowableValues, function (valueObj) {
+          _.each(valueObj, function (value, key) {
             //scope.allowableValues.push(value);
-            scope.allowableValues.push({name:value, value: key});
+            scope.allowableValues.push({name: value, value: key});
           });
         });
 
-        scope.x = scope.allowableValues[0].name;
       } else {
         scope.showSimple = true;
       }
+
+
+      scope.itemSelected = function (selectedItem) {
+        scope.model = selectedItem;
+      };
     }
   };
 }]);
@@ -125,21 +146,31 @@ app.directive('tableProperty', [function () {
     scope: {
       property: '=',
       propertyTypes: '=',
-      resourceProperties: '='
+      propertyModel: '='
     },
     templateUrl: '../../templates/table_properties.html',
     link: function (scope) {
 
-      scope.loadAllowableValues = function(item) {
+      scope.propertyHeadings = {
+        required: scope.propertyTypes.types.required,
+        optional: scope.propertyTypes.types.optional
+      };
+
+
+      scope.loadAllowableValues = function (item) {
         item.valueMap = [];
-        _.each(item.allowableValues, function(valueObj){
-          _.each(valueObj, function(value, key) {
+        _.each(item.allowableValues, function (valueObj) {
+          _.each(valueObj, function (value, key) {
             item.valueMap.push({name: value, value: key});
           });
         });
-
       };
-      scope.AddToTable = function (listToAddTo, propertyName, neededFields) {
+
+      scope.isSingleCellTable = function() {
+        return scope.propertyTypes.Display.maxSize === 1;
+      };
+
+      scope.AddToTable = function (listToAddTo, componentName, neededFields) {
 
         var allFields = neededFields.required || [];
         if (neededFields.optional) {
@@ -150,16 +181,26 @@ app.directive('tableProperty', [function () {
           item[property.name] = property.type;
         });
 
-        if (!listToAddTo[propertyName]) {
-          listToAddTo[propertyName] = [];
+        //the maximum size of the table is either 1 or more than 1.
+        //in the case that the maximum size is 1 we shouldn't add values anymore
+        //and should not add the value to a list
+        if (scope.isSingleCellTable()) {
+          listToAddTo[componentName] = item;
+        } else {
+          if (!listToAddTo[componentName]) {
+            listToAddTo[componentName] = [];
+          }
+          listToAddTo[componentName].push(item);
         }
-
-        listToAddTo[propertyName].push(item);
       };
 
-      scope.saveEntry = function($data, $index) {
-        var resourceProperties = scope.resourceProperties[scope.property.name][$index];
-        _.each($data, function(enteredValue, enteredName) {
+      scope.saveEntry = function ($data, $index) {
+
+        var resourceProperties = scope.isSingleCellTable() ?
+          scope.propertyModel[scope.property.name] :
+          scope.propertyModel[scope.property.name][$index];
+
+        _.each($data, function (enteredValue, enteredName) {
           if (enteredValue && enteredValue.value) {
             enteredValue = enteredValue.value;
           }
@@ -167,13 +208,13 @@ app.directive('tableProperty', [function () {
         });
       };
 
-      scope.removeRow = function($index) {
-
-        scope.resourceProperties[scope.property.name].splice($index,1);
+      scope.removeRow = function ($index) {
+        if(scope.isSingleCellTable) {
+          delete scope.propertyModel[scope.property.name];
+        } else {
+          scope.propertyModel[scope.property.name].splice($index, 1);
+        }
       };
-
-
-
     }
   };
 }]);
@@ -192,9 +233,7 @@ app.directive('dragProperty', [function () {
     link: function (scope) {
       scope.dragData = {
         name: scope.property.name,
-        image: scope.propertyTypes.Display.image,
-        belongsTo: 'me'
-        //description: scope.propertyTypes.Description
+        image: scope.propertyTypes.Display.image
       };
 
       scope.dragCompleted = function ($data, $event) {

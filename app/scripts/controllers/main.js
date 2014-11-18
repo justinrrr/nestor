@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents' , '$window',
-    function ($scope, $modal, AWSComponents, UIComponents, $window) {
+  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents', 'ConnectionUtils', '$window',
+    function ($scope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
 
 
       //set up jsPlumb
@@ -12,7 +12,7 @@ angular.module('nestorApp')
 
       //create initial template
       $scope.template = AWSComponents.createInitialTemplate();
-      $scope.templateString= angular.toJson($scope.template, true);
+      $scope.templateString = angular.toJson($scope.template, true);
       //$scope.templateString = JSON.stringify($scope.template, null, 4);
 
       $scope.addedComponents = {};
@@ -24,6 +24,9 @@ angular.module('nestorApp')
       $scope.componentMetadata = AWSComponents.componentMetadata;
       $scope.types = AWSComponents.propertyTypes;
       $scope.tasks = AWSComponents.tasks;
+
+      //UI State
+      $scope.isShowingTop = true;
 
       //--------------------------------------
       // Helpers functions
@@ -41,7 +44,7 @@ angular.module('nestorApp')
 
         $scope.addedComponents[c.name] = c;
         var componentName = c.name;
-        var aMetadata = $scope.componentMetadata[blueprint.name];
+        var aMetadata = $scope.componentMetadata[blueprint.type];
         $scope.template.Resources[componentName] = {
           Type: aMetadata.type
         };
@@ -54,7 +57,7 @@ angular.module('nestorApp')
               Description: outputMetdata.description,
               Value: {Ref: componentName}
             };
-            $scope.template.Outputs[componentName + '-' + outputMetdata.name] = outputObj;
+            $scope.template.Outputs[componentName + outputMetdata.name] = outputObj;
           }
         });
 
@@ -71,11 +74,11 @@ angular.module('nestorApp')
         var uniqueId = generateComponentName(blueprint.name);
         var c = new UIComponents.Component(
           uniqueId,
-          blueprint.name,
+          blueprint.type,
           uniqueId,
           blueprint.image,
-          $scope.componentMetadata[blueprint.name].properties.required,
-          $scope.componentMetadata[blueprint.name].properties.optional,
+          $scope.componentMetadata[blueprint.type].properties.required,
+          $scope.componentMetadata[blueprint.type].properties.optional,
           blueprint.description,
           posX,
           posY);
@@ -85,99 +88,20 @@ angular.module('nestorApp')
         itemSelected(c);
       }
 
-      // adds 'val' to a list called 'listProp' on object 'obj'
-      function addValueToListPropertyOfObject(obj, listProp, val) {
-        if (obj.hasOwnProperty(listProp)) {
-          obj[listProp].push(val);
-        }
-        else {
-          obj[listProp] = [val];
-        }
-      }
-
-      // removes 'val' from a list called 'listProp' on object 'obj'
-      function removeValueFromListPropertyOfObject(obj, listProp, val) {
-        var idx = obj[listProp].indexOf(val);
-        if (idx > -1) {
-          obj[listProp].splice(idx, 1);
-        }
-      }
-
-      function connectObjectsThroughProps(propName, propValue, propValueMethod, updatePolicy, targetObj, sourceObj, resourceName) {
-
-        // return immediate if any of the incoming arguments are not defined
-        if (propName === undefined ||
-          propValue === undefined ||
-          propValueMethod === undefined ||
-          updatePolicy === undefined) {
-          return false;
-        }
-
-
-        if (propValueMethod === 'pure') {
-          if (updatePolicy === 'append') {
-            addValueToListPropertyOfObject(targetObj, propName, sourceObj[propValue]);
-          } else { //assign
-            //edge case:
-            if (propValue === 'Name') {
-              targetObj[propName] = resourceName;
-            }
-            else {
-              targetObj[propName] = sourceObj[propValue];
-            }
-          }
-        }
-        else if (propValueMethod === 'ref') {
-          if (updatePolicy === 'append') {
-            addValueToListPropertyOfObject(targetObj, propName, { Ref: resourceName});
-          } else { //assign
-            targetObj[propName] = { Ref: resourceName};
-          }
-        }
-        else if (propValueMethod === 'attribute') {
-
-          if (updatePolicy === 'append') {
-            addValueToListPropertyOfObject(targetObj, propName, { 'Fn::GetAtt': [resourceName, propValue] });
-          } else { //assign
-            targetObj[propName] = { Ref: resourceName};
-          }
-
-        }
-
-        return true;
-      }
-
-      function deleteBinding(propName, propValue, propValueMethod, updatePolicy, targetObj, sourceObj, resourceName) {
-
-        // return immediate if any of the incoming arguments are not defined
-        if (propName === undefined ||
-          propValue === undefined ||
-          propValueMethod === undefined ||
-          updatePolicy === undefined) {
-          return;
-        }
-
-
-        if (updatePolicy === 'append') {
-          if (propValueMethod === 'pure') {
-            removeValueFromListPropertyOfObject(targetObj, propName, sourceObj[propValue]);
-          }
-          else if (propValueMethod === 'ref') {
-            removeValueFromListPropertyOfObject(targetObj, propName, { Ref: resourceName});
-          }
-          else if (propValueMethod === 'attribute') {
-            removeValueFromListPropertyOfObject(targetObj, propName, { 'Fn::GetAtt': [resourceName, propValue] });
-          }
-        } else {
-          delete targetObj[propName];
-        }
-
-
-      }
 
       //--------------------------------------
       // UI Events
       //--------------------------------------
+
+      $scope.componentPressed = function (component) {
+        $scope.isShowingTop = false;
+        $scope.nestedComponent = component;
+      };
+
+      $scope.componentBackPressed = function () {
+        $scope.isShowingTop = true;
+      };
+
       $scope.onDragComplete = function ($data, $event) {
 
         //because of the fucking directive for ui layout
@@ -185,29 +109,64 @@ angular.module('nestorApp')
         //caused by the editor
         var leftPanelWidth = angular.element('#left-column')[0].clientWidth;
 
-        addComponent($data, $event.x - leftPanelWidth-85, $event.y-50);
+        addComponent($data, $event.x - leftPanelWidth - 85, $event.y - 50);
 
       };
-      $scope.taskSelected = function(task) {
+      $scope.taskSelected = function (task) {
         $scope.template = task.template;
         $scope.addedComponents = task.components;
         $scope.connections = task.connections;
 
-        _.each($scope.connections, function(connection) {
+        _.each($scope.connections, function (connection) {
           UIComponents.connectComponents(connection.source, connection.target, false);
         });
       };
 
 
-      $scope.showModal = function() {
+      $scope.showModal = function () {
         $modal.open({
           templateUrl: '../templates/modal_view.html',
           controller: 'CodeGenCtrl',
           size: 'lg'
         });
       };
+
       $scope.clickCallback = function (component) {
         itemSelected(component);
+      };
+
+      /* this function is available on the scope so the UI (i.e. html) can call
+       to completely delete a component:
+       1) remove all the connections from UI
+       2) remove the component from the UI
+       3) update model to remove the component's data and all the references to the deleted component
+       4) update the final CloudFormation Template */
+      $scope.deleteClicked = function (component) {
+        // find the UI element
+        var toBeDeletedElem = angular.element('[data-identifier =' + component.id + ']')[0];
+
+        // call "detach" on all the connections to/from this element to safely drop them (update the model)
+        jsPlumb.detachAllConnections(toBeDeletedElem.id);
+
+        // now remove all the connections to/from this element on the UI
+        jsPlumb.removeAllEndpoints(toBeDeletedElem.id);
+
+        // remove the component's data from the list of all components
+        delete $scope.addedComponents[component.name];
+
+        // update the actual template: remove from the components
+        // TODO: what if the to-be-deleted component wasn't a "resource"?
+        delete $scope.template.Resources[component.name];
+
+        // update the "Output" secion in our CloudFormation template
+        var allOutputs = Object.keys($scope.template.Outputs);
+        for (var i = 0; i < allOutputs.length; i += 1) {
+          if ($scope.template.Outputs[allOutputs[i]].Value.Ref === component.name) {
+            delete $scope.template.Outputs[allOutputs[i]];
+            break;
+          }
+        }
+
       };
 
       $scope.connectionEstablished = function (sourceName, targetName) {
@@ -215,38 +174,35 @@ angular.module('nestorApp')
         $scope.connections.push({source: sourceName, target: targetName});
 
         var sourceObject = $scope.template.Resources[sourceName];
-        var sourceType = AWSComponents.typeMappings[sourceObject.Type];
-
         var targetObject = $scope.template.Resources[targetName];
-        var targetType = AWSComponents.typeMappings[targetObject.Type];
 
-        var incomingProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
+        var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
         var finalTarget;
         var connectionHappened;
 
         // If this connection needs to update Target
         if (incomingProperies.isProperty === 'true') {
-          finalTarget = targetObject['Properties'];
+          finalTarget = targetObject.Properties;
         }
         else {
           finalTarget = targetObject;
         }
 
-        connectionHappened = connectObjectsThroughProps(incomingProperies.targetPropName, incomingProperies.targetPropValue,
+        connectionHappened = ConnectionUtils.connectObjectsThroughProps(incomingProperies.targetPropName, incomingProperies.targetPropValue,
           incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
           finalTarget, sourceObject, sourceName);
 
 
         // If this connection needs to update Source
         if (incomingProperies.isProperty === 'true') {
-          finalTarget = sourceObject['Properties'];
+          finalTarget = sourceObject.Properties;
         }
         else {
           finalTarget = sourceObject;
         }
 
-        connectionHappened = connectionHappened || connectObjectsThroughProps(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
+        connectionHappened = connectionHappened || ConnectionUtils.connectObjectsThroughProps(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
           incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
           finalTarget, targetObject, targetName);
 
@@ -261,47 +217,35 @@ angular.module('nestorApp')
 
 
       $scope.connectionDetached = function (sourceName, targetName) {
-        /*
-
-         if (!incomingConnectionProperies.isProperty) {
-         if (incomingConnectionProperies.value === 'Name') {
-         delete $scope.template.Resources[targetName][incomingConnectionProperies.name];
-         $scope.$digest();
-         }
-         }
-         */
         var sourceObject = $scope.template.Resources[sourceName];
-        var sourceType = AWSComponents.typeMappings[sourceObject.Type];
-
         var targetObject = $scope.template.Resources[targetName];
-        var targetType = AWSComponents.typeMappings[targetObject.Type];
 
-        var incomingProperies = $scope.componentMetadata[targetType].IncomingConnection[sourceType];
+        var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
         var finalTarget;
 
         // If this connection needs to update Target
         if (incomingProperies.isProperty === 'true') {
-          finalTarget = targetObject['Properties'];
+          finalTarget = targetObject.Properties;
         }
         else {
           finalTarget = targetObject;
         }
 
-        deleteBinding(incomingProperies.targetPropName, incomingProperies.targetPropValue,
+        ConnectionUtils.deleteBinding(incomingProperies.targetPropName, incomingProperies.targetPropValue,
           incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
           finalTarget, sourceObject, sourceName);
 
 
         // If this connection needs to update Source
         if (incomingProperies.isProperty === 'true') {
-          finalTarget = sourceObject['Properties'];
+          finalTarget = sourceObject.Properties;
         }
         else {
           finalTarget = sourceObject;
         }
 
-        deleteBinding(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
+        ConnectionUtils.deleteBinding(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
           incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
           finalTarget, targetObject, targetName);
 
@@ -335,7 +279,7 @@ angular.module('nestorApp')
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,
           data.description,
-            event.x - leftPanelWidth,
+          event.x - leftPanelWidth,
           event.y,
           data.parent
         );
@@ -352,6 +296,7 @@ angular.module('nestorApp')
         }
 
         var newEntry = {};
+        c.index = $scope.template.Resources[parentName].Properties[data.name].length;
         $scope.template.Resources[parentName].Properties[data.name].push(newEntry);
 
         UIComponents.connectComponents(parentName, c.name, true);
@@ -363,7 +308,7 @@ angular.module('nestorApp')
       //-----------------------------------------------------
       $scope.$watch('template', function (newValue, oldValue) {
         if (newValue !== oldValue) {
-            var test = angular.toJson($scope.template, true);
+          var test = angular.toJson($scope.template, true);
 
           $scope.templateString = test;
           //$scope.templateString = JSON.stringify($scope.template, null, 4);
@@ -376,7 +321,7 @@ angular.module('nestorApp')
           if ($scope.templateString === '') {
 
             $scope.template = AWSComponents.createInitialTemplate();
-            $scope.templateString= angular.toJson($scope.template, true);
+            $scope.templateString = angular.toJson($scope.template, true);
             //$scope.templateString = JSON.stringify($scope.template, null, 4);
 
             $scope.addedComponents = {};
@@ -434,7 +379,7 @@ angular.module('nestorApp')
         });
       };
 
-      $scope.download = function(){
-          $window.open("data:text/text;charset=utf-8," + encodeURIComponent($scope.templateString));
+      $scope.download = function () {
+        $window.open('data:text/text;charset=utf-8,' + encodeURIComponent($scope.templateString));
       };
     }]);

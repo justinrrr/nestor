@@ -19,6 +19,7 @@ app.service('AWSComponents', function () {
         Outputs: {}
       };
     };
+
     this.tasks = [
       {
         name: 'Simple static website',
@@ -33,9 +34,9 @@ app.service('AWSComponents', function () {
       {
         name: 'Simple web server with database access',
         image: 'images/aws/customtask.jpg',
-        template: {"AWSTemplateFormatVersion":"2010-09-09","Description":"Created By Nestor","Parameters":{},"Mappings":{},"Conditions":{},"Resources":{"DynamoDb-1":{"Type":"AWS::DynamoDB::Table","Properties":{}},"EC2-2":{"Type":"AWS::EC2::Instance","Properties":{"BlockDeviceMappings":[{}],"SecurityGroups":[{"Ref":"SecurityGroup-3"}]}},"SecurityGroup-3":{"Type":"AWS::EC2::SecurityGroup","Properties":{}},"EIP-5":{"Type":"AWS::EC2::EIP","Properties":{"InstanceId":{"Ref":"EC2-2"}}},"Route53-6":{"Type":"AWS::Route53::RecordSet","Properties":{}}},"Outputs":{"DynamoDb-1-TableName":{"Description":"Name of the created DynamoDb Table","Value":{"Ref":"DynamoDb-1"}},"EC2-2-ImageId":{"Description":"Name of the EC2 instance","Value":{"Ref":"EC2-2"}},"SecurityGroup-3-security group identifier":{"Description":"the security group name (for EC2-classic) or the security group ID (for EC2-VPC)","Value":{"Ref":"SecurityGroup-3"}},"EIP-5-Public IP":{"Description":"returns the value of the PublicIp for the EC2 instance","Value":{"Ref":"EIP-5"}}}},
-        components: {"DynamoDb-1":{"id":"DynamoDb-1","type":"DynamoDb","name":"DynamoDb-1","description":"NoSQL database service","image":"images/aws/dynamo.png","x":581,"y":523,"required":[{"name":"TableName","description":"name of the table","type":"String"},{"name":"AttributeDefinitions","type":"AttributeDefinitions"},{"name":"KeySchema","type":"KeySchema"},{"name":"ProvisionedThroughput","type":"ProvisionedThroughput"}],"optional":[{"name":"GlobalSecondaryIndexes","type":"GlobalSecondaryIndexes"},{"name":"LocalSecondaryIndexes","type":"LocalSecondaryIndexes"}],"parent":""},"EC2-2":{"id":"EC2-2","type":"EC2","name":"EC2-2","description":"Resizable compute machines","image":"images/aws/ec2.png","x":592,"y":282,"required":[{"name":"ImageId","type":"String","description":"Name of the EC2 instance","allowableValues":[{"ami-77581047":"Stewie"},{"ami-67334857":"Jenkins"},{"ami-67334857":"MyCustomAmi"},{"dummy":"---Standard AMIs---"},{"ami-b5a7ea85":"Amazon Linux AMI 2014.09.1 (HVM)"},{"ami-99bef1a9":"Red Hat Enterprise Linux 7.0 (HVM)"},{"ami-d7450be7":"SuSE Linux Enterprise Server 12 (HVM)"},{"ami-3d50120d":"Ubuntu Server 14.04 LTS (HVM)"},{"ami-21f0bc11":"Microsoft Windows Server 2012 R2 Base"}]}],"optional":[{"name":"BlockDeviceMappings","type":"BlockDeviceMappings","description":"tooltip??"},{"name":"NetworkInterfaces","type":"NetworkInterfaces","description":"A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance"},{"name":"SecurityGroupIds","type":"StringList","description":"A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property"},{"name":"SecurityGroups","type":"StringList","description":"Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template"},{"name":"Tags","type":"Tags","description":"tooltip??"},{"name":"Volumes","type":"Volumes","description":"tooltip??"},{"name":"AvailabilityZone","type":"String","description":"Specifies the name of the Availability Zone in which the instance is located","allowableValues":[{"ap-northeast-1":"Asia Pacific (Tokyo)"},{"ap-southeast-1":"Asia Pacific (Singapore)"},{"ap-southeast-2":"Asia Pacific (Sydney)"},{"eu-central-1":"EU (Frankfurt)"},{"eu-west-1":"EU (Ireland)"},{"sa-east-1":"South America (Sao Paulo)"},{"us-east-1":"US East (N. Virginia)"},{"us-west-1":"US West (N. California)"},{"us-west-2":"US West (Oregon)"}]},{"name":"DisableApiTermination","type":"Boolean","description":"Description for tooltip"},{"name":"EbsOptimized","type":"Boolean","description":"Description for tooltip"},{"name":"IamInstanceProfile","type":"String","description":"Description for tooltip"},{"name":"InstanceInitiatedShutdownBehavior","type":"String","description":"Description for tooltip"},{"name":"InstanceType","type":"String","description":"Description for tooltip","allowableValues":[{"t2.micro":"t2.micro"},{"t2.small":"t2.small"},{"t2.medium":"t2.medium"},{"m3.medium":"m3.medium"},{"m3.large":"m3.large"},{"m3.xlarge":"m3.xlarge"},{"m3.2xlarge":"m3.2xlarge"},{"c3.large":"c3.large"},{"c3.xlarge":"c3.xlarge"},{"c3.2xlarge":"c3.2xlarge"},{"c3.4xlarge":"c3.4xlarge"},{"c3.8xlarge":" c3.8xlarge"},{"r3.large":"r3.large"},{"r3.xlarge":"r3.xlarge"},{"r3.2xlarge":"r3.2xlarge"},{"r3.4xlarge":"r3.4xlarge"},{"r3.8xlarge":"r3.8xlarge"},{"i2.xlarge":"i2.xlarge"},{"i2.2xlarge":"i2.2xlarge"},{"i2.4xlarge":"i2.4xlarge"},{"i2.8xlarge":"i2.8xlarge"},{"hs1.8xlarge":"hs1.8xlarge"},{"g2.2xlarge":"g2.2xlarge"}]},{"name":"KernelId","type":"String","description":"Description for tooltip"},{"name":"KeyName","type":"String","description":"Description for tooltip"},{"name":"Monitoring","type":"Boolean","description":"Description for tooltip"},{"name":"PlacementGroupName","type":"String","description":"Description for tooltip"},{"name":"PrivateIpAddress","type":"String","description":"Description for tooltip"},{"name":"RamdiskId","type":"String","description":"Description for tooltip"},{"name":"SourceDestCheck","type":"Boolean","description":"Description for tooltip"},{"name":"SubnetId","type":"String","description":"Description for tooltip"},{"name":"Tenancy","type":"String","description":"Description for tooltip","allowableValues":[{"default":"default"},{"dedicated":"dedicated"}]},{"name":"UserData","type":"String","description":"Description for tooltip"}],"parent":""},"SecurityGroup-3":{"id":"SecurityGroup-3","type":"SecurityGroup","name":"SecurityGroup-3","description":"Creates an Amazon EC2 security group","image":"images/aws/securityGroup.png","x":475,"y":82,"required":[{"name":"GroupDescription","type":"String","description":"Description of the security group"}],"optional":[{"name":"SecurityGroupEgress","type":"SecurityGroupEgress","description":"A list of Amazon EC2 security group outgoing connection rules"},{"name":"SecurityGroupIngress","type":"SecurityGroupIngress","description":"A list of Amazon EC2 security group incoming connection rules"},{"name":"Tags","type":"Tags","description":"The tags that you want to attach to the resource"}],"parent":""},"BlockDeviceMappings-4":{"id":"BlockDeviceMappings-4","type":"BlockDeviceMappings","name":"BlockDeviceMappings-4","image":"images/aws/blockDeviceMapping.png","x":737,"y":129,"required":[{"name":"AvailabilityZone","type":"String","description":""}],"optional":[{"name":"Encrypted","type":"Boolean","description":""},{"name":"Iops","type":"Number","description":""},{"name":"Size","type":"String","description":""},{"name":"SnapshotId","type":"String","description":""},{"name":"Tags","type":"Tags","description":"An arbitrary set of tags (key–value pairs) for this volume."},{"name":"VolumeType","type":"String","description":""}],"parent":"EC2-2","isDerived":true},"EIP-5":{"id":"EIP-5","type":"EIP","name":"EIP-5","description":"Elastic(Static) IP address that are dynamically allocated","image":"images/aws/eip.png","x":288,"y":288,"required":[{"name":"InstanceId","type":"String","description":"The Instance ID of the Amazon EC2 instance that you want to associate with this Elastic IP address"}],"optional":[{"name":"Domain","type":"String","description":"Set to vpc to allocate the address to your Virtual Private Cloud (VPC). No other values are supported"}],"parent":""},"Route53-6":{"id":"Route53-6","type":"Route53","name":"Route53-6","description":"highly available and scalable Domain Name System (DNS)","image":"images/aws/route53.png","x":49,"y":238,"required":[{"name":"HostedZoneName","type":"String","description":"The name of the domain for the hosted zone where you want to add the record set"},{"name":"Type","type":"String","description":"The type of records to add"},{"name":"Name","type":"String","description":"The name of the domain. This must be a fully specified domain, ending with a period as the last label indication. If you omit the final period, Amazon Route 53 assumes the domain is relative to the root"}],"optional":[{"name":"TTL","type":"String","description":"The resource record cache time to live (TTL), in seconds"},{"name":"ResourceRecords","type":"StringList","description":"List of resource records to add. Each record should be in the format appropriate for the record type specified by the Type property"},{"name":"Comment","type":"String","description":"Any comments you want to include about the hosted zone"}],"parent":""}},
-        connections: [{"source":"DynamoDb-1","target":"EC2-2"},{"source":"EC2-2","target":"BlockDeviceMappings-4"},{"source":"EC2-2","target":"SecurityGroup-3"},{"source":"Route53-6","target":"EIP-5"},{"source":"EIP-5","target":"EC2-2"}],
+        //template: {"AWSTemplateFormatVersion":"2010-09-09","Description":"Created By Nestor","Parameters":{},"Mappings":{},"Conditions":{},"Resources":{"DynamoDb-1":{"Type":"AWS::DynamoDB::Table","Properties":{}},"EC2-2":{"Type":"AWS::EC2::Instance","Properties":{"BlockDeviceMappings":[{}],"SecurityGroups":[{"Ref":"SecurityGroup-3"}]}},"SecurityGroup-3":{"Type":"AWS::EC2::SecurityGroup","Properties":{}},"EIP-5":{"Type":"AWS::EC2::EIP","Properties":{"InstanceId":{"Ref":"EC2-2"}}},"Route53-6":{"Type":"AWS::Route53::RecordSet","Properties":{}}},"Outputs":{"DynamoDb-1-TableName":{"Description":"Name of the created DynamoDb Table","Value":{"Ref":"DynamoDb-1"}},"EC2-2-ImageId":{"Description":"Name of the EC2 instance","Value":{"Ref":"EC2-2"}},"SecurityGroup-3-security group identifier":{"Description":"the security group name (for EC2-classic) or the security group ID (for EC2-VPC)","Value":{"Ref":"SecurityGroup-3"}},"EIP-5-Public IP":{"Description":"returns the value of the PublicIp for the EC2 instance","Value":{"Ref":"EIP-5"}}}},
+        //components: {"DynamoDb-1":{"id":"DynamoDb-1","type":"DynamoDb","name":"DynamoDb-1","description":"NoSQL database service","image":"images/aws/dynamo.png","x":581,"y":523,"required":[{"name":"TableName","description":"name of the table","type":"String"},{"name":"AttributeDefinitions","type":"AttributeDefinitions"},{"name":"KeySchema","type":"KeySchema"},{"name":"ProvisionedThroughput","type":"ProvisionedThroughput"}],"optional":[{"name":"GlobalSecondaryIndexes","type":"GlobalSecondaryIndexes"},{"name":"LocalSecondaryIndexes","type":"LocalSecondaryIndexes"}],"parent":""},"EC2-2":{"id":"EC2-2","type":"EC2","name":"EC2-2","description":"Resizable compute machines","image":"images/aws/ec2.png","x":592,"y":282,"required":[{"name":"ImageId","type":"String","description":"Name of the EC2 instance","allowableValues":[{"ami-77581047":"Stewie"},{"ami-67334857":"Jenkins"},{"ami-67334857":"MyCustomAmi"},{"dummy":"---Standard AMIs---"},{"ami-b5a7ea85":"Amazon Linux AMI 2014.09.1 (HVM)"},{"ami-99bef1a9":"Red Hat Enterprise Linux 7.0 (HVM)"},{"ami-d7450be7":"SuSE Linux Enterprise Server 12 (HVM)"},{"ami-3d50120d":"Ubuntu Server 14.04 LTS (HVM)"},{"ami-21f0bc11":"Microsoft Windows Server 2012 R2 Base"}]}],"optional":[{"name":"BlockDeviceMappings","type":"BlockDeviceMappings","description":"tooltip??"},{"name":"NetworkInterfaces","type":"NetworkInterfaces","description":"A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance"},{"name":"SecurityGroupIds","type":"StringList","description":"A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property"},{"name":"SecurityGroups","type":"StringList","description":"Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template"},{"name":"Tags","type":"Tags","description":"tooltip??"},{"name":"Volumes","type":"Volumes","description":"tooltip??"},{"name":"AvailabilityZone","type":"String","description":"Specifies the name of the Availability Zone in which the instance is located","allowableValues":[{"ap-northeast-1":"Asia Pacific (Tokyo)"},{"ap-southeast-1":"Asia Pacific (Singapore)"},{"ap-southeast-2":"Asia Pacific (Sydney)"},{"eu-central-1":"EU (Frankfurt)"},{"eu-west-1":"EU (Ireland)"},{"sa-east-1":"South America (Sao Paulo)"},{"us-east-1":"US East (N. Virginia)"},{"us-west-1":"US West (N. California)"},{"us-west-2":"US West (Oregon)"}]},{"name":"DisableApiTermination","type":"Boolean","description":"Description for tooltip"},{"name":"EbsOptimized","type":"Boolean","description":"Description for tooltip"},{"name":"IamInstanceProfile","type":"String","description":"Description for tooltip"},{"name":"InstanceInitiatedShutdownBehavior","type":"String","description":"Description for tooltip"},{"name":"InstanceType","type":"String","description":"Description for tooltip","allowableValues":[{"t2.micro":"t2.micro"},{"t2.small":"t2.small"},{"t2.medium":"t2.medium"},{"m3.medium":"m3.medium"},{"m3.large":"m3.large"},{"m3.xlarge":"m3.xlarge"},{"m3.2xlarge":"m3.2xlarge"},{"c3.large":"c3.large"},{"c3.xlarge":"c3.xlarge"},{"c3.2xlarge":"c3.2xlarge"},{"c3.4xlarge":"c3.4xlarge"},{"c3.8xlarge":" c3.8xlarge"},{"r3.large":"r3.large"},{"r3.xlarge":"r3.xlarge"},{"r3.2xlarge":"r3.2xlarge"},{"r3.4xlarge":"r3.4xlarge"},{"r3.8xlarge":"r3.8xlarge"},{"i2.xlarge":"i2.xlarge"},{"i2.2xlarge":"i2.2xlarge"},{"i2.4xlarge":"i2.4xlarge"},{"i2.8xlarge":"i2.8xlarge"},{"hs1.8xlarge":"hs1.8xlarge"},{"g2.2xlarge":"g2.2xlarge"}]},{"name":"KernelId","type":"String","description":"Description for tooltip"},{"name":"KeyName","type":"String","description":"Description for tooltip"},{"name":"Monitoring","type":"Boolean","description":"Description for tooltip"},{"name":"PlacementGroupName","type":"String","description":"Description for tooltip"},{"name":"PrivateIpAddress","type":"String","description":"Description for tooltip"},{"name":"RamdiskId","type":"String","description":"Description for tooltip"},{"name":"SourceDestCheck","type":"Boolean","description":"Description for tooltip"},{"name":"SubnetId","type":"String","description":"Description for tooltip"},{"name":"Tenancy","type":"String","description":"Description for tooltip","allowableValues":[{"default":"default"},{"dedicated":"dedicated"}]},{"name":"UserData","type":"String","description":"Description for tooltip"}],"parent":""},"SecurityGroup-3":{"id":"SecurityGroup-3","type":"SecurityGroup","name":"SecurityGroup-3","description":"Creates an Amazon EC2 security group","image":"images/aws/securityGroup.png","x":475,"y":82,"required":[{"name":"GroupDescription","type":"String","description":"Description of the security group"}],"optional":[{"name":"SecurityGroupEgress","type":"SecurityGroupEgress","description":"A list of Amazon EC2 security group outgoing connection rules"},{"name":"SecurityGroupIngress","type":"SecurityGroupIngress","description":"A list of Amazon EC2 security group incoming connection rules"},{"name":"Tags","type":"Tags","description":"The tags that you want to attach to the resource"}],"parent":""},"BlockDeviceMappings-4":{"id":"BlockDeviceMappings-4","type":"BlockDeviceMappings","name":"BlockDeviceMappings-4","image":"images/aws/blockDeviceMapping.png","x":737,"y":129,"required":[{"name":"AvailabilityZone","type":"String","description":""}],"optional":[{"name":"Encrypted","type":"Boolean","description":""},{"name":"Iops","type":"Number","description":""},{"name":"Size","type":"String","description":""},{"name":"SnapshotId","type":"String","description":""},{"name":"Tags","type":"Tags","description":"An arbitrary set of tags (key–value pairs) for this volume."},{"name":"VolumeType","type":"String","description":""}],"parent":"EC2-2","isDerived":true},"EIP-5":{"id":"EIP-5","type":"EIP","name":"EIP-5","description":"Elastic(Static) IP address that are dynamically allocated","image":"images/aws/eip.png","x":288,"y":288,"required":[{"name":"InstanceId","type":"String","description":"The Instance ID of the Amazon EC2 instance that you want to associate with this Elastic IP address"}],"optional":[{"name":"Domain","type":"String","description":"Set to vpc to allocate the address to your Virtual Private Cloud (VPC). No other values are supported"}],"parent":""},"Route53-6":{"id":"Route53-6","type":"Route53","name":"Route53-6","description":"highly available and scalable Domain Name System (DNS)","image":"images/aws/route53.png","x":49,"y":238,"required":[{"name":"HostedZoneName","type":"String","description":"The name of the domain for the hosted zone where you want to add the record set"},{"name":"Type","type":"String","description":"The type of records to add"},{"name":"Name","type":"String","description":"The name of the domain. This must be a fully specified domain, ending with a period as the last label indication. If you omit the final period, Amazon Route 53 assumes the domain is relative to the root"}],"optional":[{"name":"TTL","type":"String","description":"The resource record cache time to live (TTL), in seconds"},{"name":"ResourceRecords","type":"StringList","description":"List of resource records to add. Each record should be in the format appropriate for the record type specified by the Type property"},{"name":"Comment","type":"String","description":"Any comments you want to include about the hosted zone"}],"parent":""}},
+        //connections: [{"source":"DynamoDb-1","target":"EC2-2"},{"source":"EC2-2","target":"BlockDeviceMappings-4"},{"source":"EC2-2","target":"SecurityGroup-3"},{"source":"Route53-6","target":"EIP-5"},{"source":"EIP-5","target":"EC2-2"}],
         type: 'task'
       },
       {
@@ -86,123 +87,516 @@ app.service('AWSComponents', function () {
 
     ];
 
+    this.groups = [];
     this.components = [
-      {
-        name: 'Autoscaling Group',
-        image: 'images/aws/autoscaling.png',
-        description: 'Scale your EC2 capacity up or down automatically according to conditions you define',
-        type: 'resource'
-      },
-      //{
-      //  name: 'Cloud Formation',
-      //  image: 'images/aws/cloudformation.png',
-      //  description: 'Import existing infrastructure templates'
-      //},
-      //{
-      //  name: 'Cloud Front',
-      //  image: 'images/aws/cloudfront.png',
-      //  description: 'Content Delivery Network for your AWS resources'
-      //},
-      //{
-      //  name: 'Cloud Search',
-      //  image: 'images/aws/cloudsearch.png',
-      //  description: 'Service to set up, manage, and scale a custom search solution'
-      //},
-      {
-        name: 'DynamoDb',
-        image: 'images/aws/dynamo.png',
-        description: 'NoSQL database service',
-        type: 'resource'
-      },
-      {
-        name: 'EIP',
-        image: 'images/aws/eip.png',
-        description: 'Elastic(Static) IP address that are dynamically allocated',
-        type: 'resource'
-      },
-      //{
-      //  name: 'EBS',
-      //  image: 'images/aws/ebs.png',
-      //  description: 'Persistent block level storage volumes for EC2 instances'
-      //
-      //},
       {
         name: 'EC2',
         image: 'images/aws/ec2.png',
         description: 'Resizable compute machines',
-        type: 'resource'
+        subcomponents: [
+          {
+            name: 'Instance',
+            group: 'EC2',
+            image: 'images/aws/ec2.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'Security Group',
+            group: 'EC2',
+            image: 'images/aws/securygroup.png',
+            description: 'Virtual firewall',
+            type: 'AWS::EC2::SecurityGroup'
+          },
+          {
+            name: 'EIP',
+            group: 'EC2',
+            image: 'images/aws/eip.png',
+            description: 'Static IP address',
+            type: 'AWS::EC2::EIP'
+          },
+          {
+            name: 'Volume',
+            group: 'EC2',
+            image: 'images/aws/ebs.png',
+            description: 'Elastic Block Store volume',
+            type: 'AWS::EC2::Volume'
+          },
+          {
+            name: 'VPC',
+            group: 'EC2',
+            image: 'images/aws/vpc.png',
+            description: 'Logically isolated virtual network',
+            type: 'AWS::EC2::VPC'
+          },
+          {
+            name: 'Subnet',
+            group: 'EC2',
+            image: 'images/aws/subnet.png',
+            description: 'Resizable compute machines',
+            type: 'AWS::EC2::Subnet'
+          },
+          {
+            name: 'EIP Association',
+            group: 'EC2',
+            image: 'images/aws/eipassociation.png',
+            description: 'Associate static ip with an instance',
+            type: 'AWS::EC2::EIP'
+          },
+          {
+            name: 'Volume Attachment',
+            group: 'EC2',
+            image: 'images/aws/ebsassociation.png',
+            description: 'Attach a volume to an instance',
+            type: 'AWS::EC2::Instance'
+          },
+          {
+            name: 'SecurityGroup Ingress',
+            group: 'EC2',
+            image: 'images/aws/securitygroupingress.png',
+            description: 'Rules for incoming traffic',
+            type: 'AWS::EC2::SecurityGroupIngress'
+          },
+          {
+            name: 'SecurityGroup Egress',
+            group: 'EC2',
+            image: 'images/aws/securitygroupegress.png',
+            description: 'Rules for outgoing traffic',
+            type: 'AWS::EC2::SecurityGroupEgress'
+          },
+          {
+            name: 'Route Table',
+            group: 'EC2',
+            image: 'images/aws/routetable.png',
+            description: 'Table for routing traffics in VPC',
+            type: 'AWS::EC2::RouteTable'
+          },
+          {
+            name: 'Route',
+            group: 'EC2',
+            image: 'images/aws/route.png',
+            description: 'A route entry for the route table',
+            type: 'AWS::EC2::Route'
+          },
+          {
+            name: 'Subnet-RouteTable Association',
+            group: 'EC2',
+            image: 'images/aws/subnetroute.png',
+            description: 'Associate a subnet with a route table',
+            type: 'AWS::EC2::SubnetRouteTableAssociation'
+          },
+          {
+            name: 'Internet Gateway',
+            group: 'EC2',
+            image: 'images/aws/internetgateway.png',
+            description: 'The gateway to public internet',
+            type: 'AWS::EC2::InternetGateway'
+          },
+          {
+            name: 'VPC-Gateway Attacment',
+            group: 'EC2',
+            image: 'images/aws/vpcgateway.png',
+            description: 'Attach a gateway to VPC',
+            type: 'AWS::EC2::VPCGatewayAttachment'
+          },
+          {
+            name: 'DHCP Options',
+            group: 'EC2',
+            image: 'images/aws/dhcp.png',
+            description: 'Creates a set of DHCP options for VPC',
+            type: 'AWS::EC2::DHCPOptions'
+          },
+          {
+            name: 'VPC-DHCP Options Association',
+            group: 'EC2',
+            image: 'images/aws/vpcdhcp.png',
+            description: 'Associate DHCP optins with VPC',
+            type: 'AWS::EC2::VPCDHCPOptionsAssociation'
+          }
+        ]
       },
-      //{
-      //  name: 'Elasticache',
-      //  image: 'images/aws/elasticache.png',
-      //  description: 'Deploy, operate, and scale an in-memory cache'
-      //},
       {
-        name: 'ELB',
-        image: 'images/aws/elb.png',
-        description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
+
+        name: 'Autoscaling',
+        image: 'images/aws/autoscaling.png',
+        description: 'Scale your capacity up or down',
+        subcomponents: [
+          {
+            name: 'Autoscaling Group',
+            group: 'Autoscaling',
+            image: 'images/aws/autoscaling.png',
+            description: 'Scale your EC2 capacity up or down',
+            type: 'AWS::AutoScaling::AutoScalingGroup'
+          },
+          {
+            name: 'Autoscaling Launch Config',
+            group: 'Autoscaling',
+            image: 'images/aws/launchconf.png',
+            description: 'Auto Scaling launch configuration',
+            type: 'AWS::AutoScaling::LaunchConfiguration'
+          },
+          {
+            name: 'Autoscaling Scaling Policy',
+            group: 'Autoscaling',
+            image: 'images/aws/autoscalingpolicy.png',
+            description: 'scaling policy to an auto scaling group',
+            type: 'AWS::AutoScaling::ScalingPolicy'
+          },
+          {
+            name: 'Autoscaling Scheduled Action',
+            group: 'Autoscaling',
+            image: 'images/aws/autoscalingschedule.png',
+            description: 'Creates a scheduled scaling action for an Auto Scaling group',
+            type: 'AWS::AutoScaling::ScheduledAction'
+          }
+        ]
       },
-      //{
-      //  name: 'rds',
-      //  image: 'images/aws/rds.png',
-      //  description: 'Set up, operate, and scale a relational database'
-      //},
-      //{
-      //  name: 'redshift',
-      //  image: 'images/aws/redshift.png',
-      //  description: 'fully managed, petabyte-scale data warehouse solution'
-      //},
+      {
+        name: 'Elastic Load Balancer',
+        image: 'images/aws/elb.png',
+        description: 'Distributes traffic across instances',
+        subcomponents: [
+          {
+            name: 'Elastic Load Balancer',
+            group: 'ELB',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          }
+        ]
+      },
       {
         name: 'Route53',
         image: 'images/aws/route53.png',
-        description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'resource'
+        description: 'Domain Name System Service',
+        subcomponents: [
+          {
+            name: 'Route53 Record Set',
+            group: 'Route53',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'Route53 HealthCheck',
+            group: 'Route53',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'Route53 HostedZone',
+            group: 'Route53',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'Route53 Record Set Group',
+            group: 'Route53',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          }
+        ]
       },
-      //{
-      //  name: 'S3',
-      //  image: 'images/aws/s3.png',
-      //  description: 'Secure, durable, highly-scalable object storage'
-      //},
-      //{
-      //  name: 'SES',
-      //  image: 'images/aws/ses.png',
-      //  description: 'Outbound-only email-sending service'
-      //},
-      //{
-      //  name: 'SNS',
-      //  image: 'images/aws/sns.png',
-      //  description: 'Fully managed push messaging service'
-      //},
-      //{
-      //  name: 'SQS',
-      //  image: 'images/aws/sqs.png',
-      //  description: 'Fast, reliable, scalable, fully managed message queuing service'
-      //},
       {
-        name: 'SecurityGroup',
-        image: 'images/aws/securityGroup.png',
-        description: 'Creates an Amazon EC2 security group',
-        type: 'resource'
+        name: 'DynamoDB',
+        image: 'images/aws/dynamo.png',
+        description: 'NoSQL database service',
+        subcomponents: [
+          {
+            name: 'DynamoDb Table',
+            group: 'DynamoDb',
+            image: 'images/aws/dynamo.png',
+            description: 'NoSQL database service',
+            type: 'AWS::DynamoDB::Table'
+          }
+        ]
       },
       {
-        name: 'VPC',
-        image: 'images/aws/vpc.png',
-        description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
-        type: 'resource'
-      }
-    ];
+        name: 'RDS',
+        image: 'images/aws/rds.png',
+        description: 'Relational Database service',
+        subcomponents: [
+          {
+            name: 'RDS DB Instance',
+            group: 'RDS',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'RDS DB Parameter Group',
+            group: 'RDS',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'RDS DB Subnet Group',
+            group: 'RDS',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'RDS DB Security Group',
+            group: 'RDS',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'RDS DB Security Group Ingress',
+            group: 'RDS',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          }
+        ]
+      },
+      {
+        name: 'Elasticache',
+        image: 'images/aws/elasticache.png',
+        description: 'Distributed cache',
+        subcomponents: [
+          {
+            name: 'Elasticache Cache Cluster',
+            group: 'Elasticache',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'Elasticache Parameter Group',
+            group: 'Elasticache',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'Elasticache Security Group',
+            group: 'Elasticache',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'Elasticache Security Group Ingress',
+            group: 'Elasticache',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'Elasticache Subnet Group',
+            group: 'Elasticache',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          }
+        ]
+      },
+      {
+        name: 'SNS',
+        image: 'images/aws/sns.png',
+        description: 'push messaging service',
+        subcomponents: [
+          {
+            name: 'SNS Topic',
+            group: 'SNS',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'SNS Topic Policy',
+            group: 'SNS',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          }
+        ]
+      },
+      {
+        name: 'SQS',
+        image: 'images/aws/sqs.png',
+        description: 'message queuing service',
+        subcomponents: [
+          {
+            name: 'SQS Queue',
+            group: 'SQS',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'SQS Queue Policy',
+            group: 'SQS',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          }
+        ]
+      },
+      {
+        name: 'S3',
+        image: 'images/aws/s3.png',
+        description: 'Storage service',
+        subcomponents: [
+          {
+            name: 'S3 Bucket',
+            group: 'S3',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          },
+          {
+            name: 'S3 Bucket Policy',
+            group: 'S3',
+            image: 'images/aws/route53.png',
+            description: 'highly available and scalable Domain Name System (DNS)',
+            type: 'AWS::Route53::RecordSet'
+          }
+        ]
+      },
+      {
+        name: 'Cloudfront',
+        image: 'images/aws/cloudfront.png',
+        description: 'Content delivery web service',
+        subcomponents: [
+          {
+            name: 'Cloudfront Distribution',
+            group: 'Cloudfront',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          }
+        ]
+      },
 
-    this.typeMappings = {
-      'AWS::DynamoDB::Table': 'DynamoDb',
-      'AWS::AutoScaling::AutoScalingGroup': 'Autoscaling Group',
-      'AWS::EC2::Instance': 'EC2',
-      'AWS::EC2::EIP': 'EIP',
-      'AWS::ElasticLoadBalancing::LoadBalancer': 'ELB',
-      'AWS::EC2::VPC': 'VPC',
-      'AWS::EC2::SecurityGroup': 'SecurityGroup',
-      'AWS::Route53::RecordSet': 'Route53'
-    };
+      {
+        name: 'IAM',
+        image: 'images/aws/IAM.png',
+        description: 'Identity & access management',
+        subcomponents: [
+          {
+            name: 'IAM Access Key',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM Group',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM InstanceProfile',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM Policy',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM Role',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM User',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM User To Group Addition',
+            group: 'IAM',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          },
+          {
+            name: 'IAM User To Group Addition',
+            group: 'ELB',
+            image: 'images/aws/elb.png',
+            description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
+            type: 'resource'
+          }
+        ]
+      },
+      {
+        name: 'Cloudwatch',
+        image: 'images/aws/cloudwatch.png',
+        description: 'Monitoring service',
+        subcomponents: [
+          {
+            name: 'Cloudwatch Alarm',
+            group: 'Cloudwatch',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          }
+        ]
+      },
+      {
+        name: 'Cloudformation',
+        image: 'images/aws/cloudformation.png',
+        description: 'Create and manage resources',
+        subcomponents: [
+          {
+            name: 'CloudFormation Authentication',
+            group: 'Cloudformation',
+            image: 'images/aws/cloudformationauthentication.png',
+            description: 'scaling policy to an auto scaling group',
+            type: 'resource'
+          },
+          {
+            name: 'CloudFormation Custom Resource',
+            group: 'Cloudformation',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          },
+          {
+            name: 'CloudFormation Init',
+            group: 'Cloudformation',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          },
+          {
+            name: 'CloudFormation WaitCondition',
+            group: 'Cloudformation',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          },
+          {
+            name: 'CloudFormation WaitCondition Handle',
+            group: 'Cloudformation',
+            image: 'images/aws/autoscaling.png',
+            description: '',
+            type: 'resource'
+          }
+        ]
+      }
+
+    ];
 
     //add component specific metadat here
     this.componentMetadata = {
@@ -273,15 +667,12 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'Route53': {
+      'AWS::Route53::RecordSet': {
         type: 'AWS::Route53::RecordSet',
         // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
         IncomingConnection: {
 
-          'EIP': {    // e.g. EC2, DynamoDB
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-            ],
+          'AWS::EC2::EIP': {    // e.g. EC2, DynamoDB
 
             //the name of the property on Target to be modified
             targetPropName: 'ResourceRecords',
@@ -299,10 +690,7 @@ app.service('AWSComponents', function () {
             isProperty: 'true'
           },
 
-          'EC2': {
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-            ],
+          'AWS::EC2::Instance': {
 
             //the name of the property on Target to be modified
             targetPropName: 'ResourceRecords',
@@ -361,7 +749,7 @@ app.service('AWSComponents', function () {
               name: 'TTL',
               type: 'Integer',
               description: 'The resource record cache time to live (TTL), in seconds',
-              default : ["300"]
+              default: ['300']
             },
             {
               name: 'ResourceRecords',
@@ -384,17 +772,13 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'SecurityGroup': {
+      'AWS::EC2::SecurityGroup': {
         type: 'AWS::EC2::SecurityGroup',
 
         // When the user drags a link from another object (source) to connect it to this component (target) use the following rules
         IncomingConnection: {
 
-          'EC2': {
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-              ['Label', {label: 'Belongs to'}]
-            ],
+          'AWS::EC2::Instance': {
 
             //the name of the property on Source to be modified
             sourcePropName: 'SecurityGroups',
@@ -442,11 +826,11 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'DynamoDb': {
+      'AWS::DynamoDB::Table': {
         type: 'AWS::DynamoDB::Table',
         IncomingConnection: {
           //if dynamoDB got connected
-          'DynamoDb': {
+          'AWS::DynamoDB::Table': {
             overlays: [
               ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
               ['Label', {label: 'Depends On'}]
@@ -491,17 +875,12 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'EC2': {
+      'AWS::EC2::Instance': {
         type: 'AWS::EC2::Instance',
 
         IncomingConnection: {
 
-          'SecurityGroup': {
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-              ['Label', {label: 'Belongs'}]
-            ],
-
+          'AWS::EC2::SecurityGroup': {
             //the name of the property on Target to be modified
             targetPropName: 'SecurityGroups',
 
@@ -518,10 +897,7 @@ app.service('AWSComponents', function () {
             isProperty: 'true'
           },
 
-          'EIP': {    // e.g. EC2, DynamoDB
-            overlays: [
-              ['PlainArrow', {direction: 0, location: 0, width: 10, length: 10}],
-            ],
+          'AWS::EC2::EIP': {    // e.g. EC2, DynamoDB
 
             //the name of the property on Source to be modified
             sourcePropName: 'InstanceId',
@@ -539,11 +915,7 @@ app.service('AWSComponents', function () {
             isProperty: 'true'
           },
 
-          'Route53': {
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-            ],
-
+          'AWS::Route53::RecordSet': {
             //the name of the property on Source to be modified
             sourcePropName: 'ResourceRecords',
 
@@ -610,31 +982,31 @@ app.service('AWSComponents', function () {
               // a list of allowable values
               allowableValues: [
                 {
-                  'ap-northeast-1': 'Asia Pacific (Tokyo)'
+                  'ap-northeast-1b': 'Asia Pacific (Tokyo)'
                 },
                 {
-                  'ap-southeast-1': 'Asia Pacific (Singapore)'
+                  'ap-southeast-1b': 'Asia Pacific (Singapore)'
                 },
                 {
-                  'ap-southeast-2': 'Asia Pacific (Sydney)'
+                  'ap-southeast-2b': 'Asia Pacific (Sydney)'
                 },
                 {
-                  'eu-central-1': 'EU (Frankfurt)'
+                  'eu-central-1b': 'EU (Frankfurt)'
                 },
                 {
-                  'eu-west-1': 'EU (Ireland)'
+                  'eu-west-1b': 'EU (Ireland)'
                 },
                 {
-                  'sa-east-1': 'South America (Sao Paulo)'
+                  'sa-east-1b': 'South America (Sao Paulo)'
                 },
                 {
-                  'us-east-1': 'US East (N. Virginia)'
+                  'us-east-1b': 'US East (N. Virginia)'
                 },
                 {
-                  'us-west-1': 'US West (N. California)'
+                  'us-west-1b': 'US West (N. California)'
                 },
                 {
-                  'us-west-2': 'US West (Oregon)'
+                  'us-west-2b': 'US West (Oregon)'
                 }
               ]
 
@@ -752,16 +1124,12 @@ app.service('AWSComponents', function () {
         ]
       },
 
-      'EIP': {
+      'AWS::EC2::EIP': {
         type: 'AWS::EC2::EIP',
         // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
         IncomingConnection: {
 
-          'EC2': {    // e.g. EC2, DynamoDB
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-              ['Label', {label: 'PublicIP'}]
-            ],
+          'AWS::EC2::Instance': {    // e.g. EC2, DynamoDB
 
             //the name of the property on Target to be modified
             targetPropName: 'InstanceId',
@@ -1131,7 +1499,7 @@ app.service('AWSComponents', function () {
                 description: 'The start of port range for the TCP and UDP protocols, or an ICMP type number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP type number)'
               },
               {
-                name: 'toPort',
+                name: 'ToPort',
                 type: 'Integer',
                 description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'
               },
@@ -1186,7 +1554,7 @@ app.service('AWSComponents', function () {
                 description: 'The start of port range for the TCP and UDP protocols, or an ICMP type number. An ICMP type number of -1 indicates a wildcard (i.e., any ICMP type number)'
               },
               {
-                name: 'toPort',
+                name: 'ToPort',
                 type: 'Integer',
                 description: 'The end of port range for the TCP and UDP protocols, or an ICMP code. An ICMP code of -1 indicates a wildcard (i.e., any ICMP code).'
               },

@@ -92,7 +92,7 @@ app.directive('plumbListeners', function () {
   };
 });
 
-app.directive('plumbItem', function () {
+app.directive('plumbItem', ['PlumbStyles', function (PlumbStyles) {
   return {
     //replace: true,
     //controller: 'PlumbCtrl',
@@ -102,24 +102,20 @@ app.directive('plumbItem', function () {
 
 
       jsPlumb.makeTarget(element, {
-        anchor: 'Continuous',
-        connector: [ "StateMachine", { curviness:10 } ],
-        paintStyle: {
-          strokeStyle: '#D7B371',
-          fillStyle: 'transparent',
-          radius: 2,
-          lineWidth: 1
-        }
+        anchor: PlumbStyles.targetAnchors,
+        connector: PlumbStyles.normalConnectorStyle,
+        paintStyle: PlumbStyles.normalPaintStyle
       });
+
       jsPlumb.draggable(element, {
         containment: 'parent'
       });
     }
   };
-});
+}]);
 
 
-app.directive('plumbConnect', function () {
+app.directive('plumbConnect', ['PlumbStyles', function (PlumbStyles) {
   return {
     replace: true,
     link: function (scope, element) {
@@ -127,17 +123,10 @@ app.directive('plumbConnect', function () {
 
       jsPlumb.makeSource(element, {
         parent: $(element).parent(),
-        anchor: ['Continuous', {faces: ['right', 'left', 'top', 'bottom']}],
-        connector: [ "StateMachine", { curviness:10 } ],
-        paintStyle: {
-          strokeStyle: '#D7B371',
-          fillStyle: 'transparent',
-          radius: 2,
-          lineWidth:  1
-        }
+        anchor: PlumbStyles.sourceAnchors,
+        connector: PlumbStyles.normalConnectorStyle,
+        paintStyle: PlumbStyles.normalPaintStyle
       });
-
-
     }
   };
-});
+}]);

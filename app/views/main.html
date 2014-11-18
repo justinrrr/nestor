@@ -12,6 +12,7 @@
       </div>
     </div>
 
+    <<<<<<< HEAD
     <!----------------------------------------------------------->
     <!--                     Canvas                            -->
     <!----------------------------------------------------------->
@@ -25,9 +26,11 @@
          on-connection-moved-from-target="connectionMovedFromTarget(sourceName, originalTargetName, newTargetName)"
          class="center-column">
       <div class="canvasbtns">
-        <button class="btn btn-warning" ng-click="cancel()"><span class="glyphicon glyphicon-floppy-save"></span>
+        <button class="btn btn-warning" ng-click="cancel()"><span
+          class="glyphicon glyphicon-floppy-save"></span>
         </button>
-        <button class="btn btn-primary" ng-click="download()"><span class="glyphicon glyphicon-cloud-download"></span>
+        <button class="btn btn-primary" ng-click="download()"><span
+          class="glyphicon glyphicon-cloud-download"></span>
         </button>
       </div>
       <!-- The actual components on the canvas -->
@@ -40,9 +43,14 @@
            data-identifier="{{component.id}}"
            data-component-name={{component.name}}
         >
-        <img width="100" ng-src="{{component.image}}"/>
+        <p align="left">
+          <button ng-click="deleteClicked(component)" type="button">X</button>
+        </p>
+        <img ng-src="{{component.image}}"/>
 
-        <p class="title">{{component.name}}</p>
+        <p class="title">
+          {{component.name}}</p>
+
 
         <div plumb-connect
              data-parent-name="{{component.parent}}"
@@ -65,26 +73,49 @@
           <p class="fieldset">
             <label class="glyphicon glyphicon-search"></label>
           </p>
-          <input ng-model="searchText" type="text" placeholder="Search..." required class="search">
+          <input ng-model="search.name" type="text" placeholder="Search..." required class="search">
         </form>
         <tabset justified="true">
 
           <tab heading="Components" class="components-tab">
-            <div ng-repeat="comp in components | filter:searchText">
-              <div
-                class="empty-container"
-                ng-drag="true"
-                ng-drag-success="onDragComplete($data,$event)"
-                ng-drag-data="comp"
-                ng-center-anchor="false">
-              </div>
-              <div class="component-item">
+            <div ng-show="isShowingTop" ng-repeat="comp in components | filter:search">
+              <!--<div-->
+              <!--class="empty-container"-->
+              <!--ng-drag="true"-->
+              <!--ng-drag-success="onDragComplete($data,$event)"-->
+              <!--ng-drag-data="comp"-->
+              <!--ng-center-anchor="false">-->
+              <!--</div>-->
+              <div class="component-item" ng-click="componentPressed(comp)">
                 <div class="imgdiv">
                   <img class="component-image" ng-src="{{comp.image}}"/>
                 </div>
                 <div class="pdiv">
                   <p>
                     {{comp.name}} : {{comp.description}}</p>
+                </div>
+              </div>
+            </div>
+
+            <div ng-show="!isShowingTop">
+              <a href="" ng-click="componentBackPressed()">Back</a>
+
+              <div ng-repeat="subcomp in nestedComponent.subcomponents">
+                <div
+                  class="empty-container"
+                  ng-drag="true"
+                  ng-drag-success="onDragComplete($data,$event)"
+                  ng-drag-data="subcomp"
+                  ng-center-anchor="false">
+                </div>
+                <div class="component-item" ng-click="componentPressed()">
+                  <div class="imgdiv">
+                    <img class="component-image" ng-src="{{subcomp.image}}"/>
+                  </div>
+                  <div class="pdiv">
+                    <p>
+                      {{subcomp.name}} : {{subcomp.description}}</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -108,52 +139,12 @@
       <!--                  Component Library                    -->
       <!----------------------------------------------------------->
       <div class="right-column-bottom">
-        <div ng-show="selectedComponent">
-          <div class="cd-fixed-bg">
-            <h4 id="titleh4">{{selectedComponent.name}} </h4>
-            <h5 id="titleh5">Type: {{selectedComponent.type}}</h5>
-
-            <div class="row generate">
-              <div class="action col-sm-7" ng-show="selectedComponent.type === 'EC2'">
-                <button ng-click="showModal()" class="label">Generate Scaffolding Code</button>
-              </div>
-              <div class="action col-sm-5" ng-show="selectedComponent.type === 'EC2'">
-                <button ng-click="showModal()" class="label">Deploy Code</button>
-              </div>
-            </div>
-          </div>
-          <h5 class="contenth5" ng-show="selectedComponent.required">Required Parameters</h5>
-
-          <component-properties ng-if="!selectedComponent.isDerived"
-                                component-properties="selectedComponent.required"
-                                resource-properties="template.Resources[selectedComponent.name].Properties"
-                                on-property-drag="propertyDidDrag(data, event)"
-                                property-name="selectedComponent.name"
-                                types="types"></component-properties>
-
-          <!--<pre>{{template.Resources[selectedComponent.parent].Properties[selectedComponent.type] | json}}</pre>-->
-          <derived-properties
-            ng-if="selectedComponent.isDerived"
-            component-properties="selectedComponent.required"
-            resource-properties="template.Resources[selectedComponent.parent].Properties[selectedComponent.type]"
-            property-name="selectedComponent.name"
-            types="types"></derived-properties>
-
-          <h5 class="contenth5" ng-show="selectedComponent.optional">Optional Parameters</h5>
-
-          <component-properties ng-if="!selectedComponent.isDerived"
-                                component-properties="selectedComponent.optional"
-                                resource-properties="template.Resources[selectedComponent.name].Properties"
-                                on-property-drag="propertyDidDrag(data, event)"
-                                property-name="selectedComponent.name"
-                                types="types"></component-properties>
-
-          <derived-properties
-            ng-if="selectedComponent.isDerived"
-            component-properties="selectedComponent.optional"
-            resource-properties="template.Resources[selectedComponent.parent].Properties[selectedComponent.type]"
-            property-name="selectedComponent.name"
-            types="types"></derived-properties>
+        <div ng-if="selectedComponent !== undefined">
+          <properties
+            component="selectedComponent"
+            template="template"
+            on-property-drag="propertyDidDrag(data, event)"
+            ></properties>
         </div>
       </div>
     </div>
