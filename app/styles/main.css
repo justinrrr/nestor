@@ -929,12 +929,6 @@ body {
 .dragging .component-item .imgdiv img.component-image:hover {
   text-decoration: none;
 }
-a {
-  font-family: 'Lato', Arial;
-  -webkit-font-smoothing: antialiased;
-  color: #666666;
-  text-decoration: none;
-}
 h1,
 h2,
 h3,
@@ -952,157 +946,37 @@ h6,
   -webkit-font-smoothing: antialiased;
 }
 /* Navbar */
-header .navbar-default {
-  background: transparent;
+header .navbar {
+  margin-bottom: 0px;
+  border-radius: 0px;
   border: none;
-  z-index: 1000;
-  top: 20px;
-  position: relative;
-  padding-top: 15px;
-  padding-bottom: 15px;
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
 }
-header .navbar-default ul.navbar-nav li a {
-  text-transform: capitalize;
-  font-weight: 400;
-  font-size: 16px;
-  padding: 7px 20px;
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-  color: #ffffff;
-  background: none;
+header .navbar-inverse ul.navbar-nav li a.getApp {
+  color: #DD4444;
 }
-header .navbar-default ul.navbar-nav li a:after {
-  content: '';
-  width: 32px;
-  background: none;
-  height: 4px;
-  position: absolute;
-  bottom: 2px;
-  z-index: 99999;
-  left: 20px;
-  -webkit-border-radius: 5em;
-  -moz-border-radius: 5em;
-  -ms-border-radius: 5em;
-  -o-border-radius: 5em;
-  border-radius: 5em;
-  color: #ffffff;
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-}
-header .navbar-default ul.navbar-nav li a:hover {
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-  color: #000;
-}
-header .navbar-default ul.navbar-nav li a.getApp {
-  -webkit-border-radius: 5em;
-  -moz-border-radius: 5em;
-  -ms-border-radius: 5em;
-  -o-border-radius: 5em;
-  border-radius: 5em;
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
-  color: white;
-  background: transparent;
-  border: 2px solid white;
-}
-header .navbar-default ul.navbar-nav li a.getApp:after {
+header .navbar-inverse ul.navbar-nav li a.getApp:after {
   display: none;
 }
-header .navbar-default ul.navbar-nav li a.getApp:hover {
+header .navbar-inverse ul.navbar-nav li a.getApp:hover {
   color: #54526F;
-  background: #ffffff;
-  -webkit-transition: all 0.25s ease-in-out;
-  -moz-transition: all 0.25s ease-in-out;
-  -ms-transition: all 0.25s ease-in-out;
-  -o-transition: all 0.25s ease-in-out;
-  transition: all 0.25s ease-in-out;
 }
-header .navbar-toggle {
-  background-color: #CCC;
-  border: 1px solid rgba(0, 0, 0, 0);
+header .navbar-inverse .navbar-toggle {
+  -webkit-border-radius: 5em;
+  -moz-border-radius: 5em;
+  -ms-border-radius: 5em;
+  -o-border-radius: 5em;
+  border-radius: 5em;
 }
-@media screen and (max-width: 750px) {
-  header .navbar-default {
-    padding: 20px;
-  }
-  header .navbar-default ul.navbar-nav {
-    padding-top: 0;
-    margin: 0;
-  }
-  header .navbar-default ul.navbar-nav li a {
-    padding: 10px;
-    text-align: center;
-    color: #ffffff;
-    border-bottom: 1px solid #753e76;
-  }
-  header .navbar-default ul.navbar-nav li a:after {
-    display: none;
-  }
-  header .navbar-default ul.navbar-nav li a:hover {
-    color: #cc6698;
-  }
-  header .navbar-default ul.navbar-nav li a.getApp {
-    color: #ffffff;
-    background: none !important;
-    -webkit-border-radius: 0em;
-    -moz-border-radius: 0em;
-    -ms-border-radius: 0em;
-    -o-border-radius: 0em;
-    border-radius: 0em;
-  }
-  header .navbar-default .navbar-toggle {
-    margin-top: 0px;
-    margin-right: 0px;
-    background: none;
-    border: 2px solid #ffffff;
-    color: #ffffff;
-    -webkit-border-radius: 5em;
-    -moz-border-radius: 5em;
-    -ms-border-radius: 5em;
-    -o-border-radius: 5em;
-    border-radius: 5em;
-  }
-  header .navbar-default .navbar-toggle span.icon-bar {
-    background-color: white;
-  }
-  header .navbar-default .navbar-toggle:hover,
-  header .navbar-default .navbar-toggle:focus {
-    background: none;
-  }
-  header .navbar-default .navbar-collapse {
-    border-color: transparent;
-    background: #6b396c;
-  }
-  header .navbar-toggle:hover,
-  header .navbar-toggle:focus {
-    background: none;
-  }
+header .navbar-inverse .navbar-collapse {
+  margin-right: -90px;
 }
 /* Sign-up div */
 section#div1 {
   background: url("../images/bk-freeze-ga.jpg");
-  top: -90px;
 }
 section#div1 .container > .row {
-  padding-top: 150px;
+  padding-top: 80px;
+  padding-bottom: 50px;
 }
 section#div1 .container > .row .col-md-6 > .tp-caption {
   font-family: 'Roboto Condensed', sans-serif;
@@ -1225,37 +1099,6 @@ section#support .media .media-heading a {
 }
 .section-heading.inverse .divider:after {
   background: white;
-}
-/* Form Style */
-form .form-control {
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
-  -webkit-border-radius: 5em;
-  -moz-border-radius: 5em;
-  -ms-border-radius: 5em;
-  -o-border-radius: 5em;
-  border-radius: 5em;
-  height: 40px;
-  line-height: 40px;
-  padding: 20px;
-  color: #cfcfcf;
-  border: 2px solid #cccccc;
-  font-weight: 300;
-}
-form textarea.form-control {
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
-  border-radius: 20px;
-  height: auto;
-  line-height: normal;
-}
-form .form-control:focus {
-  border-color: #cc6698;
-  color: #999999;
-  outline: 0;
 }
 /* footer section */
 footer {
