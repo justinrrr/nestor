@@ -76,26 +76,28 @@
         <tabset justified="true">
 
           <tab heading="Components" class="components-tab">
-            <div ng-show="isShowingTop" ng-repeat="comp in components | filter:search">
-              <!--<div-->
-              <!--class="empty-container"-->
-              <!--ng-drag="true"-->
-              <!--ng-drag-success="onDragComplete($data,$event)"-->
-              <!--ng-drag-data="comp"-->
-              <!--ng-center-anchor="false">-->
-              <!--</div>-->
-              <div class="component-item" ng-click="componentPressed(comp)">
-                <div class="imgdiv">
-                  <img class="component-image" ng-src="{{comp.image}}"/>
-                </div>
-                <div class="pdiv">
-                  <p>
-                    {{comp.name}} : {{comp.description}}</p>
+            <div ng-show="isShowingTop" ng-animate="slide-left">
+              <div ng-repeat="comp in components | filter:search">
+                <!--<div-->
+                <!--class="empty-container"-->
+                <!--ng-drag="true"-->
+                <!--ng-drag-success="onDragComplete($data,$event)"-->
+                <!--ng-drag-data="comp"-->
+                <!--ng-center-anchor="false">-->
+                <!--</div>-->
+                <div class="component-item" ng-click="componentPressed(comp)">
+                  <div class="imgdiv">
+                    <img class="component-image" ng-src="{{comp.image}}"/>
+                  </div>
+                  <div class="pdiv">
+                    <p>
+                      {{comp.name}} : {{comp.description}}</p>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div ng-show="!isShowingTop">
+            <div ng-show="!isShowingTop" ng-animate="'slide-right'">
               <a href="" ng-click="componentBackPressed()">Back</a>
 
               <div ng-repeat="subcomp in nestedComponent.subcomponents">
