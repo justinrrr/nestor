@@ -3,104 +3,96 @@
 <div ui-layout class="layout-mock" ng-init="init()">
   <ui-layout options="{ flow : 'column' }">
 
-    <!----------------------------------------------------------->
-    <!--                     Code Editor                       -->
-    <!----------------------------------------------------------->
+    <!--<div-->
+      <!--ui-layout="{flow: 'row'}"-->
+      <!--size="300px"-->
+      <!--class="left-column">-->
+      <!--&lt;!&ndash;-------------------------------------------------------&ndash;&gt;-->
+      <!--&lt;!&ndash;                  Resource Properties                  &ndash;&gt;-->
+      <!--&lt;!&ndash;-------------------------------------------------------&ndash;&gt;-->
 
+      <!--<div class="left-column-top" size="410px">-->
+        <!--<form id="searchbox">-->
+          <!--<p class="fieldset">-->
+            <!--<label class="glyphicon glyphicon-search"></label>-->
+          <!--</p>-->
+          <!--<input ng-model="search.name" type="text" placeholder="Search..." required class="search">-->
+        <!--</form>-->
+        <!--<tabset justified="true">-->
 
-
-
-    <div
-      ui-layout="{flow: 'row'}"
-      size="300px"
-      class="left-column">
-
-      <!----------------------------------------------------------->
-      <!--                  Resource Properties                  -->
-      <!----------------------------------------------------------->
-
-      <div class="left-column-top" size="410px">
-        <form id="searchbox">
-          <p class="fieldset">
-            <label class="glyphicon glyphicon-search"></label>
-          </p>
-          <input ng-model="search.name" type="text" placeholder="Search..." required class="search">
-        </form>
-        <tabset justified="true">
-
-          <tab heading="Components" class="components-tab">
-            <div ng-show="isShowingTop">
-              <div ng-repeat="comp in components | filter:search">
-                <!--<div-->
-                <!--class="empty-container"-->
-                <!--ng-drag="true"-->
-                <!--ng-drag-success="onDragComplete($data,$event)"-->
-                <!--ng-drag-data="comp"-->
-                <!--ng-center-anchor="false">-->
+          <!--<tab heading="Components" class="components-tab">-->
+            <!--<div ng-show="isShowingTop">-->
+              <!--<div ng-repeat="comp in components | filter:search">-->
+                <!--&lt;!&ndash;<div&ndash;&gt;-->
+                <!--&lt;!&ndash;class="empty-container"&ndash;&gt;-->
+                <!--&lt;!&ndash;ng-drag="true"&ndash;&gt;-->
+                <!--&lt;!&ndash;ng-drag-success="onDragComplete($data,$event)"&ndash;&gt;-->
+                <!--&lt;!&ndash;ng-drag-data="comp"&ndash;&gt;-->
+                <!--&lt;!&ndash;ng-center-anchor="false">&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--<div class="component-item" ng-click="componentPressed(comp)">-->
+                  <!--<div class="imgdiv">-->
+                    <!--<img class="component-image" ng-src="{{comp.image}}"/>-->
+                  <!--</div>-->
+                  <!--<div class="pdiv">-->
+                    <!--<p>-->
+                      <!--{{comp.name}} : {{comp.description}}</p>-->
+                  <!--</div>-->
                 <!--</div>-->
-                <div class="component-item" ng-click="componentPressed(comp)">
-                  <div class="imgdiv">
-                    <img class="component-image" ng-src="{{comp.image}}"/>
-                  </div>
-                  <div class="pdiv">
-                    <p>
-                      {{comp.name}} : {{comp.description}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
+              <!--</div>-->
+            <!--</div>-->
 
-            <div ng-show="!isShowingTop">
-              <a href="" ng-click="componentBackPressed()"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true">Back</span></a>
+            <!--<div ng-show="!isShowingTop">-->
+              <!--<a href="" ng-click="componentBackPressed()"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true">Back</span></a>-->
 
-              <div ng-repeat="subcomp in nestedComponent.subcomponents">
-                <div
-                  class="empty-container"
-                  ng-drag="true"
-                  ng-drag-success="onDragComplete($data,$event)"
-                  ng-drag-data="subcomp"
-                  ng-center-anchor="false">
-                </div>
-                <div class="component-item" ng-click="componentPressed()">
-                  <div class="imgdiv">
-                    <img class="component-image" ng-src="{{subcomp.image}}"/>
-                  </div>
-                  <div class="pdiv">
-                    <p>
-                      {{subcomp.name}} : {{subcomp.description}}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </tab>
+              <!--<div ng-repeat="subcomp in nestedComponent.subcomponents">-->
+                <!--<div-->
+                  <!--class="empty-container"-->
+                  <!--ng-drag="true"-->
+                  <!--ng-drag-success="onDragComplete($data,$event)"-->
+                  <!--ng-drag-data="subcomp"-->
+                  <!--ng-center-anchor="false">-->
+                <!--</div>-->
+                <!--<div class="component-item" ng-click="componentPressed()">-->
+                  <!--<div class="imgdiv">-->
+                    <!--<img class="component-image" ng-src="{{subcomp.image}}"/>-->
+                  <!--</div>-->
+                  <!--<div class="pdiv">-->
+                    <!--<p>-->
+                      <!--{{subcomp.name}} : {{subcomp.description}}</p>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</tab>-->
 
-          <tab heading="Solutions" class="tasks-tab">
-            <div ng-click="taskSelected(task)" ng-repeat="task in tasks | filter:searchText">
-              <div class="task-item">
+          <!--<tab heading="Solutions" class="tasks-tab">-->
+            <!--<div ng-click="taskSelected(task)" ng-repeat="task in tasks | filter:searchText">-->
+              <!--<div class="task-item">-->
 
-                <a href="">
-                  {{task.name}}
-                </a>
+                <!--<a href="">-->
+                  <!--{{task.name}}-->
+                <!--</a>-->
 
-              </div>
-            </div>
-          </tab>
-        </tabset>
-      </div>
-
-      <!----------------------------------------------------------->
-      <!--                  Component Library                    -->
-      <!----------------------------------------------------------->
-      <!--<div class="left-column-bottom">-->
-        <!--<div ng-if="selectedComponent !== undefined">-->
-          <!--<properties-->
-            <!--component="selectedComponent"-->
-            <!--template="template"-->
-            <!--on-property-drag="propertyDidDrag(data, event)"-->
-      <!--</properties>-->
-        <!--</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</tab>-->
+        <!--</tabset>-->
       <!--</div>-->
-    </div>
+
+      <!--&lt;!&ndash;-------------------------------------------------------&ndash;&gt;-->
+      <!--&lt;!&ndash;                  Component Library                    &ndash;&gt;-->
+      <!--&lt;!&ndash;-------------------------------------------------------&ndash;&gt;-->
+      <!--&lt;!&ndash;<div class="left-column-bottom">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div ng-if="selectedComponent !== undefined">&ndash;&gt;-->
+          <!--&lt;!&ndash;<properties&ndash;&gt;-->
+            <!--&lt;!&ndash;component="selectedComponent"&ndash;&gt;-->
+            <!--&lt;!&ndash;template="template"&ndash;&gt;-->
+            <!--&lt;!&ndash;on-property-drag="propertyDidDrag(data, event)"&ndash;&gt;-->
+      <!--&lt;!&ndash;</properties>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+      <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
 
     <!----------------------------------------------------------->
     <!--                     Canvas                            -->
