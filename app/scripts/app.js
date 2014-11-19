@@ -44,6 +44,9 @@ app.config(function ($routeProvider) {
       templateUrl: 'views/about.html',
       controller: 'AboutCtrl'
     })
+    .when('/home', {
+      templateUrl: 'views/landing.html'
+    })
     .otherwise({
       redirectTo: '/'
     });

@@ -1,3 +1,5 @@
+<p>This is the about view.</p>
+
 <div ui-layout class="layout-mock" ng-init="init()">
   <ui-layout options="{ flow : 'column' }">
 
@@ -97,8 +99,8 @@
               </div>
             </div>
 
-            <div ng-show="!isShowingTop" ng-animate="'slide-right'">
-              <a href="" ng-click="componentBackPressed()">Back</a>
+            <div ng-show="!isShowingTop">
+              <a href="" ng-click="componentBackPressed()"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true">Back</span></a>
 
               <div ng-repeat="subcomp in nestedComponent.subcomponents">
                 <div
