@@ -5,6 +5,8 @@ angular.module('nestorApp')
     function ($scope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
 
 
+      $scope.isToggled = true;
+
       //set up jsPlumb
       $scope.init = function () {
         UIComponents.setupJSPlumb($scope);
