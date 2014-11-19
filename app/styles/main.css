@@ -1,6 +1,3 @@
-@import "animate.css";
-@import "font-awesome.min.css";
-@import "slick.css";
 /**
   Colors
 *************************************/
@@ -335,6 +332,15 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane {
   padding: 0px;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .glyphicon-chevron-left {
+  color: #efefef;
+  padding: 10px;
+  font-size: 14px;
+}
+.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .glyphicon-chevron-left:before {
+  font-size: 12px;
+  padding-right: 2px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .empty-container {
   width: 300px;
