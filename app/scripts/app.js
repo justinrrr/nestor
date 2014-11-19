@@ -23,6 +23,7 @@ var app = angular
     'ngRoute',
     'ngSanitize',
     'ngTouch',
+    'ngAnimate',
     'pageslide-directive',
     'ngDraggable',
     'ui.bootstrap',
