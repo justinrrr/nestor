@@ -6,68 +6,20 @@
     <!----------------------------------------------------------->
     <!--                     Code Editor                       -->
     <!----------------------------------------------------------->
-    <div class="left-column" id="left-column" size="300px">
-      <div ui-ace="{theme:'ambiance', mode: 'json', onChange: templateStringChanged}"
-           ng-model="templateString">
-      </div>
-    </div>
-
-    <!----------------------------------------------------------->
-    <!--                     Canvas                            -->
-    <!----------------------------------------------------------->
-    <div ng-drop="true"
-         ng-drop-success="onDropComplete($data,$event)"
-         id="container"
-         plumb-listeners
-         on-connection-established="connectionEstablished(sourceName, targetName)"
-         on-connection-detached="connectionDetached(sourceName, targetName)"
-         on-connection-moved-from-source="connectionMovedFromSource(originalSourceName, newSourceName, targetName)"
-         on-connection-moved-from-target="connectionMovedFromTarget(sourceName, originalTargetName, newTargetName)"
-         class="center-column">
-      <div class="canvasbtns">
-        <button class="btn btn-warning" ng-click="cancel()"><span
-          class="glyphicon glyphicon-floppy-save"></span>
-        </button>
-        <button class="btn btn-primary" ng-click="download()"><span
-          class="glyphicon glyphicon-cloud-download"></span>
-        </button>
-      </div>
-      <!-- The actual components on the canvas -->
-      <div plumb-item
-           ng-click="clickCallback(component)"
-           class="item"
-           ng-class="{selectedComponent : component.id === selectedComponent.id}"
-           ng-repeat="component in addedComponents"
-           ng-style="{ 'left':component.x, 'top':component.y }"
-           data-identifier="{{component.id}}"
-           data-component-name={{component.name}}
-        >
-        <p align="left">
-          <button ng-click="deleteClicked(component)" type="button">X</button>
-        </p>
-        <img ng-src="{{component.image}}"/>
-
-        <p class="title">
-          {{component.name}}</p>
 
 
-        <div plumb-connect
-             data-parent-name="{{component.parent}}"
-             class="ep"
-          ></div>
-      </div>
-    </div>
+
 
     <div
       ui-layout="{flow: 'row'}"
       size="300px"
-      class="right-column">
+      class="left-column">
 
       <!----------------------------------------------------------->
       <!--                  Resource Properties                  -->
       <!----------------------------------------------------------->
 
-      <div class="right-column-top" size="410px">
+      <div class="left-column-top" size="410px">
         <form id="searchbox">
           <p class="fieldset">
             <label class="glyphicon glyphicon-search"></label>
@@ -77,7 +29,7 @@
         <tabset justified="true">
 
           <tab heading="Components" class="components-tab">
-            <div ng-show="isShowingTop" ng-animate="slide-left">
+            <div ng-show="isShowingTop">
               <div ng-repeat="comp in components | filter:search">
                 <!--<div-->
                 <!--class="empty-container"-->
@@ -139,14 +91,66 @@
       <!----------------------------------------------------------->
       <!--                  Component Library                    -->
       <!----------------------------------------------------------->
-      <div class="right-column-bottom">
-        <div ng-if="selectedComponent !== undefined">
-          <properties
-            component="selectedComponent"
-            template="template"
-            on-property-drag="propertyDidDrag(data, event)"
-            ></properties>
-        </div>
+      <!--<div class="left-column-bottom">-->
+        <!--<div ng-if="selectedComponent !== undefined">-->
+          <!--<properties-->
+            <!--component="selectedComponent"-->
+            <!--template="template"-->
+            <!--on-property-drag="propertyDidDrag(data, event)"-->
+      <!--</properties>-->
+        <!--</div>-->
+      <!--</div>-->
+    </div>
+
+    <!----------------------------------------------------------->
+    <!--                     Canvas                            -->
+    <!----------------------------------------------------------->
+    <div ng-drop="true"
+         ng-drop-success="onDropComplete($data,$event)"
+         id="container"
+         plumb-listeners
+         on-connection-established="connectionEstablished(sourceName, targetName)"
+         on-connection-detached="connectionDetached(sourceName, targetName)"
+         on-connection-moved-from-source="connectionMovedFromSource(originalSourceName, newSourceName, targetName)"
+         on-connection-moved-from-target="connectionMovedFromTarget(sourceName, originalTargetName, newTargetName)"
+         class="center-column">
+      <div class="canvasbtns">
+        <button class="btn btn-warning" ng-click="cancel()"><span
+          class="glyphicon glyphicon-floppy-save"></span>
+        </button>
+        <button class="btn btn-primary" ng-click="download()"><span
+          class="glyphicon glyphicon-cloud-download"></span>
+        </button>
+      </div>
+      <!-- The actual components on the canvas -->
+      <div plumb-item
+           ng-click="clickCallback(component)"
+           class="item"
+           ng-class="{selectedComponent : component.id === selectedComponent.id}"
+           ng-repeat="component in addedComponents"
+           ng-style="{ 'left':component.x, 'top':component.y }"
+           data-identifier="{{component.id}}"
+           data-component-name={{component.name}}
+        >
+        <p align="left">
+          <button ng-click="deleteClicked(component)" type="button">X</button>
+        </p>
+        <img ng-src="{{component.image}}"/>
+
+        <p class="title">
+          {{component.name}}</p>
+
+
+        <div plumb-connect
+             data-parent-name="{{component.parent}}"
+             class="ep"
+          ></div>
+      </div>
+    </div>
+
+    <div class="right-column" id="right-column" size="300px">
+      <div ui-ace="{theme:'ambiance', mode: 'json', onChange: templateStringChanged}"
+           ng-model="templateString">
       </div>
     </div>
   </ui-layout>
