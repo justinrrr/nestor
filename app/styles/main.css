@@ -958,7 +958,7 @@ header .navbar-inverse ul.navbar-nav li a.getApp:after {
   display: none;
 }
 header .navbar-inverse ul.navbar-nav li a.getApp:hover {
-  color: #54526F;
+  color: white;
 }
 header .navbar-inverse .navbar-toggle {
   -webkit-border-radius: 5em;
