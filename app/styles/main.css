@@ -1274,6 +1274,10 @@ section#support .media:hover i {
   overflow: auto;
   background-color: #777;
 }
+.base-panel {
+  transition: all cubic-bezier(0.55, 0, 0.1, 1) 0.5s;
+  animation: bounce 0.2s cubic-bezier(0.55, 0, 0.1, 1);
+}
 .left-bottom-panel-open {
   height: 95% !important;
 }

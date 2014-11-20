@@ -94,6 +94,12 @@
   background-color: #777;
 }
 
+.base-panel {
+//  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(.55,0,.1,1) 0.5s;
+  animation: bounce 0.2s cubic-bezier(.55,0,.1,1) ;
+}
+
 .left-bottom-panel-open {
   height: @bottom-top-open !important;
 }
@@ -123,3 +129,4 @@
 #sidebar-resizer:hover, #preview-resizer:hover {
   background-color: #AAA;
 }
+

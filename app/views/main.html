@@ -1,11 +1,12 @@
 <div id="left-panel">
 
-  <div id="left-top-panel"
+  <div class="base-panel"
+       id="left-top-panel"
        ng-class="isBottomLeftOpen ? 'left-top-panel-open' : 'left-top-panel-close'">
     Top content
   </div>
 
-  <div id="left-bottom-panel"
+  <div class="base-panel" id="left-bottom-panel"
        ng-class="isBottomLeftOpen ? 'left-bottom-panel-open' : 'left-bottom-panel-close'">
   </div>
 </div>
@@ -13,6 +14,7 @@
 <div id="mid-container">
   <div
     id="middle-panel"
+    class="base-panel"
     ng-class="isLeftOpen ? 'middle-panel-smaller' : 'middle-panel-bigger'"
     >
     <h3>Middle navbar</h3>
