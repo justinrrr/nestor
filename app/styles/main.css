@@ -17,8 +17,8 @@ body {
   font-size: 24px;
   line-height: 69px;
   color: white;
-  background: #646988;
-  border: solid 1px #646988;
+  background: #2b3743;
+  border: solid 1px #2b3743;
   border-radius: 5px 5px 0px 0px;
   margin: 0;
   z-index: 999;
@@ -35,7 +35,7 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 40%;
-  color: #646988;
+  color: #2b3743;
 }
 .modal-body .input:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
@@ -207,7 +207,7 @@ body {
   transition: box-shadow 0.25s ease-in;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent {
-  background-color: #e2e2e2;
+  background-color: #17bcb8;
   -moz-box-shadow: 2px 2px 3px 1px #AAA;
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
@@ -227,27 +227,27 @@ body {
   pointer-events: all;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg ._jsPlumb.connector > path {
-  fill: #646988;
+  fill: #2b3743;
   z-index: -1;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg circle {
-  fill: #646988;
-  stroke: #646988;
+  fill: #2b3743;
+  stroke: #2b3743;
   stroke-width: 1px;
   z-index: 1;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg ._jsPlumb_endpoint._jsPlumb_endpoint_anchor_.ui-droppable.ui-draggable.ui-draggable-handle._jsPlumb_endpoint_connected._jsPlumb_endpoint_full circle {
-  fill: #646988;
-  stroke: #646988;
+  fill: #2b3743;
+  stroke: #2b3743;
   stroke-width: 2px;
   z-index: 1;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg path {
-  stroke: #646988;
+  stroke: #2b3743;
   stroke-width: 1.5px;
 }
 .layout-mock > .stretch.ui-layout-column .right-column {
-  background-color: #646988;
+  background-color: #2b3743;
   width: 300px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
   position: absolute;
@@ -255,13 +255,13 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top {
   width: 300px;
-  border-top: 4px solid #646988;
+  border-top: 4px solid #2b3743;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox {
   margin: 4px 0px 4px 0px;
   display: inline-flex;
   width: 300px;
-  border: 2px solid #646988;
+  border: 2px solid #2b3743;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox .fieldset > label {
   position: absolute;
@@ -276,7 +276,7 @@ body {
   padding: 8px 15px 8px 34px;
   background-color: white;
   color: rgba(112, 100, 130, 0.78);
-  border: 1px solid #646988;
+  border: 1px solid #2b3743;
   font-weight: 500;
   outline: none;
   width: 97.2%;
@@ -284,7 +284,7 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox .search:focus {
   border: 1px solid #61708C;
-  color: #646988;
+  color: #2b3743;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox .button {
   position: relative;
@@ -306,7 +306,7 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top ul.nav-tabs.nav-justified li > a {
   text-decoration: none;
   cursor: pointer;
-  background-color: #646988;
+  background-color: #2b3743;
   color: white;
   font-weight: 400;
   border: none;
@@ -317,7 +317,7 @@ body {
   color: #FF9690;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-top ul.nav-tabs.nav-justified .active > a {
-  background-color: #646988;
+  background-color: #2b3743;
   -moz-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
   -webkit-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
   box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
@@ -425,7 +425,7 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg {
   top: 0px;
-  background-color: #646988;
+  background-color: #2b3743;
   width: 300px;
   padding: 14px 10px 5px 15px;
   color: #ffffff;
@@ -467,12 +467,12 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg .action .label:focus {
   text-decoration: none;
   background-color: white;
-  color: #646988;
+  color: #2b3743;
   outline: 0;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .contenth5 {
   padding: 10px 10px 15px 15px;
-  background-color: #e2e2e2;
+  background-color: #17bcb8;
   margin-top: 0px;
   margin-bottom: 0px;
 }
@@ -584,7 +584,7 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .pull-right {
   top: -15px;
   font-size: 12px;
-  color: #646988;
+  color: #2b3743;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 table,
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 thead,
@@ -664,7 +664,7 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 57%;
-  color: #646988;
+  color: #2b3743;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .propertyselect:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
@@ -680,7 +680,7 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 90%;
-  color: #646988;
+  color: #2b3743;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .editable-input:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
@@ -708,7 +708,7 @@ body {
   white-space: nowrap;
   text-align: left;
   font-weight: 400;
-  color: #646988;
+  color: #2b3743;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td:before {
   content: attr(data-title);
@@ -790,7 +790,7 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 57%;
-  color: #646988;
+  color: #2b3743;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td .propertyselect:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
@@ -817,7 +817,7 @@ body {
   white-space: nowrap;
   text-align: left;
   font-weight: 400;
-  color: #646988;
+  color: #2b3743;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td:before {
   content: attr(data-title);
@@ -855,7 +855,7 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 57%;
-  color: #646988;
+  color: #2b3743;
 }
 .layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .propertyselect:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
