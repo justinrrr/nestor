@@ -1358,10 +1358,10 @@ section#support .media:hover i {
   overflow: auto;
 }
 .left-top-panel-open {
-  bottom: 95%;
+  bottom: 95% !important;
 }
 .left-top-panel-close {
-  bottom: 5%;
+  bottom: 5% !important;
 }
 #left-bottom-panel {
   position: absolute;
@@ -1372,24 +1372,24 @@ section#support .media:hover i {
   background-color: #777;
 }
 .left-bottom-panel-open {
-  height: 95%;
+  height: 95% !important;
 }
 .left-bottom-panel-close {
-  height: 5%;
+  height: 5% !important;
 }
 #left-top-bottom-resizer {
   position: absolute;
-  height: 6px;
+  height: 0px;
   left: 0;
   right: 0;
   background-color: #666;
   cursor: n-resize;
 }
 .left-top-bottom-resizer-open {
-  bottom: 95%;
+  bottom: 95% !important;
 }
 .left-top-bottom-resizer-close {
-  bottom: 5%;
+  bottom: 5% !important;
 }
 #sidebar-resizer:hover,
 #preview-resizer:hover {
