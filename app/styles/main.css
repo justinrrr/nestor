@@ -1202,14 +1202,14 @@ section#support .media:hover i {
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
   overflow: auto;
+  width: 54.6%;
 }
 .middle-panel-smaller {
-  width: 85%;
+  left: 15%;
 }
 .middle-panel-bigger {
-  width: 97%;
+  left: 3%;
 }
 #right-panel {
   background-color: #000000;
@@ -1236,21 +1236,14 @@ section#support .media:hover i {
   bottom: 0;
   cursor: e-resize;
 }
-.middle-panel-resize-smaller {
-  right: 85%;
-}
-.middle-panel-resize-bigger {
-  right: 97%;
-}
 #left-panel {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0 /* 200 + 6*/;
-  right: 0;
-  width: 100%;
   overflow: hidden;
-  color: #FFF;
+  background-color: green;
+  right: 85%;
 }
 #left-top-panel {
   position: absolute;

@@ -2,22 +2,25 @@
 @bottom-top-close: 5%;
 @middle-panel-smaller : 85%;
 @middle-panel-bigger : 97%;
-
+@left-panel-open: 85%;
+@left-panel-close: 97%;
 #middle-panel {
   background-color: blue;
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
   overflow: auto;
+  width: 54.6%;
 }
 
 .middle-panel-smaller {
-  width: @middle-panel-smaller;
+  left: 15%
+//  width: @middle-panel-smaller;
 }
 
 .middle-panel-bigger {
-  width: @middle-panel-bigger;
+  left: 3%
+//  width: @middle-panel-bigger;
 }
 
 #right-panel {
@@ -49,11 +52,11 @@
 }
 
 .middle-panel-resize-smaller {
-  right: @middle-panel-smaller;
+//  right: @middle-panel-smaller;
 }
 
 .middle-panel-resize-bigger {
-  right: @middle-panel-bigger;
+//  right: @middle-panel-bigger;
 }
 
 #left-panel {
@@ -61,11 +64,17 @@
   top: 0;
   bottom: 0;
   left: 0 /* 200 + 6*/;
-  right: 0;
-  width: 100%;
   overflow: hidden;
-  color: #FFF;
+  background-color: green;
+  right: @left-panel-open;
+}
 
+.left-panel-open {
+//  right: @left-panel-open
+}
+
+.left-panel-close {
+//  right: @left-panel-close
 }
 
 #left-top-panel {

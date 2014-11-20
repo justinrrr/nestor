@@ -1,5 +1,5 @@
-<div id="left-panel">
-
+<div class="base-panel" id="left-panel"
+  ng-class="isLeftOpen ? 'left-panel-open' : 'left-panel-close'">
   <div class="base-panel"
        id="left-top-panel"
        ng-class="isBottomLeftOpen ? 'left-top-panel-open' : 'left-top-panel-close'">
@@ -29,7 +29,7 @@
     </p>
 
     <button ng-click="isBottomLeftOpen = !isBottomLeftOpen">toggle bottom</button>
-    <button ng-click="isLeftOpen = !isLeftOpen">toggle right</button>
+    <button ng-click="toggleLeftPressed()">toggle left</button>
   </div>
 
   <div
@@ -42,6 +42,7 @@
        resizer-width="0"
        resizer-left="#middle-panel"
        resizer-right="#right-panel"
+       resizer-leftmost="#left-panel"
     >
   </div>
 </div>

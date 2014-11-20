@@ -29,11 +29,14 @@ app.directive('resizer', function($document) {
           left: x + 'px'
         });
 
-        $($attrs.resizerLeft).css({
-          //width: x + 'px'
-        });
         $($attrs.resizerRight).css({
           left: (x + parseInt($attrs.resizerWidth)) + 'px'
+        });
+        var leftmostWidth = $($attrs.resizerLeftmost)[0].clientWidth;
+        var finalLeftWidth = x - leftmostWidth;
+        //$attrs.resizerLeftmost;
+        $($attrs.resizerLeft).css({
+          width: finalLeftWidth + 'px'
         });
 
       } else {

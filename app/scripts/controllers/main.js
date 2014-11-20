@@ -95,6 +95,24 @@ angular.module('nestorApp')
       // UI Events
       //--------------------------------------
 
+      $scope.toggleLeftPressed = function() {
+        $scope.isLeftOpen = !$scope.isLeftOpen
+        var leftPanelOpen = '85%';
+        var leftPanelClose = '97%';
+
+        $scope.currentWidth = (angular.element('#middle-panel')[0].clientWidth / $(window).width()) * 100;
+        if ($scope.isLeftOpen) {
+
+          angular.element('#left-panel')[0].style.right = leftPanelOpen;
+          $scope.currentWidth = $scope.currentWidth - 12;
+          angular.element('#middle-panel')[0].style.width = $scope.currentWidth + '%';
+        } else {
+          angular.element('#left-panel')[0].style.right = leftPanelClose;
+          $scope.currentWidth = $scope.currentWidth + 12;
+          angular.element('#middle-panel')[0].style.width = $scope.currentWidth + '%';
+        }
+      };
+
       $scope.componentPressed = function (component) {
         $scope.isShowingTop = false;
         $scope.nestedComponent = component;
