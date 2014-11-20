@@ -11,8 +11,7 @@ app.directive('resizer', function($document) {
   return function($scope, $element, $attrs) {
 
     $scope.$on('leftmostResizeRequest', function() {
-
-      var openCloseDifference = 12;
+      var openCloseDifference = parseInt($attrs.openCloseDifference);
       var currentPanelSize = (($(window).width() - angular.element('#left-panel')[0].clientWidth) /  $(window).width()) * 100;
 
 
