@@ -1203,7 +1203,7 @@ section#support .media:hover i {
   top: 0;
   bottom: 0;
   overflow: auto;
-  width: 54.6%;
+  width: 65%;
 }
 .middle-panel-smaller {
   left: 15%;
@@ -1218,7 +1218,7 @@ section#support .media:hover i {
   bottom: 0;
   right: 0;
   overflow: auto;
-  left: 70%;
+  left: 80%;
 }
 #right-panel-resizer {
   background-color: #666;
@@ -1226,8 +1226,9 @@ section#support .media:hover i {
   top: 0;
   bottom: 0;
   width: 6px;
-  right: 30%;
+  right: 20%;
   cursor: ew-resize;
+  z-index: 100;
 }
 #middle-panel-resizer {
   background-color: #666;

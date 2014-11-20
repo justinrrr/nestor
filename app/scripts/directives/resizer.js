@@ -44,7 +44,7 @@ app.directive('resizer', function($document) {
         // Handle vertical resizer
         var x = event.pageX;
 
-        if ($attrs.resizerMax && x > $attrs.resizerMax) {
+        if ($attrs.resizerMax && x < $attrs.resizerMax) {
           x = parseInt($attrs.resizerMax);
         }
 
