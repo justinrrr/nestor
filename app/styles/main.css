@@ -1198,7 +1198,7 @@ section#support .media:hover i {
   border: 2px solid #cc6698;
 }
 #middle-panel {
-  background-color: blue;
+  background-color: white;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1269,7 +1269,7 @@ section#support .media:hover i {
 }
 .base-panel {
   transition: all cubic-bezier(0.55, 0, 0.1, 1) 0.5s;
-  animation: bounce 0.2s cubic-bezier(0.55, 0, 0.1, 1);
+  animation: bounce 0.01s cubic-bezier(0.55, 0, 0.1, 1);
 }
 .left-bottom-panel-open {
   height: 95% !important;
@@ -1279,7 +1279,7 @@ section#support .media:hover i {
 }
 #left-top-bottom-resizer {
   position: absolute;
-  height: 0px;
+  height: 0;
   left: 0;
   right: 0;
   background-color: #666;

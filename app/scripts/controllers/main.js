@@ -97,7 +97,7 @@ angular.module('nestorApp')
 
       $scope.toggleLeftPressed = function() {
 
-        $scope.isLeftOpen = !$scope.isLeftOpen
+        $scope.isLeftOpen = !$scope.isLeftOpen;
         $rootScope.$broadcast('leftmostResizeRequest');
       };
 

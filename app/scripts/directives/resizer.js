@@ -1,4 +1,6 @@
+'use strict';
 /**
+ *
  * Created by Fathalian on 11/19/14.
  */
 
@@ -10,18 +12,22 @@ app.directive('resizer', function($document) {
 
     $scope.$on('leftmostResizeRequest', function() {
 
-      var leftPanelOpen = '85%';
-      var leftPanelClose = '97%';
+      var openCloseDifference = 12;
+      var currentPanelSize = (($(window).width() - angular.element('#left-panel')[0].clientWidth) /  $(window).width()) * 100;
+
 
       var currentWidth = (angular.element('#middle-panel')[0].clientWidth / $(window).width()) * 100;
       if ($scope.isLeftOpen) {
 
-        angular.element('#left-panel')[0].style.right = leftPanelOpen;
-        currentWidth = currentWidth - 12;
+        currentPanelSize = currentPanelSize - openCloseDifference;
+        angular.element('#left-panel')[0].style.right =  currentPanelSize+ '%';
+
+        currentWidth = currentWidth - openCloseDifference;
         angular.element('#middle-panel')[0].style.width = currentWidth + '%';
       } else {
-        angular.element('#left-panel')[0].style.right = leftPanelClose;
-        currentWidth = currentWidth + 12;
+        currentPanelSize += openCloseDifference;
+        angular.element('#left-panel')[0].style.right = currentPanelSize + '%';
+        currentWidth = currentWidth + openCloseDifference;
         angular.element('#middle-panel')[0].style.width = currentWidth + '%';
       }
     });
@@ -35,7 +41,7 @@ app.directive('resizer', function($document) {
 
     function mousemove(event) {
 
-      if ($attrs.resizer == 'vertical') {
+      if ($attrs.resizer === 'vertical') {
         // Handle vertical resizer
         var x = event.pageX;
 

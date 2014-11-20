@@ -1,11 +1,8 @@
 @bottom-top-open: 95%;
 @bottom-top-close: 5%;
-@middle-panel-smaller : 85%;
-@middle-panel-bigger : 97%;
-@left-panel-open: 85%;
-@left-panel-close: 97%;
+
 #middle-panel {
-  background-color: blue;
+  background-color: white;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -13,14 +10,14 @@
   width: 54.6%;
 }
 
+
+//Make sure that the difference between these two is exactly 12
 .middle-panel-smaller {
   left: 15%
-//  width: @middle-panel-smaller;
 }
 
 .middle-panel-bigger {
   left: 3%
-//  width: @middle-panel-bigger;
 }
 
 #right-panel {
@@ -51,14 +48,6 @@
   cursor: e-resize;
 }
 
-.middle-panel-resize-smaller {
-//  right: @middle-panel-smaller;
-}
-
-.middle-panel-resize-bigger {
-//  right: @middle-panel-bigger;
-}
-
 #left-panel {
   position: absolute;
   top: 0;
@@ -66,15 +55,7 @@
   left: 0 /* 200 + 6*/;
   overflow: hidden;
   background-color: green;
-  right: @left-panel-open;
-}
-
-.left-panel-open {
-//  right: @left-panel-open
-}
-
-.left-panel-close {
-//  right: @left-panel-close
+  right: 85%;
 }
 
 #left-top-panel {
@@ -106,7 +87,7 @@
 .base-panel {
 //  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
   transition:all cubic-bezier(.55,0,.1,1) 0.5s;
-  animation: bounce 0.2s cubic-bezier(.55,0,.1,1) ;
+  animation: bounce 0.01s cubic-bezier(.55,0,.1,1) ;
 }
 
 .left-bottom-panel-open {
@@ -119,7 +100,7 @@
 
 #left-top-bottom-resizer {
   position: absolute;
-  height: 0px;
+  height: 0;
   left: 0;
   right: 0;
   background-color: #666;
