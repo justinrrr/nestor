@@ -18,7 +18,6 @@
     "ngDraggable": "*",
     "angular-bootstrap": "~0.11.2",
     "angular-ui-ace": "bower",
-    "angular-ui-layout": "bower",
     "ace": "~1.1.7",
     "underscore": "~1.7.0",
     "angular-xeditable": "~0.1.8"

@@ -248,7 +248,6 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .left-column {
   background-color: #646988;
-  width: 300px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 .layout-mock > .stretch.ui-layout-column .left-column .left-column-top {
