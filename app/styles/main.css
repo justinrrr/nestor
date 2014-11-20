@@ -1313,23 +1313,32 @@ section#support .media:hover i {
   background: #cc6698;
   border: 2px solid #cc6698;
 }
-#sidebar {
+#right-panel {
   background-color: #EEE;
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   overflow: auto;
+}
+.right-panel-smaller {
   width: 85%;
 }
-#sidebar-resizer {
+.right-panel-bigger {
+  width: 97%;
+}
+#right-panel-resizer {
   background-color: #666;
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 85%;
-  width: 6px;
   cursor: e-resize;
+}
+.right-panel-resize-smaller {
+  right: 85%;
+}
+.right-panel-resize-bigger {
+  right: 97%;
 }
 #left-panel {
   position: absolute;
@@ -1343,30 +1352,44 @@ section#support .media:hover i {
 #left-top-panel {
   position: absolute;
   top: 0;
-  bottom: 26px;
-  /* 130 + 6 */
   left: 0;
   right: 0;
   background-color: #444;
   overflow: auto;
 }
+.left-top-panel-open {
+  bottom: 95%;
+}
+.left-top-panel-close {
+  bottom: 5%;
+}
 #left-bottom-panel {
   position: absolute;
-  height: 20px;
   bottom: 0;
   left: 0;
   right: 0;
   overflow: auto;
   background-color: #777;
 }
+.left-bottom-panel-open {
+  height: 95%;
+}
+.left-bottom-panel-close {
+  height: 5%;
+}
 #left-top-bottom-resizer {
   position: absolute;
   height: 6px;
-  bottom: 20px;
   left: 0;
   right: 0;
   background-color: #666;
   cursor: n-resize;
+}
+.left-top-bottom-resizer-open {
+  bottom: 95%;
+}
+.left-top-bottom-resizer-close {
+  bottom: 5%;
 }
 #sidebar-resizer:hover,
 #preview-resizer:hover {

@@ -1,11 +1,16 @@
 <div id="left-panel">
 
-  <div id="left-top-panel">Top content <p>{{content}}</p></div>
+  <div id="left-top-panel"
+       ng-class="isBottomLeftOpen ? 'left-top-panel-open' : 'left-top-panel-close'">
+    Top content
+  </div>
 
-  <div id="left-bottom-panel">
+  <div id="left-bottom-panel"
+    ng-class="isBottomLeftOpen ? 'left-bottom-panel-open' : 'left-bottom-panel-close'">
   </div>
 
   <div id="left-top-bottom-resizer"
+       ng-class="isBottomLeftOpen ? 'left-top-bottom-resizer-open' : 'left-top-bottom-resizer-close'"
        resizer="horizontal"
        resizer-height="6"
        resizer-top="#left-top-panel"
@@ -14,14 +19,22 @@
 
 </div>
 
-<div id="sidebar">
+<div
+  id="right-panel"
+  ng-class="isLeftOpen ? 'right-panel-smaller' : 'right-panel-bigger'"
+  >
   <h3>Side navbar</h3>
+
+  <button ng-click="isBottomLeftOpen = !isBottomLeftOpen">toggle bottom</button>
+  <button ng-click="isLeftOpen = !isLeftOpen">toggle right</button>
 </div>
 
-<div id="sidebar-resizer"
+<div id="right-panel-resizer"
+     ng-class="isLeftOpen ? 'right-panel-resize-smaller' : 'right-panel-resize-bigger'"
      resizer="vertical"
-     resizer-width="6"
+     resizer-width="0"
      resizer-left="#left-panel"
      resizer-right="#sidebar"
      >
+
 </div>

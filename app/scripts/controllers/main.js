@@ -4,8 +4,8 @@ angular.module('nestorApp')
   .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents', 'ConnectionUtils', '$window',
     function ($scope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
 
-
-      $scope.isToggled = true;
+      $scope.isBottomLeftOpen = false;
+      $scope.isLeftOpen = true;
 
       //set up jsPlumb
       $scope.init = function () {

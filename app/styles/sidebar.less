@@ -1,21 +1,39 @@
-#sidebar {
+@bottom-top-open: 95%;
+@bottom-top-close: 5%;
+@right-panel-smaller : 85%;
+@right-panel-bigger : 97%;
+
+#right-panel {
   background-color: #EEE;
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   overflow: auto;
-  width: 85%;
 }
 
-#sidebar-resizer {
+.right-panel-smaller {
+  width: @right-panel-smaller;
+}
+
+.right-panel-bigger {
+  width: @right-panel-bigger;
+}
+
+#right-panel-resizer {
   background-color: #666;
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 85%;
-  width: 6px;
   cursor: e-resize;
+}
+
+.right-panel-resize-smaller {
+  right: @right-panel-smaller;
+}
+
+.right-panel-resize-bigger {
+  right: @right-panel-bigger;
 }
 
 #left-panel {
@@ -28,18 +46,26 @@
   color: #FFF;
 
 }
+
 #left-top-panel {
   position: absolute;
   top: 0;
-  bottom: 26px; /* 130 + 6 */
   left: 0;
   right: 0;
   background-color: #444;
   overflow: auto;
 }
+
+.left-top-panel-open {
+  bottom: @bottom-top-open;
+}
+
+.left-top-panel-close {
+  bottom: @bottom-top-close;
+}
+
 #left-bottom-panel {
   position: absolute;
-  height: 20px;
   bottom: 0;
   left: 0;
   right: 0;
@@ -47,14 +73,30 @@
   background-color: #777;
 }
 
+.left-bottom-panel-open {
+  height: @bottom-top-open;
+}
+
+.left-bottom-panel-close {
+  height: @bottom-top-close;
+}
+
 #left-top-bottom-resizer {
   position: absolute;
   height: 6px;
-  bottom: 20px;
   left: 0;
   right: 0;
   background-color: #666;
   cursor: n-resize;
+}
+
+.left-top-bottom-resizer-open {
+
+  bottom: @bottom-top-open;
+}
+
+.left-top-bottom-resizer-close {
+  bottom: @bottom-top-close;
 }
 
 #sidebar-resizer:hover, #preview-resizer:hover {
