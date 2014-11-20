@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents', 'ConnectionUtils', '$window',
-    function ($scope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$modal', 'AWSComponents', 'UIComponents', 'ConnectionUtils', '$window',
+    function ($scope, $rootScope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
 
       $scope.isBottomLeftOpen = false;
       $scope.isLeftOpen = true;
@@ -96,21 +96,9 @@ angular.module('nestorApp')
       //--------------------------------------
 
       $scope.toggleLeftPressed = function() {
+
         $scope.isLeftOpen = !$scope.isLeftOpen
-        var leftPanelOpen = '85%';
-        var leftPanelClose = '97%';
-
-        $scope.currentWidth = (angular.element('#middle-panel')[0].clientWidth / $(window).width()) * 100;
-        if ($scope.isLeftOpen) {
-
-          angular.element('#left-panel')[0].style.right = leftPanelOpen;
-          $scope.currentWidth = $scope.currentWidth - 12;
-          angular.element('#middle-panel')[0].style.width = $scope.currentWidth + '%';
-        } else {
-          angular.element('#left-panel')[0].style.right = leftPanelClose;
-          $scope.currentWidth = $scope.currentWidth + 12;
-          angular.element('#middle-panel')[0].style.width = $scope.currentWidth + '%';
-        }
+        $rootScope.$broadcast('leftmostResizeRequest');
       };
 
       $scope.componentPressed = function (component) {

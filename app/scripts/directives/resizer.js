@@ -8,6 +8,24 @@ app.directive('resizer', function($document) {
 
   return function($scope, $element, $attrs) {
 
+    $scope.$on('leftmostResizeRequest', function() {
+
+      var leftPanelOpen = '85%';
+      var leftPanelClose = '97%';
+
+      var currentWidth = (angular.element('#middle-panel')[0].clientWidth / $(window).width()) * 100;
+      if ($scope.isLeftOpen) {
+
+        angular.element('#left-panel')[0].style.right = leftPanelOpen;
+        currentWidth = currentWidth - 12;
+        angular.element('#middle-panel')[0].style.width = currentWidth + '%';
+      } else {
+        angular.element('#left-panel')[0].style.right = leftPanelClose;
+        currentWidth = currentWidth + 12;
+        angular.element('#middle-panel')[0].style.width = currentWidth + '%';
+      }
+    });
+
     $element.on('mousedown', function(event) {
       event.preventDefault();
 
