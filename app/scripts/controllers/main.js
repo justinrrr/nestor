@@ -115,7 +115,7 @@ angular.module('nestorApp')
         //because of the fucking directive for ui layout
         //I need to use jquery here to compensate for the extra offset
         //caused by the editor
-        var rightPanelWidth = angular.element('#right-column')[0].clientWidth;
+        var rightPanelWidth = angular.element('#left-panel')[0].clientWidth;
 
         addComponent($data, $event.x - rightPanelWidth - 85, $event.y - 50);
 

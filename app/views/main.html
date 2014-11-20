@@ -3,11 +3,62 @@
   <div class="base-panel"
        id="left-top-panel"
        ng-class="isBottomLeftOpen ? 'left-top-panel-open' : 'left-top-panel-close'">
-    Top content
+    <div class="left-column-top" size="410px">
+      <form id="searchbox">
+        <p class="fieldset">
+          <label class="glyphicon glyphicon-search"></label>
+        </p>
+        <input ng-model="searchText" type="text" placeholder="Search..." required class="search">
+      </form>
+      <tabset justified="true">
+
+        <tab heading="Components" class="components-tab">
+          <div ng-repeat="comp in components | filter:searchText">
+            <div
+              class="empty-container"
+              ng-drag="true"
+              ng-drag-success="onDragComplete($data,$event)"
+              ng-drag-data="comp"
+              ng-center-anchor="false">
+            </div>
+            <div class="component-item">
+              <div class="imgdiv">
+                <img class="component-image" ng-src="{{comp.image}}"/>
+              </div>
+              <div class="pdiv">
+                <p>
+                  {{comp.name}} : {{comp.description}}</p>
+              </div>
+            </div>
+          </div>
+        </tab>
+
+        <tab heading="Solutions" class="tasks-tab">
+          <div ng-click="taskSelected(task)" ng-repeat="task in tasks | filter:searchText">
+            <div class="task-item">
+
+              <a href="">
+                {{task.name}}
+              </a>
+
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
   </div>
 
   <div class="base-panel" id="left-bottom-panel"
        ng-class="isBottomLeftOpen ? 'left-bottom-panel-open' : 'left-bottom-panel-close'">
+    <div class="left-column-bottom">
+      <div ng-if="selectedComponent !== undefined">
+        <properties
+          component="selectedComponent"
+          template="template"
+          on-property-drag="propertyDidDrag(data, event)"
+          ></properties>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -16,36 +67,81 @@
     id="middle-panel"
     class="base-panel"
     ng-class="isLeftOpen ? 'middle-panel-smaller' : 'middle-panel-bigger'"
+    ng-drop="true"
+    ng-drop-success="onDropComplete($data,$event)"
+    id="container"
+    plumb-listeners
+    on-connection-established="connectionEstablished(sourceName, targetName)"
+    on-connection-detached="connectionDetached(sourceName, targetName)"
+    on-connection-moved-from-source="connectionMovedFromSource(originalSourceName, newSourceName, targetName)"
+    on-connection-moved-from-target="connectionMovedFromTarget(sourceName, originalTargetName, newTargetName)"
+    class="center-column"
     >
     <h3>Middle navbar</h3>
+    <!--<div class="canvasbtns">-->
+    <!--<button class="btn btn-warning" ng-click="cancel()"><span-->
+    <!--class="glyphicon glyphicon-floppy-save"></span>-->
+    <!--</button>-->
+    <!--<button class="btn btn-primary" ng-click="download()"><span-->
+    <!--class="glyphicon glyphicon-cloud-download"></span>-->
+    <!--</button>-->
+    <!--</div>-->
+    <!-- The actual components on the canvas -->
+    <div plumb-item
+         ng-click="clickCallback(component)"
+         class="item"
+         ng-class="{selectedComponent : component.id === selectedComponent.id}"
+         ng-repeat="component in addedComponents"
+         ng-style="{ 'left':component.x, 'top':component.y }"
+         data-identifier="{{component.id}}"
+         data-component-name={{component.name}}
+      >
+      <p align="left">
+        <button ng-click="deleteClicked(component)" type="button">X</button>
+      </p>
+      <img ng-src="{{component.image}}"/>
 
-    <p>
-      Fanny pack slow-carb tote bag, freegan Austin church-key chillwave authentic wayfarers mixtape. Viral Echo Park
-      tote bag roof party, try-hard Williamsburg pickled church-key swag Etsy next level. Gentrify crucifix tousled
-      listicle flannel, Kickstarter mumblecore messenger bag photo booth cliche fingerstache High Life Austin.
-      Mumblecore swag literally, pour-over raw denim tote bag sustainable Godard keffiyeh umami. PBR&B normcore retro
-      typewriter, High Life Portland gentrify crucifix distillery stumptown iPhone brunch. Salvia pickled leggings
-      chambray blog, High Life disrupt. Tousled pork belly gluten-free direct trade bespoke.
-    </p>
+      <p class="title">
+        {{component.name}}</p>
 
+
+      <div plumb-connect
+           data-parent-name="{{component.parent}}"
+           class="ep"
+        ></div>
+    </div>
     <button ng-click="isBottomLeftOpen = !isBottomLeftOpen">toggle bottom</button>
     <button ng-click="toggleLeftPressed()">toggle left</button>
   </div>
+</div>
 
-  <div ui-ace="{theme:'ambiance', mode: 'json', onChange: templateStringChanged}"
-       ng-model="templateString"
+<div ui-ace="{theme:'ambiance', mode: 'json', onChange: templateStringChanged}"
+     ng-model="templateString"
+     id="right-panel">
+</div>
 
-    id="right-panel">
-  </div>
+<div id="right-panel-resizer"
+     resizer="vertical"
+     resizer-width="0"
+     resizer-left="#middle-panel"
+     resizer-right="#right-panel"
+     resizer-leftmost="#left-panel"
+     open-close-difference="12"
+     resizer-max="750"
+  >
+</div>
+</div>
 
-  <div id="right-panel-resizer"
-       resizer="vertical"
-       resizer-width="0"
-       resizer-left="#middle-panel"
-       resizer-right="#right-panel"
-       resizer-leftmost="#left-panel"
-       open-close-difference="12"
-       resizer-max="750"
-    >
+<!--This is the visual of the component card while its being dragged-->
+<div
+  ng-drag-clone="" class="dragging">
+  <div class="component-item">
+    <div class="imgdiv">
+      <img class="component-image" ng-src="{{clonedData.image}}"/>
+    </div>
+    <div class="pdiv">
+      <p>
+        {{clonedData.name}} : {{clonedData.description}}</p>
+    </div>
   </div>
 </div>
