@@ -1313,31 +1313,49 @@ section#support .media:hover i {
   background: #cc6698;
   border: 2px solid #cc6698;
 }
-#right-panel {
-  background-color: #EEE;
+#middle-panel {
+  background-color: blue;
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   overflow: auto;
 }
-.right-panel-smaller {
+.middle-panel-smaller {
   width: 85%;
 }
-.right-panel-bigger {
+.middle-panel-bigger {
   width: 97%;
+}
+#right-panel {
+  background-color: #000000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  left: 70%;
 }
 #right-panel-resizer {
   background-color: #666;
   position: absolute;
   top: 0;
   bottom: 0;
+  width: 6px;
+  right: 30%;
+  cursor: w-resize;
+}
+#middle-panel-resizer {
+  background-color: #666;
+  position: absolute;
+  top: 0;
+  bottom: 0;
   cursor: e-resize;
 }
-.right-panel-resize-smaller {
+.middle-panel-resize-smaller {
   right: 85%;
 }
-.right-panel-resize-bigger {
+.middle-panel-resize-bigger {
   right: 97%;
 }
 #left-panel {
@@ -1346,6 +1364,7 @@ section#support .media:hover i {
   bottom: 0;
   left: 0 /* 200 + 6*/;
   right: 0;
+  width: 100%;
   overflow: hidden;
   color: #FFF;
 }

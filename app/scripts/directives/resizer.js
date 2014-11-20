@@ -30,7 +30,7 @@ app.directive('resizer', function($document) {
         });
 
         $($attrs.resizerLeft).css({
-          width: x + 'px'
+          //width: x + 'px'
         });
         $($attrs.resizerRight).css({
           left: (x + parseInt($attrs.resizerWidth)) + 'px'

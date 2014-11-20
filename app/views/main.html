@@ -6,36 +6,40 @@
   </div>
 
   <div id="left-bottom-panel"
-    ng-class="isBottomLeftOpen ? 'left-bottom-panel-open' : 'left-bottom-panel-close'">
+       ng-class="isBottomLeftOpen ? 'left-bottom-panel-open' : 'left-bottom-panel-close'">
   </div>
-
-  <div id="left-top-bottom-resizer"
-       ng-class="isBottomLeftOpen ? 'left-top-bottom-resizer-open' : 'left-top-bottom-resizer-close'"
-       resizer="horizontal"
-       resizer-height="6"
-       resizer-top="#left-top-panel"
-       resizer-bottom="#left-bottom-panel">
-  </div>
-
 </div>
 
-<div
-  id="right-panel"
-  ng-class="isLeftOpen ? 'right-panel-smaller' : 'right-panel-bigger'"
-  >
-  <h3>Middle navbar</h3>
+<div id="mid-container">
+  <div
+    id="middle-panel"
+    ng-class="isLeftOpen ? 'middle-panel-smaller' : 'middle-panel-bigger'"
+    >
+    <h3>Middle navbar</h3>
 
-  <div id=""
-  <button ng-click="isBottomLeftOpen = !isBottomLeftOpen">toggle bottom</button>
-  <button ng-click="isLeftOpen = !isLeftOpen">toggle right</button>
-</div>
+    <p>
+      Fanny pack slow-carb tote bag, freegan Austin church-key chillwave authentic wayfarers mixtape. Viral Echo Park
+      tote bag roof party, try-hard Williamsburg pickled church-key swag Etsy next level. Gentrify crucifix tousled
+      listicle flannel, Kickstarter mumblecore messenger bag photo booth cliche fingerstache High Life Austin.
+      Mumblecore swag literally, pour-over raw denim tote bag sustainable Godard keffiyeh umami. PBR&B normcore retro
+      typewriter, High Life Portland gentrify crucifix distillery stumptown iPhone brunch. Salvia pickled leggings
+      chambray blog, High Life disrupt. Tousled pork belly gluten-free direct trade bespoke.
+    </p>
 
-<div id="right-panel-resizer"
-     ng-class="isLeftOpen ? 'right-panel-resize-smaller' : 'right-panel-resize-bigger'"
-     resizer="vertical"
-     resizer-width="0"
-     resizer-left="#left-panel"
-     resizer-right="#sidebar"
-     >
+    <button ng-click="isBottomLeftOpen = !isBottomLeftOpen">toggle bottom</button>
+    <button ng-click="isLeftOpen = !isLeftOpen">toggle right</button>
+  </div>
 
+  <div
+    id="right-panel">
+    HI
+  </div>
+
+  <div id="right-panel-resizer"
+       resizer="vertical"
+       resizer-width="0"
+       resizer-left="#middle-panel"
+       resizer-right="#right-panel"
+    >
+  </div>
 </div>

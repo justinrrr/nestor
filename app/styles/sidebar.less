@@ -1,10 +1,10 @@
 @bottom-top-open: 95%;
 @bottom-top-close: 5%;
-@right-panel-smaller : 85%;
-@right-panel-bigger : 97%;
+@middle-panel-smaller : 85%;
+@middle-panel-bigger : 97%;
 
-#right-panel {
-  background-color: #EEE;
+#middle-panel {
+  background-color: blue;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -12,12 +12,22 @@
   overflow: auto;
 }
 
-.right-panel-smaller {
-  width: @right-panel-smaller;
+.middle-panel-smaller {
+  width: @middle-panel-smaller;
 }
 
-.right-panel-bigger {
-  width: @right-panel-bigger;
+.middle-panel-bigger {
+  width: @middle-panel-bigger;
+}
+
+#right-panel {
+  background-color: #000000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  left: 70%;
 }
 
 #right-panel-resizer {
@@ -25,15 +35,25 @@
   position: absolute;
   top: 0;
   bottom: 0;
+  width: 6px;
+  right: 30%;
+  cursor: w-resize;
+}
+
+#middle-panel-resizer {
+  background-color: #666;
+  position: absolute;
+  top: 0;
+  bottom: 0;
   cursor: e-resize;
 }
 
-.right-panel-resize-smaller {
-  right: @right-panel-smaller;
+.middle-panel-resize-smaller {
+  right: @middle-panel-smaller;
 }
 
-.right-panel-resize-bigger {
-  right: @right-panel-bigger;
+.middle-panel-resize-bigger {
+  right: @middle-panel-bigger;
 }
 
 #left-panel {
@@ -42,6 +62,7 @@
   bottom: 0;
   left: 0 /* 200 + 6*/;
   right: 0;
+  width: 100%;
   overflow: hidden;
   color: #FFF;
 
