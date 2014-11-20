@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', '$modal', 'AWSComponents', 'UIComponents', 'ConnectionUtils', '$window',
-    function ($scope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$modal', 'AWSComponents', 'UIComponents', 'ConnectionUtils', '$window',
+    function ($scope, $rootScope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
 
       $scope.isBottomLeftOpen = false;
       $scope.isLeftOpen = true;
@@ -94,6 +94,12 @@ angular.module('nestorApp')
       //--------------------------------------
       // UI Events
       //--------------------------------------
+
+      $scope.toggleLeftPressed = function() {
+
+        $scope.isLeftOpen = !$scope.isLeftOpen;
+        $rootScope.$broadcast('leftmostResizeRequest');
+      };
 
       $scope.componentPressed = function (component) {
         $scope.isShowingTop = false;

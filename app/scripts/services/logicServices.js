@@ -30,12 +30,12 @@ app.service('ConnectionUtils', function () {
     var targetArray = obj[listProp];
     var idx;
     for ( idx = 0; idx < targetArray.length; idx +=1 ) {
-      if ( targetArray[idx]['Ref'] === refObject['Ref'] ) {
+      if ( targetArray[idx].Ref === refObject.Ref ) {
         targetArray.splice(idx,1);
         break;
       }
     }
-  }
+  };
 
   this.connectObjectsThroughProps = function (propName, propValue, propValueMethod, updatePolicy, targetObj, sourceObj, resourceName) {
 

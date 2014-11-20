@@ -1198,18 +1198,18 @@ section#support .media:hover i {
   border: 2px solid #cc6698;
 }
 #middle-panel {
-  background-color: blue;
+  background-color: white;
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
   overflow: auto;
+  width: 65%;
 }
 .middle-panel-smaller {
-  width: 85%;
+  left: 15%;
 }
 .middle-panel-bigger {
-  width: 97%;
+  left: 3%;
 }
 #right-panel {
   background-color: #000000;
@@ -1218,7 +1218,7 @@ section#support .media:hover i {
   bottom: 0;
   right: 0;
   overflow: auto;
-  left: 70%;
+  left: 80%;
 }
 #right-panel-resizer {
   background-color: #666;
@@ -1226,8 +1226,9 @@ section#support .media:hover i {
   top: 0;
   bottom: 0;
   width: 6px;
-  right: 30%;
-  cursor: w-resize;
+  right: 20%;
+  cursor: ew-resize;
+  z-index: 100;
 }
 #middle-panel-resizer {
   background-color: #666;
@@ -1236,21 +1237,14 @@ section#support .media:hover i {
   bottom: 0;
   cursor: e-resize;
 }
-.middle-panel-resize-smaller {
-  right: 85%;
-}
-.middle-panel-resize-bigger {
-  right: 97%;
-}
 #left-panel {
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0 /* 200 + 6*/;
-  right: 0;
-  width: 100%;
   overflow: hidden;
-  color: #FFF;
+  background-color: green;
+  right: 85%;
 }
 #left-top-panel {
   position: absolute;
@@ -1276,7 +1270,7 @@ section#support .media:hover i {
 }
 .base-panel {
   transition: all cubic-bezier(0.55, 0, 0.1, 1) 0.5s;
-  animation: bounce 0.2s cubic-bezier(0.55, 0, 0.1, 1);
+  animation: bounce 0.01s cubic-bezier(0.55, 0, 0.1, 1);
 }
 .left-bottom-panel-open {
   height: 95% !important;
@@ -1286,7 +1280,7 @@ section#support .media:hover i {
 }
 #left-top-bottom-resizer {
   position: absolute;
-  height: 0px;
+  height: 0;
   left: 0;
   right: 0;
   background-color: #666;

@@ -1,5 +1,5 @@
-<div id="left-panel">
-
+<div class="base-panel" id="left-panel"
+     ng-class="isLeftOpen ? 'left-panel-open' : 'left-panel-close'">
   <div class="base-panel"
        id="left-top-panel"
        ng-class="isBottomLeftOpen ? 'left-top-panel-open' : 'left-top-panel-close'">
@@ -29,12 +29,13 @@
     </p>
 
     <button ng-click="isBottomLeftOpen = !isBottomLeftOpen">toggle bottom</button>
-    <button ng-click="isLeftOpen = !isLeftOpen">toggle right</button>
+    <button ng-click="toggleLeftPressed()">toggle left</button>
   </div>
 
-  <div
+  <div ui-ace="{theme:'ambiance', mode: 'json', onChange: templateStringChanged}"
+       ng-model="templateString"
+
     id="right-panel">
-    HI
   </div>
 
   <div id="right-panel-resizer"
@@ -42,6 +43,9 @@
        resizer-width="0"
        resizer-left="#middle-panel"
        resizer-right="#right-panel"
+       resizer-leftmost="#left-panel"
+       open-close-difference="12"
+       resizer-max="750"
     >
   </div>
 </div>

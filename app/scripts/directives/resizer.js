@@ -1,4 +1,6 @@
+'use strict';
 /**
+ *
  * Created by Fathalian on 11/19/14.
  */
 
@@ -7,6 +9,27 @@ var app = angular.module('nestorApp.directives');
 app.directive('resizer', function($document) {
 
   return function($scope, $element, $attrs) {
+
+    $scope.$on('leftmostResizeRequest', function() {
+      var openCloseDifference = parseInt($attrs.openCloseDifference);
+      var currentPanelSize = (($(window).width() - angular.element('#left-panel')[0].clientWidth) /  $(window).width()) * 100;
+
+
+      var currentWidth = (angular.element('#middle-panel')[0].clientWidth / $(window).width()) * 100;
+      if ($scope.isLeftOpen) {
+
+        currentPanelSize = currentPanelSize - openCloseDifference;
+        angular.element('#left-panel')[0].style.right =  currentPanelSize+ '%';
+
+        currentWidth = currentWidth - openCloseDifference;
+        angular.element('#middle-panel')[0].style.width = currentWidth + '%';
+      } else {
+        currentPanelSize += openCloseDifference;
+        angular.element('#left-panel')[0].style.right = currentPanelSize + '%';
+        currentWidth = currentWidth + openCloseDifference;
+        angular.element('#middle-panel')[0].style.width = currentWidth + '%';
+      }
+    });
 
     $element.on('mousedown', function(event) {
       event.preventDefault();
@@ -17,11 +40,11 @@ app.directive('resizer', function($document) {
 
     function mousemove(event) {
 
-      if ($attrs.resizer == 'vertical') {
+      if ($attrs.resizer === 'vertical') {
         // Handle vertical resizer
         var x = event.pageX;
 
-        if ($attrs.resizerMax && x > $attrs.resizerMax) {
+        if ($attrs.resizerMax && x < $attrs.resizerMax) {
           x = parseInt($attrs.resizerMax);
         }
 
@@ -29,11 +52,14 @@ app.directive('resizer', function($document) {
           left: x + 'px'
         });
 
-        $($attrs.resizerLeft).css({
-          //width: x + 'px'
-        });
         $($attrs.resizerRight).css({
           left: (x + parseInt($attrs.resizerWidth)) + 'px'
+        });
+        var leftmostWidth = $($attrs.resizerLeftmost)[0].clientWidth;
+        var finalLeftWidth = x - leftmostWidth;
+        //$attrs.resizerLeftmost;
+        $($attrs.resizerLeft).css({
+          width: finalLeftWidth + 'px'
         });
 
       } else {
