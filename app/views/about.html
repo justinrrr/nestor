@@ -1,0 +1,39 @@
+<div id="wrapper" ng-class="{'toggled' : isToggled}">
+
+  <!-- Sidebar -->
+  <div id="sidebar-wrapper">
+    <ul class="sidebar-nav">
+      <li class="sidebar-brand">
+        <a href="#">
+          Start Bootstrap
+        </a>
+      </li>
+      <li>
+        <a href="#">Dashboard</a>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+    <a href="" class="btn btn-default" id="menu-toggle"
+       ng-click="isToggled = !isToggled"
+      >X</a>
+  </div>
+</div>
+
+
+<!--This is the visual of the component card while its being dragged-->
+<div
+  ng-drag-clone="" class="dragging">
+  <div class="component-item">
+    <div class="imgdiv">
+      <img class="component-image" ng-src="{{clonedData.image}}"/>
+    </div>
+    <div class="pdiv">
+      <p>
+        {{clonedData.name}} : {{clonedData.description}}</p>
+    </div>
+  </div>
+</div>
+

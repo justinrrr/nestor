@@ -17,8 +17,8 @@ body {
   font-size: 24px;
   line-height: 69px;
   color: white;
-  background: #2b3743;
-  border: solid 1px #2b3743;
+  background: #646988;
+  border: solid 1px #646988;
   border-radius: 5px 5px 0px 0px;
   margin: 0;
   z-index: 999;
@@ -35,7 +35,7 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 40%;
-  color: #2b3743;
+  color: #646988;
 }
 .modal-body .input:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
@@ -119,7 +119,7 @@ body {
 .modal-footer .btn-primary:hover {
   background-color: rgba(252, 113, 105, 0.72);
 }
-.layout-mock > .stretch.ui-layout-column .left-column .ace_editor {
+.layout-mock > .stretch.ui-layout-column .right-column .ace_editor {
   height: 100%;
 }
 .layout-mock > .stretch.ui-layout-column .ace-ambiance .ace_variable {
@@ -207,7 +207,7 @@ body {
   transition: box-shadow 0.25s ease-in;
 }
 .layout-mock > .stretch.ui-layout-column .center-column .selectedComponent {
-  background-color: #17bcb8;
+  background-color: #e2e2e2;
   -moz-box-shadow: 2px 2px 3px 1px #AAA;
   -webkit-box-shadow: 2px 2px 3px 1px #AAA;
   box-shadow: 2px 2px 3px 1px #AAA;
@@ -227,66 +227,64 @@ body {
   pointer-events: all;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg ._jsPlumb.connector > path {
-  fill: #2b3743;
+  fill: #646988;
   z-index: -1;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg circle {
-  fill: #2b3743;
-  stroke: #2b3743;
+  fill: #646988;
+  stroke: #646988;
   stroke-width: 1px;
   z-index: 1;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg ._jsPlumb_endpoint._jsPlumb_endpoint_anchor_.ui-droppable.ui-draggable.ui-draggable-handle._jsPlumb_endpoint_connected._jsPlumb_endpoint_full circle {
-  fill: #2b3743;
-  stroke: #2b3743;
+  fill: #646988;
+  stroke: #646988;
   stroke-width: 2px;
   z-index: 1;
 }
 .layout-mock > .stretch.ui-layout-column .center-column svg path {
-  stroke: #2b3743;
+  stroke: #646988;
   stroke-width: 1.5px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column {
-  background-color: #2b3743;
+.layout-mock > .stretch.ui-layout-column .left-column {
+  background-color: #646988;
   width: 300px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-  position: absolute;
-  left: 79.2% !important;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top {
   width: 300px;
-  border-top: 4px solid #2b3743;
+  border-top: 4px solid #646988;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top #searchbox {
   margin: 4px 0px 4px 0px;
   display: inline-flex;
   width: 300px;
-  border: 2px solid #2b3743;
+  border: 2px solid #646988;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox .fieldset > label {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top #searchbox .fieldset > label {
   position: absolute;
   left: 18px;
   top: 18px;
   color: rgba(112, 100, 130, 0.78);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox input:focus::-webkit-input-placeholder {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top #searchbox input:focus::-webkit-input-placeholder {
   color: transparent;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox .search {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top #searchbox .search {
   padding: 8px 15px 8px 34px;
   background-color: white;
   color: rgba(112, 100, 130, 0.78);
-  border: 1px solid #2b3743;
+  border: 1px solid #646988;
   font-weight: 500;
   outline: none;
   width: 97.2%;
   margin-left: 4px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox .search:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top #searchbox .search:focus {
   border: 1px solid #61708C;
-  color: #2b3743;
+  color: #646988;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox .button {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top #searchbox .button {
   position: relative;
   padding: 8px 15px;
   border: 0px solid #dbdbdb;
@@ -295,57 +293,57 @@ body {
   text-decoration: none;
   background-color: transparent;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox .button .glyphicon {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top #searchbox .button .glyphicon {
   display: inline-block;
   cursor: pointer;
   color: rgba(112, 100, 130, 0.78);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top #searchbox .button .glyphicon:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top #searchbox .button .glyphicon:hover {
   color: rgba(112, 100, 130, 0.78);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top ul.nav-tabs.nav-justified li > a {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top ul.nav-tabs.nav-justified li > a {
   text-decoration: none;
   cursor: pointer;
-  background-color: #2b3743;
+  background-color: #646988;
   color: white;
   font-weight: 400;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid rgba(229, 229, 229, 0.3);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top ul.nav-tabs.nav-justified li > a:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top ul.nav-tabs.nav-justified li > a:hover {
   color: #FF9690;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top ul.nav-tabs.nav-justified .active > a {
-  background-color: #2b3743;
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top ul.nav-tabs.nav-justified .active > a {
+  background-color: #646988;
   -moz-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
   -webkit-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
   box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
   color: white;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top ul.nav-tabs.nav-justified .active > a:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top ul.nav-tabs.nav-justified .active > a:hover {
   color: #f2ecbd;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content {
   background-color: rgba(221, 221, 213, 0);
   border-bottom-color: rgba(112, 100, 130, 0.78);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane {
   padding: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .glyphicon-chevron-left {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .glyphicon-chevron-left {
   color: #efefef;
   padding: 10px;
   font-size: 15px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .glyphicon-chevron-left:before {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .glyphicon-chevron-left:before {
   font-size: 12px;
   padding-right: 2px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .glyphicon-chevron-left:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .glyphicon-chevron-left:hover {
   color: black;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .empty-container {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .empty-container {
   width: 300px;
   height: 80px;
   position: absolute;
@@ -353,11 +351,11 @@ body {
   cursor: pointer;
   border-bottom: 1px solid rgba(233, 230, 234, 0.19);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .empty-container:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .empty-container:hover {
   cursor: pointer;
   background-color: rgba(233, 230, 234, 0.19);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .component-item {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .component-item {
   display: table-cell;
   vertical-align: middle;
   color: #ffffff;
@@ -366,29 +364,29 @@ body {
   height: 80px;
   padding: 15px 15px 0px 15px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .component-item:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .component-item:hover {
   cursor: pointer;
   background-color: #e9e6ea;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .component-item .pdiv {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .component-item .pdiv {
   float: left;
   width: 220px;
   vertical-align: middle;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .component-item .pdiv p {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .component-item .pdiv p {
   font-size: 13px;
   vertical-align: middle;
   letter-spacing: 0.19px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .component-item .imgdiv {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .component-item .imgdiv {
   float: left;
   width: 50px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .component-item .imgdiv img.component-image {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .component-item .imgdiv img.component-image {
   width: 40px;
   height: 40px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .task-item {
   padding: 10px 15px 10px 15px;
   display: table-cell;
   vertical-align: middle;
@@ -398,59 +396,59 @@ body {
   width: 300px;
   height: 80px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .task-item:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.12);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item:active {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .task-item:active {
   border-left: 2px solid #f2ecbd;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item a {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .task-item a {
   color: white;
   font-size: 13px;
   vertical-align: middle;
   letter-spacing: 0.19px;
   text-decoration: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item a:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .task-item a:hover {
   text-decoration: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-top .tab-content .tab-pane .task-item a:active {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-top .tab-content .tab-pane .task-item a:active {
   color: #f2ecbd;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom {
   background-color: white;
   /*Input field style */
   /*These are for the complex properties that you need to drag*/
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .cd-fixed-bg {
   top: 0px;
-  background-color: #2b3743;
+  background-color: #646988;
   width: 300px;
   padding: 14px 10px 5px 15px;
   color: #ffffff;
   margin: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg #titleh4 {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .cd-fixed-bg #titleh4 {
   font-size: 16px;
   margin-top: 4px;
   font-weight: 600;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg #titleh5 {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .cd-fixed-bg #titleh5 {
   font-size: 12px;
   margin-top: 10px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg .generate {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .cd-fixed-bg .generate {
   margin-right: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg .generate .col-sm-5 {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .cd-fixed-bg .generate .col-sm-5 {
   padding-left: 24px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg .action {
-  padding-right: 5px;
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .cd-fixed-bg .action {
+  padding-left: 5px;
   text-align: left;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg .action .label {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .cd-fixed-bg .action .label {
   border: 1px solid #e1e1e1;
   box-shadow: 0 0 0 1px rgba(68, 77, 101, 0.4);
   color: white;
@@ -463,72 +461,72 @@ body {
   font-weight: 500;
   letter-spacing: 0.5px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg .action .label:hover,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .cd-fixed-bg .action .label:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .cd-fixed-bg .action .label:hover,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .cd-fixed-bg .action .label:focus {
   text-decoration: none;
   background-color: white;
-  color: #2b3743;
+  color: #646988;
   outline: 0;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .contenth5 {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .contenth5 {
   padding: 10px 10px 15px 15px;
-  background-color: #17bcb8;
+  background-color: #e2e2e2;
   margin-top: 0px;
   margin-bottom: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .contenth6 {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .contenth6 {
   padding: 10px 10px 15px 15px;
   background-color: rgba(112, 128, 144, 0.23);
   margin-top: 0px;
   margin-bottom: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content {
   padding: 0px 10px 0px 15px;
   /* STYLES FOR ACCORDION */
   /* STYLE FOR TABLES WITHIN PROPERTIES ACCORDION */
   /* STYLE FOR TABLES WITHIN PROPERTIES ACCORDION */
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .component-item {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .component-item {
   display: table-cell;
   vertical-align: middle;
   color: #ffffff;
   width: 300px;
   height: 80px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .component-item .pdiv {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .component-item .pdiv {
   float: left;
   width: 210px;
   vertical-align: middle;
   padding-top: 10px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .component-item .pdiv p {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .component-item .pdiv p {
   vertical-align: middle;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .component-item .imgdiv {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .component-item .imgdiv {
   float: left;
   width: 50px;
   margin-right: 15px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .component-item .imgdiv img.component-image {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .component-item .imgdiv img.component-image {
   width: 40px;
   height: 40px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .tablename {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .tablename {
   padding: 10px 0px 5px 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group {
   margin-left: -15px;
   margin-bottom: 0px;
   border-radius: 0px;
   width: 300px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .optionalheading.panel.panel-default.ng-isolate-scope .panel-heading {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .optionalheading.panel.panel-default.ng-isolate-scope .panel-heading {
   border-left: 10px solid rgba(112, 128, 144, 0.23);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope {
   border: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading {
   background-color: white;
   color: black;
   border-radius: 0px;
@@ -537,28 +535,28 @@ body {
   border-left: 6px solid rgba(100, 105, 136, 0.72);
   margin-top: -2px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading .table-responsive {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading .table-responsive {
   border-top: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading h4.panel-title {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading h4.panel-title {
   font-size: 14px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading h4.panel-title a {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading h4.panel-title a {
   text-decoration: none;
   color: #2e2633;
   cursor: pointer;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .collapsing {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .collapsing {
   -webkit-transition: none;
   transition: none !important;
   width: 300px !important;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body {
   border-top: none;
   padding: 0px 10px 15px 10px;
   background-color: rgba(221, 221, 213, 0.1);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new {
   width: 25px;
   height: 25px;
   border-radius: 50%;
@@ -566,48 +564,48 @@ body {
   transition: background-color 0.2s;
   border: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new:hover {
   background-color: rgba(0, 194, 157, 0.81);
   outline: 0;
   border: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new:focus {
   outline: 0;
   border: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new span {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new span {
   top: -1px;
   right: 5.5px;
   color: white;
   font-size: 12px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .pull-right {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .pull-right {
   top: -15px;
   font-size: 12px;
-  color: #2b3743;
+  color: #646988;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 table,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 thead,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 tbody,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 th,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 tr {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 table,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 thead,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 tbody,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 th,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 tr {
   display: block;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 table {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 table {
   margin-right: 10px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 thead tr {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 thead tr {
   position: absolute;
   top: -9999px;
   left: -9999px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 tr {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 tr {
   border: 1px solid rgba(204, 204, 204, 0.31);
   background-color: rgba(221, 221, 213, 0);
   border-top: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td {
   border: none;
   position: relative;
   padding-left: 50%;
@@ -616,31 +614,31 @@ body {
   padding-right: 10px;
   font-size: 14px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .editable {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .editable {
   margin-top: 6px;
   margin-left: 20px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .editable-controls {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .editable-controls {
   margin-right: 10px;
   margin-left: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .btn-default {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .btn-default {
   background-color: #aab2c0;
   color: white;
   border: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .btn-default:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .btn-default:hover {
   background-color: rgba(182, 190, 206, 0.9);
   border: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .btn:focus,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .btn:active:focus,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .btn.active:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .btn:focus,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .btn:active:focus,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .btn.active:focus {
   outline: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td input {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td input {
   border: 2px solid rgba(122, 122, 147, 0.36);
   padding: 2px;
   background: white;
@@ -650,11 +648,11 @@ body {
   box-shadow: none;
   border-radius: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td input:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td input:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
   background-color: white;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .propertyselect {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .propertyselect {
   border: 2px solid rgba(122, 122, 147, 0.36);
   padding: 2px;
   background: white;
@@ -664,13 +662,13 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 57%;
-  color: #2b3743;
+  color: #646988;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .propertyselect:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .propertyselect:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
   background-color: white;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .editable-input {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .editable-input {
   border: 2px solid rgba(122, 122, 147, 0.36);
   padding: 2px;
   background: white;
@@ -680,25 +678,25 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 90%;
-  color: #2b3743;
+  color: #646988;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td .editable-input:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td .editable-input:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
   background-color: white;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td ul {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td ul {
   padding-left: 6px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td ul li {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td ul li {
   margin-left: 6px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td ul li span {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td ul li span {
   font-size: 14px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .table-bordered {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .table-bordered {
   border: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td:before {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td:before {
   position: absolute;
   top: 14px;
   left: 12px;
@@ -708,40 +706,40 @@ body {
   white-space: nowrap;
   text-align: left;
   font-weight: 400;
-  color: #2b3743;
+  color: #646988;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables1 td:before {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables1 td:before {
   content: attr(data-title);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .table-responsive {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .table-responsive {
   margin-left: -10px;
   margin-right: -10px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content span {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content span {
   color: #6f7b91;
   display: block;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 table,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 thead,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 tbody,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 th,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 tr {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 table,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 thead,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 tbody,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 th,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 tr {
   display: block;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 table {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 table {
   margin-right: 10px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 thead tr {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 thead tr {
   position: absolute;
   top: -9999px;
   left: -9999px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 tr {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 tr {
   border: 1px solid #ccc;
   border-top: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td {
   border: none;
   position: relative;
   padding-left: 50%;
@@ -750,23 +748,23 @@ body {
   padding-right: 10px;
   font-size: 14px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td .btn-default {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td .btn-default {
   background-color: #aab2c0;
   color: white;
   border: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td .btn-default:hover {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td .btn-default:hover {
   background-color: rgba(182, 190, 206, 0.9);
   border: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td .btn:focus,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td .btn:active:focus,
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td .btn.active:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td .btn:focus,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td .btn:active:focus,
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td .btn.active:focus {
   outline: 0;
   -webkit-box-shadow: none;
   box-shadow: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td input {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td input {
   border: 2px solid rgba(122, 122, 147, 0.36);
   padding: 2px;
   background: white;
@@ -776,11 +774,11 @@ body {
   box-shadow: none;
   border-radius: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td input:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td input:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
   background-color: white;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td .propertyselect {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td .propertyselect {
   border: 2px solid rgba(122, 122, 147, 0.36);
   padding: 2px;
   background: white;
@@ -790,25 +788,25 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 57%;
-  color: #2b3743;
+  color: #646988;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td .propertyselect:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td .propertyselect:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
   background-color: white;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td ul {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td ul {
   padding-left: 6px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td ul li {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td ul li {
   margin-left: 6px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td ul li span {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td ul li span {
   font-size: 14px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .table-bordered {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .table-bordered {
   border: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td:before {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td:before {
   position: absolute;
   top: 6px;
   left: 6px;
@@ -817,35 +815,35 @@ body {
   white-space: nowrap;
   text-align: left;
   font-weight: 400;
-  color: #2b3743;
+  color: #646988;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content #no-more-tables2 td:before {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content #no-more-tables2 td:before {
   content: attr(data-title);
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content .table-responsive {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content .table-responsive {
   margin-left: -10px;
   margin-right: -10px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .content span {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .content span {
   color: #6f7b91;
   display: block;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .tooltip.top {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .tooltip.top {
   margin-left: -50px;
   margin-top: 0px;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .propertyinput {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .propertyinput {
   border: 2px solid rgba(122, 122, 147, 0.36);
   padding: 2px;
   background: white;
   margin: 2px 5px 20px 0px;
   outline: none;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .propertyinput:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .propertyinput:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
   background-color: white;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .propertyselect {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .propertyselect {
   border: 2px solid rgba(122, 122, 147, 0.36);
   padding: 2px;
   background: white;
@@ -855,13 +853,13 @@ body {
   box-shadow: none;
   border-radius: 0px;
   width: 57%;
-  color: #2b3743;
+  color: #646988;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .propertyselect:focus {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .propertyselect:focus {
   border: 2px solid rgba(122, 122, 147, 0.64);
   background-color: white;
 }
-.layout-mock > .stretch.ui-layout-column .right-column .right-column-bottom .empty-container-property {
+.layout-mock > .stretch.ui-layout-column .left-column .left-column-bottom .empty-container-property {
   width: 300px;
   height: 80px;
   position: absolute;
@@ -1315,4 +1313,100 @@ section#support .media:hover i {
   color: #ffffff;
   background: #cc6698;
   border: 2px solid #cc6698;
+}
+/* Toggle Styles */
+#wrapper {
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+#wrapper.toggled {
+  padding-left: 250px;
+}
+#sidebar-wrapper {
+  z-index: 1000;
+  position: fixed;
+  left: 250px;
+  width: 0;
+  height: 100%;
+  margin-left: -250px;
+  overflow-y: auto;
+  background: #000;
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+#wrapper.toggled #sidebar-wrapper {
+  width: 250px;
+}
+#page-content-wrapper {
+  width: 100%;
+  padding: 15px;
+}
+#wrapper.toggled #page-content-wrapper {
+  position: absolute;
+  margin-right: -250px;
+}
+/* Sidebar Styles */
+.sidebar-nav {
+  position: absolute;
+  top: 0;
+  width: 250px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sidebar-nav li {
+  text-indent: 20px;
+  line-height: 40px;
+}
+.sidebar-nav li a {
+  display: block;
+  text-decoration: none;
+  color: #999999;
+}
+.sidebar-nav li a:hover {
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.2);
+}
+.sidebar-nav li a:active,
+.sidebar-nav li a:focus {
+  text-decoration: none;
+}
+.sidebar-nav > .sidebar-brand {
+  height: 65px;
+  font-size: 18px;
+  line-height: 60px;
+}
+.sidebar-nav > .sidebar-brand a {
+  color: #999999;
+}
+.sidebar-nav > .sidebar-brand a:hover {
+  color: #fff;
+  background: none;
+}
+@media (min-width: 768px) {
+  #wrapper {
+    padding-left: 250px;
+  }
+  #wrapper.toggled {
+    padding-left: 0;
+  }
+  #sidebar-wrapper {
+    width: 250px;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    width: 0;
+  }
+  #page-content-wrapper {
+    padding: 20px;
+  }
+  #wrapper.toggled #page-content-wrapper {
+    position: relative;
+    margin-right: 0;
+  }
 }
