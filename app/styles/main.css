@@ -248,7 +248,6 @@ body {
 }
 .layout-mock > .stretch.ui-layout-column .left-column {
   background-color: #2b3743;
-  width: 300px;
   box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 .layout-mock > .stretch.ui-layout-column .left-column .left-column-top {
@@ -1197,4 +1196,105 @@ section#support .media:hover i {
   color: #ffffff;
   background: #cc6698;
   border: 2px solid #cc6698;
+}
+#middle-panel {
+  background-color: blue;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+}
+.middle-panel-smaller {
+  width: 85%;
+}
+.middle-panel-bigger {
+  width: 97%;
+}
+#right-panel {
+  background-color: #000000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  left: 70%;
+}
+#right-panel-resizer {
+  background-color: #666;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  right: 30%;
+  cursor: w-resize;
+}
+#middle-panel-resizer {
+  background-color: #666;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  cursor: e-resize;
+}
+.middle-panel-resize-smaller {
+  right: 85%;
+}
+.middle-panel-resize-bigger {
+  right: 97%;
+}
+#left-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0 /* 200 + 6*/;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  color: #FFF;
+}
+#left-top-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #444;
+  overflow: auto;
+}
+.left-top-panel-open {
+  bottom: 95% !important;
+}
+.left-top-panel-close {
+  bottom: 5% !important;
+}
+#left-bottom-panel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+  background-color: #777;
+}
+.left-bottom-panel-open {
+  height: 95% !important;
+}
+.left-bottom-panel-close {
+  height: 5% !important;
+}
+#left-top-bottom-resizer {
+  position: absolute;
+  height: 0px;
+  left: 0;
+  right: 0;
+  background-color: #666;
+  cursor: n-resize;
+}
+.left-top-bottom-resizer-open {
+  bottom: 95% !important;
+}
+.left-top-bottom-resizer-close {
+  bottom: 5% !important;
+}
+#sidebar-resizer:hover,
+#preview-resizer:hover {
+  background-color: #AAA;
 }
