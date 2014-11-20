@@ -27,7 +27,6 @@ var app = angular
     'pageslide-directive',
     'ngDraggable',
     'ui.bootstrap',
-    'ui.layout',
     'ui.ace',
     'xeditable',
     'nestorApp.services',
