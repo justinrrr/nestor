@@ -4,6 +4,7 @@
 .dragging {
   background-color: white;
   border-bottom-color: rgba(112, 100, 130, 0.78);
+  z-index: 1000;
   .component-item {
     display: table-cell;
     vertical-align: middle;
@@ -11,11 +12,11 @@
     cursor: pointer;
     font-weight: 400;
     border: 1px dashed @dambiance;
-    width: 300px;
+    width: 220px;
     height: 80px;
     .pdiv {
       float: left;
-      width: 200px;
+      width: 100%;
       vertical-align: middle;
       p {
         font-weight: 300;
