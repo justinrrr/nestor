@@ -3,37 +3,48 @@
 // This is the visual of the component card while its being dragged
 .dragging {
   background-color: white;
-  border-bottom-color: rgba(112, 100, 130, 0.78);
   z-index: 1000;
-  left: 0px;
+  position: absolute;
   .component-item {
     display: table-cell;
     vertical-align: middle;
-    color: @dambiance;
-    cursor: pointer;
+    color: #5C6A74;
     font-weight: 400;
-    width: 220px;
-    height: 80px;
+    width: 210px;
+    height: 40px;
+    border-bottom: 1px solid rgba(29, 35, 45, 0.73);
+    &:hover {
+      cursor: pointer;
+      background-color: @teal;
+      color: white;
+    }
     .pdiv {
       float: left;
-      width: 100%;
+      width: 75%;
       vertical-align: middle;
+      position: absolute;
+      left: 40px;
+      height: 39px;
       p {
-        font-weight: 300;
         font-size: 12px;
         vertical-align: middle;
         letter-spacing: 0.19px;
+        text-transform: uppercase;
+        margin: 11px 0 10px;
+        padding-left: 10px;
       }
     }
     .imgdiv {
       float: left;
-      width: 70px;
+      width: 40px;
+      height: 40px;
+      background-color: rgb(25, 29, 36);
       img.component-image {
-        width: 60px;
-        height: 60px;
-        &:hover {
-          text-decoration: none;
-        }
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        left: 5px;
+        margin-top: 4px;
       }
     }
   }

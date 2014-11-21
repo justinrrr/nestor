@@ -120,15 +120,31 @@
           }
         }
         .empty-container {
-          width: 173px;
-          height: 40px;
+          width: 174px;
+          height: 40px !important;
           left: 40px;
           position: absolute;
-          color: @snow;
-          cursor: pointer;
+          color: transparent;
+          z-index: 1001;
+          .pdiv {
+            float: left;
+            width: 81%;
+            vertical-align: middle;
+            position: absolute;
+            height: 40px;
+            border-bottom: 1px solid transparent;
+            p {
+              font-size: 12px;
+              vertical-align: middle;
+              letter-spacing: 0.19px;
+              text-transform: uppercase;
+              margin: 11px 0 10px;
+              padding-left: 10px;
+            }
+          }
           &:hover {
-            cursor: pointer;
-            background-color: @dark-teal;
+            cursor: move;
+            background-color: @teal;
             color: white;
           }
         }
@@ -138,16 +154,16 @@
           color: #5C6A74;
           font-weight: 400;
           width: 220px;
-          height: 40px;
+          height: 40px !important;
           border-bottom: 1px solid rgba(29, 35, 45, 0.73);
           &:hover {
             cursor: pointer;
-            background-color: @dark-teal;
+            background-color: @teal;
             color: white;
           }
           .pdiv {
             float: left;
-            width: 65%;
+            width: 81%;
             vertical-align: middle;
             position: absolute;
             left: 40px;
