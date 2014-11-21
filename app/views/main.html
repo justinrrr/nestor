@@ -1,8 +1,7 @@
 <div class="row base-panel" id="left-panel"
-     ng-class="isLeftOpen ? 'left-panel-open' : 'left-panel-close'"
-     style="background-color: lightpink">
+     ng-class="isLeftOpen ? 'left-panel-open' : 'left-panel-close'">
 
-  <div class="col-lg-2" style="background-color: #ffff00">
+  <div class="col-lg-2 menu">
     <div ng-repeat="option in leftPanelOptions" ng-show="option.visible">
       <img width="25px" ng-src="{{option.image}}" ng-click="optionPressed(option)">
       <br>
@@ -10,7 +9,7 @@
     </div>
   </div>
 
-  <div class="col-lg-10" style="background-color: green">
+  <div class="col-lg-10 options">
     <button ng-click="closeLeft()" class="toggleleft">
       <i class="fa fa-close"></i></button>
 
@@ -146,7 +145,7 @@
      resizer-left="#middle-panel"
      resizer-right="#right-panel"
      resizer-leftmost="#left-panel"
-     open-close-difference="12"
+     open-close-difference="17"
      resizer-max="750"
   >
 </div>
