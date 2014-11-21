@@ -28,7 +28,7 @@ angular.module('nestorApp')
       $scope.types = AWSComponents.propertyTypes;
       $scope.tasks = AWSComponents.tasks;
 
-      $scope.leftPanelOptions = [{name:'Comp', visible:true}, {name:'Tasks', visible:true}, {name:'Properties', visible: 'true'}];
+      $scope.leftPanelOptions = [{name:'Comp', visible:true, image: 'images/component.png'}, {name:'Tasks', visible:true, image: 'images/solutionstack.png'}, {name:'Properties', visible: 'true', image: 'images/properties.png'}];
       //UI State
       $scope.isShowingTop = true;
 
@@ -99,7 +99,7 @@ angular.module('nestorApp')
       // UI Events
       //--------------------------------------
 
-      $scope.toggleLeftPressed = function() {
+      $scope.closeLeft = function() {
 
         $scope.isLeftOpen = !$scope.isLeftOpen;
         $rootScope.$broadcast('leftmostResizeRequest');
