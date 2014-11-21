@@ -72,6 +72,7 @@ angular.module('nestorApp')
       function itemSelected(component) {
         $scope.selectedComponent = component;
         $scope.isPropertiesShowing = true;
+        selectElementInEditor(component.name);
       }
 
       function addComponent(blueprint, posX, posY) {
@@ -399,4 +400,19 @@ angular.module('nestorApp')
       $scope.download = function () {
         $window.open('data:text/text;charset=utf-8,' + encodeURIComponent($scope.templateString));
       };
+
+
+
+      //======================== Text Editor stuff
+      var editor;
+      $scope.aceEditorLoaded = function(_editor) {
+        editor = _editor;
+      };
+
+      function selectElementInEditor(elementName) {
+        window.setTimeout(function () {
+          editor.find( '"' + elementName + '"', {}, true);
+          editor.focus();
+        }, 100);
+      }
     }]);
