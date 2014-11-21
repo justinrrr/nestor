@@ -3,56 +3,58 @@
   <div class="base-panel"
        id="left-top-panel"
        ng-class="isBottomLeftOpen ? 'left-top-panel-open' : 'left-top-panel-close'">
-    <div class="left-column-top" size="410px">
-
-      <button ng-click="toggleLeftPressed()" class="toggleleft">
-        <i class="fa" ng-class="isLeftOpen ? 'fa-angle-left' : 'fa-angle-right'"></i> </button>
-      <form id="searchbox">
-        <p class="fieldset">
-          <label class="glyphicon glyphicon-search"></label>
-        </p>
-        <input ng-model="searchText" type="text" placeholder="Search..." required class="search">
-      </form>
-      <tabset justified="true">
-
-        <tab heading="Components" class="components-tab">
-          <div ng-repeat="comp in components | filter:searchText">
-            <div
-              class="empty-container"
-              ng-drag="true"
-              ng-drag-success="onDragComplete($data,$event)"
-              ng-drag-data="comp"
-              ng-center-anchor="false">
-              <div class="pdiv">
-                <p>
-                  {{comp.name}}</p>
-              </div>
-            </div>
-            <div class="component-item">
-              <div class="imgdiv">
-                <img class="component-image" ng-src="{{comp.image}}"/>
-              </div>
-              <div class="pdiv">
-                <p>
-                  {{comp.name}}</p>
-              </div>
-            </div>
-          </div>
-        </tab>
-
-        <tab heading="Solutions" class="tasks-tab">
-          <div ng-click="taskSelected(task)" ng-repeat="task in tasks | filter:searchText">
-            <div class="task-item">
-
-              <a href="">
-                {{task.name}}
-              </a>
-
-            </div>
-          </div>
-        </tab>
-      </tabset>
+    <div ng-repeat="option in leftPanelOptions" ng-show="option.visible">
+      <img ng-src="google.com">
     </div>
+    <!--<div class="left-column-top" size="410px">-->
+
+      <!--<button ng-click="toggleLeftPressed()" class="toggleleft">-->
+        <!--<i class="fa" ng-class="isLeftOpen ? 'fa-angle-left' : 'fa-angle-right'"></i> </button>-->
+      <!--<form id="searchbox">-->
+        <!--<p class="fieldset">-->
+          <!--<label class="glyphicon glyphicon-search"></label>-->
+        <!--</p>-->
+        <!--<input ng-model="searchText" type="text" placeholder="Search..." required class="search">--><!--</form>-->
+      <!--<tabset justified="true">-->
+
+        <!--<tab heading="Components" class="components-tab">-->
+          <!--<div ng-repeat="comp in components | filter:searchText">-->
+            <!--<div-->
+              <!--class="empty-container"-->
+              <!--ng-drag="true"-->
+              <!--ng-drag-success="onDragComplete($data,$event)"-->
+              <!--ng-drag-data="comp"-->
+              <!--ng-center-anchor="false">-->
+              <!--<div class="pdiv">-->
+                <!--<p>-->
+                  <!--{{comp.name}}</p>-->
+              <!--</div>-->
+            <!--</div>-->
+            <!--<div class="component-item">-->
+              <!--<div class="imgdiv">-->
+                <!--<img class="component-image" ng-src="{{comp.image}}"/>-->
+              <!--</div>-->
+              <!--<div class="pdiv">-->
+                <!--<p>-->
+                  <!--{{comp.name}}</p>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</tab>-->
+
+        <!--<tab heading="Solutions" class="tasks-tab">-->
+          <!--<div ng-click="taskSelected(task)" ng-repeat="task in tasks | filter:searchText">-->
+            <!--<div class="task-item">-->
+
+              <!--<a href="">-->
+                <!--{{task.name}}-->
+              <!--</a>-->
+
+            <!--</div>-->
+          <!--</div>-->
+        <!--</tab>-->
+      <!--</tabset>-->
+    <!--</div>-->
   </div>
 
   <div class="base-panel" id="left-bottom-panel"

@@ -28,7 +28,7 @@ angular.module('nestorApp')
       $scope.types = AWSComponents.propertyTypes;
       $scope.tasks = AWSComponents.tasks;
 
-      $scope.leftPanelOptions = [{name:'Comp'}, {name:'Tasks'}, {name:'Save'}, {name:'Download'}, {name:'Manage'}, {name: 'Options'}];
+      $scope.leftPanelOptions = [{name:'Comp', visible:true}, {name:'Tasks', visible:true}, {name:'Properties', visible: 'true'}];
       //UI State
       $scope.isShowingTop = true;
 
