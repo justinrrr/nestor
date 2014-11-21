@@ -6,6 +6,7 @@ angular.module('nestorApp')
 
       $scope.isBottomLeftOpen = false;
       $scope.isLeftOpen = true;
+      $scope.isPropertiesShowing = false;
 
       //set up jsPlumb
       $scope.init = function () {
@@ -69,6 +70,7 @@ angular.module('nestorApp')
 
       function itemSelected(component) {
         $scope.selectedComponent = component;
+        $scope.isPropertiesShowing = true;
       }
 
       function addComponent(blueprint, posX, posY) {

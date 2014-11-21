@@ -1,5 +1,5 @@
-@bottom-top-open: 95%;
-@bottom-top-close: 5%;
+@bottom-top-open: 100%;
+@bottom-top-hidden: 0%;
 
 #middle-panel {
   background-color: white;
@@ -54,7 +54,7 @@
 }
 
 .left-top-panel-close {
-  bottom: @bottom-top-close !important;
+  bottom: @bottom-top-hidden !important;
 }
 
 #left-bottom-panel {
@@ -74,10 +74,11 @@
 
 .left-bottom-panel-open {
   height: @bottom-top-open !important;
+  background-color: red;
 }
 
 .left-bottom-panel-close {
-  height: @bottom-top-close !important;
+  height: @bottom-top-hidden !important;
 }
 
 #left-top-bottom-resizer {
@@ -95,10 +96,11 @@
 }
 
 .left-top-bottom-resizer-close {
-  bottom: @bottom-top-close !important;
+  bottom: @bottom-top-hidden !important;
 }
 
 #sidebar-resizer:hover, #preview-resizer:hover {
   background-color: #AAA;
 }
+
 
