@@ -1,178 +1,214 @@
 //  Left Top Column Style
-#left-panel > #left-top-panel > .left-column-top {
-  width: 100%;
-  //      Search Input Style
-  #searchbox {
-    display: inline-flex;
+#left-panel > #left-top-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: @bluegrey;
+  overflow: auto;
+  .left-column-top {
     width: 100%;
-    .fieldset > label {
-      position: absolute;
-      left: 18px;
-      top: 18px;
-      color: rgba(112, 100, 130, 0.78);
-    }
-    input:focus::-webkit-input-placeholder {
-      color: transparent;
-    }
-    .search {
-      padding: 8px 15px 8px 34px;
-      background-color: transparent;
-      color: rgba(112, 100, 130, 0.78);
-      border: 1px solid transparent;
-      font-weight: 500;
-      outline: none;
-      width: 97.2%;
-      margin-left: 4px;
-      margin-top: 6px;
-      &:focus {
-        border: 1px solid #61708C;
-        color: @ambiance;
-      }
-    }
-    .button {
-      position: relative;
-      padding: 8px 15px;
-      border: 0px solid #dbdbdb;
-      left: -45px;
-      color: #cbe2cb;
-      text-decoration: none;
-      background-color: transparent;
-      .glyphicon {
-        display: inline-block;
-        cursor: pointer;
-        color: rgba(112, 100, 130, 0.78);;
-      }
-      .glyphicon:hover {
-        color: rgba(112, 100, 130, 0.78);;
-      }
-    }
-  }
-
-  //      Nav Pills for Components
-  ul.nav-tabs.nav-justified {
-    .components-tab {
-      //          padding-left: 7px;
-    }
-    .tasks-tab {
-      //          padding-right: 6px;
-    }
-    li > a {
-      text-decoration: none;
-      cursor: pointer;
-      background-color: @ambiance;
-      color: white;
-      font-weight: 400;
-      border: none;
-      border-radius: 0;
-      border-bottom: 1px solid rgba(229, 229, 229, 0.3);
-      &:hover {
-        color: #FF9690;
-      }
-    }
-    .active > a {
-      background-color: @ambiance;
-      -moz-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
-      -webkit-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
-      box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
-      color: white;
-      &:hover {
-        color: #f2ecbd;
-      }
-    }
-  }
-  //       Components Style
-  .tab-content {
-    background-color: rgba(221, 221, 213, 0);
-    border-bottom-color: rgba(112, 100, 130, 0.78);
-    .tab-pane {
-      padding: 0px;
-      .glyphicon-chevron-left {
-        color: #efefef;
-        padding: 10px;
-        font-size: 15px;
-        &:before {
-          font-size: 12px;
-          padding-right: 2px;
-        }
-        &:hover {
-          color: black;
-        }
-      }
-      .empty-container {
-        width: 220px;
-        height: 80px;
+    //      Search Input Style
+    #searchbox {
+      display: inline-flex;
+      width: 100%;
+      .fieldset > label {
         position: absolute;
-        color: @snow;
-        cursor: pointer;
-        border-bottom: 1px solid @listhover;
-        &:hover {
-          cursor: pointer;
-          background-color: @listhover;
+        left: 13px;
+        top: 38px;
+        color: rgba(112, 100, 130, 0.78);
+      }
+      input:focus::-webkit-input-placeholder {
+        color: transparent;
+      }
+      .search {
+        padding: 8px 15px 8px 34px;
+        background-color: transparent;
+        color: rgba(112, 100, 130, 0.78);
+        border: 1px solid transparent;
+        font-weight: 500;
+        outline: none;
+        width: 97.2%;
+        margin-left: 4px;
+        margin-top: 6px;
+        &:focus {
+          border: 1px solid #61708C;
+          color: @ambiance;
         }
       }
-      .component-item {
-        display: table-cell;
-        vertical-align: middle;
-        color: @snow;
-        font-weight: 400;
-        width: 220px;
-        height: 80px;
-        &:hover {
+      .button {
+        position: relative;
+        padding: 8px 15px;
+        border: 0px solid #dbdbdb;
+        left: -45px;
+        color: #cbe2cb;
+        text-decoration: none;
+        background-color: transparent;
+        .glyphicon {
+          display: inline-block;
           cursor: pointer;
-          background-color: rgba(255, 255, 255, 0.12);
+          color: rgba(112, 100, 130, 0.78);;
         }
-        .pdiv {
-          float: left;
-          width: 100%;
+        .glyphicon:hover {
+          color: rgba(112, 100, 130, 0.78);;
+        }
+      }
+    }
+
+    //toggle button
+    .toggleleft {
+      float: right;
+      background-color: #E8E8E8;
+      border: none;
+      padding: 0px 5px;
+      &:focus {
+        outline: none;
+      }
+      .glyphicon-chevron-left {
+        font-weight: 100;
+      }
+    }
+
+    //      Nav Pills for Components
+    ul.nav-tabs.nav-justified {
+      .components-tab {
+        //          padding-left: 7px;
+      }
+      .tasks-tab {
+        //          padding-right: 6px;
+      }
+      li > a {
+        text-decoration: none;
+        cursor: pointer;
+        background-color: @ambiance;
+        color: white;
+        font-weight: 400;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid rgba(229, 229, 229, 0.3);
+        &:hover {
+          color: #FF9690;
+        }
+      }
+      .active > a {
+        background-color: @ambiance;
+        -moz-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
+        -webkit-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
+        box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
+        color: white;
+        &:hover {
+          color: #f2ecbd;
+        }
+      }
+    }
+    //       Components Style
+    .tab-content {
+      background-color: rgba(221, 221, 213, 0);
+      border-bottom-color: rgba(112, 100, 130, 0.78);
+      .tab-pane {
+        padding: 0px;
+        .glyphicon-chevron-left {
+          color: #efefef;
+          padding: 10px;
+          font-size: 15px;
+          &:before {
+            font-size: 12px;
+            padding-right: 2px;
+          }
+          &:hover {
+            color: black;
+          }
+        }
+        .empty-container {
+          width: 173px;
+          height: 40px;
+          left: 40px;
+          position: absolute;
+          color: @snow;
+          cursor: pointer;
+          &:hover {
+            cursor: pointer;
+            background-color: @dark-teal;
+            color: white;
+          }
+        }
+        .component-item {
+          display: table-cell;
           vertical-align: middle;
-          p {
+          color: #5C6A74;
+          font-weight: 400;
+          width: 220px;
+          height: 40px;
+          border-bottom: 1px solid rgba(29, 35, 45, 0.73);
+          &:hover {
+            cursor: pointer;
+            background-color: @dark-teal;
+            color: white;
+          }
+          .pdiv {
+            float: left;
+            width: 65%;
+            vertical-align: middle;
+            position: absolute;
+            left: 40px;
+            height: 39px;
+            border-bottom: @linkhover;
+            p {
+              font-size: 12px;
+              vertical-align: middle;
+              letter-spacing: 0.19px;
+              text-transform: uppercase;
+              margin: 11px 0 10px;
+              padding-left: 10px;
+            }
+          }
+          .imgdiv {
+            float: left;
+            width: 40px;
+            height: 40px;
+            background-color: rgb(25, 29, 36);
+            img.component-image {
+              width: 30px;
+              height: 30px;
+              position: absolute;
+              left: 5px;
+              margin-top: 4px;
+            }
+          }
+        }
+        .task-item {
+          padding: 10px 15px 10px 15px;
+          display: table-cell;
+          vertical-align: middle;
+          color: @snow;
+          cursor: pointer;
+          font-weight: 400;
+          width: 220px;
+          height: 80px;
+          &:hover {
+            cursor: pointer;
+            background-color: rgba(255, 255, 255, 0.12);
+          }
+          &:active {
+            border-left: 2px solid #f2ecbd;
+          }
+          a {
+            color: white;
             font-size: 13px;
             vertical-align: middle;
             letter-spacing: 0.19px;
-          }
-        }
-        .imgdiv {
-          float: left;
-          width: 50px;
-          img.component-image {
-            width: 40px;
-            height: 40px;
-          }
-        }
-      }
-      .task-item {
-        padding: 10px 15px 10px 15px;
-        display: table-cell;
-        vertical-align: middle;
-        color: @snow;
-        cursor: pointer;
-        font-weight: 400;
-        width: 220px;
-        height: 80px;
-        &:hover {
-          cursor: pointer;
-          background-color: rgba(255, 255, 255, 0.12);
-        }
-        &:active {
-          border-left: 2px solid #f2ecbd;
-        }
-        a {
-          color: white;
-          font-size: 13px;
-          vertical-align: middle;
-          letter-spacing: 0.19px;
-          text-decoration: none;
-          &:hover {
-            text-decoration: none
-          }
-          &:active {
-            color: #f2ecbd;
+            text-decoration: none;
+            &:hover {
+              text-decoration: none
+            }
+            &:active {
+              color: #f2ecbd;
+            }
           }
         }
       }
     }
   }
 }
-
 
 
