@@ -6,7 +6,7 @@
     <div class="left-column-top" size="410px">
 
       <button ng-click="toggleLeftPressed()" class="toggleleft">
-        <i class="fa fa-angle-left"></i> </button>
+        <i class="fa" ng-class="isLeftOpen ? 'fa-angle-left' : 'fa-angle-right'"></i> </button>
       <form id="searchbox">
         <p class="fieldset">
           <label class="glyphicon glyphicon-search"></label>
