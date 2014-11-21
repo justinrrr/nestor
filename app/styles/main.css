@@ -1241,10 +1241,10 @@ section#support .media:hover i {
   overflow: auto;
 }
 .left-top-panel-open {
-  bottom: 95% !important;
+  bottom: 100% !important;
 }
 .left-top-panel-close {
-  bottom: 5% !important;
+  bottom: 0% !important;
 }
 #left-bottom-panel {
   position: absolute;
@@ -1259,10 +1259,11 @@ section#support .media:hover i {
   animation: bounce 0.01s cubic-bezier(0.55, 0, 0.1, 1);
 }
 .left-bottom-panel-open {
-  height: 95% !important;
+  height: 100% !important;
+  background-color: red;
 }
 .left-bottom-panel-close {
-  height: 5% !important;
+  height: 0% !important;
 }
 #left-top-bottom-resizer {
   position: absolute;
@@ -1273,10 +1274,10 @@ section#support .media:hover i {
   cursor: n-resize;
 }
 .left-top-bottom-resizer-open {
-  bottom: 95% !important;
+  bottom: 100% !important;
 }
 .left-top-bottom-resizer-close {
-  bottom: 5% !important;
+  bottom: 0% !important;
 }
 #sidebar-resizer:hover,
 #preview-resizer:hover {

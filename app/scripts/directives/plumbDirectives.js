@@ -28,7 +28,6 @@ app.directive('plumbListeners', function () {
           targetName: targetName
         });
 
-
         var connection = info.connection;
         _.each(overlays, function(overlay) {
           connection.addOverlay(overlay);

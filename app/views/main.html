@@ -51,9 +51,10 @@
   </div>
 
   <div class="base-panel" id="left-bottom-panel"
-       ng-class="isBottomLeftOpen ? 'left-bottom-panel-open' : 'left-bottom-panel-close'">
+       ng-class="isPropertiesShowing ? 'left-bottom-panel-open' : 'left-bottom-panel-close'">
 
-    <button ng-click="isBottomLeftOpen = !isBottomLeftOpen">toggle bottom</button>
+    <button ng-show="isPropertiesShowing"
+      ng-click="isPropertiesShowing = !isPropertiesShowing">toggle bottom</button>
     <div class="left-column-bottom">
       <div ng-if="selectedComponent !== undefined">
         <properties
@@ -81,6 +82,7 @@
     on-connection-moved-from-target="connectionMovedFromTarget(sourceName, originalTargetName, newTargetName)"
     class="center-column"
     >
+
     <!--<div class="canvasbtns">-->
     <!--<button class="btn btn-warning" ng-click="cancel()"><span-->
     <!--class="glyphicon glyphicon-floppy-save"></span>-->
