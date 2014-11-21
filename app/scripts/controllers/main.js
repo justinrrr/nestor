@@ -28,7 +28,11 @@ angular.module('nestorApp')
       $scope.types = AWSComponents.propertyTypes;
       $scope.tasks = AWSComponents.tasks;
 
-      $scope.leftPanelOptions = [{name:'Comp', visible:true, image: 'images/component.png'}, {name:'Tasks', visible:true, image: 'images/solutionstack.png'}, {name:'Properties', visible: 'true', image: 'images/properties.png'}];
+      $scope.leftPanelOptions = [{name: 'Components', visible: true, image: 'images/component.png'}, {
+        name: 'Tasks',
+        visible: true,
+        image: 'images/solutionstack.png'
+      }, {name: 'Properties', visible: 'true', image: 'images/properties.png'}];
       //UI State
       $scope.isShowingTop = true;
 
@@ -99,13 +103,34 @@ angular.module('nestorApp')
       // UI Events
       //--------------------------------------
 
-      $scope.closeLeft = function() {
+      $scope.closeLeft = function () {
 
         $scope.isLeftOpen = !$scope.isLeftOpen;
         $rootScope.$broadcast('leftmostResizeRequest');
       };
 
-      $scope.optionPressed = function() {
+      $scope.optionPressed = function (option) {
+
+        switch (option.name) {
+          case 'Components':
+            $scope.showTasks = false;
+            $scope.showProperties = false;
+            $scope.showComponents = true;
+            break;
+          case 'Tasks' :
+            $scope.showTasks = true;
+            $scope.showProperties = false;
+            $scope.showComponents = false;
+            break;
+          case 'Properties' :
+            $scope.showTasks = false;
+            $scope.showProperties = true;
+            $scope.showComponents = false;
+            break;
+          default:
+            break;
+        }
+
         if (!$scope.isLeftOpen) {
           $scope.isLeftOpen = true;
           $rootScope.$broadcast('leftmostResizeRequest');
@@ -402,10 +427,9 @@ angular.module('nestorApp')
       };
 
 
-
       //======================== Text Editor stuff
       var editor;
-      $scope.aceEditorLoaded = function(_editor) {
+      $scope.aceEditorLoaded = function (_editor) {
         editor = _editor;
       };
 
@@ -413,7 +437,7 @@ angular.module('nestorApp')
         window.setTimeout(function () {
           //get some of the regex magic going on to detect the correct part
           var regex = '"' + elementName + '"(\\s)*:(\\s)*';
-          editor.find( regex, {regExp : true}, true);
+          editor.find(regex, {regExp: true}, true);
           //editor.addSelectionMarker(range);
           editor.focus();
           editor.setHighlightGutterLine(true);

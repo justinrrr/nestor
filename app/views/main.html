@@ -1,6 +1,6 @@
 <div class="row base-panel" id="left-panel"
      ng-class="isLeftOpen ? 'left-panel-open' : 'left-panel-close'"
-    style="background-color: lightpink">
+     style="background-color: lightpink">
 
   <div class="col-lg-2" style="background-color: #ffff00">
     <div ng-repeat="option in leftPanelOptions" ng-show="option.visible">
@@ -13,39 +13,75 @@
   <div class="col-lg-10" style="background-color: green">
     <button ng-click="closeLeft()" class="toggleleft">
       <i class="fa fa-close"></i></button>
-    <form id="searchbox">
-      <p class="fieldset">
-        <label class="glyphicon glyphicon-search"></label>
-      </p>
-      <input ng-model="searchText" type="text" placeholder="Search..." required class="search"></form>
-    <tabset justified="true">
-      <tab heading="Components" class="components-tab">
-        <div ng-repeat="comp in components | filter:searchText">
-          <div
-            class="empty-container"
-            ng-drag="true"
-            ng-drag-success="onDragComplete($data,$event)"
-            ng-drag-data="comp"
-            ng-center-anchor="false">
-            <div class="pdiv">
-              <p>
-                {{comp.name}}</p>
-            </div>
-          </div>
-          <div class="component-item">
-            <div class="imgdiv">
-              <img class="component-image" ng-src="{{comp.image}}"/>
-            </div>
-            <div class="pdiv">
-              <p>
-                {{comp.name}}</p>
-            </div>
-          </div>
-        </div>
-      </tab>
-    </tabset>
-  </div>
 
+    <!--Components-->
+    <div id="components" ng-show="showComponents">
+      <form id="searchbox">
+        <p class="fieldset">
+          <label class="glyphicon glyphicon-search"></label>
+        </p>
+        <input ng-model="searchText" type="text" placeholder="Search..." required class="search"></form>
+      <tabset justified="true">
+        <tab heading="Components" class="components-tab">
+          <div ng-repeat="comp in components | filter:searchText">
+            <div
+              class="empty-container"
+              ng-drag="true"
+              ng-drag-success="onDragComplete($data,$event)"
+              ng-drag-data="comp"
+              ng-center-anchor="false">
+              <div class="pdiv">
+                <p>
+                  {{comp.name}}</p>
+              </div>
+            </div>
+            <div class="component-item">
+              <div class="imgdiv">
+                <img class="component-image" ng-src="{{comp.image}}"/>
+              </div>
+              <div class="pdiv">
+                <p>
+                  {{comp.name}}</p>
+              </div>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+    <!--Tasks-->
+    <div id="tasks" ng-show="showTasks">
+      <form id="searchbox-tasks">
+        <p class="fieldset">
+          <label class="glyphicon glyphicon-search"></label>
+        </p>
+        <input ng-model="searchText" type="text" placeholder="Search..." required class="search"></form>
+      <tabset justified="true">
+        <tab heading="Solutions" class="tasks-tab">
+          <div ng-click="taskSelected(task)" ng-repeat="task in tasks | filter:searchText">
+            <div class="task-item">
+
+              <a href="">
+                {{task.name}}
+              </a>
+
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+    <!--Properties-->
+    <div id="properties" ng-show="showProperties">
+      <div class="left-column-bottom">
+        <div ng-if="selectedComponent !== undefined">
+          <properties
+            component="selectedComponent"
+            template="template"
+            on-property-drag="propertyDidDrag(data, event)"
+            ></properties>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
 <div id="mid-container">
