@@ -5,7 +5,7 @@ angular.module('nestorApp')
     function ($scope, $rootScope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
 
       $scope.isBottomLeftOpen = false;
-      $scope.isLeftOpen = true;
+      $scope.isLeftOpen = false;
       $scope.isPropertiesShowing = false;
 
       //set up jsPlumb
@@ -28,6 +28,7 @@ angular.module('nestorApp')
       $scope.types = AWSComponents.propertyTypes;
       $scope.tasks = AWSComponents.tasks;
 
+      $scope.leftPanelOptions = [{name:'Comp'}, {name:'Tasks'}, {name:'Save'}, {name:'Download'}, {name:'Manage'}, {name: 'Options'}];
       //UI State
       $scope.isShowingTop = true;
 
@@ -101,6 +102,13 @@ angular.module('nestorApp')
 
         $scope.isLeftOpen = !$scope.isLeftOpen;
         $rootScope.$broadcast('leftmostResizeRequest');
+      };
+
+      $scope.optionPressed = function() {
+        if (!$scope.isLeftOpen) {
+          $scope.isLeftOpen = true;
+          $rootScope.$broadcast('leftmostResizeRequest');
+        }
       };
 
       $scope.componentPressed = function (component) {
