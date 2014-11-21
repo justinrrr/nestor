@@ -411,8 +411,13 @@ angular.module('nestorApp')
 
       function selectElementInEditor(elementName) {
         window.setTimeout(function () {
-          editor.find( '"' + elementName + '"', {}, true);
+          //get some of the regex magic going on to detect the correct part
+          var regex = '"' + elementName + '"(\\s)*:(\\s)*';
+          editor.find( regex, {regExp : true}, true);
+          //editor.addSelectionMarker(range);
           editor.focus();
+          editor.setHighlightGutterLine(true);
+          editor.centerSelection();
         }, 100);
       }
     }]);
