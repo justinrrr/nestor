@@ -1,15 +1,15 @@
 <div class="row base-panel" id="left-panel"
      ng-class="isLeftOpen ? 'left-panel-open' : 'left-panel-close'">
 
-  <div class="col-lg-2 menu">
-    <div ng-repeat="option in leftPanelOptions" ng-show="option.visible">
+  <div class="col-lg-2 mainmenu">
+    <div ng-repeat="option in leftPanelOptions" ng-show="option.visible" class="options">
       <img width="25px" ng-src="{{option.image}}" ng-click="optionPressed(option)">
       <br>
       <br>
     </div>
   </div>
 
-  <div class="col-lg-10 options">
+  <div class="col-lg-10 optionsmenu">
     <button ng-click="closeLeft()" class="toggleleft">
       <i class="fa fa-close"></i></button>
 

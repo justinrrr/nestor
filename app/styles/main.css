@@ -280,35 +280,34 @@ body {
   overflow: hidden;
   right: 85%;
 }
-#left-panel .menu {
+#left-panel .mainmenu {
   width: 50px;
   height: 100%;
   background-color: #191d24 ;
 }
-#left-panel .options {
+#left-panel .mainmenu .options {
+  padding: 2px;
+}
+#left-panel .optionsmenu {
   width: 234px;
   height: 100%;
   background-color: #202a36;
   padding: 0px;
 }
-#left-panel > .col-lg-10 {
-  background-color: #202a36;
-  overflow: auto;
-}
-#left-panel > .col-lg-10 #searchbox {
+#left-panel > .optionsmenu #searchbox {
   display: inline-flex;
   width: 100%;
 }
-#left-panel > .col-lg-10 #searchbox .fieldset > label {
+#left-panel > .optionsmenu #searchbox .fieldset > label {
   position: absolute;
   left: 13px;
   top: 38px;
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .col-lg-10 #searchbox input:focus::-webkit-input-placeholder {
+#left-panel > .optionsmenu #searchbox input:focus::-webkit-input-placeholder {
   color: transparent;
 }
-#left-panel > .col-lg-10 #searchbox .search {
+#left-panel > .optionsmenu #searchbox .search {
   padding: 8px 15px 8px 34px;
   background-color: transparent;
   color: rgba(112, 100, 130, 0.78);
@@ -319,11 +318,11 @@ body {
   margin-left: 4px;
   margin-top: 6px;
 }
-#left-panel > .col-lg-10 #searchbox .search:focus {
+#left-panel > .optionsmenu #searchbox .search:focus {
   border: 1px solid #61708C;
   color: #2b3743;
 }
-#left-panel > .col-lg-10 #searchbox .button {
+#left-panel > .optionsmenu #searchbox .button {
   position: relative;
   padding: 8px 15px;
   border: 0px solid #dbdbdb;
@@ -332,28 +331,28 @@ body {
   text-decoration: none;
   background-color: transparent;
 }
-#left-panel > .col-lg-10 #searchbox .button .glyphicon {
+#left-panel > .optionsmenu #searchbox .button .glyphicon {
   display: inline-block;
   cursor: pointer;
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .col-lg-10 #searchbox .button .glyphicon:hover {
+#left-panel > .optionsmenu #searchbox .button .glyphicon:hover {
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .col-lg-10 .toggleleft {
+#left-panel > .optionsmenu .toggleleft {
   float: right;
   background-color: transparent;
   border: none;
   color: white;
   padding: 0px 5px;
 }
-#left-panel > .col-lg-10 .toggleleft:focus {
+#left-panel > .optionsmenu .toggleleft:focus {
   outline: none;
 }
-#left-panel > .col-lg-10 .toggleleft i.fa-close {
+#left-panel > .optionsmenu .toggleleft i.fa-close {
   font-weight: 100;
 }
-#left-panel > .col-lg-10 ul.nav-tabs.nav-justified li > a {
+#left-panel > .optionsmenu ul.nav-tabs.nav-justified li > a {
   text-decoration: none;
   cursor: pointer;
   background-color: #2b3743;
@@ -363,39 +362,39 @@ body {
   border-radius: 0;
   border-bottom: 1px solid rgba(229, 229, 229, 0.3);
 }
-#left-panel > .col-lg-10 ul.nav-tabs.nav-justified li > a:hover {
+#left-panel > .optionsmenu ul.nav-tabs.nav-justified li > a:hover {
   color: #FF9690;
 }
-#left-panel > .col-lg-10 ul.nav-tabs.nav-justified .active > a {
+#left-panel > .optionsmenu ul.nav-tabs.nav-justified .active > a {
   background-color: #2b3743;
   -moz-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
   -webkit-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
   box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
   color: white;
 }
-#left-panel > .col-lg-10 ul.nav-tabs.nav-justified .active > a:hover {
+#left-panel > .optionsmenu ul.nav-tabs.nav-justified .active > a:hover {
   color: #f2ecbd;
 }
-#left-panel > .col-lg-10 .tab-content {
+#left-panel > .optionsmenu .tab-content {
   background-color: rgba(221, 221, 213, 0);
   border-bottom-color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane {
+#left-panel > .optionsmenu .tab-content .tab-pane {
   padding: 0px;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .glyphicon-chevron-left {
+#left-panel > .optionsmenu .tab-content .tab-pane .glyphicon-chevron-left {
   color: #efefef;
   padding: 10px;
   font-size: 15px;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .glyphicon-chevron-left:before {
+#left-panel > .optionsmenu .tab-content .tab-pane .glyphicon-chevron-left:before {
   font-size: 12px;
   padding-right: 2px;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .glyphicon-chevron-left:hover {
+#left-panel > .optionsmenu .tab-content .tab-pane .glyphicon-chevron-left:hover {
   color: black;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .empty-container {
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container {
   width: 174px;
   height: 40px !important;
   left: 40px;
@@ -403,7 +402,7 @@ body {
   color: transparent;
   z-index: 1001;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .empty-container .pdiv {
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container .pdiv {
   float: left;
   width: 81%;
   vertical-align: middle;
@@ -411,7 +410,7 @@ body {
   height: 40px;
   border-bottom: 1px solid transparent;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .empty-container .pdiv p {
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container .pdiv p {
   font-size: 12px;
   vertical-align: middle;
   letter-spacing: 0.19px;
@@ -419,12 +418,12 @@ body {
   margin: 11px 0 10px;
   padding-left: 10px;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .empty-container:hover {
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container:hover {
   cursor: move;
   background-color: #1e7c7a;
   color: white;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .component-item {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item {
   display: table-cell;
   vertical-align: middle;
   color: #5C6A74;
@@ -433,12 +432,12 @@ body {
   height: 40px !important;
   border-bottom: 1px solid rgba(29, 35, 45, 0.73);
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .component-item:hover {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item:hover {
   cursor: pointer;
   background-color: #1e7c7a;
   color: white;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .component-item .pdiv {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item .pdiv {
   float: left;
   width: 81%;
   vertical-align: middle;
@@ -447,7 +446,7 @@ body {
   height: 39px;
   border-bottom: rgba(38, 35, 42, 0.75);
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .component-item .pdiv p {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item .pdiv p {
   font-size: 12px;
   vertical-align: middle;
   letter-spacing: 0.19px;
@@ -455,20 +454,20 @@ body {
   margin: 11px 0 10px;
   padding-left: 10px;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .component-item .imgdiv {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item .imgdiv {
   float: left;
   width: 40px;
   height: 40px;
   background-color: #191d24;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .component-item .imgdiv img.component-image {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item .imgdiv img.component-image {
   width: 30px;
   height: 30px;
   position: absolute;
   left: 5px;
   margin-top: 4px;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .task-item {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item {
   padding: 10px 15px 10px 15px;
   display: table-cell;
   vertical-align: middle;
@@ -478,24 +477,24 @@ body {
   width: 220px;
   height: 80px;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .task-item:hover {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item:hover {
   cursor: pointer;
   background-color: rgba(255, 255, 255, 0.12);
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .task-item:active {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item:active {
   border-left: 2px solid #f2ecbd;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .task-item a {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item a {
   color: white;
   font-size: 13px;
   vertical-align: middle;
   letter-spacing: 0.19px;
   text-decoration: none;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .task-item a:hover {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item a:hover {
   text-decoration: none;
 }
-#left-panel > .col-lg-10 .tab-content .tab-pane .task-item a:active {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item a:active {
   color: #f2ecbd;
 }
 #left-panel > #left-bottom-panel {
