@@ -281,18 +281,23 @@ body {
   right: 85%;
 }
 #left-panel .mainmenu {
-  width: 50px;
+  width: 59px;
   height: 100%;
-  background-color: #191d24 ;
-}
-#left-panel .mainmenu .options {
-  padding: 2px;
+  background-color: #191d24;
+  padding-top: 67px;
+  padding-left: 23px;
 }
 #left-panel .optionsmenu {
-  width: 234px;
+  width: 226px;
   height: 100%;
   background-color: #202a36;
   padding: 0px;
+}
+#left-panel > .optionsmenu {
+  z-index: 0;
+}
+#left-panel > .optionsmenu #components {
+  z-index: 1;
 }
 #left-panel > .optionsmenu #searchbox {
   display: inline-flex;
@@ -339,6 +344,51 @@ body {
 #left-panel > .optionsmenu #searchbox .button .glyphicon:hover {
   color: rgba(112, 100, 130, 0.78);
 }
+#left-panel > .optionsmenu #searchbox-tasks {
+  display: inline-flex;
+  width: 100%;
+}
+#left-panel > .optionsmenu #searchbox-tasks .fieldset > label {
+  position: absolute;
+  left: 13px;
+  top: 38px;
+  color: rgba(112, 100, 130, 0.78);
+}
+#left-panel > .optionsmenu #searchbox-tasks input:focus::-webkit-input-placeholder {
+  color: transparent;
+}
+#left-panel > .optionsmenu #searchbox-tasks .search {
+  padding: 8px 15px 8px 34px;
+  background-color: transparent;
+  color: rgba(112, 100, 130, 0.78);
+  border: 1px solid transparent;
+  font-weight: 500;
+  outline: none;
+  width: 97.2%;
+  margin-left: 4px;
+  margin-top: 6px;
+}
+#left-panel > .optionsmenu #searchbox-tasks .search:focus {
+  border: 1px solid #61708C;
+  color: #2b3743;
+}
+#left-panel > .optionsmenu #searchbox-tasks .button {
+  position: relative;
+  padding: 8px 15px;
+  border: 0px solid #dbdbdb;
+  left: -45px;
+  color: #cbe2cb;
+  text-decoration: none;
+  background-color: transparent;
+}
+#left-panel > .optionsmenu #searchbox-tasks .button .glyphicon {
+  display: inline-block;
+  cursor: pointer;
+  color: rgba(112, 100, 130, 0.78);
+}
+#left-panel > .optionsmenu #searchbox-tasks .button .glyphicon:hover {
+  color: rgba(112, 100, 130, 0.78);
+}
 #left-panel > .optionsmenu .toggleleft {
   float: right;
   background-color: transparent;
@@ -355,25 +405,16 @@ body {
 #left-panel > .optionsmenu ul.nav-tabs.nav-justified li > a {
   text-decoration: none;
   cursor: pointer;
-  background-color: #2b3743;
+  background-color: #1e7c7a;
   color: white;
   font-weight: 400;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid rgba(229, 229, 229, 0.3);
 }
-#left-panel > .optionsmenu ul.nav-tabs.nav-justified li > a:hover {
-  color: #FF9690;
-}
 #left-panel > .optionsmenu ul.nav-tabs.nav-justified .active > a {
-  background-color: #2b3743;
-  -moz-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
-  -webkit-box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
-  box-shadow: inset 0 -4px #f2ecbd, inset 0 0px 0px #f2ecbd;
+  background-color: #1e7c7a;
   color: white;
-}
-#left-panel > .optionsmenu ul.nav-tabs.nav-justified .active > a:hover {
-  color: #f2ecbd;
 }
 #left-panel > .optionsmenu .tab-content {
   background-color: rgba(221, 221, 213, 0);
@@ -395,7 +436,7 @@ body {
   color: black;
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .empty-container {
-  width: 174px;
+  width: 185px;
   height: 40px !important;
   left: 40px;
   position: absolute;
@@ -420,7 +461,7 @@ body {
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .empty-container:hover {
   cursor: move;
-  background-color: #1e7c7a;
+  background-color: rgba(255, 255, 255, 0.12);
   color: white;
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .component-item {
@@ -428,13 +469,13 @@ body {
   vertical-align: middle;
   color: #5C6A74;
   font-weight: 400;
-  width: 220px;
+  width: 224px;
   height: 40px !important;
   border-bottom: 1px solid rgba(29, 35, 45, 0.73);
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .component-item:hover {
   cursor: pointer;
-  background-color: #1e7c7a;
+  background-color: rgba(255, 255, 255, 0.12);
   color: white;
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .component-item .pdiv {
@@ -458,7 +499,6 @@ body {
   float: left;
   width: 40px;
   height: 40px;
-  background-color: #191d24;
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .component-item .imgdiv img.component-image {
   width: 30px;
@@ -1298,7 +1338,7 @@ section#support .media:hover i {
   left: 19%;
 }
 .middle-panel-bigger {
-  left: 2%;
+  left: 3%;
 }
 #right-panel {
   background-color: #000000;
