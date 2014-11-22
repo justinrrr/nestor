@@ -120,7 +120,7 @@
          data-identifier="{{component.id}}"
          data-component-name={{component.name}}
       >
-      <p align="left">
+      <p align="left" ng-show="selectedComponent == component">
         <button ng-click="deleteClicked(component)" type="button">X</button>
         <button ng-click="propertiesClicked(component)" type="button">O</button>
       </p>
