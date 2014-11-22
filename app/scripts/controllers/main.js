@@ -319,7 +319,7 @@ angular.module('nestorApp')
 
       $scope.propertyDidDrag = function (data, event) {
 
-        var leftPanelWidth = angular.element('#right-column')[0].clientWidth;
+        var leftPanelWidth = angular.element('#left-panel')[0].clientWidth;
 
         var uniqueId = generateComponentName(data.name);
 
