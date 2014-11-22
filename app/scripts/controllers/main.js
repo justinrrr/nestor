@@ -32,7 +32,7 @@ angular.module('nestorApp')
         name: 'Tasks',
         visible: true,
         image: 'images/solutionstack.png'
-      }, {name: 'Properties', visible: 'true', image: 'images/properties.png'}];
+      }, {name: 'Properties', visible: 'false', image: 'images/properties.png'}];
       //UI State
       $scope.isShowingTop = true;
 
