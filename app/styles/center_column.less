@@ -157,3 +157,18 @@
   }
 }
 
+.animate-show {
+  opacity: 1;
+
+}
+
+.animate-show.ng-hide-add.ng-hide-add-active,
+.animate-show.ng-hide-remove.ng-hide-remove-active {
+  -webkit-transition: all cubic-bezier(.55,0,.1,1) 0.2s;
+  transition: all cubic-bezier(.55,0,.1,1) 0.2s;
+}
+
+.animate-show.ng-hide {
+  opacity: 0;
+}
+
