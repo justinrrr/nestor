@@ -558,7 +558,7 @@ body {
 #left-panel > .optionsmenu #properties {
   z-index: 1;
   height: 100%;
-  background-color: #394a57;
+  background-color: #202a36;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom {
   background-color: white;
@@ -675,10 +675,10 @@ body {
   margin-left: -14px;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading {
-  background-color: #404A5A;
+  background-color: #394a57;
   color: black;
   border-radius: 0px;
-  border-bottom: 1px solid rgba(29, 35, 45, 0.73);
+  border-bottom: 2px solid rgba(120, 126, 137, 0.11);
   border-top: 1px solid rgba(29, 35, 45, 0.73);
   margin-top: -2px;
 }
@@ -748,7 +748,6 @@ body {
   left: -9999px;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 tr {
-  border: 1px solid rgba(204, 204, 204, 0.31);
   background-color: rgba(221, 221, 213, 0);
   border-top: none;
 }
@@ -759,7 +758,7 @@ body {
   white-space: normal;
   text-align: left;
   padding-right: 10px;
-  background-color: #384754;
+  background-color: #475C6E;
   font-size: 14px;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .editable {
@@ -844,21 +843,21 @@ body {
 #left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td:before {
   position: absolute;
   top: 14px;
-  left: 12px;
+  left: 2px;
   width: 45%;
   padding-right: 10px;
   padding-left: 10px;
   white-space: nowrap;
   text-align: left;
   font-weight: 400;
-  color: #2b3743;
+  color: #ADB5C3;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td:before {
   content: attr(data-title);
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .content .table-responsive {
-  margin-left: -10px;
-  width: 223px;
+  margin-left: -12px;
+  width: 230px;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .content span {
   color: #6f7b91;
@@ -952,7 +951,7 @@ body {
 #left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td:before {
   position: absolute;
   top: 6px;
-  left: 6px;
+  left: 2px;
   width: 45%;
   padding-right: 10px;
   white-space: nowrap;
@@ -964,7 +963,7 @@ body {
   content: attr(data-title);
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .content .table-responsive {
-  margin-left: -10px;
+  margin-left: -12px;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .content span {
   color: #6f7b91;
@@ -1003,14 +1002,89 @@ body {
   background-color: white;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .empty-container-property {
-  width: 215px;
-  height: 80px;
+  width: 232px;
+  height: 40px !important;
   position: absolute;
-  color: #ffffff;
-  cursor: pointer;
+  color: transparent;
+  margin-left: -14px;
+  z-index: 1001;
+  border-bottom: 1px solid rgba(29, 35, 45, 0.73);
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .empty-container-property:hover {
+  cursor: move;
+  background-color: rgba(222, 222, 222, 0.05);
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .empty-container-property .pdiv {
+  float: left;
+  width: 82.5% !important;
+  vertical-align: middle;
+  position: absolute;
+  height: 40px;
+  border-bottom: 1px solid transparent;
+  left: 40px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .empty-container-property .pdiv p {
+  font-size: 12px;
+  vertical-align: middle;
+  letter-spacing: 0.19px;
+  text-transform: uppercase;
+  margin: 12px 0 10px;
+  padding-left: 10px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .empty-container-property .imgdiv {
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .empty-container-property .imgdiv img {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 5px;
+  margin-top: 4px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .component-item {
+  display: table-cell;
+  vertical-align: middle;
+  color: #5C6A74;
   font-weight: 400;
-  border-bottom: 1px solid rgba(233, 230, 234, 0.19);
-  margin-left: -15px;
+  width: 230px;
+  height: 40px !important;
+  margin-left: -10px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .component-item:hover {
+  cursor: pointer;
+  background-color: rgba(222, 222, 222, 0.05);
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .component-item .pdiv {
+  float: left;
+  width: 82.5% !important;
+  vertical-align: middle;
+  position: absolute;
+  left: 40px;
+  height: 40px;
+  border-bottom: rgba(38, 35, 42, 0.75);
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .component-item .pdiv p {
+  font-size: 12px;
+  color: #5C6A74;
+  vertical-align: middle;
+  letter-spacing: 0.19px;
+  text-transform: uppercase;
+  margin: 3px 0 10px;
+  padding-left: 10px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .component-item .imgdiv {
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .component-item .imgdiv img {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 5px;
+  margin-top: 2px;
 }
 #left-panel > #left-bottom-panel {
   z-index: 9999;
