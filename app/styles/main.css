@@ -122,9 +122,6 @@ body {
 .layout-mock > .stretch.ui-layout-column .right-column .ace_editor {
   height: 100%;
 }
-.layout-mock > .stretch.ui-layout-column .ace-ambiance .ace_variable {
-  color: #89A1D0 !important;
-}
 #mid-container > #middle-panel .canvasbtns {
   padding: 10px;
 }
@@ -1301,7 +1298,6 @@ section#support .media:hover i {
   left: 2%;
 }
 #right-panel {
-  background-color: #000000;
   position: absolute;
   top: 0;
   bottom: 0;
