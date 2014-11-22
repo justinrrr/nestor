@@ -270,12 +270,13 @@ body {
   stroke-width: 1.5px;
 }
 #left-panel {
+  background-color: blue;
+  z-index: 1;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0 /* 200 + 6*/;
   overflow: hidden;
-  right: 85%;
 }
 #left-panel .mainmenu {
   width: 59px;
@@ -284,32 +285,38 @@ body {
   padding-top: 67px;
   padding-left: 23px;
 }
-#left-panel .optionsmenu {
+#left-panel .optionsmenu-open {
   width: 226px;
   height: 100%;
   background-color: #202a36;
   padding: 0px;
 }
-#left-panel > .optionsmenu {
+#left-panel .optionsmenu-close {
+  width: 0;
+  height: 100%;
+  background-color: #202a36;
+  padding: 0px;
+}
+#left-panel > .optionsmenu-open {
   z-index: 0;
 }
-#left-panel > .optionsmenu #components {
+#left-panel > .optionsmenu-open #components {
   z-index: 1;
 }
-#left-panel > .optionsmenu #searchbox {
+#left-panel > .optionsmenu-open #searchbox {
   display: inline-flex;
   width: 100%;
 }
-#left-panel > .optionsmenu #searchbox .fieldset > label {
+#left-panel > .optionsmenu-open #searchbox .fieldset > label {
   position: absolute;
   left: 13px;
   top: 38px;
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu #searchbox input:focus::-webkit-input-placeholder {
+#left-panel > .optionsmenu-open #searchbox input:focus::-webkit-input-placeholder {
   color: transparent;
 }
-#left-panel > .optionsmenu #searchbox .search {
+#left-panel > .optionsmenu-open #searchbox .search {
   padding: 8px 15px 8px 34px;
   background-color: transparent;
   color: rgba(112, 100, 130, 0.78);
@@ -320,11 +327,11 @@ body {
   margin-left: 4px;
   margin-top: 6px;
 }
-#left-panel > .optionsmenu #searchbox .search:focus {
+#left-panel > .optionsmenu-open #searchbox .search:focus {
   border: 1px solid #61708C;
   color: #2b3743;
 }
-#left-panel > .optionsmenu #searchbox .button {
+#left-panel > .optionsmenu-open #searchbox .button {
   position: relative;
   padding: 8px 15px;
   border: 0px solid #dbdbdb;
@@ -333,28 +340,28 @@ body {
   text-decoration: none;
   background-color: transparent;
 }
-#left-panel > .optionsmenu #searchbox .button .glyphicon {
+#left-panel > .optionsmenu-open #searchbox .button .glyphicon {
   display: inline-block;
   cursor: pointer;
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu #searchbox .button .glyphicon:hover {
+#left-panel > .optionsmenu-open #searchbox .button .glyphicon:hover {
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu #searchbox-tasks {
+#left-panel > .optionsmenu-open #searchbox-tasks {
   display: inline-flex;
   width: 100%;
 }
-#left-panel > .optionsmenu #searchbox-tasks .fieldset > label {
+#left-panel > .optionsmenu-open #searchbox-tasks .fieldset > label {
   position: absolute;
   left: 13px;
   top: 38px;
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu #searchbox-tasks input:focus::-webkit-input-placeholder {
+#left-panel > .optionsmenu-open #searchbox-tasks input:focus::-webkit-input-placeholder {
   color: transparent;
 }
-#left-panel > .optionsmenu #searchbox-tasks .search {
+#left-panel > .optionsmenu-open #searchbox-tasks .search {
   padding: 8px 15px 8px 34px;
   background-color: transparent;
   color: rgba(112, 100, 130, 0.78);
@@ -365,11 +372,11 @@ body {
   margin-left: 4px;
   margin-top: 6px;
 }
-#left-panel > .optionsmenu #searchbox-tasks .search:focus {
+#left-panel > .optionsmenu-open #searchbox-tasks .search:focus {
   border: 1px solid #61708C;
   color: #2b3743;
 }
-#left-panel > .optionsmenu #searchbox-tasks .button {
+#left-panel > .optionsmenu-open #searchbox-tasks .button {
   position: relative;
   padding: 8px 15px;
   border: 0px solid #dbdbdb;
@@ -378,28 +385,28 @@ body {
   text-decoration: none;
   background-color: transparent;
 }
-#left-panel > .optionsmenu #searchbox-tasks .button .glyphicon {
+#left-panel > .optionsmenu-open #searchbox-tasks .button .glyphicon {
   display: inline-block;
   cursor: pointer;
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu #searchbox-tasks .button .glyphicon:hover {
+#left-panel > .optionsmenu-open #searchbox-tasks .button .glyphicon:hover {
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu .toggleleft {
+#left-panel > .optionsmenu-open .toggleleft {
   float: right;
   background-color: transparent;
   border: none;
   color: white;
   padding: 0px 5px;
 }
-#left-panel > .optionsmenu .toggleleft:focus {
+#left-panel > .optionsmenu-open .toggleleft:focus {
   outline: none;
 }
-#left-panel > .optionsmenu .toggleleft i.fa-close {
+#left-panel > .optionsmenu-open .toggleleft i.fa-close {
   font-weight: 100;
 }
-#left-panel > .optionsmenu ul.nav-tabs.nav-justified li > a {
+#left-panel > .optionsmenu-open ul.nav-tabs.nav-justified li > a {
   text-decoration: none;
   cursor: pointer;
   background-color: #1e7c7a;
@@ -409,46 +416,46 @@ body {
   border-radius: 0;
   border-bottom: 1px solid rgba(229, 229, 229, 0.3);
 }
-#left-panel > .optionsmenu ul.nav-tabs.nav-justified .active > a {
+#left-panel > .optionsmenu-open ul.nav-tabs.nav-justified .active > a {
   background-color: #1e7c7a;
   color: white;
 }
-#left-panel > .optionsmenu .tab-content {
+#left-panel > .optionsmenu-open .tab-content {
   background-color: rgba(221, 221, 213, 0);
   border-bottom-color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu .tab-content .tab-pane {
+#left-panel > .optionsmenu-open .tab-content .tab-pane {
   padding: 0px;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .glyphicon-chevron-left {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .glyphicon-chevron-left {
   color: #efefef;
   padding: 10px;
   font-size: 15px;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .glyphicon-chevron-left:before {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .glyphicon-chevron-left:before {
   font-size: 12px;
   padding-right: 2px;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .glyphicon-chevron-left:hover {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .glyphicon-chevron-left:hover {
   color: black;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .empty-container {
-  width: 185px;
+#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container {
+  width: 224px;
   height: 40px !important;
-  left: 40px;
   position: absolute;
   color: transparent;
   z-index: 1001;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .empty-container .pdiv {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container .pdiv {
   float: left;
-  width: 81%;
+  width: 82.5%;
   vertical-align: middle;
   position: absolute;
   height: 40px;
   border-bottom: 1px solid transparent;
+  left: 40px;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .empty-container .pdiv p {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container .pdiv p {
   font-size: 12px;
   vertical-align: middle;
   letter-spacing: 0.19px;
@@ -456,12 +463,23 @@ body {
   margin: 11px 0 10px;
   padding-left: 10px;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .empty-container:hover {
-  cursor: move;
-  background-color: rgba(255, 255, 255, 0.12);
-  color: white;
+#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container .imgdiv {
+  float: left;
+  width: 40px;
+  height: 40px;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .component-item {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container .imgdiv img.component-image {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 5px;
+  margin-top: 4px;
+}
+#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container:hover {
+  cursor: move;
+  background-color: rgba(209, 209, 209, 0.05);
+}
+#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item {
   display: table-cell;
   vertical-align: middle;
   color: #5C6A74;
@@ -470,21 +488,20 @@ body {
   height: 40px !important;
   border-bottom: 1px solid rgba(29, 35, 45, 0.73);
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .component-item:hover {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.12);
-  color: white;
+  background-color: rgba(209, 209, 209, 0.05);
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .component-item .pdiv {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item .pdiv {
   float: left;
-  width: 81%;
+  width: 82.5%;
   vertical-align: middle;
   position: absolute;
   left: 40px;
-  height: 39px;
+  height: 40px;
   border-bottom: rgba(38, 35, 42, 0.75);
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .component-item .pdiv p {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item .pdiv p {
   font-size: 12px;
   vertical-align: middle;
   letter-spacing: 0.19px;
@@ -492,46 +509,46 @@ body {
   margin: 11px 0 10px;
   padding-left: 10px;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .component-item .imgdiv {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item .imgdiv {
   float: left;
   width: 40px;
   height: 40px;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .component-item .imgdiv img.component-image {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item .imgdiv img.component-image {
   width: 30px;
   height: 30px;
   position: absolute;
   left: 5px;
   margin-top: 4px;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .task-item {
-  padding: 10px 15px 10px 15px;
+#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item {
   display: table-cell;
   vertical-align: middle;
-  color: #ffffff;
-  cursor: pointer;
   font-weight: 400;
-  width: 220px;
-  height: 80px;
-}
-#left-panel > .optionsmenu .tab-content .tab-pane .task-item:hover {
+  width: 224px;
+  height: 40px !important;
+  border-bottom: 1px solid rgba(29, 35, 45, 0.73);
+  padding: 10px 15px 10px 15px;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.12);
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .task-item:active {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item:hover {
+  cursor: pointer;
+  background-color: rgba(209, 209, 209, 0.05);
+}
+#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item:active {
   border-left: 2px solid #f2ecbd;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .task-item a {
-  color: white;
+#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item a {
+  color: #5C6A74;
   font-size: 13px;
   vertical-align: middle;
   letter-spacing: 0.19px;
   text-decoration: none;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .task-item a:hover {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item a:hover {
   text-decoration: none;
 }
-#left-panel > .optionsmenu .tab-content .tab-pane .task-item a:active {
+#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item a:active {
   color: #f2ecbd;
 }
 #left-panel > #left-bottom-panel {
@@ -1362,44 +1379,9 @@ section#support .media:hover i {
   bottom: 0;
   cursor: e-resize;
 }
-.left-top-panel-open {
-  bottom: 100% !important;
-}
-.left-top-panel-close {
-  bottom: 0% !important;
-}
-#left-bottom-panel {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: auto;
-  background-color: #777;
-}
 .base-panel {
   transition: all cubic-bezier(0.55, 0, 0.1, 1) 0.5s;
   animation: bounce 0.01s cubic-bezier(0.55, 0, 0.1, 1);
-}
-.left-bottom-panel-open {
-  height: 100% !important;
-  background-color: red;
-}
-.left-bottom-panel-close {
-  height: 0% !important;
-}
-#left-top-bottom-resizer {
-  position: absolute;
-  height: 0;
-  left: 0;
-  right: 0;
-  background-color: #666;
-  cursor: n-resize;
-}
-.left-top-bottom-resizer-open {
-  bottom: 100% !important;
-}
-.left-top-bottom-resizer-close {
-  bottom: 0% !important;
 }
 #sidebar-resizer:hover,
 #preview-resizer:hover {

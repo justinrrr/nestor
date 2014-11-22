@@ -19,13 +19,13 @@ app.directive('resizer', function($document) {
       if ($scope.isLeftOpen) {
 
         currentPanelSize = currentPanelSize - openCloseDifference;
-        angular.element('#left-panel')[0].style.right =  currentPanelSize+ '%';
+        //angular.element('#left-panel')[0].style.right =  currentPanelSize+ '%';
 
         currentWidth = currentWidth - openCloseDifference;
         angular.element('#middle-panel')[0].style.width = currentWidth + '%';
       } else {
-        currentPanelSize += openCloseDifference;
-        angular.element('#left-panel')[0].style.right = currentPanelSize + '%';
+        //currentPanelSize += openCloseDifference;
+        //angular.element('#left-panel')[0].style.right = currentPanelSize + '%';
         currentWidth = currentWidth + openCloseDifference;
         angular.element('#middle-panel')[0].style.width = currentWidth + '%';
       }

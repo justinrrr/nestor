@@ -1,5 +1,5 @@
-//  Left Top Column Style
-#left-panel > .optionsmenu {
+//  Left Top Column - Components Style
+#left-panel > .optionsmenu-open {
   z-index: 0;
   #components {
     z-index: 1;
@@ -153,19 +153,20 @@
         }
       }
       .empty-container {
-        width: 185px;
+        width: 224px;
         height: 40px !important;
-        left: 40px;
+//        left: 40px;
         position: absolute;
         color: transparent;
         z-index: 1001;
         .pdiv {
           float: left;
-          width: 81%;
+          width: 82.5%;
           vertical-align: middle;
           position: absolute;
           height: 40px;
           border-bottom: 1px solid transparent;
+          left: 40px;
           p {
             font-size: 12px;
             vertical-align: middle;
@@ -175,10 +176,21 @@
             padding-left: 10px;
           }
         }
+        .imgdiv {
+          float: left;
+          width: 40px;
+          height: 40px;
+          img.component-image {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            left: 5px;
+            margin-top: 4px;
+          }
+        }
         &:hover {
           cursor: move;
-          background-color: rgba(255, 255, 255, 0.12);
-          color: white;
+          background-color: rgba(209, 209, 209, 0.05);
         }
       }
       .component-item {
@@ -191,16 +203,15 @@
         border-bottom: 1px solid rgba(29, 35, 45, 0.73);
         &:hover {
           cursor: pointer;
-          background-color: rgba(255, 255, 255, 0.12);
-          color: white;
+          background-color: rgba(209, 209, 209, 0.05);
         }
         .pdiv {
           float: left;
-          width: 81%;
+          width: 82.5%;
           vertical-align: middle;
           position: absolute;
           left: 40px;
-          height: 39px;
+          height: 40px;
           border-bottom: @linkhover;
           p {
             font-size: 12px;
@@ -225,23 +236,23 @@
         }
       }
       .task-item {
-        padding: 10px 15px 10px 15px;
         display: table-cell;
         vertical-align: middle;
-        color: @snow;
-        cursor: pointer;
         font-weight: 400;
-        width: 220px;
-        height: 80px;
+        width: 224px;
+        height: 40px !important;
+        border-bottom: 1px solid rgba(29, 35, 45, 0.73);
+        padding: 10px 15px 10px 15px;
+        cursor: pointer;
         &:hover {
           cursor: pointer;
-          background-color: rgba(255, 255, 255, 0.12);
+          background-color: rgba(209, 209, 209, 0.05);
         }
         &:active {
           border-left: 2px solid #f2ecbd;
         }
         a {
-          color: white;
+          color: #5C6A74;
           font-size: 13px;
           vertical-align: middle;
           letter-spacing: 0.19px;

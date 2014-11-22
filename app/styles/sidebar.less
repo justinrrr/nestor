@@ -1,6 +1,3 @@
-@bottom-top-open: 100%;
-@bottom-top-hidden: 0%;
-
 #middle-panel {
   background-color: yellowgreen;
   position: absolute;
@@ -52,55 +49,10 @@
   cursor: e-resize;
 }
 
-
-.left-top-panel-open {
-  bottom: @bottom-top-open !important;
-}
-
-.left-top-panel-close {
-  bottom: @bottom-top-hidden !important;
-}
-
-#left-bottom-panel {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  overflow: auto;
-  background-color: #777;
-}
-
 .base-panel {
 //  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
   transition:all cubic-bezier(.55,0,.1,1) 0.5s;
   animation: bounce 0.01s cubic-bezier(.55,0,.1,1) ;
-}
-
-.left-bottom-panel-open {
-  height: @bottom-top-open !important;
-  background-color: red;
-}
-
-.left-bottom-panel-close {
-  height: @bottom-top-hidden !important;
-}
-
-#left-top-bottom-resizer {
-  position: absolute;
-  height: 0;
-  left: 0;
-  right: 0;
-  background-color: #666;
-  cursor: n-resize;
-}
-
-.left-top-bottom-resizer-open {
-
-  bottom: @bottom-top-open !important;
-}
-
-.left-top-bottom-resizer-close {
-  bottom: @bottom-top-hidden !important;
 }
 
 #sidebar-resizer:hover, #preview-resizer:hover {
