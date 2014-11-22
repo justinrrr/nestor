@@ -1,18 +1,17 @@
 <div class="row base-panel" id="left-panel"
      ng-class="isLeftOpen ? 'left-panel-open' : 'left-panel-close'">
 
-  <div class="col-lg-2 mainmenu">
-    <div ng-repeat="option in leftPanelOptions" ng-show="!(option.name === 'Properties' && !selectedComponent)"
-         class="options">
+  <div class="base-panel col-lg-2 mainmenu">
+    <div ng-repeat="option in leftPanelOptions" ng-show="!(option.name === 'Properties' && !selectedComponent)" class="options">
       <img width="25px" ng-src="{{option.image}}" ng-click="optionPressed(option)">
       <br>
       <br>
     </div>
   </div>
 
-  <div class="col-lg-10" ng-class="isLeftOpen ? 'optionsmenu-open' : 'optionsmenu-close'">
+  <div class="base-panel col-lg-10 optionsmenu" ng-class="isLeftOpen ? 'optionsmenu-open' : 'optionsmenu-close'">
     <button ng-click="closeLeft()" class="toggleleft">
-      <i class="fa fa-close"></i></button>
+      <i class="fa" ng-class="{'fa-close': isLeftOpen}"></i></button>
 
     <!--Components-->
     <div id="components" ng-show="showComponents">
@@ -30,9 +29,9 @@
               ng-drag-success="onDragComplete($data,$event)"
               ng-drag-data="comp"
               ng-center-anchor="false">
-              <div class="imgdiv">
-                <img class="component-image" ng-src="{{comp.image}}"/>
-              </div>
+                <div class="imgdiv">
+                  <img class="component-image" ng-src="{{comp.image}}"/>
+                </div>
               <div class="pdiv">
                 <p>
                   {{comp.name}}</p>
@@ -121,7 +120,7 @@
          data-identifier="{{component.id}}"
          data-component-name={{component.name}}
       >
-      <p align="left">
+      <p align="left" ng-show="selectedComponent == component">
         <button ng-click="deleteClicked(component)" type="button">X</button>
         <button ng-click="propertiesClicked(component)" type="button">O</button>
       </p>
