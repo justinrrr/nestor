@@ -2,7 +2,7 @@
      ng-class="isLeftOpen ? 'left-panel-open' : 'left-panel-close'">
 
   <div class="col-lg-2 mainmenu">
-    <div ng-repeat="option in leftPanelOptions" ng-show="option.visible" class="options">
+    <div ng-repeat="option in leftPanelOptions" ng-show="!(option.name === 'Properties' && !selectedComponent)" class="options">
       <img width="25px" ng-src="{{option.image}}" ng-click="optionPressed(option)">
       <br>
       <br>
