@@ -179,6 +179,15 @@ angular.module('nestorApp')
         itemSelected(component);
       };
 
+      $scope.propertiesClicked = function () {
+        $scope.showTasks = false;
+        $scope.showProperties = true;
+        $scope.showComponents = false;
+        if (!$scope.isLeftOpen) {
+          $scope.isLeftOpen = true;
+          $rootScope.$broadcast('leftmostResizeRequest');
+        }
+      };
       /* this function is available on the scope so the UI (i.e. html) can call
        to completely delete a component:
        1) remove all the connections from UI
