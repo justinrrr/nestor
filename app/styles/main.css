@@ -271,7 +271,7 @@ body {
 }
 #left-panel {
   background-color: blue;
-  z-index: 1;
+  z-index: 0;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -297,26 +297,23 @@ body {
   background-color: #202a36;
   padding: 0px;
 }
-#left-panel > .optionsmenu-open {
+#left-panel > .optionsmenu {
   z-index: 0;
 }
-#left-panel > .optionsmenu-open #components {
-  z-index: 1;
-}
-#left-panel > .optionsmenu-open #searchbox {
+#left-panel > .optionsmenu #searchbox {
   display: inline-flex;
   width: 100%;
 }
-#left-panel > .optionsmenu-open #searchbox .fieldset > label {
+#left-panel > .optionsmenu #searchbox .fieldset > label {
   position: absolute;
   left: 13px;
   top: 38px;
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu-open #searchbox input:focus::-webkit-input-placeholder {
+#left-panel > .optionsmenu #searchbox input:focus::-webkit-input-placeholder {
   color: transparent;
 }
-#left-panel > .optionsmenu-open #searchbox .search {
+#left-panel > .optionsmenu #searchbox .search {
   padding: 8px 15px 8px 34px;
   background-color: transparent;
   color: rgba(112, 100, 130, 0.78);
@@ -327,11 +324,11 @@ body {
   margin-left: 4px;
   margin-top: 6px;
 }
-#left-panel > .optionsmenu-open #searchbox .search:focus {
+#left-panel > .optionsmenu #searchbox .search:focus {
   border: 1px solid #61708C;
   color: #2b3743;
 }
-#left-panel > .optionsmenu-open #searchbox .button {
+#left-panel > .optionsmenu #searchbox .button {
   position: relative;
   padding: 8px 15px;
   border: 0px solid #dbdbdb;
@@ -340,28 +337,28 @@ body {
   text-decoration: none;
   background-color: transparent;
 }
-#left-panel > .optionsmenu-open #searchbox .button .glyphicon {
+#left-panel > .optionsmenu #searchbox .button .glyphicon {
   display: inline-block;
   cursor: pointer;
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu-open #searchbox .button .glyphicon:hover {
+#left-panel > .optionsmenu #searchbox .button .glyphicon:hover {
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu-open #searchbox-tasks {
+#left-panel > .optionsmenu #searchbox-tasks {
   display: inline-flex;
   width: 100%;
 }
-#left-panel > .optionsmenu-open #searchbox-tasks .fieldset > label {
+#left-panel > .optionsmenu #searchbox-tasks .fieldset > label {
   position: absolute;
   left: 13px;
   top: 38px;
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu-open #searchbox-tasks input:focus::-webkit-input-placeholder {
+#left-panel > .optionsmenu #searchbox-tasks input:focus::-webkit-input-placeholder {
   color: transparent;
 }
-#left-panel > .optionsmenu-open #searchbox-tasks .search {
+#left-panel > .optionsmenu #searchbox-tasks .search {
   padding: 8px 15px 8px 34px;
   background-color: transparent;
   color: rgba(112, 100, 130, 0.78);
@@ -372,11 +369,11 @@ body {
   margin-left: 4px;
   margin-top: 6px;
 }
-#left-panel > .optionsmenu-open #searchbox-tasks .search:focus {
+#left-panel > .optionsmenu #searchbox-tasks .search:focus {
   border: 1px solid #61708C;
   color: #2b3743;
 }
-#left-panel > .optionsmenu-open #searchbox-tasks .button {
+#left-panel > .optionsmenu #searchbox-tasks .button {
   position: relative;
   padding: 8px 15px;
   border: 0px solid #dbdbdb;
@@ -385,28 +382,31 @@ body {
   text-decoration: none;
   background-color: transparent;
 }
-#left-panel > .optionsmenu-open #searchbox-tasks .button .glyphicon {
+#left-panel > .optionsmenu #searchbox-tasks .button .glyphicon {
   display: inline-block;
   cursor: pointer;
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu-open #searchbox-tasks .button .glyphicon:hover {
+#left-panel > .optionsmenu #searchbox-tasks .button .glyphicon:hover {
   color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu-open .toggleleft {
+#left-panel > .optionsmenu .toggleleft {
   float: right;
   background-color: transparent;
   border: none;
   color: white;
   padding: 0px 5px;
 }
-#left-panel > .optionsmenu-open .toggleleft:focus {
+#left-panel > .optionsmenu .toggleleft:focus {
   outline: none;
 }
-#left-panel > .optionsmenu-open .toggleleft i.fa-close {
+#left-panel > .optionsmenu .toggleleft i.fa-close {
   font-weight: 100;
 }
-#left-panel > .optionsmenu-open ul.nav-tabs.nav-justified li > a {
+#left-panel > .optionsmenu #components {
+  z-index: 1;
+}
+#left-panel > .optionsmenu ul.nav-tabs.nav-justified li > a {
   text-decoration: none;
   cursor: pointer;
   background-color: #1e7c7a;
@@ -416,37 +416,37 @@ body {
   border-radius: 0;
   border-bottom: 1px solid rgba(229, 229, 229, 0.3);
 }
-#left-panel > .optionsmenu-open ul.nav-tabs.nav-justified .active > a {
+#left-panel > .optionsmenu ul.nav-tabs.nav-justified .active > a {
   background-color: #1e7c7a;
   color: white;
 }
-#left-panel > .optionsmenu-open .tab-content {
+#left-panel > .optionsmenu .tab-content {
   background-color: rgba(221, 221, 213, 0);
   border-bottom-color: rgba(112, 100, 130, 0.78);
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane {
+#left-panel > .optionsmenu .tab-content .tab-pane {
   padding: 0px;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .glyphicon-chevron-left {
+#left-panel > .optionsmenu .tab-content .tab-pane .glyphicon-chevron-left {
   color: #efefef;
   padding: 10px;
   font-size: 15px;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .glyphicon-chevron-left:before {
+#left-panel > .optionsmenu .tab-content .tab-pane .glyphicon-chevron-left:before {
   font-size: 12px;
   padding-right: 2px;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .glyphicon-chevron-left:hover {
+#left-panel > .optionsmenu .tab-content .tab-pane .glyphicon-chevron-left:hover {
   color: black;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container {
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container {
   width: 224px;
   height: 40px !important;
   position: absolute;
   color: transparent;
   z-index: 1001;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container .pdiv {
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container .pdiv {
   float: left;
   width: 82.5%;
   vertical-align: middle;
@@ -455,7 +455,7 @@ body {
   border-bottom: 1px solid transparent;
   left: 40px;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container .pdiv p {
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container .pdiv p {
   font-size: 12px;
   vertical-align: middle;
   letter-spacing: 0.19px;
@@ -463,23 +463,23 @@ body {
   margin: 11px 0 10px;
   padding-left: 10px;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container .imgdiv {
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container .imgdiv {
   float: left;
   width: 40px;
   height: 40px;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container .imgdiv img.component-image {
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container .imgdiv img.component-image {
   width: 30px;
   height: 30px;
   position: absolute;
   left: 5px;
   margin-top: 4px;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .empty-container:hover {
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container:hover {
   cursor: move;
-  background-color: rgba(209, 209, 209, 0.05);
+  background-color: rgba(222, 222, 222, 0.05);
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item {
   display: table-cell;
   vertical-align: middle;
   color: #5C6A74;
@@ -488,11 +488,11 @@ body {
   height: 40px !important;
   border-bottom: 1px solid rgba(29, 35, 45, 0.73);
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item:hover {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item:hover {
   cursor: pointer;
-  background-color: rgba(209, 209, 209, 0.05);
+  background-color: rgba(222, 222, 222, 0.05);
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item .pdiv {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item .pdiv {
   float: left;
   width: 82.5%;
   vertical-align: middle;
@@ -501,7 +501,7 @@ body {
   height: 40px;
   border-bottom: rgba(38, 35, 42, 0.75);
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item .pdiv p {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item .pdiv p {
   font-size: 12px;
   vertical-align: middle;
   letter-spacing: 0.19px;
@@ -509,19 +509,19 @@ body {
   margin: 11px 0 10px;
   padding-left: 10px;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item .imgdiv {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item .imgdiv {
   float: left;
   width: 40px;
   height: 40px;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .component-item .imgdiv img.component-image {
+#left-panel > .optionsmenu .tab-content .tab-pane .component-item .imgdiv img.component-image {
   width: 30px;
   height: 30px;
   position: absolute;
   left: 5px;
   margin-top: 4px;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item {
   display: table-cell;
   vertical-align: middle;
   font-weight: 400;
@@ -531,25 +531,481 @@ body {
   padding: 10px 15px 10px 15px;
   cursor: pointer;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item:hover {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item:hover {
   cursor: pointer;
-  background-color: rgba(209, 209, 209, 0.05);
+  background-color: rgba(222, 222, 222, 0.05);
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item:active {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item:active {
   border-left: 2px solid #f2ecbd;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item a {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item a {
   color: #5C6A74;
   font-size: 13px;
   vertical-align: middle;
   letter-spacing: 0.19px;
   text-decoration: none;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item a:hover {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item a:hover {
   text-decoration: none;
 }
-#left-panel > .optionsmenu-open .tab-content .tab-pane .task-item a:active {
+#left-panel > .optionsmenu .tab-content .tab-pane .task-item a:active {
   color: #f2ecbd;
+}
+#left-panel > .optionsmenu #properties {
+  z-index: 1;
+  height: 100%;
+  background-color: #394a57;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom {
+  background-color: white;
+  width: 100%;
+  /*Input field style */
+  /*These are for the complex properties that you need to drag*/
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .cd-fixed-bg {
+  top: 0px;
+  background-color: #2b3743;
+  width: 100%;
+  padding: 14px 10px 5px 15px;
+  color: #ffffff;
+  margin: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .cd-fixed-bg #titleh4 {
+  font-size: 16px;
+  margin-top: 4px;
+  font-weight: 600;
+  color: #ffffff;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .cd-fixed-bg #titleh5 {
+  font-size: 12px;
+  margin-top: 10px;
+  color: #ffffff;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .cd-fixed-bg .generate {
+  margin-right: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .cd-fixed-bg .generate .col-sm-5 {
+  padding-left: 24px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .cd-fixed-bg .action {
+  padding-left: 5px;
+  text-align: left;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .cd-fixed-bg .action .label {
+  border: 1px solid #e1e1e1;
+  box-shadow: 0 0 0 1px rgba(68, 77, 101, 0.4);
+  color: white;
+  background-color: transparent;
+  padding: .6em;
+  border-radius: 0.25em;
+  transition: border-color 0.2s, background-color 0.2s;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .cd-fixed-bg .action .label:hover,
+#left-panel > .optionsmenu #properties .left-column-bottom .cd-fixed-bg .action .label:focus {
+  text-decoration: none;
+  background-color: white;
+  color: #2b3743;
+  outline: 0;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .contenth5 {
+  padding: 10px 10px 15px 15px;
+  background-color: #1e7c7a;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  color: white;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .contenth6 {
+  padding: 10px 10px 15px 15px;
+  background-color: rgba(112, 128, 144, 0.23);
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content {
+  background-color: #2b3743;
+  padding-left: 15px;
+  /* STYLES FOR ACCORDION */
+  /* STYLE FOR TABLES WITHIN PROPERTIES ACCORDION */
+  /* STYLE FOR TABLES WITHIN PROPERTIES ACCORDION */
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .component-item {
+  display: table-cell;
+  vertical-align: middle;
+  color: #ffffff;
+  width: 100%;
+  height: 80px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .component-item .pdiv {
+  float: left;
+  width: 100%;
+  vertical-align: middle;
+  padding-top: 10px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .component-item .pdiv p {
+  vertical-align: middle;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .component-item .imgdiv {
+  float: left;
+  width: 50px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .component-item .imgdiv img.component-image {
+  width: 40px;
+  height: 40px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .tablename {
+  padding: 10px 0px 5px 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group {
+  margin-bottom: 0px;
+  border-radius: 0px;
+  width: 100%;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .optionalheading.panel.panel-default.ng-isolate-scope .panel-heading {
+  border-left: 10px solid rgba(112, 128, 144, 0.23);
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope {
+  border: none;
+  margin-left: -14px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading {
+  background-color: #6E7E8C;
+  color: black;
+  border-radius: 0px;
+  border-bottom: 1px solid rgba(29, 35, 45, 0.73);
+  border-top: 1px solid rgba(29, 35, 45, 0.73);
+  margin-top: -2px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading .table-responsive {
+  border-top: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading h4.panel-title {
+  font-size: 14px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading h4.panel-title a {
+  text-decoration: none;
+  color: #2e2633;
+  cursor: pointer;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-heading h4.panel-title a span {
+  color: #EFEFEF;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .collapsing {
+  -webkit-transition: none;
+  transition: none !important;
+  width: 100%;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body {
+  border-top: none;
+  padding: 0px 10px 15px 10px;
+  background-color: #2b3743;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background-color: #00c29d;
+  transition: background-color 0.2s;
+  border: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new:hover {
+  background-color: rgba(0, 194, 157, 0.81);
+  outline: 0;
+  border: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new:focus {
+  outline: 0;
+  border: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new span {
+  top: -1px;
+  right: 5.5px;
+  color: white;
+  font-size: 12px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .pull-right {
+  top: -15px;
+  font-size: 12px;
+  color: #EFEFEF;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 table,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 thead,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 tbody,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 th,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 tr {
+  display: block;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 thead tr {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 tr {
+  border: 1px solid rgba(204, 204, 204, 0.31);
+  background-color: rgba(221, 221, 213, 0);
+  border-top: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td {
+  border: none;
+  position: relative;
+  padding-left: 50%;
+  white-space: normal;
+  text-align: left;
+  padding-right: 10px;
+  font-size: 14px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .editable {
+  margin-top: 6px;
+  margin-left: 20px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .editable-controls {
+  margin-left: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .btn-default {
+  background-color: #aab2c0;
+  color: white;
+  border: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .btn-default:hover {
+  background-color: rgba(182, 190, 206, 0.9);
+  border: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .btn:focus,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .btn:active:focus,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .btn.active:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td input {
+  border: 2px solid rgba(122, 122, 147, 0.36);
+  padding: 2px;
+  background: white;
+  margin: 2px 5px 2px 8px;
+  outline: none;
+  height: 27px;
+  box-shadow: none;
+  border-radius: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td input:focus {
+  border: 2px solid rgba(122, 122, 147, 0.64);
+  background-color: white;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .propertyselect {
+  border: 2px solid rgba(122, 122, 147, 0.36);
+  padding: 2px;
+  background: white;
+  margin: 2px 5px 12px 0px;
+  outline: none;
+  height: 27px;
+  box-shadow: none;
+  border-radius: 0px;
+  width: 57%;
+  color: #2b3743;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .propertyselect:focus {
+  border: 2px solid rgba(122, 122, 147, 0.64);
+  background-color: white;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .editable-input {
+  border: 2px solid rgba(122, 122, 147, 0.36);
+  padding: 2px;
+  background: white;
+  margin: 2px 5px 12px 0px;
+  outline: none;
+  height: 27px;
+  box-shadow: none;
+  border-radius: 0px;
+  width: 90%;
+  color: #2b3743;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td .editable-input:focus {
+  border: 2px solid rgba(122, 122, 147, 0.64);
+  background-color: white;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td ul {
+  padding-left: 6px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td ul li {
+  margin-left: 6px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td ul li span {
+  font-size: 14px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .table-bordered {
+  border: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td:before {
+  position: absolute;
+  top: 14px;
+  left: 12px;
+  width: 45%;
+  padding-right: 10px;
+  padding-left: 10px;
+  white-space: nowrap;
+  text-align: left;
+  font-weight: 400;
+  color: #2b3743;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables1 td:before {
+  content: attr(data-title);
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .table-responsive {
+  margin-left: -10px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content span {
+  color: #6f7b91;
+  display: block;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 table,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 thead,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 tbody,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 th,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 tr {
+  display: block;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 thead tr {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 tr {
+  border: 1px solid #ccc;
+  border-top: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td {
+  border: none;
+  position: relative;
+  padding-left: 50%;
+  white-space: normal;
+  text-align: left;
+  padding-right: 10px;
+  font-size: 14px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td .btn-default {
+  background-color: #aab2c0;
+  color: white;
+  border: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td .btn-default:hover {
+  background-color: rgba(182, 190, 206, 0.9);
+  border: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td .btn:focus,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td .btn:active:focus,
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td .btn.active:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td input {
+  border: 2px solid rgba(122, 122, 147, 0.36);
+  padding: 2px;
+  background: white;
+  margin: 2px 5px 2px 0px;
+  outline: none;
+  height: 27px;
+  box-shadow: none;
+  border-radius: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td input:focus {
+  border: 2px solid rgba(122, 122, 147, 0.64);
+  background-color: white;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td .propertyselect {
+  border: 2px solid rgba(122, 122, 147, 0.36);
+  padding: 2px;
+  background: white;
+  margin: 2px 5px 12px 0px;
+  outline: none;
+  height: 27px;
+  box-shadow: none;
+  border-radius: 0px;
+  width: 57%;
+  color: #2b3743;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td .propertyselect:focus {
+  border: 2px solid rgba(122, 122, 147, 0.64);
+  background-color: white;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td ul {
+  padding-left: 6px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td ul li {
+  margin-left: 6px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td ul li span {
+  font-size: 14px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .table-bordered {
+  border: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td:before {
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 45%;
+  padding-right: 10px;
+  white-space: nowrap;
+  text-align: left;
+  font-weight: 400;
+  color: #2b3743;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content #no-more-tables2 td:before {
+  content: attr(data-title);
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content .table-responsive {
+  margin-left: -10px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .content span {
+  color: #6f7b91;
+  display: block;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .tooltip.top {
+  margin-left: -50px;
+  margin-top: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .propertyinput {
+  border: 1px solid rgba(52, 56, 68, 0.36);
+  padding: 2px;
+  background: #191d24;
+  margin: 2px 5px 20px 0px;
+  outline: none;
+  color: #6f7b91;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .propertyinput:focus {
+  border: 1px solid rgba(122, 122, 147, 0.64);
+  background: #191d24;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .propertyselect {
+  border: 2px solid rgba(122, 122, 147, 0.36);
+  padding: 2px;
+  background: white;
+  margin: 2px 5px 12px 0px;
+  outline: none;
+  height: 27px;
+  box-shadow: none;
+  border-radius: 0px;
+  width: 57%;
+  color: #2b3743;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .propertyselect:focus {
+  border: 2px solid rgba(122, 122, 147, 0.64);
+  background-color: white;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .empty-container-property {
+  width: 215px;
+  height: 80px;
+  position: absolute;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 400;
+  border-bottom: 1px solid rgba(233, 230, 234, 0.19);
+  margin-left: -15px;
 }
 #left-panel > #left-bottom-panel {
   z-index: 9999;
