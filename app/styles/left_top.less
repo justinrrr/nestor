@@ -483,6 +483,7 @@
           white-space: normal;
           text-align: left;
           padding-right: 10px;
+          background-color: rgb(56, 71, 84);
           font-size: 14px;
           .editable {
             margin-top: 6px;
@@ -536,19 +537,17 @@
             }
           }
           .editable-input {
-            border: 2px solid @fieldborder;
+            border: 1px solid rgba(52, 56, 68, 0.36);
             padding: 2px;
-            background: white;
-            margin: 2px 5px 12px 0px;
+            background: #191d24;
+            margin: 2px 5px 20px 0px;
             outline: none;
-            height: 27px;
-            box-shadow: none;
-            border-radius: 0px;
-            width: 90%;
-            color: @ambiance;
+            color: #6f7b91;
+            height: 26px;
             &:focus {
-              border: 2px solid @darkfield;
-              background-color: white;
+              border: 1px solid @darkfield;
+              background: #191d24;
+              outline: none;
             }
           }
           ul {
@@ -584,6 +583,7 @@
         }
         .table-responsive {
           margin-left: -10px;
+          width: 223px;
         }
         span {
           color: @attributes;
@@ -620,6 +620,7 @@
           text-align: left;
           padding-right: 10px;
           font-size: 14px;
+          background-color: rgb(56, 71, 84);
           .btn-default {
             background-color: #aab2c0;
             color: white;
