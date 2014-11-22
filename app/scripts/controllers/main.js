@@ -195,6 +195,13 @@ angular.module('nestorApp')
        3) update model to remove the component's data and all the references to the deleted component
        4) update the final CloudFormation Template */
       $scope.deleteClicked = function (component) {
+        if ($scope.selectedComponent === component) {
+          delete $scope.selectedComponent;
+            if ($scope.showProperties) {
+              $scope.showProperties = false;
+              $scope.closeLeft();
+            }
+        }
         // find the UI element
         var toBeDeletedElem = angular.element('[data-identifier =' + component.id + ']')[0];
 
