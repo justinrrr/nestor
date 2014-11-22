@@ -433,20 +433,20 @@ body {
   color: black;
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .empty-container {
-  width: 185px;
+  width: 224px;
   height: 40px !important;
-  left: 40px;
   position: absolute;
   color: transparent;
   z-index: 1001;
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .empty-container .pdiv {
   float: left;
-  width: 81%;
+  width: 82.5%;
   vertical-align: middle;
   position: absolute;
   height: 40px;
   border-bottom: 1px solid transparent;
+  left: 40px;
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .empty-container .pdiv p {
   font-size: 12px;
@@ -456,10 +456,21 @@ body {
   margin: 11px 0 10px;
   padding-left: 10px;
 }
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container .imgdiv {
+  float: left;
+  width: 40px;
+  height: 40px;
+}
+#left-panel > .optionsmenu .tab-content .tab-pane .empty-container .imgdiv img.component-image {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  left: 5px;
+  margin-top: 4px;
+}
 #left-panel > .optionsmenu .tab-content .tab-pane .empty-container:hover {
   cursor: move;
-  background-color: rgba(255, 255, 255, 0.12);
-  color: white;
+  background-color: rgba(209, 209, 209, 0.05);
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .component-item {
   display: table-cell;
@@ -472,16 +483,15 @@ body {
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .component-item:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.12);
-  color: white;
+  background-color: rgba(209, 209, 209, 0.05);
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .component-item .pdiv {
   float: left;
-  width: 81%;
+  width: 82.5%;
   vertical-align: middle;
   position: absolute;
   left: 40px;
-  height: 39px;
+  height: 40px;
   border-bottom: rgba(38, 35, 42, 0.75);
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .component-item .pdiv p {
@@ -505,24 +515,24 @@ body {
   margin-top: 4px;
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .task-item {
-  padding: 10px 15px 10px 15px;
   display: table-cell;
   vertical-align: middle;
-  color: #ffffff;
-  cursor: pointer;
   font-weight: 400;
-  width: 220px;
-  height: 80px;
+  width: 224px;
+  height: 40px !important;
+  border-bottom: 1px solid rgba(29, 35, 45, 0.73);
+  padding: 10px 15px 10px 15px;
+  cursor: pointer;
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .task-item:hover {
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.12);
+  background-color: rgba(209, 209, 209, 0.05);
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .task-item:active {
   border-left: 2px solid #f2ecbd;
 }
 #left-panel > .optionsmenu .tab-content .tab-pane .task-item a {
-  color: white;
+  color: #5C6A74;
   font-size: 13px;
   vertical-align: middle;
   letter-spacing: 0.19px;
