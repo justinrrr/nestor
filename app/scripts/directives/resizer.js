@@ -56,7 +56,8 @@ app.directive('resizer', function($document) {
           left: (x + parseInt($attrs.resizerWidth)) + 'px'
         });
         var leftmostWidth = $($attrs.resizerLeftmost)[0].clientWidth;
-        var finalLeftWidth = x - leftmostWidth;
+        var openCloseDifference = parseInt($attrs.openCloseDifference);
+        var finalLeftWidth = x - leftmostWidth + openCloseDifference;
         //$attrs.resizerLeftmost;
         $($attrs.resizerLeft).css({
           width: finalLeftWidth + 'px'
