@@ -415,4 +415,8 @@ angular.module('nestorApp')
           editor.centerSelection();
         }, 100);
       }
+
+      $scope.onDropCompleteTest = function() {
+        alert('test');
+      }
     }]);

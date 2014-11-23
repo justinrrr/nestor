@@ -105,6 +105,7 @@
     <!-- The actual components on the canvas -->
     <div plumb-item
          block-display
+         plumb-block-type="{{component.blockType}}"
          component-block-type="{{component.blockType}}"
          component-type="{{component.type}}"
          ng-click="clickCallback(component)"
@@ -113,9 +114,12 @@
          ng-repeat="component in addedComponents"
          ng-style="{ 'left':component.x, 'top':component.y }"
          data-identifier="{{component.id}}"
-         data-component-name={{component.name}}
-      >
+         data-component-name={{component.name}}>
 
+
+      <!--<div block-display plumb-item component-block-type="container" component-type= "s" class="ui-widget-header droppable">-->
+        <!--Hello, world ! I am droppable<br />-->
+      <!--</div>-->
       <!--ng-class="{'selectedComponent' : component.id === selectedComponent.id}"-->
       <div class="animate-show" align="left" ng-show="selectedComponent == component">
         <button ng-click="deleteClicked(component)" type="button">X</button>

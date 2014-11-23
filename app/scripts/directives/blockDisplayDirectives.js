@@ -20,9 +20,19 @@ app.directive('blockDisplay', function () {
       //-. And also add the component type to the class because of the stupid ng-class limitiations
       var componentType = scope.componentType.replace(/::/g,'-');
       elem.addClass(componentType);
+      elem.draggable();
+      elem.addClass('draggable');
+      elem.addClass('ui-widget-content');
       if (scope.componentBlockType === 'container') {
 
         elem.resizable({ handles: "all" });
+        elem.addClass('droppable');
+        elem.addClass('ui-widget-header');
+        elem.droppable({
+          drop: function( event, ui ) {
+            alert('fuck you');
+          }
+        });
         elem.addClass('block-style-container')
         //elem.on('resizestop', function (evt, ui) {
         //  if (scope.callback) { scope.callback(); }
