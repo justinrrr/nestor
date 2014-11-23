@@ -106,14 +106,17 @@
     <div plumb-item
          block-display
          component-block-type="{{component.blockType}}"
+         component-type="{{component.type}}"
          ng-click="clickCallback(component)"
          class="item"
-         ng-class="{selectedComponent : component.id === selectedComponent.id}"
+         ng-class="{'selectedComponent ' : component.id === selectedComponent.id}"
          ng-repeat="component in addedComponents"
          ng-style="{ 'left':component.x, 'top':component.y }"
          data-identifier="{{component.id}}"
          data-component-name={{component.name}}
       >
+
+      <!--ng-class="{'selectedComponent' : component.id === selectedComponent.id}"-->
       <div class="animate-show" align="left" ng-show="selectedComponent == component">
         <button ng-click="deleteClicked(component)" type="button">X</button>
         <button ng-click="propertiesClicked(component)" type="button">O</button>
