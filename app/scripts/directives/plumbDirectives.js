@@ -29,7 +29,7 @@ app.directive('plumbListeners', function () {
         });
 
         var connection = info.connection;
-        _.each(overlays, function(overlay) {
+        _.each(overlays, function (overlay) {
           connection.addOverlay(overlay);
         });
         connection.addOverlay();
@@ -96,19 +96,22 @@ app.directive('plumbItem', ['PlumbStyles', function (PlumbStyles) {
     //replace: true,
     //controller: 'PlumbCtrl',
     restrict: 'EA',
-    link: function ($scope, element) {
+    link: function ($scope, element, $attrs) {
       console.log('Add plumbing for the item element');
 
 
-      jsPlumb.makeTarget(element, {
-        anchor: PlumbStyles.targetAnchors,
-        connector: PlumbStyles.normalConnectorStyle,
-        paintStyle: PlumbStyles.normalPaintStyle
-      });
+      if ($attrs.componentBlockType !== 'container') {
 
-      jsPlumb.draggable(element, {
-        containment: 'parent'
-      });
+        jsPlumb.makeTarget(element, {
+          anchor: PlumbStyles.targetAnchors,
+          connector: PlumbStyles.normalConnectorStyle,
+          paintStyle: PlumbStyles.normalPaintStyle
+        });
+
+        jsPlumb.draggable(element, {
+          containment: 'parent'
+        });
+      }
     }
   };
 }]);

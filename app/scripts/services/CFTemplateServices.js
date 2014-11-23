@@ -10,8 +10,6 @@ app.service('CFTemplate', function () {
 
     // the Cloud Formation Template
     var cfTemplate;
-
-
     var createInitialTemplate = function () {
       return {
         AWSTemplateFormatVersion: '2010-09-09',
@@ -23,6 +21,7 @@ app.service('CFTemplate', function () {
         Outputs: {}
       };
     };
+
 
     /*
      * resourceName:  the name of the item to be retrieved from Resources in Cloud Formation Template
@@ -71,7 +70,6 @@ app.service('CFTemplate', function () {
         cfTemplate = newTemplate;
       }
 
-      return getStringForm();
     };
 
     /*
@@ -106,7 +104,6 @@ app.service('CFTemplate', function () {
         }
       });
 
-      return getStringForm();
     };
 
     /*
@@ -132,7 +129,6 @@ app.service('CFTemplate', function () {
         }
       }
 
-      return getStringForm();
     };
 
     this.addComplexPropertyToResource = function (propertyName, resourceName) {
