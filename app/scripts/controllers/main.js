@@ -361,14 +361,9 @@ angular.module('nestorApp')
         //add any component that is in the json string but not in the addedComponents
         _.each(allResources, function (item) {
           if (!$scope.addedComponents[item.name]) {
-            var blueprintName = item.type;
-            if (!blueprintName) {
-              return;
-            }
-
             var found = false;
             _.each(AWSComponents.components, function (component) {
-              if (component.name === blueprintName) {
+              if (component.type === item.type) {
 
                 found = true;
                 var blueprint = component;
@@ -376,7 +371,7 @@ angular.module('nestorApp')
                 var c = new UIComponents.Component(
                   uniqueId,
                   blueprint.name,
-                  resourceName,
+                  item.name,
                   blueprint.image,
                   $scope.componentMetadata[blueprint.name].properties.required,
                   $scope.componentMetadata[blueprint.name].properties.optional,
