@@ -616,6 +616,7 @@ div[resizable] {
   border-top: none;
   padding: 0px 10px 15px 10px;
   background-color: #2b3743;
+  border-bottom: 1px solid #3c465c;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new {
   width: 25px;
@@ -689,6 +690,33 @@ div[resizable] {
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .btn-danger.delete .fa:hover {
   color: #C82F2A;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-primary.save {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-primary.save .fa {
+  font-size: 18px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #36B3EA;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-primary.save .fa:hover {
+  color: #2e6da4;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-danger.cancel {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-danger.cancel .fa {
+  font-size: 18px;
+  margin-right: 20px;
+  color: #97A637;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-danger.cancel .fa:hover {
+  color: #BDD048;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .table-bordered {
   border: 0px;
