@@ -37,13 +37,24 @@ app.service('CFTemplate',
       return cfTemplate.Resources[resourceName];
     };
 
+    this.getAllResources = function () {
+      var resources = [];
+      _.each(cfTemplate.Resources, function (resourceObj, resourceName) {
+        resources.push( { name: resourceName, type: resourceObj.Type });
+      });
+      return resources;
+    };
+
     /* This method returns the string version of our Cloud Formation Template*/
-    this.getStringFormat = function () {
+    var getStringForm = function getStringForm() {
       if (cfTemplate === undefined) {
         cfTemplate = createInitialTemplate();
       }
       return angular.toJson(cfTemplate, true);
     };
+
+    this.getStringFormat = getStringForm;
+
 
 
     /* this method replaces the internal Cloud Formation Template
@@ -55,7 +66,7 @@ app.service('CFTemplate',
         cfTemplate = newTemplate;
       }
 
-      return getStringFormat();
+      return getStringForm();
     };
 
     /*
@@ -90,7 +101,7 @@ app.service('CFTemplate',
         }
       });
 
-      return getStringFormat();
+      return getStringForm();
     };
 
     /*
@@ -116,7 +127,7 @@ app.service('CFTemplate',
         }
       }
 
-      return getStringFormat();
+      return getStringForm();
     };
 
     this.addComplexPropertyToResource = function (propertyName, resourceName) {
@@ -126,15 +137,8 @@ app.service('CFTemplate',
       }
       cfTemplate.Resources[resourceName].Properties[propertyName].push({});
 
-      return getStringFormat();
+      return getStringForm();
     };
 
-    this.getAllResources = function () {
-      var resources = [];
-      _.each(cfTemplate.Resources, function (resourceObj, resourceName) {
-        resources.push( { name: resourceName, type: resourceObj.Type });
-      });
-      return resources;
-    };
   }]
 );
