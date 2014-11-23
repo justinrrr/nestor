@@ -1,17 +1,25 @@
-<div>
+<div class="propertiesdrag">
     <div
-      class="empty-container-property"
+      class="empty-container"
       ng-drag="true"
       ng-drag-success="dragCompleted($data,$event)"
       ng-drag-data="dragData"
       ng-center-anchor="false">
+      <div class="imgdiv">
+
+      </div>
+      <div class="pdiv">
+        <!--<span tooltip="{{propertyTypes.Description}}">{{property.name}}</span>-->
+        <p>{{property.name}}</p>
+      </div>
     </div>
     <div class="component-item">
       <div class="imgdiv">
-        <img width="100px" class="component-image" ng-src="{{propertyTypes.Display.image}}"/>
+        <img  class="component-image" ng-src="{{propertyTypes.Display.image}}"/>
       </div>
       <div class="pdiv">
-        <span tooltip="{{propertyTypes.Description}}">{{property.name}}</span>
+        <!--<span tooltip="{{propertyTypes.Description}}">{{property.name}}</span>-->
+        <p>{{property.name}}</p>
       </div>
     </div>
 </div>

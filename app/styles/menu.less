@@ -1,0 +1,124 @@
+/*/ Global Style for the three sections of the app: left, center, right */
+
+/* ----------- Left Window ----------*/
+#left-panel {
+  z-index: 0;
+  overflow-y: scroll;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0 /* 200 + 6*/;
+  overflow: hidden;
+
+  //Close Toggle button
+  .toggleleft {
+    float: right;
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 0px 5px;
+    &:focus {
+      outline: none;
+    }
+    i.fa-close {
+      font-weight: 100;
+    }
+  }
+
+  .mainmenu {
+    width: 59px;
+    height: 100%;
+    background-color: #191d24;
+    padding-top: 67px;
+    padding-left: 23px;
+    .options {
+
+    }
+  }
+
+  //  Sub-Menu globla styles
+  .optionsmenu {
+    z-index: 0;
+    overflow-y: scroll;
+  }
+
+  .optionsmenu-open {
+    width: 230px;
+    height: 100%;
+    background-color: #202a36;
+    padding: 0px;
+  }
+
+  .optionsmenu-close {
+    width: 0;
+    height: 100%;
+    background-color: #202a36;
+    padding: 0px;
+  }
+}
+
+/* ----------- Center Window ----------*/
+#middle-panel {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow: auto;
+  width: 77%;
+}
+#middle-panel-resizer {
+  background-color: #666;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  cursor: e-resize;
+}
+
+
+//Make sure that the difference between these two is exactly 12
+//Open
+.middle-panel-smaller {
+  left: 19%
+}
+//close
+.middle-panel-bigger {
+  left: 3%
+}
+
+
+
+/* ----------- Right Window ----------*/
+#right-panel {
+//  background-color: #000000;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  left: 80%;
+}
+
+#right-panel-resizer {
+  background-color: #666;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  right: 20%;
+  cursor: ew-resize;
+  z-index: 100;
+}
+
+
+/* ----------- All Windows ----------*/
+.base-panel {
+//  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition:all cubic-bezier(.55,0,.1,1) 0.5s;
+  animation: bounce 0.01s cubic-bezier(.55,0,.1,1) ;
+}
+
+#sidebar-resizer:hover, #preview-resizer:hover {
+  background-color: #AAA;
+}
+
+

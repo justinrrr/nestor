@@ -1,0 +1,524 @@
+/* Sub-Menu Style */
+#left-panel > .optionsmenu {
+
+  //      Search Input
+  .searchbox {
+    display: inline-flex;
+    width: 100%;
+    .fieldset > label {
+      position: absolute;
+      left: 13px;
+      top: 38px;
+      color: rgba(112, 100, 130, 0.78);
+    }
+    input:focus::-webkit-input-placeholder {
+      color: transparent;
+    }
+    .search {
+      padding: 8px 15px 8px 34px;
+      background-color: transparent;
+      color: rgba(112, 100, 130, 0.78);
+      border: 1px solid transparent;
+      font-weight: 500;
+      outline: none;
+      width: 97.2%;
+      margin-left: 4px;
+      margin-top: 6px;
+      &:focus {
+        border: 1px solid #61708C;
+        color: @ambiance;
+      }
+    }
+    .button {
+      position: relative;
+      padding: 8px 15px;
+      border: 0px solid #dbdbdb;
+      left: -45px;
+      color: #cbe2cb;
+      text-decoration: none;
+      background-color: transparent;
+      .glyphicon {
+        display: inline-block;
+        cursor: pointer;
+        color: rgba(112, 100, 130, 0.78);;
+      }
+      .glyphicon:hover {
+        color: rgba(112, 100, 130, 0.78);;
+      }
+    }
+  }
+
+  //  Tooltips
+  .tooltip.top {
+    margin-left: -50px;
+    margin-top: 0px;
+  }
+
+  //  Sub-menu Heading
+  ul.nav-tabs.nav-justified {
+    li > a {
+      text-decoration: none;
+      cursor: pointer;
+      background-color: @teal;
+      color: white;
+      font-weight: 400;
+      border: none;
+      border-radius: 0;
+      border-bottom: 1px solid rgba(229, 229, 229, 0.3);
+    }
+    .active > a {
+      background-color: @teal;
+      color: white;
+    }
+  }
+
+
+  /* ----------- Component, Solution stack, and Property draggable items ----------*/
+  .tab-content {
+    background-color: rgba(221, 221, 213, 0);
+    border-bottom-color: rgba(112, 100, 130, 0.78);
+    .tab-pane {
+      padding: 0px;
+      .glyphicon-chevron-left {
+        color: #efefef;
+        padding: 10px;
+        font-size: 15px;
+        &:before {
+          font-size: 12px;
+          padding-right: 2px;
+        }
+        &:hover {
+          color: black;
+        }
+      }
+    }
+  }
+  .empty-container {
+    width: 224px;
+    height: 40px !important;
+    //        left: 40px;
+    position: absolute;
+    color: transparent;
+    z-index: 1001;
+    .pdiv {
+      float: left;
+      width: 82.5%;
+      vertical-align: middle;
+      position: absolute;
+      height: 40px;
+      border-bottom: 1px solid transparent;
+      left: 40px;
+      p {
+        font-size: 12px;
+        vertical-align: middle;
+        letter-spacing: 0.19px;
+        text-transform: uppercase;
+        margin: 11px 0 10px;
+        padding-left: 10px;
+      }
+    }
+    .imgdiv {
+      float: left;
+      width: 40px;
+      height: 40px;
+      img.component-image {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        left: 5px;
+        margin-top: 4px;
+      }
+    }
+    &:hover {
+      cursor: move;
+      background-color: rgba(222, 222, 222, 0.05);
+    }
+  }
+  .component-item {
+    display: table-cell;
+    vertical-align: middle;
+    color: #5C6A74;
+    font-weight: 400;
+    width: 224px;
+    height: 40px !important;
+    border-bottom: 1px solid rgba(29, 35, 45, 0.73);
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(222, 222, 222, 0.05);
+    }
+    .pdiv {
+      float: left;
+      width: 82.5%;
+      vertical-align: middle;
+      position: absolute;
+      left: 40px;
+      height: 40px;
+      border-bottom: @linkhover;
+      p {
+        font-size: 12px;
+        vertical-align: middle;
+        letter-spacing: 0.19px;
+        text-transform: uppercase;
+        margin: 11px 0 10px;
+        padding-left: 10px;
+      }
+    }
+    .imgdiv {
+      float: left;
+      width: 40px;
+      height: 40px;
+      img.component-image {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        left: 5px;
+        margin-top: 4px;
+      }
+    }
+  }
+
+  // Input & select fields - outside of any accordion
+  .propertyinput {
+    border: 1px solid rgba(52, 56, 68, 0.36);
+    padding: 2px;
+    background: #191d24;
+    margin: 2px 5px 20px 0px;
+    outline: none;
+    color: #6f7b91;
+    &:focus {
+      border: 1px solid @darkfield;
+      background: #191d24;
+    }
+  }
+  .propertyselect {
+    border: 1px solid rgba(52, 56, 68, 0.36);
+    padding: 2px;
+    background: #191d24;
+    margin: 2px 5px 12px 0px;
+    outline: none;
+    height: 27px;
+    box-shadow: none;
+    border-radius: 0px;
+    width: 57%;
+    color: #6f7b91;
+    &:focus {
+      border: 1px solid @darkfield;
+      background: #191d24;
+    }
+  }
+
+
+  /* ----------- Component specific styles ----------*/
+  #components {
+    z-index: 1;
+  }
+
+
+  /* ----------- Solutions-Stack specific styles ----------*/
+  .task-item {
+    display: table-cell;
+    vertical-align: middle;
+    font-weight: 400;
+    width: 224px;
+    height: 40px !important;
+    border-bottom: 1px solid rgba(29, 35, 45, 0.73);
+    padding: 10px 15px 10px 15px;
+    cursor: pointer;
+    &:hover {
+      cursor: pointer;
+      background-color: rgba(222, 222, 222, 0.05);
+    }
+    &:active {
+      border-left: 2px solid #f2ecbd;
+    }
+    a {
+      color: #5C6A74;
+      font-size: 13px;
+      vertical-align: middle;
+      letter-spacing: 0.19px;
+      text-decoration: none;
+      &:hover {
+        text-decoration: none
+      }
+      &:active {
+        color: #f2ecbd;
+      }
+    }
+  }
+
+
+  /* ----------- Properties specific styles ----------*/
+  #properties {
+    z-index: 1;
+    height: 100%;
+    background-color: #202a36;
+    .left-column-bottom {
+      background-color: white;
+      width: 100%;
+
+
+      //  Title header section
+      .propertiesHeader {
+        //        position: fixed;
+        top: 0px;
+        background-color: @ambiance;
+        width: 100%;
+        padding: 14px 10px 5px 15px;
+        color: @snow;
+        margin: 0px;
+        #componentName {
+          font-size: 16px;
+          margin-top: 4px;
+          font-weight: 600;
+          color: @snow;
+        }
+        #componentType {
+          font-size: 12px;
+          margin-top: 10px;
+          color: @snow;
+        }
+      }
+
+      // Tab heading for optional or required parameters
+      .requiredORoptional {
+        padding: 10px 10px 15px 15px;
+        background-color: @teal;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        color: white;
+      }
+
+      // Name of the property, as entered by the user
+      .propertyname {
+        padding: 10px 0px 5px 0px;
+      }
+
+
+      /* ----------- All styles for accordion and any content within it ----------*/
+      .propertiesaccordion {
+        .panel-group {
+          margin-bottom: 0px;
+          border-radius: 0px;
+          width: 100%;
+          .optionalheading.panel.panel-default.ng-isolate-scope {
+            .panel-heading {
+              border-left: 10px solid rgba(112, 128, 144, 0.23);
+            }
+          }
+          .panel.panel-default.ng-isolate-scope {
+            border: none;
+            margin-left: -14px;
+            .panel-heading {
+              background-color: #394a57;
+              color: black;
+              border-radius: 0px;
+              border-bottom: 2px solid rgba(120, 126, 137, 0.11);
+              border-top: 1px solid rgba(29, 35, 45, 0.73);
+              margin-top: -2px;
+              .table-responsive {
+                border-top: 0px;
+              }
+              h4.panel-title {
+                font-size: 14px;
+                a {
+                  text-decoration: none;
+                  color: @evening;
+                  cursor: pointer;
+                  span {
+                    color: #EFEFEF;
+                  }
+                }
+              }
+            }
+            .collapsing {
+              -webkit-transition: none;
+              transition: none !important;
+              width: 100%;
+            }
+            .panel-collapse {
+              .panel-body {
+                border-top: none;
+                padding: 0px 10px 15px 10px;
+                background-color: #2b3743;
+                .new {
+                  width: 25px;
+                  height: 25px;
+                  border-radius: 50%;
+                  background-color: #00c29d;
+                  transition: background-color 0.2s;
+                  border: none;
+                  &:hover {
+                    background-color: rgba(0, 194, 157, 0.81);
+                    outline: 0;
+                    border: none;
+                  }
+                  &:focus {
+                    outline: 0;
+                    border: none;
+                  }
+                  span {
+                    top: -1px;
+                    right: 5.5px;
+                    color: white;
+                    font-size: 12px;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      //  Accordion toggle button
+      .pull-right {
+        top: -15px;
+        font-size: 12px;
+        color: #EFEFEF;
+      }
+
+      // Keeps the accordion toggle in place
+      span {
+        color: @attributes;
+        display: block;
+      }
+
+      // Input & Select field - inside accordion
+      .editable-input {
+        border: 1px solid rgba(52, 56, 68, 0.36);
+        padding: 2px;
+        background: #191d24;
+        margin: 2px 5px 20px 0px;
+        outline: none;
+        color: #6f7b91;
+        height: 26px;
+        box-shadow: none;
+        &:focus {
+          border: 1px solid @darkfield;
+          background: #191d24;
+          outline: none;
+        }
+      }
+
+      // Tables within Accordion
+      .table-bordered {
+        border: 0px;
+      }
+      .table-responsive {
+        margin-left: -12px;
+        width: 230px;
+      }
+      #no-more-tables1 table,
+      #no-more-tables1 thead,
+      #no-more-tables1 tbody,
+      #no-more-tables1 th,
+      #no-more-tables1 td,
+      #no-more-tables1 tr {
+        display: block;
+      }
+      #no-more-tables1 table {
+      }
+      //        Hide table headers
+      #no-more-tables1 thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+      }
+      //  Each table section being added
+      #no-more-tables1 tr {
+        background-color: rgba(221, 221, 213, 0);
+        border-top: none;
+        border-bottom: 1px solid rgb(60, 70, 92);
+      }
+      //  Each row within the table section being added
+      #no-more-tables1 td {
+        //          Behave  like a "row"
+        border: none;
+        position: relative;
+        padding-left: 50%;
+        white-space: normal;
+        text-align: left;
+        padding-right: 10px;
+        background-color: #2b3743;
+        font-size: 14px;
+        .editable {
+          margin-top: 6px;
+          margin-left: 20px;
+        }
+        .editable-controls {
+          margin-left: 0px;
+        }
+        .btn-default {
+          background-color: #aab2c0;
+          color: white;
+          border: none;
+          &:hover {
+            background-color: rgba(182, 190, 206, 0.90);
+            border: none;
+          }
+        }
+        .btn:focus, .btn:active:focus, .btn.active:focus {
+          outline: 0;
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+
+        ul {
+          padding-left: 6px;
+          li {
+            margin-left: 6px;
+            span {
+              font-size: 14px;
+            }
+          }
+        }
+      }
+      //  Title of each row
+      #no-more-tables1 td:before {
+        position: absolute;
+        // mimic padding
+        top: 14px;
+        left: 2px;
+        width: 45%;
+        padding-right: 10px;
+        padding-left: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: 400;
+        color: #ADB5C3;
+      }
+      //        Label the data
+      #no-more-tables1 td:before {
+        content: attr(data-title);
+      }
+
+      .content {
+        background-color: #2b3743;
+        padding-left: 15px;
+        .component-item {
+          display: table-cell;
+          vertical-align: middle;
+          color: @snow;
+          width: 100%;
+          height: 80px;
+          .pdiv {
+            float: left;
+            width: 100%;
+            vertical-align: middle;
+            padding-top: 10px;
+            p {
+              vertical-align: middle;
+            }
+          }
+          .imgdiv {
+            float: left;
+            width: 50px;
+            img.component-image {
+              width: 40px;
+              height: 40px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

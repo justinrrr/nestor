@@ -17,7 +17,6 @@ angular
 
 var app = angular
   .module('nestorApp', [
-    'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',

@@ -115,7 +115,7 @@ app.service('AWSComponents', function () {
       },
       {
         name: 'SecurityGroup',
-        image: 'images/aws/securityGroup.png',
+        image: 'images/aws/securygroup.png',
         description: 'Creates an Amazon EC2 security group',
         type: 'AWS::EC2::SecurityGroup'
       },
@@ -123,7 +123,7 @@ app.service('AWSComponents', function () {
         name: 'VPC',
         image: 'images/aws/vpc.png',
         description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
-        type: 'resource'
+        type: 'AWS::EC2::VPC'
       }
       //{
       //  name: 'Cloud Formation',
@@ -251,7 +251,48 @@ app.service('AWSComponents', function () {
           }
         ]
       },
+      'AWS::EC2::VPC' : {
+        type: 'AWS::EC2::VPC',
+        IncomingConnection: {
 
+        },
+        properties : {
+          required : [
+            {
+              name: 'CidrBlock',
+              type: 'String',
+              description: 'The CIDR block you want the VPC to cover. For example: "10.0.0.0/16'
+            }
+
+          ],
+          optional: [
+            {
+              name: 'EnableDnsSupport',
+              type: 'Boolean',
+              description: 'Specifies whether DNS resolution is supported for the VPC. If this attribute is true, the Amazon DNS server resolves DNS hostnames for your instances to their corresponding IP addresses; otherwise, it does not. By default the value is set to true'
+            },
+            {
+              name: 'EnableDnsHostnames',
+              type: 'Boolean',
+              description: 'Specifies whether the instances launched in the VPC get DNS hostnames. If this attribute is true, instances in the VPC get DNS hostnames; otherwise, they do not. You can only set EnableDnsHostnames to true if you also set the EnableDnsSupport attribute to true. By default, the value is set to false.'
+            },
+            {
+              name: 'InstanceTenancy',
+              type: 'String',
+              description: 'The allowed tenancy of instances launched into the VPC',
+              allowableValues: [
+                {
+                  'default': 'default'
+                },
+                {
+                  'dedicated': 'dedicated'
+                }
+              ]
+            },
+            {name: 'Tags', type: 'Tags', description: 'The tags that you want to attach to the resource'}
+          ]
+        }
+      },
       'AWS::Route53::RecordSet': {
         type: 'AWS::Route53::RecordSet',
         // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules

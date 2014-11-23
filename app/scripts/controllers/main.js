@@ -162,13 +162,25 @@ angular.module('nestorApp')
         itemSelected(component);
       };
 
-      $scope.propertiesClicked = function () {
-        $scope.showTasks = false;
-        $scope.showProperties = true;
-        $scope.showComponents = false;
-        if (!$scope.isLeftOpen) {
-          $scope.isLeftOpen = true;
-          $rootScope.$broadcast('leftmostResizeRequest');
+      $scope.propertiesClicked = function (component) {
+
+        //we should toggle it out
+        if ($scope.showProperties && $scope.selectedComponent === component) {
+          $scope.showTasks = false;
+          $scope.showProperties = false;
+          $scope.showComponents = false;
+          if ($scope.isLeftOpen) {
+            $scope.isLeftOpen = false;
+            $rootScope.$broadcast('leftmostResizeRequest');
+          }
+        } else {
+          $scope.showTasks = false;
+          $scope.showProperties = true;
+          $scope.showComponents = false;
+          if (!$scope.isLeftOpen) {
+            $scope.isLeftOpen = true;
+            $rootScope.$broadcast('leftmostResizeRequest');
+          }
         }
       };
 
