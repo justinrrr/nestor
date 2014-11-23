@@ -101,8 +101,8 @@
                 </button>
               </form>
               <div class="buttons" ng-show="!rowform.$visible">
-                <button class="btn btn-primary" ng-click="rowform.$show()">edit</button>
-                <button class="btn btn-danger" ng-click="removeRow($index)">del</button>
+                <button class="btn btn-primary edit" ng-click="rowform.$show()"><i class="fa fa-pencil-square-o"></i></button>
+                <button class="btn btn-danger delete" ng-click="removeRow($index)"><i class="fa fa-trash-o"></i></button>
               </div>
             </td>
 

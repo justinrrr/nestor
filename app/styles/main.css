@@ -553,7 +553,7 @@ div[resizable] {
   margin: 0px;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertiesHeader #componentName {
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 4px;
   font-weight: 600;
   color: #ffffff;
@@ -621,14 +621,13 @@ div[resizable] {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background-color: #00c29d;
+  background-color: transparent;
   transition: background-color 0.2s;
   border: none;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new:hover {
-  background-color: rgba(0, 194, 157, 0.81);
+  background-color: rgba(0, 194, 157, 0.07);
   outline: 0;
-  border: none;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new:focus {
   outline: 0;
@@ -636,8 +635,8 @@ div[resizable] {
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new span {
   top: -1px;
-  right: 5.5px;
-  color: white;
+  right: 5.2px;
+  color: #00c29d;
   font-size: 12px;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .pull-right {
@@ -663,6 +662,33 @@ div[resizable] {
   border: 1px solid rgba(122, 122, 147, 0.64);
   background: #191d24;
   outline: none;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-primary.edit {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-primary.edit .fa {
+  font-size: 18px;
+  margin-left: 20px;
+  margin-right: 20px;
+  color: #2E85AB;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-primary.edit .fa:hover {
+  color: #2e6da4;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-danger.delete {
+  background-color: transparent;
+  border: none;
+  padding: 0px;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-danger.delete .fa {
+  font-size: 18px;
+  margin-right: 20px;
+  color: #B25856;
+}
+#left-panel > .optionsmenu #properties .left-column-bottom .btn-danger.delete .fa:hover {
+  color: #C82F2A;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .table-bordered {
   border: 0px;
@@ -1218,4 +1244,18 @@ section#support .media:hover i {
   box-shadow: none;
   border: 5px dashed black;
   z-index: 1;
+}
+.draggable {
+  width: 100px;
+  height: 100px;
+  padding: 0.5em;
+  float: left;
+  margin: 10px 10px 10px 0;
+}
+.droppable {
+  width: 150px;
+  height: 150px;
+  padding: 0.5em;
+  float: left;
+  margin: 10px;
 }
