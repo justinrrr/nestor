@@ -11,7 +11,6 @@ app.directive('properties', [function () {
     restrict: 'E',
     scope: {
       component: '=',
-      template: '=',
       onPropertyDrag: '&'
     },
     templateUrl: 'templates/properties.html',
@@ -30,7 +29,6 @@ app.directive('componentProperties', ['AWSComponents', function (AWSComponents) 
     scope: {
       componentName: '=',
       componentProperties: '=',
-      componentModel: '=',
       onPropertyDrag: '&'
     },
     templateUrl: 'templates/component_properties.html',
@@ -61,18 +59,18 @@ app.directive('componentProperties', ['AWSComponents', function (AWSComponents) 
 }]);
 
 
-app.directive('derivedProperties', ['AWSComponents',
-  function (AWSComponents) {
+app.directive('derivedProperties', ['AWSComponents','CFTemplate',
+  function (AWSComponents,CFTemplate) {
     return {
       replace: true,
       restrict: 'E',
       scope: {
         component: '=',
-        componentProperties: '=',
-        componentModel: '='
+        componentProperties: '='
       },
       templateUrl: 'templates/derived_properties.html',
       link: function (scope) {
+        scope.componentModel = CFTemplate.getPropertyForResource(scope.component.type,scope.component.parent);
 
         scope.types = AWSComponents.propertyTypes;
 

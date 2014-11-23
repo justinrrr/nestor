@@ -14,7 +14,7 @@ app.directive('blockDisplay', function () {
       componentBlockType: '@',
       componentType: '@'
     },
-    link: function postLink(scope, elem, attrs) {
+    link: function postLink(scope, elem) {
 
       //the type is like aws::ec2::vpc. What we need to do is to strip the :: and replace with
       //-. And also add the component type to the class because of the stupid ng-class limitiations
@@ -22,8 +22,8 @@ app.directive('blockDisplay', function () {
       elem.addClass(componentType);
       if (scope.componentBlockType === 'container') {
 
-        elem.resizable({ handles: "all" });
-        elem.addClass('block-style-container')
+        elem.resizable({ handles: 'all' });
+        elem.addClass('block-style-container');
         //elem.on('resizestop', function (evt, ui) {
         //  if (scope.callback) { scope.callback(); }
         //});

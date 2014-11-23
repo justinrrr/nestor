@@ -6,11 +6,10 @@
 
 var app = angular.module('nestorApp.services');
 
-app.service('CFTemplate',
-  ['AWSComponents', function (AWSComponents) {
+app.service('CFTemplate', function () {
 
     // the Cloud Formation Template
-    var cfTemplate = undefined;
+    var cfTemplate;
 
 
     var createInitialTemplate = function () {
@@ -40,9 +39,16 @@ app.service('CFTemplate',
     this.getAllResources = function () {
       var resources = [];
       _.each(cfTemplate.Resources, function (resourceObj, resourceName) {
-        resources.push( { name: resourceName, type: resourceObj.Type });
+        resources.push({ name: resourceName, type: resourceObj.Type });
       });
       return resources;
+    };
+
+    this.getPropertyForResource = function (propertyName, resourceName) {
+      if (!propertyName || !resourceName){
+        return;
+      }
+      return cfTemplate.Resources[resourceName].Properties[propertyName];
     };
 
     /* This method returns the string version of our Cloud Formation Template*/
@@ -54,7 +60,6 @@ app.service('CFTemplate',
     };
 
     this.getStringFormat = getStringForm;
-
 
 
     /* this method replaces the internal Cloud Formation Template
@@ -131,14 +136,15 @@ app.service('CFTemplate',
     };
 
     this.addComplexPropertyToResource = function (propertyName, resourceName) {
-
+      var index;
       if (cfTemplate.Resources[resourceName].Properties[propertyName] === undefined) {
         cfTemplate.Resources[resourceName].Properties[propertyName] = [];
       }
+      index = cfTemplate.Resources[resourceName].Properties[propertyName].length;
       cfTemplate.Resources[resourceName].Properties[propertyName].push({});
 
-      return getStringForm();
+      return index;
     };
 
-  }]
+  }
 );

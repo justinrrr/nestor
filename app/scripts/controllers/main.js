@@ -214,7 +214,7 @@ angular.module('nestorApp')
         delete $scope.addedComponents[component.name];
 
         // update the Cloud Formation Tempalte
-        $scope.templateString = CFTemplate.removeResource(component.name)
+        $scope.templateString = CFTemplate.removeResource(component.name);
 
 
       };
