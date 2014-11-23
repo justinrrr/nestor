@@ -280,7 +280,17 @@ body {
 .animate-show.ng-hide {
   opacity: 0;
 }
+div[resizable] {
+  border: 1px solid Black;
+  width: 50%;
+}
 /* Sub-Menu Style */
+#left-panel > .optionsmenu {
+  /* ----------- Component, Solution stack, and Property draggable items ----------*/
+  /* ----------- Component specific styles ----------*/
+  /* ----------- Solutions-Stack specific styles ----------*/
+  /* ----------- Properties specific styles ----------*/
+}
 #left-panel > .optionsmenu .searchbox {
   display: inline-flex;
   width: 100%;
@@ -514,6 +524,7 @@ body {
 #left-panel > .optionsmenu #properties .left-column-bottom {
   background-color: white;
   width: 100%;
+  /* ----------- All styles for accordion and any content within it ----------*/
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertiesHeader {
   top: 0px;
@@ -1086,7 +1097,8 @@ section#support .media:hover i {
   background: #cc6698;
   border: 2px solid #cc6698;
 }
-/*/ Global Style for Left Menu */
+/*/ Global Style for the three sections of the app: left, center, right */
+/* ----------- Left Window ----------*/
 #left-panel {
   z-index: 0;
   overflow-y: scroll;
@@ -1132,7 +1144,7 @@ section#support .media:hover i {
   background-color: #202a36;
   padding: 0px;
 }
-/*/ Global Style for Middle Window */
+/* ----------- Center Window ----------*/
 #middle-panel {
   background-color: white;
   position: absolute;
@@ -1154,7 +1166,7 @@ section#support .media:hover i {
 .middle-panel-bigger {
   left: 3%;
 }
-/*/ Global Style for Right panel */
+/* ----------- Right Window ----------*/
 #right-panel {
   position: absolute;
   top: 0;
@@ -1173,7 +1185,7 @@ section#support .media:hover i {
   cursor: ew-resize;
   z-index: 100;
 }
-/* Applies to all three panels */
+/* ----------- All Windows ----------*/
 .base-panel {
   transition: all cubic-bezier(0.55, 0, 0.1, 1) 0.5s;
   animation: bounce 0.01s cubic-bezier(0.55, 0, 0.1, 1);
