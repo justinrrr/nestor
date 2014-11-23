@@ -104,7 +104,8 @@
 
     <!-- The actual components on the canvas -->
     <div plumb-item
-         resizable="component"
+         block-display
+         component-block-type="{{component.blockType}}"
          ng-click="clickCallback(component)"
          class="item"
          ng-class="{selectedComponent : component.id === selectedComponent.id}"

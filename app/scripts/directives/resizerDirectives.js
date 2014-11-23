@@ -88,14 +88,4 @@ app.directive('resizer', function($document) {
 });
 
 
-app.directive('resizable', function () {
-  return {
-    restrict: 'A',
-    link: function postLink(scope, elem, attrs) {
-      elem.resizable();
-      elem.on('resizestop', function (evt, ui) {
-        if (scope.callback) { scope.callback(); }
-      });
-    }
-  };
-});
+;
