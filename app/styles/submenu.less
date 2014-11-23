@@ -283,7 +283,7 @@
         color: @snow;
         margin: 0px;
         #componentName {
-          font-size: 16px;
+          font-size: 14px;
           margin-top: 4px;
           font-weight: 600;
           color: @snow;
@@ -360,13 +360,13 @@
                   width: 25px;
                   height: 25px;
                   border-radius: 50%;
-                  background-color: #00c29d;
+                  background-color: transparent;
                   transition: background-color 0.2s;
-                  border: none;
+                  border: 1px solid rgba(0, 194, 157, 0.81);
                   &:hover {
-                    background-color: rgba(0, 194, 157, 0.81);
+                    background-color: rgba(0, 194, 157, 0.07);
                     outline: 0;
-                    border: none;
+
                   }
                   &:focus {
                     outline: 0;
@@ -374,8 +374,8 @@
                   }
                   span {
                     top: -1px;
-                    right: 5.5px;
-                    color: white;
+                    right: 5.2px;
+                    color: #00c29d;
                     font-size: 12px;
                   }
                 }
@@ -412,6 +412,35 @@
           border: 1px solid @darkfield;
           background: #191d24;
           outline: none;
+        }
+      }
+
+      //Edit and Delete buttons
+      .btn-primary.edit {
+        background-color: transparent;
+        border: none;
+        padding: 0px;
+        .fa {
+          font-size: 18px;
+          margin-left: 20px;
+          margin-right: 20px;
+          color: #2E85AB;
+          &:hover {
+          color: #2e6da4;
+        }
+        }
+      }
+      .btn-danger.delete {
+        background-color: transparent;
+        border: none;
+        padding: 0px;
+        .fa {
+          font-size: 18px;
+          margin-right: 20px;
+          color: #B25856;
+          &:hover {
+            color: #C82F2A;
+          }
         }
       }
 
