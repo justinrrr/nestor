@@ -623,7 +623,7 @@ div[resizable] {
   border-radius: 50%;
   background-color: transparent;
   transition: background-color 0.2s;
-  border: 1px solid rgba(0, 194, 157, 0.81);
+  border: none;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertiesaccordion .panel-group .panel.panel-default.ng-isolate-scope .panel-collapse .panel-body .new:hover {
   background-color: rgba(0, 194, 157, 0.07);
