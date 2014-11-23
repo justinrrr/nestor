@@ -76,7 +76,7 @@ angular.module('nestorApp')
         $scope.addedComponents[c.name] = c;
 
         var aMetadata = $scope.componentMetadata[blueprint.type];
-        $scope.templateString = CFTemplate.addResource(c.name, aMetadata.type, aMetadata.outputs);
+        CFTemplate.addResource(c.name, aMetadata.type, aMetadata.outputs);
 
         // select the newly added item
         itemSelected(c);
@@ -142,7 +142,7 @@ angular.module('nestorApp')
       };
 
       $scope.taskSelected = function (task) {
-        $scope.templateString = CFTemplate.setTemplate(task.template);
+        CFTemplate.setTemplate(task.template);
         $scope.addedComponents = task.components;
         $scope.connections = task.connections;
 
@@ -214,7 +214,7 @@ angular.module('nestorApp')
         delete $scope.addedComponents[component.name];
 
         // update the Cloud Formation Tempalte
-        $scope.templateString = CFTemplate.removeResource(component.name);
+        CFTemplate.removeResource(component.name);
 
 
       };
@@ -327,7 +327,7 @@ angular.module('nestorApp')
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,
           data.description,
-          event.x - leftPanelWidth,
+            event.x - leftPanelWidth,
           event.y,
           data.parent
         );
@@ -340,7 +340,6 @@ angular.module('nestorApp')
         $scope.addedComponents[c.name] = c;
 
         c.index = CFTemplate.addComplexPropertyToResource(data.name, data.parent);
-        $scope.templateString = CFTemplate.getStringFormat();
 
         // connect this complex property to its parent on the UI
         UIComponents.connectComponents(data.parent, c.name, true);
@@ -348,7 +347,6 @@ angular.module('nestorApp')
         //select this complex property on the UI
         itemSelected(c);
       };
-
 
       $scope.templateStringChanged = function () {
         try {
@@ -396,6 +394,17 @@ angular.module('nestorApp')
       $scope.download = function () {
         $window.open('data:text/text;charset=utf-8,' + encodeURIComponent($scope.templateString));
       };
+
+      //-----------------------------------------------------
+      // Synchrnoization between editor json and object model
+      //-----------------------------------------------------
+      $scope.$watch(
+        function () {
+          return CFTemplate.getStringFormat();
+        },
+        function (newValue, oldValue) {
+          $scope.templateString = newValue;
+        }, true);
 
 
       //======================== Text Editor stuff
