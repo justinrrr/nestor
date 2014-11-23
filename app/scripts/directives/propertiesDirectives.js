@@ -237,6 +237,7 @@ app.directive('dragProperty', [function () {
       };
 
       scope.dragCompleted = function ($data, $event) {
+        $data.blockType = scope.propertyTypes.Display.blockType;
         scope.onDragComplete({$data: $data, $event: $event});
       };
     }

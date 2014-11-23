@@ -72,6 +72,7 @@ angular.module('nestorApp')
           posX,
           posY);
 
+        c.blockType = blueprint.blockType;
         $scope.addedComponents[c.name] = c;
 
         var aMetadata = $scope.componentMetadata[blueprint.type];
@@ -326,13 +327,15 @@ angular.module('nestorApp')
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,
           data.description,
-            event.x - leftPanelWidth,
+          event.x - leftPanelWidth,
           event.y,
           data.parent
         );
 
+
         //determines whether the component is standalone or derived
         c.isDerived = true;
+        c.blockType = data.blockType;
 
         $scope.addedComponents[c.name] = c;
 
@@ -356,7 +359,7 @@ angular.module('nestorApp')
           console.log(err);
         }
 
-        var allResources =  CFTemplate.getAllResources();
+        var allResources = CFTemplate.getAllResources();
 
         //add any component that is in the json string but not in the addedComponents
         _.each(allResources, function (item) {
@@ -373,12 +376,13 @@ angular.module('nestorApp')
                   blueprint.name,
                   item.name,
                   blueprint.image,
-                  $scope.componentMetadata[blueprint.name].properties.required,
-                  $scope.componentMetadata[blueprint.name].properties.optional,
+                  $scope.componentMetadata[blueprint.type].properties.required,
+                  $scope.componentMetadata[blueprint.type].properties.optional,
                   blueprint.description,
                   100,
                   100);
 
+                c.blockType = blueprint.blockType;
                 itemSelected(c);
 
                 $scope.addedComponents[c.name] = c;

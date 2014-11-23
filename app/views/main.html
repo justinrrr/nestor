@@ -100,17 +100,8 @@
     on-connection-detached="connectionDetached(sourceName, targetName)"
     on-connection-moved-from-source="connectionMovedFromSource(originalSourceName, newSourceName, targetName)"
     on-connection-moved-from-target="connectionMovedFromTarget(sourceName, originalTargetName, newTargetName)"
-    class="center-column"
-    >
+    class="center-column">
 
-    <!--<div class="canvasbtns">-->
-    <!--<button class="btn btn-warning" ng-click="cancel()"><span-->
-    <!--class="glyphicon glyphicon-floppy-save"></span>-->
-    <!--</button>-->
-    <!--<button class="btn btn-primary" ng-click="download()"><span-->
-    <!--class="glyphicon glyphicon-cloud-download"></span>-->
-    <!--</button>-->
-    <!--</div>-->
     <!-- The actual components on the canvas -->
     <div plumb-item
          resizable="component"
@@ -129,8 +120,8 @@
       <img ng-src="{{component.image}}"/>
 
       <p class="title">
-        {{component}}
-        {{component.name}}</p>
+        {{component.name}}
+      </p>
 
 
       <div plumb-connect
