@@ -413,6 +413,11 @@ div[resizable] {
   cursor: move;
   background-color: rgba(222, 222, 222, 0.05);
 }
+#left-panel > .optionsmenu .empty-container.property {
+  width: 229px;
+  left: 0px;
+  border-bottom: 1px solid rgba(29, 35, 45, 0.4);
+}
 #left-panel > .optionsmenu .component-item {
   display: table-cell;
   vertical-align: middle;
@@ -454,6 +459,19 @@ div[resizable] {
   position: absolute;
   left: 5px;
   margin-top: 4px;
+}
+#left-panel > .optionsmenu .component-item.property {
+  border-bottom: none;
+}
+#left-panel > .optionsmenu .component-item.property .pdiv {
+  width: 82.5% !important;
+  padding-top: 1px !important;
+}
+#left-panel > .optionsmenu .component-item.property .pdiv p {
+  color: #6f7b91;
+}
+#left-panel > .optionsmenu .component-item.property .imgdiv > img {
+  margin-top: 0px !important;
 }
 #left-panel > .optionsmenu .propertyinput {
   border: 1px solid rgba(52, 56, 68, 0.36);

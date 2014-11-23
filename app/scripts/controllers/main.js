@@ -29,11 +29,11 @@ angular.module('nestorApp')
       $scope.tasks = AWSComponents.tasks;
 
       $scope.leftPanelOptions = [
-        {name: 'Components', visible: true, image: 'images/component.png'},
+        {name: 'Components', visible: true, image: 'images/solution.png'},
         {
           name: 'Tasks',
           visible: true,
-          image: 'images/solutionstack.png'
+          image: 'images/solutions.png'
         },
         {name: 'Properties', visible: 'false', image: 'images/properties.png'}
       ];
