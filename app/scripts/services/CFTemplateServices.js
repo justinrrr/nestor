@@ -6,13 +6,10 @@
 
 var app = angular.module('nestorApp.services');
 
-app.service('CFTemplate',
-  ['AWSComponents', function (AWSComponents) {
+app.service('CFTemplate', function () {
 
     // the Cloud Formation Template
-    var cfTemplate = undefined;
-
-
+    var cfTemplate;
     var createInitialTemplate = function () {
       return {
         AWSTemplateFormatVersion: '2010-09-09',
@@ -24,6 +21,7 @@ app.service('CFTemplate',
         Outputs: {}
       };
     };
+
 
     /*
      * resourceName:  the name of the item to be retrieved from Resources in Cloud Formation Template
@@ -40,9 +38,16 @@ app.service('CFTemplate',
     this.getAllResources = function () {
       var resources = [];
       _.each(cfTemplate.Resources, function (resourceObj, resourceName) {
-        resources.push( { name: resourceName, type: resourceObj.Type });
+        resources.push({ name: resourceName, type: resourceObj.Type });
       });
       return resources;
+    };
+
+    this.getPropertyForResource = function (propertyName, resourceName) {
+      if (!propertyName || !resourceName){
+        return;
+      }
+      return cfTemplate.Resources[resourceName].Properties[propertyName];
     };
 
     /* This method returns the string version of our Cloud Formation Template*/
@@ -56,7 +61,6 @@ app.service('CFTemplate',
     this.getStringFormat = getStringForm;
 
 
-
     /* this method replaces the internal Cloud Formation Template
      * this is especially useful when the user selects a preconfigured solution (i.e. task) */
     this.setTemplate = function (newTemplate) {
@@ -66,7 +70,6 @@ app.service('CFTemplate',
         cfTemplate = newTemplate;
       }
 
-      return getStringForm();
     };
 
     /*
@@ -101,7 +104,6 @@ app.service('CFTemplate',
         }
       });
 
-      return getStringForm();
     };
 
     /*
@@ -127,18 +129,18 @@ app.service('CFTemplate',
         }
       }
 
-      return getStringForm();
     };
 
     this.addComplexPropertyToResource = function (propertyName, resourceName) {
-
+      var index;
       if (cfTemplate.Resources[resourceName].Properties[propertyName] === undefined) {
         cfTemplate.Resources[resourceName].Properties[propertyName] = [];
       }
+      index = cfTemplate.Resources[resourceName].Properties[propertyName].length;
       cfTemplate.Resources[resourceName].Properties[propertyName].push({});
 
-      return getStringForm();
+      return index;
     };
 
-  }]
+  }
 );
