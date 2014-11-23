@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$modal', 'AWSComponents', 'UIComponents', 'ConnectionUtils', '$window',
-    function ($scope, $rootScope, $modal, AWSComponents, UIComponents, ConnectionUtils, $window) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$modal', 'AWSComponents', 'CFTemplate', 'UIComponents', 'ConnectionUtils', '$window',
+    function ($scope, $rootScope, $modal, AWSComponents, CFTemplate, UIComponents, ConnectionUtils, $window) {
 
       $scope.isBottomLeftOpen = false;
       $scope.isLeftOpen = false;
@@ -13,26 +13,30 @@ angular.module('nestorApp')
         UIComponents.setupJSPlumb($scope);
       };
 
-      //create initial template
-      $scope.template = AWSComponents.createInitialTemplate();
-      $scope.templateString = angular.toJson($scope.template, true);
-      //$scope.templateString = JSON.stringify($scope.template, null, 4);
-
+      //create the main data model variables
+      $scope.templateString = CFTemplate.getStringFormat();
       $scope.addedComponents = {};
       $scope.connections = [];
 
       //add initial DS
       $scope.componentNameCounters = {};
+
+      // some aliases for UI representation of the data model
       $scope.components = AWSComponents.components;
+
       $scope.componentMetadata = AWSComponents.componentMetadata;
       $scope.types = AWSComponents.propertyTypes;
       $scope.tasks = AWSComponents.tasks;
 
-      $scope.leftPanelOptions = [{name: 'Components', visible: true, image: 'images/component.png'}, {
-        name: 'Tasks',
-        visible: true,
-        image: 'images/solutionstack.png'
-      }, {name: 'Properties', visible: 'false', image: 'images/properties.png'}];
+      $scope.leftPanelOptions = [
+        {name: 'Components', visible: true, image: 'images/component.png'},
+        {
+          name: 'Tasks',
+          visible: true,
+          image: 'images/solutionstack.png'
+        },
+        {name: 'Properties', visible: 'false', image: 'images/properties.png'}
+      ];
       //UI State
       $scope.isShowingTop = true;
 
@@ -46,31 +50,6 @@ angular.module('nestorApp')
         var counter = $scope.componentNameCounters.type;
         $scope.componentNameCounters.type++;
         return type + counter;
-      }
-
-      function addComponentToTemplate(blueprint, c) {
-
-        $scope.addedComponents[c.name] = c;
-        var componentName = c.name;
-        var aMetadata = $scope.componentMetadata[blueprint.type];
-        $scope.template.Resources[componentName] = {
-          Type: aMetadata.type
-        };
-        $scope.template.Resources[componentName].Properties = {};
-
-        //add the possible outputs
-        _.each(aMetadata.outputs, function (outputMetdata) {
-          if (outputMetdata.type === 'Ref') {
-            var outputObj = {
-              Description: outputMetdata.description,
-              Value: {Ref: componentName}
-            };
-            $scope.template.Outputs[componentName + outputMetdata.name] = outputObj;
-          }
-        });
-
-        $scope.templateString = angular.toJson($scope.template, true);
-        //$scope.templateString = JSON.stringify($scope.template, null, 4);
       }
 
       function itemSelected(component) {
@@ -93,8 +72,12 @@ angular.module('nestorApp')
           posX,
           posY);
 
-        addComponentToTemplate(blueprint, c);
+        $scope.addedComponents[c.name] = c;
 
+        var aMetadata = $scope.componentMetadata[blueprint.type];
+        $scope.templateString = CFTemplate.addResource(c.name, aMetadata.type, aMetadata.outputs);
+
+        // select the newly added item
         itemSelected(c);
       }
 
@@ -156,8 +139,9 @@ angular.module('nestorApp')
         addComponent($data, $event.x - rightPanelWidth - 85, $event.y - 50);
 
       };
+
       $scope.taskSelected = function (task) {
-        $scope.template = task.template;
+        $scope.templateString = CFTemplate.setTemplate(task.template);
         $scope.addedComponents = task.components;
         $scope.connections = task.connections;
 
@@ -165,7 +149,6 @@ angular.module('nestorApp')
           UIComponents.connectComponents(connection.source, connection.target, false);
         });
       };
-
 
       $scope.showModal = function () {
         $modal.open({
@@ -188,6 +171,7 @@ angular.module('nestorApp')
           $rootScope.$broadcast('leftmostResizeRequest');
         }
       };
+
       /* this function is available on the scope so the UI (i.e. html) can call
        to completely delete a component:
        1) remove all the connections from UI
@@ -195,13 +179,15 @@ angular.module('nestorApp')
        3) update model to remove the component's data and all the references to the deleted component
        4) update the final CloudFormation Template */
       $scope.deleteClicked = function (component) {
+
         if ($scope.selectedComponent === component) {
           delete $scope.selectedComponent;
-            if ($scope.showProperties) {
-              $scope.showProperties = false;
-              $scope.closeLeft();
-            }
+          if ($scope.showProperties) {
+            $scope.showProperties = false;
+            $scope.closeLeft();
+          }
         }
+
         // find the UI element
         var toBeDeletedElem = angular.element('[data-identifier =' + component.id + ']')[0];
 
@@ -214,18 +200,9 @@ angular.module('nestorApp')
         // remove the component's data from the list of all components
         delete $scope.addedComponents[component.name];
 
-        // update the actual template: remove from the components
-        // TODO: what if the to-be-deleted component wasn't a "resource"?
-        delete $scope.template.Resources[component.name];
+        // update the Cloud Formation Tempalte
+        $scope.templateString = CFTemplate.removeResource(component.name)
 
-        // update the "Output" secion in our CloudFormation template
-        var allOutputs = Object.keys($scope.template.Outputs);
-        for (var i = 0; i < allOutputs.length; i += 1) {
-          if ($scope.template.Outputs[allOutputs[i]].Value.Ref === component.name) {
-            delete $scope.template.Outputs[allOutputs[i]];
-            break;
-          }
-        }
 
       };
 
@@ -233,8 +210,8 @@ angular.module('nestorApp')
 
         $scope.connections.push({source: sourceName, target: targetName});
 
-        var sourceObject = $scope.template.Resources[sourceName];
-        var targetObject = $scope.template.Resources[targetName];
+        var sourceObject = CFTemplate.getResource(sourceName);
+        var targetObject = CFTemplate.getResource(targetName);
 
         var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
@@ -275,10 +252,9 @@ angular.module('nestorApp')
         return [];
       };
 
-
       $scope.connectionDetached = function (sourceName, targetName) {
-        var sourceObject = $scope.template.Resources[sourceName];
-        var targetObject = $scope.template.Resources[targetName];
+        var sourceObject = CFTemplate.getResource(sourceName);
+        var targetObject = CFTemplate.getResource(targetName);
 
         var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
@@ -338,7 +314,7 @@ angular.module('nestorApp')
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,
           data.description,
-          event.x - leftPanelWidth,
+            event.x - leftPanelWidth,
           event.y,
           data.parent
         );
@@ -348,65 +324,32 @@ angular.module('nestorApp')
 
         $scope.addedComponents[c.name] = c;
 
-        var parentName = data.parent;
+        c.index = CFTemplate.addComplexPropertyToResource(data.name, data.parent);
+        $scope.templateString = CFTemplate.getStringFormat();
 
-        if (!$scope.template.Resources[parentName].Properties[data.name]) {
-          $scope.template.Resources[parentName].Properties[data.name] = [];
-        }
+        // connect this complex property to its parent on the UI
+        UIComponents.connectComponents(data.parent, c.name, true);
 
-        var newEntry = {};
-        c.index = $scope.template.Resources[parentName].Properties[data.name].length;
-        $scope.template.Resources[parentName].Properties[data.name].push(newEntry);
-
-        UIComponents.connectComponents(parentName, c.name, true);
+        //select this complex property on the UI
         itemSelected(c);
       };
-
-      //-----------------------------------------------------
-      // Synchrnoization between editor json and object model
-      //-----------------------------------------------------
-      $scope.$watch('template', function (newValue, oldValue) {
-        if (newValue !== oldValue) {
-          var test = angular.toJson($scope.template, true);
-
-          $scope.templateString = test;
-          //$scope.templateString = JSON.stringify($scope.template, null, 4);
-        }
-      }, true);
 
 
       $scope.templateStringChanged = function () {
         try {
-          if ($scope.templateString === '') {
-
-            $scope.template = AWSComponents.createInitialTemplate();
-            $scope.templateString = angular.toJson($scope.template, true);
-            //$scope.templateString = JSON.stringify($scope.template, null, 4);
-
-            $scope.addedComponents = {};
-            $scope.connections = [];
-
-          }
-          $scope.template = JSON.parse($scope.templateString);
+          CFTemplate.setTemplate(JSON.parse($scope.templateString));
+          $scope.addedComponents = {};
+          $scope.connections = [];
         } catch (err) {
           console.log(err);
         }
 
-        //in the rest of this function we are going to consolidate the json string
-        //and the components on the screen
-
-        //remove each component that is in the addedComponent but is not in the json string
-        _.each($scope.addedComponents, function (component, componentName) {
-
-          if (!$scope.template.Resources[componentName]) {
-            delete $scope.addedComponents[componentName];
-          }
-        });
+        var allResources =  CFTemplate.getAllResources();
 
         //add any component that is in the json string but not in the addedComponents
-        _.each($scope.template.Resources, function (resourceObj, resourceName) {
-          if (!$scope.addedComponents[resourceName]) {
-            var blueprintName = AWSComponents.typeMappings[resourceObj.Type];
+        _.each(allResources, function (item) {
+          if (!$scope.addedComponents[item.name]) {
+            var blueprintName = item.type;
             if (!blueprintName) {
               return;
             }
@@ -436,6 +379,7 @@ angular.module('nestorApp')
             });
           }
         });
+
       };
 
       $scope.download = function () {
