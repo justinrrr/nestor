@@ -50,6 +50,10 @@ app.service('CFTemplate', function () {
       return cfTemplate.Resources[resourceName].Properties[propertyName];
     };
 
+    this.getPropertiesForResource = function (resourceName) {
+      return cfTemplate.Resources[resourceName].Properties;
+    };
+
     /* This method returns the string version of our Cloud Formation Template*/
     var getStringForm = function getStringForm() {
       if (cfTemplate === undefined) {

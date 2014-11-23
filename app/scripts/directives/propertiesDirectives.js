@@ -22,7 +22,7 @@ app.directive('properties', [function () {
   };
 }]);
 
-app.directive('componentProperties', ['AWSComponents', function (AWSComponents) {
+app.directive('componentProperties', ['AWSComponents','CFTemplate', function (AWSComponents,CFTemplate) {
   return {
     replace: true,
     restrict: 'E',
@@ -33,6 +33,7 @@ app.directive('componentProperties', ['AWSComponents', function (AWSComponents) 
     },
     templateUrl: 'templates/component_properties.html',
     link: function (scope) {
+      scope.componentModel = CFTemplate.getPropertiesForResource(scope.componentName);
 
       scope.types = AWSComponents.propertyTypes;
 
