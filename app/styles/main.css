@@ -156,7 +156,7 @@ body {
   width: 170px;
   height: 100px;
   font-size: 80%;
-  background-color: white;
+  z-index: 3;
   text-align: center;
   display: inline-block;
   -webkit-transition-duration: 0.02s;
@@ -279,6 +279,10 @@ body {
 }
 .animate-show.ng-hide {
   opacity: 0;
+}
+div[resizable] {
+  border: 1px solid Black;
+  width: 50%;
 }
 /* Sub-Menu Style */
 #left-panel > .optionsmenu {
@@ -1189,4 +1193,11 @@ section#support .media:hover i {
 #sidebar-resizer:hover,
 #preview-resizer:hover {
   background-color: #AAA;
+}
+#mid-container #middle-panel .block-style-container {
+  background-color: transparent;
+  text-align: start;
+  box-shadow: none;
+  border: 5px dashed black;
+  z-index: 1;
 }

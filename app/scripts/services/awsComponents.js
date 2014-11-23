@@ -8,17 +8,7 @@
 var app = angular.module('nestorApp.services');
 app.service('AWSComponents', function () {
 
-    this.createInitialTemplate = function () {
-      return {
-        AWSTemplateFormatVersion: '2010-09-09',
-        Description: 'Created By Nestor',
-        Parameters: {},
-        Mappings: {},
-        Conditions: {},
-        Resources: {},
-        Outputs: {}
-      };
-    };
+
     this.tasks = [
       {
         name: 'Simple static website',
@@ -97,43 +87,50 @@ app.service('AWSComponents', function () {
         name: 'DynamoDb',
         image: 'images/aws/dynamo.png',
         description: 'NoSQL database service',
-        type: 'AWS::DynamoDB::Table'
+        type: 'AWS::DynamoDB::Table',
+        blockType: 'box'
       },
       {
         name: 'EIP',
         image: 'images/aws/eip.png',
         description: 'Elastic(Static) IP address that are dynamically allocated',
-        type: 'AWS::EC2::EIP'
+        type: 'AWS::EC2::EIP',
+        blockType: 'box'
       },
       {
         name: 'EC2',
         image: 'images/aws/ec2.png',
         description: 'Resizable compute machines',
-        type: 'AWS::EC2::Instance'
+        type: 'AWS::EC2::Instance',
+        blockType: 'box'
       },
       {
         name: 'ELB',
         image: 'images/aws/elb.png',
         description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource'
+        type: 'resource',
+        blockType: 'box'
       },
       {
         name: 'Route53',
         image: 'images/aws/route53.png',
         description: 'highly available and scalable Domain Name System (DNS)',
-        type: 'AWS::Route53::RecordSet'
+        type: 'AWS::Route53::RecordSet',
+        blockType: 'box'
       },
       {
         name: 'SecurityGroup',
-        image: 'images/aws/securityGroup.png',
+        image: 'images/aws/securygroup.png',
         description: 'Creates an Amazon EC2 security group',
-        type: 'AWS::EC2::SecurityGroup'
+        type: 'AWS::EC2::SecurityGroup',
+        blockType: 'box'
       },
       {
         name: 'VPC',
         image: 'images/aws/vpc.png',
         description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
-        type: 'resource'
+        type: 'AWS::EC2::VPC',
+        blockType: 'container'
       }
       //{
       //  name: 'Cloud Formation',
@@ -261,7 +258,48 @@ app.service('AWSComponents', function () {
           }
         ]
       },
+      'AWS::EC2::VPC' : {
+        type: 'AWS::EC2::VPC',
+        IncomingConnection: {
 
+        },
+        properties : {
+          required : [
+            {
+              name: 'CidrBlock',
+              type: 'String',
+              description: 'The CIDR block you want the VPC to cover. For example: "10.0.0.0/16'
+            }
+
+          ],
+          optional: [
+            {
+              name: 'EnableDnsSupport',
+              type: 'Boolean',
+              description: 'Specifies whether DNS resolution is supported for the VPC. If this attribute is true, the Amazon DNS server resolves DNS hostnames for your instances to their corresponding IP addresses; otherwise, it does not. By default the value is set to true'
+            },
+            {
+              name: 'EnableDnsHostnames',
+              type: 'Boolean',
+              description: 'Specifies whether the instances launched in the VPC get DNS hostnames. If this attribute is true, instances in the VPC get DNS hostnames; otherwise, they do not. You can only set EnableDnsHostnames to true if you also set the EnableDnsSupport attribute to true. By default, the value is set to false.'
+            },
+            {
+              name: 'InstanceTenancy',
+              type: 'String',
+              description: 'The allowed tenancy of instances launched into the VPC',
+              allowableValues: [
+                {
+                  'default': 'default'
+                },
+                {
+                  'dedicated': 'dedicated'
+                }
+              ]
+            },
+            {name: 'Tags', type: 'Tags', description: 'The tags that you want to attach to the resource'}
+          ]
+        }
+      },
       'AWS::Route53::RecordSet': {
         type: 'AWS::Route53::RecordSet',
         // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
@@ -927,7 +965,7 @@ app.service('AWSComponents', function () {
         },
 
         GlobalSecondaryIndexes: {
-          Display: {type: 'drag', image: 'images/aws/localIndex.png'},
+          Display: {type: 'drag', image: 'images/aws/localIndex.png', blockType: 'box'},
           Description: 'Global secondary indexes to be created on the table. You can create up to 5 global secondary indexes',
           types: {
             required: [
@@ -958,7 +996,7 @@ app.service('AWSComponents', function () {
         },
 
         LocalSecondaryIndexes: {
-          Display: {type: 'drag', image: 'images/aws/globalIndex.png'},
+          Display: {type: 'drag', image: 'images/aws/globalIndex.png', blocktype: 'drag'},
           Description: 'Local secondary indexes to be created on the table. You can create up to 5 local secondary indexes. Each index is scoped to a given hash key value. The size of each hash key can be up to 10 gigabytes',
           types: {
             required: [
@@ -983,7 +1021,7 @@ app.service('AWSComponents', function () {
         },
 
         BlockDeviceMappings: {
-          Display: {type: 'drag', image: 'images/aws/blockDeviceMapping.png'},
+          Display: {type: 'drag', image: 'images/aws/blockDeviceMapping.png', blockType : 'drag'},
           Description: 'Amazon Elastic Block Store volume. You can choose to retain the volume, to delete the volume, or to create a snapshot of the volume.',
           types: {
             required: [
@@ -1062,7 +1100,7 @@ app.service('AWSComponents', function () {
         },
 
         NetworkInterfaces: {
-          Display: {type: 'drag', image: 'images/aws/networkInterface.png'},
+          Display: {type: 'drag', image: 'images/aws/networkInterface.png', blockType: 'drag'},
           Description: 'A network interface that is to be attached to the EC2 instance',
           types: {
             required: [

@@ -24,7 +24,7 @@ app.service('UIComponents', ['PlumbStyles', function (PlumbStyles) {
 
   this.setupJSPlumb = function ($scope) {
     var getComponentTypeWithNominalName = function (nominalName) {
-      if ($scope.addedComponents[nominalName]){
+      if ($scope.addedComponents[nominalName]) {
         return $scope.addedComponents[nominalName].type;
       }
 
@@ -63,7 +63,7 @@ app.service('UIComponents', ['PlumbStyles', function (PlumbStyles) {
       return areTypesMatch(sourceType, targetType);
     });
 
-    jsPlumb.bind('beforeDetach', function(info){
+    jsPlumb.bind('beforeDetach', function (info) {
       var sourceNominalName = info.source.attributes['data-identifier'].nodeValue;
       var targetNominalName = info.target.attributes['data-identifier'].nodeValue;
 
