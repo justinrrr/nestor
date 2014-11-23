@@ -29,9 +29,12 @@ app.directive('blockDisplay', function () {
         elem.addClass('droppable');
         elem.addClass('ui-widget-header');
         elem.droppable({
-          drop: function( event, ui ) {
-            alert('fuck you');
-          }
+          drop: function( event, ui ) {alert('fuck in');},
+          out: function (event, ui) {alert('fuck out');},
+          hoverClass : 'container-hover',
+          tolerance: 'touch',
+          accept : ".AWS-DynamoDB-Table",
+          activeClass: 'container-not-accept-hover'
         });
         elem.addClass('block-style-container')
         //elem.on('resizestop', function (evt, ui) {
