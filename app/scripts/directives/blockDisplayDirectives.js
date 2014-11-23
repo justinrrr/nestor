@@ -22,7 +22,7 @@ app.directive('blockDisplay', function () {
       elem.addClass(componentType);
       if (scope.componentBlockType === 'container') {
 
-        elem.resizable();
+        elem.resizable({ handles: "all" });
         elem.addClass('block-style-container')
         //elem.on('resizestop', function (evt, ui) {
         //  if (scope.callback) { scope.callback(); }
