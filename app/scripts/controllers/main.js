@@ -402,7 +402,7 @@ angular.module('nestorApp')
         function () {
           return CFTemplate.getStringFormat();
         },
-        function (newValue, oldValue) {
+        function (newValue) {
           $scope.templateString = newValue;
         }, true);
 
