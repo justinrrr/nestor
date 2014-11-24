@@ -35,9 +35,9 @@ app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbSty
       return false;
     }
 
-    var sourceType = info.source.attributes.getNamedItem('component-type').value
+    var sourceType = info.source.attributes.getNamedItem('component-type').value;
 
-    var targetType = info.target.attributes.getNamedItem('component-type').value
+    var targetType = info.target.attributes.getNamedItem('component-type').value;
 
     return areTypesMatch(sourceType, targetType);
   };
