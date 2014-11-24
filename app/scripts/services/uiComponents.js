@@ -5,7 +5,7 @@
 
 var app = angular.module('nestorApp.services');
 
-app.service('UIComponents', ['PlumbStyles', function (PlumbStyles) {
+app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbStyles, AWSComponents) {
   //The draggable component on the canvas
   //only set parent name if its a draggable property
   this.Component = function (id, type, name, image, requiredMetadata, optionalMetadata, description, x, y, parentName) {
@@ -22,22 +22,29 @@ app.service('UIComponents', ['PlumbStyles', function (PlumbStyles) {
     this.parent = parentName || '';
   };
 
-  this.setupJSPlumb = function ($scope) {
-    var getComponentTypeWithNominalName = function (nominalName) {
-      if ($scope.addedComponents[nominalName]) {
-        return $scope.addedComponents[nominalName].type;
-      }
+  var areTypesMatch = function (sourceType, targetType) {
+    var targetObj =  AWSComponents.componentMetadata[targetType];
+    if (targetObj && targetObj.IncomingConnection.hasOwnProperty(sourceType)) {
+      return true;
+    }
+    return false;
+  };
 
-      return '';
-    };
-
-    var areTypesMatch = function (sourceType, targetType) {
-      var targetObj = $scope.componentMetadata[targetType];
-      if (targetObj && targetObj.IncomingConnection.hasOwnProperty(sourceType)) {
-        return true;
-      }
+  var validateConnection = function (info) {
+    if (info.sourceId === info.targetId) {
       return false;
-    };
+    }
+
+    var sourceType = info.source.attributes.getNamedItem('component-type').value
+
+    var targetType = info.target.attributes.getNamedItem('component-type').value
+
+    return areTypesMatch(sourceType, targetType);
+  };
+
+  this.validateConnection = validateConnection;
+
+  this.setupJSPlumb = function ($scope) {
 
     jsPlumb.bind('ready', function () {
       console.log('Set up jsPlumb listeners (should be only done once)');
@@ -48,19 +55,11 @@ app.service('UIComponents', ['PlumbStyles', function (PlumbStyles) {
       });
     });
 
+
     jsPlumb.bind('beforeDrop', function (info) {
 
-      if (info.sourceId === info.targetId) {
-        return false;
-      }
+      return validateConnection(info);
 
-      var sourceNominalName = info.source.attributes['data-identifier'].nodeValue;
-      var sourceType = getComponentTypeWithNominalName(sourceNominalName);
-
-      var targetNominalName = info.target.attributes['data-identifier'].nodeValue;
-      var targetType = getComponentTypeWithNominalName(targetNominalName);
-
-      return areTypesMatch(sourceType, targetType);
     });
 
     jsPlumb.bind('beforeDetach', function (info) {

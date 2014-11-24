@@ -33,7 +33,17 @@ app.directive('blockDisplay', function () {
           out: function (event, ui) {alert('fuck out');},
           hoverClass : 'container-hover',
           tolerance: 'touch',
-          accept : ".AWS-DynamoDB-Table",
+          accept : function(draggable) {
+            var sourceId = source.attr('id');
+            var targetId = elem.attr('id');
+            var info = {
+              source : draggable,
+              sourceId : sourceId,
+              target : elem,
+              targetId : targetId
+            }
+            return true;
+          },
           activeClass: 'container-not-accept-hover'
         });
         elem.addClass('block-style-container')

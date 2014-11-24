@@ -8,10 +8,7 @@ angular.module('nestorApp')
       $scope.isLeftOpen = false;
       $scope.isPropertiesShowing = false;
 
-      //set up jsPlumb
-      $scope.init = function () {
-        UIComponents.setupJSPlumb($scope);
-      };
+      UIComponents.setupJSPlumb($scope);
 
       //create the main data model variables
       $scope.templateString = CFTemplate.getStringFormat();
@@ -227,6 +224,7 @@ angular.module('nestorApp')
         var targetObject = CFTemplate.getResource(targetName);
 
         var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
+
 
         var finalTarget;
         var connectionHappened;

@@ -1273,6 +1273,9 @@ section#support .media:hover i {
   border: 5px dashed black;
   z-index: 1;
 }
+#mid-container #middle-panel .container-hover {
+  background-color: green !important;
+}
 .draggable {
   width: 100px;
   height: 100px;
