@@ -131,6 +131,13 @@ app.service('AWSComponents', function () {
         description: 'Logically isolated section of the Cloud to launch resources in a virtual network that you define',
         type: 'AWS::EC2::VPC',
         blockType: 'container'
+      },
+      {
+        name: 'Subnet',
+        image: 'images/aws/subnet.png',
+        description: 'subnet in an existing VPC.',
+        type: 'AWS::EC2::Subnet',
+        blockType: 'container'
       }
       //{
       //  name: 'Cloud Formation',
@@ -299,6 +306,69 @@ app.service('AWSComponents', function () {
             {name: 'Tags', type: 'Tags', description: 'The tags that you want to attach to the resource'}
           ]
         }
+      },
+      'AWS::EC2::Subnet' : {
+        type: 'AWS::EC2::Subnet',
+        IncomingConnection: {},
+        properties: {
+          required: [
+            {
+              name: 'VpcId',
+              type: 'String',
+              description: 'Id of the VPC to which this subnet belongs'
+            },
+            {
+              name: 'CidrBlock',
+              type: 'String',
+              description: 'The CIDR block you want the subnet to cover. For example: "10.0.0.0/16'
+            }
+          ],
+          optional: [
+            {
+              name: 'AvailabilityZone',
+              type: 'String',
+              description: 'Specifies the name of the Availability Zone in which the subnet is located',
+              // a list of allowable values
+              allowableValues: [
+                {
+                  'ap-northeast-1b': 'Asia Pacific (Tokyo)'
+                },
+                {
+                  'ap-southeast-1b': 'Asia Pacific (Singapore)'
+                },
+                {
+                  'ap-southeast-2b': 'Asia Pacific (Sydney)'
+                },
+                {
+                  'eu-central-1b': 'EU (Frankfurt)'
+                },
+                {
+                  'eu-west-1b': 'EU (Ireland)'
+                },
+                {
+                  'sa-east-1b': 'South America (Sao Paulo)'
+                },
+                {
+                  'us-east-1b': 'US East (N. Virginia)'
+                },
+                {
+                  'us-west-1b': 'US West (N. California)'
+                },
+                {
+                  'us-west-2b': 'US West (Oregon)'
+                }
+              ]
+            },
+            {name: 'Tags', type: 'Tags', description: 'tooltip??'}
+          ]
+        },
+        outputs: [
+          {
+            type: 'Ref',
+            name: 'subnetId',
+            description: 'Logical Id of the subnet'
+          }
+        ]
       },
       'AWS::Route53::RecordSet': {
         type: 'AWS::Route53::RecordSet',

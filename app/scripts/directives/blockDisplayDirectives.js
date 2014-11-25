@@ -7,7 +7,7 @@
 
 var app = angular.module('nestorApp.directives');
 
-app.directive('blockDisplay', function () {
+app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
   return {
     restrict: 'A',
     scope : {
@@ -25,19 +25,32 @@ app.directive('blockDisplay', function () {
       elem.addClass('ui-widget-content');
       if (scope.componentBlockType === 'container') {
 
-        elem.resizable({ handles: "all" });
+        elem.resizable({ handles: 'all' });
         elem.addClass('droppable');
         elem.addClass('ui-widget-header');
         elem.droppable({
-          drop: function( event, ui ) {
-            alert('fuck you');
-          }
+          drop: function( event, ui ) {},
+          out: function (event, ui) {},
+          hoverClass : 'container-hover',
+          tolerance: 'touch',
+          accept : function(draggable) {
+            var sourceId = draggable.attr('id');
+            var targetId = elem.attr('id');
+            var info = {
+              source : draggable[0],
+              sourceId : sourceId,
+              target : elem[0],
+              targetId : targetId
+            };
+            return UIComponents.validateConnection(info);
+          },
+          activeClass: 'container-not-accept-hover'
         });
-        elem.addClass('block-style-container')
+        elem.addClass('block-style-container');
         //elem.on('resizestop', function (evt, ui) {
         //  if (scope.callback) { scope.callback(); }
         //});
       }
     }
   };
-});
+}]);
