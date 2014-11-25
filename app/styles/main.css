@@ -1212,12 +1212,12 @@ section#support .media:hover i {
 }
 #left-panel .mainmenu .options.optionActive {
   cursor: pointer;
-  border-left: 4px solid teal;
+  border-left: 3px solid teal;
   height: 30px;
   margin-bottom: 20px;
 }
 #left-panel .mainmenu .options.optionActive img {
-  margin-left: 3px;
+  margin-left: 4px;
 }
 #left-panel .optionsmenu {
   z-index: 0;

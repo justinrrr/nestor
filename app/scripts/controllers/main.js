@@ -85,12 +85,16 @@ angular.module('nestorApp')
       //--------------------------------------
 
       $scope.linkActivated = function (option) {
+        //when someone closes the submenu, we want the active state to disappear
         $scope.selectedOption = option.name;
+
+
       };
 
       $scope.closeLeft = function () {
 
-        $scope.isLeftOpen = !$scope.isLeftOpen;
+        $scope.isLeftOpen = false;
+        delete $scope.selectedOption;
         $rootScope.$broadcast('leftmostResizeRequest');
       };
 
