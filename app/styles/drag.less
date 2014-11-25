@@ -1,18 +1,14 @@
-
-
 // This is the visual of the component card while its being dragged
 .dragging {
-  background-color: white;
-  z-index: 1000;
+  z-index: 9999;
   position: absolute;
   .component-item {
     display: table-cell;
     vertical-align: middle;
-    color: #5C6A74;
+    color: rgb(32, 42, 54);
     font-weight: 400;
     width: 210px;
     height: 40px;
-    border-bottom: 1px solid rgba(29, 35, 45, 0.73);
     &:hover {
       cursor: pointer;
       background-color: @teal;
@@ -25,6 +21,7 @@
       position: absolute;
       left: 40px;
       height: 39px;
+      background-color: rgba(161, 169, 182, 0.81);
       p {
         font-size: 12px;
         vertical-align: middle;
@@ -38,7 +35,7 @@
       float: left;
       width: 40px;
       height: 40px;
-      background-color: rgb(25, 29, 36);
+      background-color: rgba(32, 42, 54, 0.82);
       img.component-image {
         width: 30px;
         height: 30px;
@@ -49,3 +46,5 @@
     }
   }
 }
+
+

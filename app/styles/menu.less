@@ -32,9 +32,22 @@
     padding-top: 67px;
     padding-left: 23px;
     .options {
-
+      height: 30px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    .options.optionActive {
+      cursor: pointer;
+      border-left: 4px solid teal;
+      height: 30px;
+      margin-bottom: 20px;
+      img {
+        margin-left: 3px;
+      }
     }
   }
+
+  // The main menu icon color is: #707072. Use it if any redesign is required
 
   //  Sub-Menu globla styles
   .optionsmenu {
@@ -55,6 +68,7 @@
     background-color: #202a36;
     padding: 0px;
   }
+
 }
 
 /* ----------- Center Window ----------*/
@@ -66,6 +80,7 @@
   overflow: auto;
   width: 77%;
 }
+
 #middle-panel-resizer {
   background-color: #666;
   position: absolute;
@@ -74,22 +89,20 @@
   cursor: e-resize;
 }
 
-
 //Make sure that the difference between these two is exactly 12
 //Open
 .middle-panel-smaller {
   left: 19%
 }
+
 //close
 .middle-panel-bigger {
   left: 3%
 }
 
-
-
 /* ----------- Right Window ----------*/
 #right-panel {
-//  background-color: #000000;
+  //  background-color: #000000;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -109,12 +122,11 @@
   z-index: 100;
 }
 
-
 /* ----------- All Windows ----------*/
 .base-panel {
-//  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-  transition:all cubic-bezier(.55,0,.1,1) 0.5s;
-  animation: bounce 0.01s cubic-bezier(.55,0,.1,1) ;
+  //  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition: all cubic-bezier(.55, 0, .1, 1) 0.5s;
+  animation: bounce 0.01s cubic-bezier(.55, 0, .1, 1);
 }
 
 #sidebar-resizer:hover, #preview-resizer:hover {

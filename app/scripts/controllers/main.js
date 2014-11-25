@@ -29,12 +29,12 @@ angular.module('nestorApp')
       $scope.tasks = AWSComponents.tasks;
 
       $scope.leftPanelOptions = [
-        {name: 'Components', visible: true, image: 'images/solution.png'},
         {
           name: 'Tasks',
           visible: true,
           image: 'images/solutions.png'
         },
+        {name: 'Components', visible: true, image: 'images/solution.png'},
         {name: 'Properties', visible: 'false', image: 'images/properties.png'}
       ];
       //UI State
@@ -86,6 +86,10 @@ angular.module('nestorApp')
       //--------------------------------------
       // UI Events
       //--------------------------------------
+
+      $scope.linkActivated = function (option) {
+        $scope.selectedOption = option.name;
+      };
 
       $scope.closeLeft = function () {
 

@@ -3,7 +3,7 @@
 
   <div class="base-panel col-lg-2 mainmenu">
     <div ng-repeat="option in leftPanelOptions" ng-show="!(option.name === 'Properties' && !selectedComponent)"
-         class="options">
+         class="options" ng-click="linkActivated(option)" ng-class="{'optionActive' : selectedOption === option.name }" >
       <img width="25px" ng-src="{{option.image}}" ng-click="optionPressed(option)">
       <br>
       <br>
@@ -104,13 +104,13 @@
     <!-- The actual components on the canvas -->
     <div plumb-item
          block-display
+         ng-repeat="component in addedComponents"
          plumb-block-type="{{component.blockType}}"
          component-block-type="{{component.blockType}}"
          component-type="{{component.type}}"
          ng-click="clickCallback(component)"
          class="item"
-         ng-class="{'selectedComponent ' : component.id === selectedComponent.id}"
-         ng-repeat="component in addedComponents"
+         ng-class="{'selectedComponent' : component.id === selectedComponent.id}"
          ng-style="{ 'left':component.x, 'top':component.y }"
          data-identifier="{{component.id}}"
          data-component-name={{component.name}}>
@@ -157,8 +157,8 @@
 
 <!--This is the visual of the component card while its being dragged-->
 <div
-  ng-drag-clone="" class="dragging">
-  <div class="component-item">
+  class="dragging">
+  <div  ng-drag-clone="" class="component-item">
     <div class="imgdiv">
       <img class="component-image" ng-src="{{clonedData.image}}"/>
     </div>

@@ -374,7 +374,7 @@ div[resizable] {
   color: black;
 }
 #left-panel > .optionsmenu .empty-container {
-  width: 224px;
+  width: 229px;
   height: 40px !important;
   position: absolute;
   color: transparent;
@@ -403,11 +403,11 @@ div[resizable] {
   height: 40px;
 }
 #left-panel > .optionsmenu .empty-container .imgdiv img.component-image {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   position: absolute;
-  left: 5px;
-  margin-top: 4px;
+  left: 10px;
+  margin-top: 10px;
 }
 #left-panel > .optionsmenu .empty-container:hover {
   cursor: move;
@@ -454,11 +454,11 @@ div[resizable] {
   height: 40px;
 }
 #left-panel > .optionsmenu .component-item .imgdiv img.component-image {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   position: absolute;
-  left: 5px;
-  margin-top: 4px;
+  left: 10px;
+  margin-top: 10px;
 }
 #left-panel > .optionsmenu .component-item.property {
   border-bottom: none;
@@ -470,8 +470,14 @@ div[resizable] {
 #left-panel > .optionsmenu .component-item.property .pdiv p {
   color: #6f7b91;
 }
-#left-panel > .optionsmenu .component-item.property .imgdiv > img {
+#left-panel > .optionsmenu .component-item.property .imgdiv {
+  padding-top: 10px !important;
+}
+#left-panel > .optionsmenu .component-item.property .imgdiv img {
   margin-top: 0px !important;
+  width: 20px !important;
+  height: 20px !important;
+  left: 10px !important;
 }
 #left-panel > .optionsmenu .propertyinput {
   border: 1px solid rgba(52, 56, 68, 0.36);
@@ -508,7 +514,7 @@ div[resizable] {
   display: table-cell;
   vertical-align: middle;
   font-weight: 400;
-  width: 224px;
+  width: 229px;
   height: 40px !important;
   border-bottom: 1px solid rgba(29, 35, 45, 0.73);
   padding: 10px 15px 10px 15px;
@@ -860,18 +866,16 @@ div[resizable] {
   cursor: col-resize;
 }
 .dragging {
-  background-color: white;
-  z-index: 1000;
+  z-index: 9999;
   position: absolute;
 }
 .dragging .component-item {
   display: table-cell;
   vertical-align: middle;
-  color: #5C6A74;
+  color: #202a36;
   font-weight: 400;
   width: 210px;
   height: 40px;
-  border-bottom: 1px solid rgba(29, 35, 45, 0.73);
 }
 .dragging .component-item:hover {
   cursor: pointer;
@@ -885,6 +889,7 @@ div[resizable] {
   position: absolute;
   left: 40px;
   height: 39px;
+  background-color: rgba(161, 169, 182, 0.81);
 }
 .dragging .component-item .pdiv p {
   font-size: 12px;
@@ -898,7 +903,7 @@ div[resizable] {
   float: left;
   width: 40px;
   height: 40px;
-  background-color: #191d24;
+  background-color: rgba(32, 42, 54, 0.82);
 }
 .dragging .component-item .imgdiv img.component-image {
   width: 30px;
@@ -1199,6 +1204,20 @@ section#support .media:hover i {
   background-color: #191d24;
   padding-top: 67px;
   padding-left: 23px;
+}
+#left-panel .mainmenu .options {
+  height: 30px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+#left-panel .mainmenu .options.optionActive {
+  cursor: pointer;
+  border-left: 4px solid teal;
+  height: 30px;
+  margin-bottom: 20px;
+}
+#left-panel .mainmenu .options.optionActive img {
+  margin-left: 3px;
 }
 #left-panel .optionsmenu {
   z-index: 0;
