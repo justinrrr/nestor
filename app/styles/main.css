@@ -257,6 +257,11 @@ body {
 }
 #mid-container > #middle-panel .AWS-EC2-EIP > img {
   height: 20px;
+  margin-top: 40px;
+}
+#mid-container > #middle-panel .AWS-EC2-EIP.selectedComponent > img {
+  height: 20px;
+  margin-top: 20px;
 }
 #mid-container > #middle-panel div[resizable] {
   border: 1px solid Black;
@@ -269,7 +274,11 @@ body {
   opacity: 0;
 }
 #mid-container > #middle-panel .deletecomponent {
-  padding: 0px;
+  padding: 2px;
+  border-radius: 50%;
+  z-index: 1000;
+  background-color: transparent;
+  border: none;
 }
 #mid-container > #middle-panel .deletecomponent:focus {
   outline: none;
@@ -278,9 +287,15 @@ body {
   font-size: 14px;
   color: #a5a6a6;
 }
+#mid-container > #middle-panel .deletecomponent i:hover {
+  color: #e27a7a;
+}
 #mid-container > #middle-panel .propertycanvas {
   padding: 0px;
   margin-left: 5px;
+  z-index: 1000;
+  border: teal;
+  background-color: transparent;
 }
 #mid-container > #middle-panel .propertycanvas:focus {
   outline: none;
@@ -309,9 +324,9 @@ body {
 }
 #mid-container > #middle-panel svg circle {
   fill: transparant;
-  stroke: #17bcb8;
-  stroke-width: 1px;
-  z-index: 1;
+  stroke: rgba(213, 50, 43, 0.57);
+  stroke-width: 2px;
+  z-index: 1000;
 }
 #mid-container > #middle-panel svg ._jsPlumb_endpoint._jsPlumb_endpoint_anchor_.ui-droppable.ui-draggable.ui-draggable-handle._jsPlumb_endpoint_connected._jsPlumb_endpoint_full circle {
   fill: #2b3743;
@@ -320,7 +335,7 @@ body {
   z-index: 1;
 }
 #mid-container > #middle-panel svg path {
-  stroke: #2b3743;
+  stroke: rgba(213, 50, 43, 0.29) !important;
   stroke-width: 1.5px;
 }
 /* Sub-Menu Style */

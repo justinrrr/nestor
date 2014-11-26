@@ -116,6 +116,11 @@
   //Styles for specific components on canvas
   .AWS-EC2-EIP > img {
     height: 20px;
+    margin-top: 40px;
+  }
+  .AWS-EC2-EIP.selectedComponent > img {
+    height: 20px;
+    margin-top: 20px;
   }
 
   //Resizable box (e.g, VPC)
@@ -132,20 +137,31 @@
     opacity:0;
   }
   .deletecomponent {
-    padding: 0px;
+    padding: 2px;
+    border-radius: 50%;
+    z-index: 1000;
+    background-color: transparent;
+    border: none;
     &:focus {
       outline: none;
     }
     i {
       font-size: 14px;
       color: rgb(165, 166, 166);
+      &:hover {
+        color: rgb(226, 122, 122);
+      }
     }
   }
   .propertycanvas {
     padding: 0px;
     margin-left: 5px;
+    z-index: 1000;
+    border: teal;
+    background-color: transparent;
     &:focus {
       outline: none;
+
     }
     img {
       width: 12px;
@@ -174,9 +190,9 @@
     }
     circle {
       fill: transparant;
-      stroke: @light-teal;
-      stroke-width: 1px;
-      z-index: 1;
+      stroke: rgba(213, 50, 43, 0.57);
+      stroke-width: 2px;
+      z-index: 1000;
     }
 
 
@@ -189,7 +205,7 @@
       }
     }
     path {
-      stroke: @ambiance;
+      stroke: rgba(213, 50, 43, 0.29) !important;
       stroke-width: 1.5px;
     }
     pointer-events: all;
