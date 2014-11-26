@@ -90,18 +90,18 @@ app.directive('derivedProperties', ['AWSComponents','CFTemplate',
 
   }]);
 
-app.directive('primitiveProperty', [function () {
+app.directive('primitiveProperty', ['CFTemplate', function (CFTemplate) {
   return {
     replace: true,
     restrict: 'E',
     transclude: true,
     scope: {
       property: '=',
-      model: '=',
       componentName: '='
     },
     templateUrl: '../../templates/primitive_properties.html',
     link: function (scope) {
+      scope.model = CFTemplate.getPropertiesForResource(scope.componentName);
 
       if (scope.property.type === 'Boolean') {
         scope.inputType = 'checkbox';
@@ -111,7 +111,7 @@ app.directive('primitiveProperty', [function () {
         scope.inputType = 'text';
       }
       if (!scope.model && scope.property.default) {
-        scope.model = scope.property.default[0];
+        scope.model[scope.property.name] = scope.property.default[0];
       }
 
 
@@ -132,8 +132,9 @@ app.directive('primitiveProperty', [function () {
 
 
       scope.itemSelected = function (selectedItem) {
-        scope.model = selectedItem;
+        scope.model[scope.property.name] = selectedItem;
       };
+
     }
   };
 }]);
