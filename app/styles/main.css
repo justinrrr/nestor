@@ -10,6 +10,45 @@ body {
 #container {
   background-color: white;
 }
+.appnavbar {
+  border-radius: 0px;
+  background-color: #394a57;
+}
+.appnavbar .brand {
+  position: absolute;
+  top: 6px;
+}
+.appnavbar .navbar-brand p {
+  margin: 0 0 10px 38px;
+  color: white;
+  font-size: 16px;
+}
+.appnavbar .navbar-collapse > .navbar-right {
+  margin-top: 12px;
+}
+.appnavbar .navbar-collapse > .navbar-right input.button {
+  border: 1px solid #17bcb8;
+  color: #17bcb8;
+  background: transparent;
+  margin-right: 10px;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 300ms;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-property: all;
+  -moz-transition-duration: 300ms;
+  -moz-transition-timing-function: ease;
+  -o-transition-property: all;
+  -o-transition-duration: 300ms;
+  -o-transition-timing-function: ease;
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+.appnavbar .navbar-collapse > .navbar-right input.button:hover,
+.appnavbar .navbar-collapse > .navbar-right input.button:focus {
+  background: #17bcb8;
+  color: #ffffff;
+}
 .modal-backdrop.fade.in {
   opacity: 0.8;
 }
@@ -120,6 +159,7 @@ body {
   background-color: rgba(252, 113, 105, 0.72);
 }
 #right-panel.ace-twilight {
+  top: 52px;
   height: 100%;
   background-color: #191d24;
 }
@@ -141,6 +181,9 @@ body {
 }
 #right-panel.ace-twilight .ace_marker-layer .ace_selection {
   background: rgba(161, 169, 182, 0.22);
+}
+#mid-container > #middle-panel {
+  top: 52px;
 }
 #mid-container > #middle-panel .canvasbtns {
   padding: 10px;
@@ -340,6 +383,7 @@ body {
 }
 /* Sub-Menu Style */
 #left-panel > .optionsmenu {
+  top: 52px;
   /* ----------- Component, Solution stack, and Property draggable items ----------*/
   /* ----------- Component specific styles ----------*/
   /* ----------- Solutions-Stack specific styles ----------*/
@@ -1295,6 +1339,7 @@ section#support .media:hover i {
   background-color: #191d24;
   padding-top: 67px;
   padding-left: 23px;
+  top: 52px;
 }
 #left-panel .mainmenu .options {
   height: 30px;
@@ -1360,7 +1405,7 @@ section#support .media:hover i {
 #right-panel-resizer {
   background-color: #666;
   position: absolute;
-  top: 0;
+  top: 52px;
   bottom: 0;
   width: 6px;
   right: 20%;

@@ -46,4 +46,45 @@ body {
 }
 
 
+.appnavbar {
+  border-radius: 0px;
+  background-color: #394a57;
+  .brand {
+    position: absolute;
+    top: 6px;
+  }
+  .navbar-brand{
+    p {
+      margin: 0 0 10px 38px;
+      color: white;
+      font-size: 16px;
+    }
+  }
+  .navbar-collapse > .navbar-right {
+    margin-top: 12px;
+    input.button {
+      border: 1px solid #17bcb8;
+      color: #17bcb8;
+      background: transparent;
+      margin-right: 10px;
+      -webkit-transition-property: all;
+      -webkit-transition-duration: 300ms;
+      -webkit-transition-timing-function: ease;
+      -moz-transition-property: all;
+      -moz-transition-duration: 300ms;
+      -moz-transition-timing-function: ease;
+      -o-transition-property: all;
+      -o-transition-duration: 300ms;
+      -o-transition-timing-function: ease;
+      transition-property: all;
+      transition-duration: 300ms;
+      transition-timing-function: ease;
+      &:hover,
+      &:focus {
+        background: #17bcb8;
+        color: #fff
+      }
+    }
+  }
+}
 
