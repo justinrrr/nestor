@@ -1,17 +1,33 @@
-
 //Left column style
-.layout-mock > .stretch.ui-layout-column {
-  .right-column {
-    .ace_editor {
-      height: 100%;
-    }
+#right-panel.ace-twilight {
+  height: 100%;
+
+  //side panel with numbered lines
+  .ace_gutter {
+    background-color: #191d24;
+    color: #5C6A74;
   }
-  .ace-ambiance .ace_variable {
-//    color: #89A1D0 !important;
+  //main panel with JSON
+  .ace_scroller > .ace_content {
+    background-color: #202a36;
+   .ace_layer.ace_text-layer > .ace_line {
+     .ace_variable {
+       color: #9AABC8;
+     }
+     .ace_string {
+       color: #EFEFEF;
+     }
+     .ace_paren {
+       color: #1CBEBB;
+     }
+   }
   }
 }
 
+.ace-ambiance .ace_variable {
+  //    color: #89A1D0 !important;
+}
 
 #right-panel.ace-twilight .ace_marker-layer .ace_selection {
-background: #1e7c7a;
+  background: rgba(161, 169, 182, 0.22);
 }

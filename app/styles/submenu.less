@@ -222,14 +222,49 @@
     height: 27px;
     box-shadow: none;
     border-radius: 0px;
-    width: 57%;
+    width: 64%;
     color: #6f7b91;
     &:focus {
       border: 1px solid @darkfield;
       background: #191d24;
     }
   }
-
+  .propertyinput.ng-valid.ng-dirty {
+    label {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: linear-gradient(top, #222 0%, #45484d 100%);
+      border-radius: 4px;
+      box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+      &:after {
+        content: '';
+        width: 9px;
+        height: 5px;
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        border: 3px solid #fcfff4;
+        border-top: none;
+        border-right: none;
+        background: transparent;
+        opacity: 0;
+        transform: rotate(-45deg);
+      }
+      &:hover::after {
+        opacity: 0.3;
+      }
+    }
+    input[type=checkbox] {
+      visibility: hidden;
+      &:checked + label:after {
+        opacity: 1;
+      }
+    }
+  }
 
   /* ----------- Component specific styles ----------*/
   #components {
@@ -311,9 +346,12 @@
         color: white;
       }
 
-      // Name of the property, as entered by the user
+      // Name of the property
       .propertyname {
         padding: 10px 0px 5px 0px;
+        span {
+          font-size: 12px;
+        }
       }
 
 

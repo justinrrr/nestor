@@ -41,10 +41,10 @@
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);
-    -moz-box-shadow: 2px 2px 3px 1px #AAA;
-    -webkit-box-shadow: 2px 2px 3px 1px #AAA;
-    box-shadow: 2px 2px 3px 1px #AAA;
-    border: 1px solid rgba(106, 126, 163, 0.22);
+//    -moz-box-shadow: 2px 2px 3px 1px #AAA;
+//    -webkit-box-shadow: 2px 2px 3px 1px #AAA;
+//    box-shadow: 2px 2px 3px 1px #AAA;
+    border: 1px solid rgba(106, 126, 163, 0.34);
     border-radius: 0;
     img {
       position: relative;
@@ -79,14 +79,15 @@
     .ep {
       position: absolute;
       bottom: 42%;
-      right: -1px;
+      right: 3px;
       color: white;
       //        border: 2px solid orange;
       //        box-shadow: 0px 0px 2px black;
-      width: 21px;
-      height: 20px;
+      width: 10px;
+      height: 10px;
       //        border-radius: 20%;
-      background-color: transparent;
+      background-color: rgba(215, 223, 103, 0.69);
+      border-radius: 50%;
       cursor: pointer;
       -webkit-transition: -webkit-box-shadow 0.25s ease-in;
       -moz-transition: -moz-box-shadow 0.25s ease-in;
@@ -99,10 +100,10 @@
   }
   .selectedComponent {
     background-color: rgba(170, 185, 192, 0.12);
-    -moz-box-shadow: 2px 2px 3px 1px #AAA;
-    -webkit-box-shadow: 2px 2px 3px 1px #AAA;
-    box-shadow: 2px 2px 3px 1px #AAA;
-    border: 1px solid rgba(106, 126, 163, 0.22);
+//    -moz-box-shadow: 2px 2px 3px 1px #AAA;
+//    -webkit-box-shadow: 2px 2px 3px 1px #AAA;
+//    box-shadow: 2px 2px 3px 1px #AAA;
+    border: 1px solid rgba(106, 126, 163, 0.34);
     border-radius: 0;
     p > .delete {
       border-radius: 0px;
@@ -117,13 +118,35 @@
       color: @evening;
     }
   }
+
+  //Styles for specific components on canvas
+  .AWS-EC2-EIP > img {
+    height: 20px;
+  }
+
+  //Resizable box (e.g, VPC)
+  div[resizable] {
+    border: 1px solid Black;
+    width: 50%;
+  }
+
+  //  animations for showing/hiding toggle buttons (close and properties)
+  .animate-show {
+    -webkit-transition:all linear 0.2s;
+    transition:all linear 0.2s;
+    opacity:1;
+  }
+  .animate-show.ng-hide {
+    opacity:0;
+  }
+
+  //  JS Plumb Style
   ._jsPlumb_overlay {
     background-color: white;
     padding: 5px;
     border-radius: 10px;
     border: 1px solid lightsteelblue;
   }
-
   svg {
     path {
       stroke: rgba(111, 123, 145, 0.49)!important;
@@ -155,19 +178,7 @@
     pointer-events: all;
 
   }
+
 }
 
-.animate-show {
-  -webkit-transition:all linear 0.2s;
-  transition:all linear 0.2s;
-  opacity:1;
-}
 
-.animate-show.ng-hide {
-  opacity:0;
-}
-
-div[resizable] {
-  border: 1px solid Black;
-  width: 50%;
-}
