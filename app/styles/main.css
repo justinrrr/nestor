@@ -121,13 +121,14 @@ body {
 }
 #right-panel.ace-twilight {
   height: 100%;
+  background-color: #191d24;
 }
 #right-panel.ace-twilight .ace_gutter {
-  background-color: #191d24;
+  background-color: #202a36;
   color: #5C6A74;
 }
 #right-panel.ace-twilight .ace_scroller > .ace_content {
-  background-color: #202a36;
+  background-color: #191d24;
 }
 #right-panel.ace-twilight .ace_scroller > .ace_content .ace_layer.ace_text-layer > .ace_line .ace_variable {
   color: #9AABC8;
@@ -190,8 +191,8 @@ body {
   position: relative;
   width: 40px;
   height: 40px;
-  margin-top: 2px;
   margin-bottom: -4px;
+  margin-top: 20px;
 }
 #mid-container > #middle-panel .item .title {
   font-weight: 500;
@@ -223,7 +224,7 @@ body {
   color: white;
   width: 10px;
   height: 10px;
-  background-color: rgba(215, 223, 103, 0.69);
+  background-color: rgba(213, 50, 43, 0.57);
   border-radius: 50%;
   cursor: pointer;
   -webkit-transition: -webkit-box-shadow 0.25s ease-in;
@@ -238,6 +239,9 @@ body {
   background-color: rgba(170, 185, 192, 0.12);
   border: 1px solid rgba(106, 126, 163, 0.34);
   border-radius: 0;
+}
+#mid-container > #middle-panel .selectedComponent img {
+  margin-top: 0px;
 }
 #mid-container > #middle-panel .selectedComponent p > .delete {
   border-radius: 0px;
@@ -259,12 +263,33 @@ body {
   width: 50%;
 }
 #mid-container > #middle-panel .animate-show {
-  -webkit-transition: all linear 0.2s;
-  transition: all linear 0.2s;
   opacity: 1;
 }
 #mid-container > #middle-panel .animate-show.ng-hide {
   opacity: 0;
+}
+#mid-container > #middle-panel .deletecomponent {
+  padding: 0px;
+}
+#mid-container > #middle-panel .deletecomponent:focus {
+  outline: none;
+}
+#mid-container > #middle-panel .deletecomponent i {
+  font-size: 14px;
+  color: #a5a6a6;
+}
+#mid-container > #middle-panel .propertycanvas {
+  padding: 0px;
+  margin-left: 5px;
+}
+#mid-container > #middle-panel .propertycanvas:focus {
+  outline: none;
+}
+#mid-container > #middle-panel .propertycanvas img {
+  width: 12px;
+  height: 12px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 #mid-container > #middle-panel ._jsPlumb_overlay {
   background-color: white;
