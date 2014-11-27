@@ -1,6 +1,7 @@
 
 //   Center column style
 #mid-container > #middle-panel {
+  top: 52px;
   .canvasbtns {
     padding: 10px;
     .btn:focus, .btn:active:focus, .btn.active:focus {
@@ -41,17 +42,14 @@
     -webkit-transform: translateZ(0);
     -ms-transform: translateZ(0);
     transform: translateZ(0);
-//    -moz-box-shadow: 2px 2px 3px 1px #AAA;
-//    -webkit-box-shadow: 2px 2px 3px 1px #AAA;
-//    box-shadow: 2px 2px 3px 1px #AAA;
     border: 1px solid rgba(106, 126, 163, 0.34);
     border-radius: 0;
     img {
       position: relative;
       width: 40px;
       height: 40px;
-      margin-top: 2px;
       margin-bottom: -4px;
+      margin-top: 20px;
     }
     .title {
       font-weight: 500;
@@ -81,12 +79,9 @@
       bottom: 42%;
       right: 3px;
       color: white;
-      //        border: 2px solid orange;
-      //        box-shadow: 0px 0px 2px black;
       width: 10px;
       height: 10px;
-      //        border-radius: 20%;
-      background-color: rgba(215, 223, 103, 0.69);
+      background-color: rgba(213, 50, 43, 0.57);
       border-radius: 50%;
       cursor: pointer;
       -webkit-transition: -webkit-box-shadow 0.25s ease-in;
@@ -100,11 +95,11 @@
   }
   .selectedComponent {
     background-color: rgba(170, 185, 192, 0.12);
-//    -moz-box-shadow: 2px 2px 3px 1px #AAA;
-//    -webkit-box-shadow: 2px 2px 3px 1px #AAA;
-//    box-shadow: 2px 2px 3px 1px #AAA;
     border: 1px solid rgba(106, 126, 163, 0.34);
     border-radius: 0;
+    img {
+      margin-top: 0px;
+    }
     p > .delete {
       border-radius: 0px;
       border: 0px;
@@ -122,6 +117,11 @@
   //Styles for specific components on canvas
   .AWS-EC2-EIP > img {
     height: 20px;
+    margin-top: 40px;
+  }
+  .AWS-EC2-EIP.selectedComponent > img {
+    height: 20px;
+    margin-top: 20px;
   }
 
   //Resizable box (e.g, VPC)
@@ -132,13 +132,47 @@
 
   //  animations for showing/hiding toggle buttons (close and properties)
   .animate-show {
-    -webkit-transition:all linear 0.2s;
-    transition:all linear 0.2s;
     opacity:1;
   }
   .animate-show.ng-hide {
     opacity:0;
   }
+  .deletecomponent {
+    padding: 2px;
+    border-radius: 50%;
+    z-index: 1000;
+    background-color: transparent;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+    i {
+      font-size: 14px;
+      color: rgb(165, 166, 166);
+      &:hover {
+        color: rgb(226, 122, 122);
+      }
+    }
+  }
+  .propertycanvas {
+    padding: 0px;
+    margin-left: 5px;
+    z-index: 1000;
+    border: teal;
+    background-color: transparent;
+    &:focus {
+      outline: none;
+
+    }
+    img {
+      width: 12px;
+      height: 12px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  }
+
+
 
   //  JS Plumb Style
   ._jsPlumb_overlay {
@@ -157,9 +191,9 @@
     }
     circle {
       fill: transparant;
-      stroke: @light-teal;
-      stroke-width: 1px;
-      z-index: 1;
+      stroke: rgba(213, 50, 43, 0.57);
+      stroke-width: 2px;
+      z-index: 1000;
     }
 
 
@@ -172,7 +206,7 @@
       }
     }
     path {
-      stroke: @ambiance;
+      stroke: rgba(213, 50, 43, 0.29) !important;
       stroke-width: 1.5px;
     }
     pointer-events: all;

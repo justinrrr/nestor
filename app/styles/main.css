@@ -10,6 +10,45 @@ body {
 #container {
   background-color: white;
 }
+.appnavbar {
+  border-radius: 0px;
+  background-color: #394a57;
+}
+.appnavbar .brand {
+  position: absolute;
+  top: 6px;
+}
+.appnavbar .navbar-brand p {
+  margin: 0 0 10px 38px;
+  color: white;
+  font-size: 16px;
+}
+.appnavbar .navbar-collapse > .navbar-right {
+  margin-top: 12px;
+}
+.appnavbar .navbar-collapse > .navbar-right input.button {
+  border: 1px solid #17bcb8;
+  color: #17bcb8;
+  background: transparent;
+  margin-right: 10px;
+  -webkit-transition-property: all;
+  -webkit-transition-duration: 300ms;
+  -webkit-transition-timing-function: ease;
+  -moz-transition-property: all;
+  -moz-transition-duration: 300ms;
+  -moz-transition-timing-function: ease;
+  -o-transition-property: all;
+  -o-transition-duration: 300ms;
+  -o-transition-timing-function: ease;
+  transition-property: all;
+  transition-duration: 300ms;
+  transition-timing-function: ease;
+}
+.appnavbar .navbar-collapse > .navbar-right input.button:hover,
+.appnavbar .navbar-collapse > .navbar-right input.button:focus {
+  background: #17bcb8;
+  color: #ffffff;
+}
 .modal-backdrop.fade.in {
   opacity: 0.8;
 }
@@ -120,6 +159,7 @@ body {
   background-color: rgba(252, 113, 105, 0.72);
 }
 #right-panel.ace-twilight {
+  top: 52px;
   height: 100%;
   background-color: #191d24;
 }
@@ -141,6 +181,9 @@ body {
 }
 #right-panel.ace-twilight .ace_marker-layer .ace_selection {
   background: rgba(161, 169, 182, 0.22);
+}
+#mid-container > #middle-panel {
+  top: 52px;
 }
 #mid-container > #middle-panel .canvasbtns {
   padding: 10px;
@@ -191,8 +234,8 @@ body {
   position: relative;
   width: 40px;
   height: 40px;
-  margin-top: 2px;
   margin-bottom: -4px;
+  margin-top: 20px;
 }
 #mid-container > #middle-panel .item .title {
   font-weight: 500;
@@ -224,7 +267,7 @@ body {
   color: white;
   width: 10px;
   height: 10px;
-  background-color: rgba(215, 223, 103, 0.69);
+  background-color: rgba(213, 50, 43, 0.57);
   border-radius: 50%;
   cursor: pointer;
   -webkit-transition: -webkit-box-shadow 0.25s ease-in;
@@ -240,6 +283,9 @@ body {
   border: 1px solid rgba(106, 126, 163, 0.34);
   border-radius: 0;
 }
+#mid-container > #middle-panel .selectedComponent img {
+  margin-top: 0px;
+}
 #mid-container > #middle-panel .selectedComponent p > .delete {
   border-radius: 0px;
   border: 0px;
@@ -254,18 +300,54 @@ body {
 }
 #mid-container > #middle-panel .AWS-EC2-EIP > img {
   height: 20px;
+  margin-top: 40px;
+}
+#mid-container > #middle-panel .AWS-EC2-EIP.selectedComponent > img {
+  height: 20px;
+  margin-top: 20px;
 }
 #mid-container > #middle-panel div[resizable] {
   border: 1px solid Black;
   width: 50%;
 }
 #mid-container > #middle-panel .animate-show {
-  -webkit-transition: all linear 0.2s;
-  transition: all linear 0.2s;
   opacity: 1;
 }
 #mid-container > #middle-panel .animate-show.ng-hide {
   opacity: 0;
+}
+#mid-container > #middle-panel .deletecomponent {
+  padding: 2px;
+  border-radius: 50%;
+  z-index: 1000;
+  background-color: transparent;
+  border: none;
+}
+#mid-container > #middle-panel .deletecomponent:focus {
+  outline: none;
+}
+#mid-container > #middle-panel .deletecomponent i {
+  font-size: 14px;
+  color: #a5a6a6;
+}
+#mid-container > #middle-panel .deletecomponent i:hover {
+  color: #e27a7a;
+}
+#mid-container > #middle-panel .propertycanvas {
+  padding: 0px;
+  margin-left: 5px;
+  z-index: 1000;
+  border: teal;
+  background-color: transparent;
+}
+#mid-container > #middle-panel .propertycanvas:focus {
+  outline: none;
+}
+#mid-container > #middle-panel .propertycanvas img {
+  width: 12px;
+  height: 12px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 #mid-container > #middle-panel ._jsPlumb_overlay {
   background-color: white;
@@ -285,9 +367,9 @@ body {
 }
 #mid-container > #middle-panel svg circle {
   fill: transparant;
-  stroke: #17bcb8;
-  stroke-width: 1px;
-  z-index: 1;
+  stroke: rgba(213, 50, 43, 0.57);
+  stroke-width: 2px;
+  z-index: 1000;
 }
 #mid-container > #middle-panel svg ._jsPlumb_endpoint._jsPlumb_endpoint_anchor_.ui-droppable.ui-draggable.ui-draggable-handle._jsPlumb_endpoint_connected._jsPlumb_endpoint_full circle {
   fill: #2b3743;
@@ -296,11 +378,12 @@ body {
   z-index: 1;
 }
 #mid-container > #middle-panel svg path {
-  stroke: #2b3743;
+  stroke: rgba(213, 50, 43, 0.29) !important;
   stroke-width: 1.5px;
 }
 /* Sub-Menu Style */
 #left-panel > .optionsmenu {
+  top: 52px;
   /* ----------- Component, Solution stack, and Property draggable items ----------*/
   /* ----------- Component specific styles ----------*/
   /* ----------- Solutions-Stack specific styles ----------*/
@@ -1256,6 +1339,7 @@ section#support .media:hover i {
   background-color: #191d24;
   padding-top: 67px;
   padding-left: 23px;
+  top: 52px;
 }
 #left-panel .mainmenu .options {
   height: 30px;
@@ -1321,7 +1405,7 @@ section#support .media:hover i {
 #right-panel-resizer {
   background-color: #666;
   position: absolute;
-  top: 0;
+  top: 52px;
   bottom: 0;
   width: 6px;
   right: 20%;

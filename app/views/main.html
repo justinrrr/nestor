@@ -1,3 +1,21 @@
+<nav class="navbar navbar-inverse fixed-top appnavbar" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Brand" class="brand" src="../images/favicon.ico"> <p>PDESTAL</p>
+      </a>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><input class="button" type="submit" data-default-text="Save"
+                   data-action-text="Saving..." value="Save"></li>
+        <li><input class="button" type="submit" data-default-text="Download"
+                   data-action-text="Downloading..." value="Download"></li>
+      </ul>
+    </div>
+    </div>
+</nav>
+
 <div class="row base-panel" id="left-panel"
      ng-class="isLeftOpen ? 'left-panel-open' : 'left-panel-close'">
 
@@ -121,8 +139,8 @@
       <!--</div>-->
       <!--ng-class="{'selectedComponent' : component.id === selectedComponent.id}"-->
       <div class="animate-show" align="left" ng-show="selectedComponent == component">
-        <button ng-click="deleteClicked(component)" type="button">X</button>
-        <button ng-click="propertiesClicked(component)" type="button">O</button>
+        <button ng-click="deleteClicked(component)" class="deletecomponent" type="button"><i class="fa fa-trash"></i></button>
+        <button ng-click="propertiesClicked(component)" class="propertycanvas" type="button"><img src="../images/properties.png"> </button>
       </div>
       <img ng-src="{{component.image}}"/>
 
