@@ -12,6 +12,7 @@ angular.module('nestorApp')
 
       //create the main data model variables
       $scope.templateString = CFTemplate.getStringFormat();
+      $scope.privateTemplate = CFTemplate.getPrivateTemplate();
       $scope.addedComponents = {};
       $scope.connections = [];
 

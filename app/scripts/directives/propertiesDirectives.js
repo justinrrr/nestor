@@ -11,6 +11,7 @@ app.directive('properties', [function () {
     restrict: 'E',
     scope: {
       component: '=',
+      template: '=',
       onPropertyDrag: '&'
     },
     templateUrl: 'templates/properties.html',
@@ -29,11 +30,12 @@ app.directive('componentProperties', ['AWSComponents','CFTemplate', function (AW
     scope: {
       componentName: '=',
       componentProperties: '=',
+      componentModel: '=',
       onPropertyDrag: '&'
     },
     templateUrl: 'templates/component_properties.html',
     link: function (scope) {
-      scope.componentModel = CFTemplate.getPropertiesForResource(scope.componentName);
+//      scope.componentModel = CFTemplate.getPropertiesForResource(scope.componentName);
 
       scope.types = AWSComponents.propertyTypes;
 
@@ -67,11 +69,12 @@ app.directive('derivedProperties', ['AWSComponents','CFTemplate',
       restrict: 'E',
       scope: {
         component: '=',
-        componentProperties: '='
+        componentProperties: '=',
+        componentModel: '='
       },
       templateUrl: 'templates/derived_properties.html',
       link: function (scope) {
-        scope.componentModel = CFTemplate.getPropertyForResource(scope.component.type,scope.component.parent);
+//        scope.componentModel = CFTemplate.getPropertyForResource(scope.component.type,scope.component.parent);
 
         scope.types = AWSComponents.propertyTypes;
 
@@ -97,11 +100,12 @@ app.directive('primitiveProperty', ['CFTemplate', function (CFTemplate) {
     transclude: true,
     scope: {
       property: '=',
+      model: '=',
       componentName: '='
     },
     templateUrl: '../../templates/primitive_properties.html',
     link: function (scope) {
-      scope.model = CFTemplate.getPropertiesForResource(scope.componentName);
+//      scope.model = CFTemplate.getPropertiesForResource(scope.componentName);
 
       if (scope.property.type === 'Boolean') {
         scope.inputType = 'checkbox';
@@ -111,7 +115,8 @@ app.directive('primitiveProperty', ['CFTemplate', function (CFTemplate) {
         scope.inputType = 'text';
       }
       if (!scope.model && scope.property.default) {
-        scope.model[scope.property.name] = scope.property.default[0];
+        scope.model = scope.property.default[0];
+//        scope.model[scope.property.name] = scope.property.default[0];
       }
 
 
@@ -132,24 +137,28 @@ app.directive('primitiveProperty', ['CFTemplate', function (CFTemplate) {
 
 
       scope.itemSelected = function (selectedItem) {
-        scope.model[scope.property.name] = selectedItem;
+        scope.model = selectedItem;
+//        scope.model[scope.property.name] = selectedItem;
       };
 
     }
   };
 }]);
 
-app.directive('tableProperty', [function () {
+app.directive('tableProperty', ['CFTemplate', function (CFTemplate) {
   return {
     replace: true,
     restrict: 'E',
     scope: {
       property: '=',
       propertyTypes: '=',
-      propertyModel: '='
+      propertyModel: '=',
+      componentName: '='
     },
     templateUrl: '../../templates/table_properties.html',
     link: function (scope) {
+
+//      scope.propertyModel = CFTemplate.getPropertiesForResource(scope.componentName);
 
       scope.propertyHeadings = {
         required: scope.propertyTypes.types.required,
