@@ -14,7 +14,7 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
       componentBlockType: '@',
       componentType: '@'
     },
-    link: function postLink(scope, elem, attrs) {
+    link: function postLink(scope, elem /*, attrs*/) {
 
       //the type is like aws::ec2::vpc. What we need to do is to strip the :: and replace with
       //-. And also add the component type to the class because of the stupid ng-class limitiations
@@ -29,8 +29,8 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
         elem.addClass('droppable');
         elem.addClass('ui-widget-header');
         elem.droppable({
-          drop: function( event, ui ) {},
-          out: function (event, ui) {},
+          drop: function( /*event, ui*/) {},
+          out: function (/*event, ui*/) {},
           hoverClass : 'container-hover',
           tolerance: 'touch',
           accept : function(draggable) {

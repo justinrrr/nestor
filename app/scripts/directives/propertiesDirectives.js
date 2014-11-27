@@ -23,7 +23,7 @@ app.directive('properties', [function () {
   };
 }]);
 
-app.directive('componentProperties', ['AWSComponents','CFTemplate', function (AWSComponents,CFTemplate) {
+app.directive('componentProperties', ['AWSComponents', function (AWSComponents) {
   return {
     replace: true,
     restrict: 'E',
@@ -35,8 +35,6 @@ app.directive('componentProperties', ['AWSComponents','CFTemplate', function (AW
     },
     templateUrl: 'templates/component_properties.html',
     link: function (scope) {
-//      scope.componentModel = CFTemplate.getPropertiesForResource(scope.componentName);
-
       scope.types = AWSComponents.propertyTypes;
 
 
@@ -62,8 +60,8 @@ app.directive('componentProperties', ['AWSComponents','CFTemplate', function (AW
 }]);
 
 
-app.directive('derivedProperties', ['AWSComponents','CFTemplate',
-  function (AWSComponents,CFTemplate) {
+app.directive('derivedProperties', ['AWSComponents',
+  function (AWSComponents) {
     return {
       replace: true,
       restrict: 'E',
@@ -74,8 +72,6 @@ app.directive('derivedProperties', ['AWSComponents','CFTemplate',
       },
       templateUrl: 'templates/derived_properties.html',
       link: function (scope) {
-//        scope.componentModel = CFTemplate.getPropertyForResource(scope.component.type,scope.component.parent);
-
         scope.types = AWSComponents.propertyTypes;
 
         scope.model = scope.componentModel[scope.component.index];
@@ -93,7 +89,7 @@ app.directive('derivedProperties', ['AWSComponents','CFTemplate',
 
   }]);
 
-app.directive('primitiveProperty', ['CFTemplate', function (CFTemplate) {
+app.directive('primitiveProperty', [ function () {
   return {
     replace: true,
     restrict: 'E',
@@ -105,7 +101,6 @@ app.directive('primitiveProperty', ['CFTemplate', function (CFTemplate) {
     },
     templateUrl: '../../templates/primitive_properties.html',
     link: function (scope) {
-//      scope.model = CFTemplate.getPropertiesForResource(scope.componentName);
 
       if (scope.property.type === 'Boolean') {
         scope.inputType = 'checkbox';
@@ -145,7 +140,7 @@ app.directive('primitiveProperty', ['CFTemplate', function (CFTemplate) {
   };
 }]);
 
-app.directive('tableProperty', ['CFTemplate', function (CFTemplate) {
+app.directive('tableProperty', [ function () {
   return {
     replace: true,
     restrict: 'E',
@@ -157,8 +152,6 @@ app.directive('tableProperty', ['CFTemplate', function (CFTemplate) {
     },
     templateUrl: '../../templates/table_properties.html',
     link: function (scope) {
-
-//      scope.propertyModel = CFTemplate.getPropertiesForResource(scope.componentName);
 
       scope.propertyHeadings = {
         required: scope.propertyTypes.types.required,
