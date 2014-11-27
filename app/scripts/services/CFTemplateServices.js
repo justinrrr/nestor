@@ -44,7 +44,7 @@ app.service('CFTemplate', function () {
     };
 
     this.getPropertyForResource = function (propertyName, resourceName) {
-      if (!propertyName || !resourceName){
+      if (!propertyName || !resourceName) {
         return;
       }
       return cfTemplate.Resources[resourceName].Properties[propertyName];
@@ -55,15 +55,16 @@ app.service('CFTemplate', function () {
     };
 
     /* This method returns the string version of our Cloud Formation Template*/
-    var getStringForm = function getStringForm() {
+    this.getStringFormat = function () {
       if (cfTemplate === undefined) {
         cfTemplate = createInitialTemplate();
       }
       return angular.toJson(cfTemplate, true);
     };
 
-    this.getStringFormat = getStringForm;
-
+    this.getPrivateTemplate = function() {
+      return cfTemplate;
+    };
 
     /* this method replaces the internal Cloud Formation Template
      * this is especially useful when the user selects a preconfigured solution (i.e. task) */
