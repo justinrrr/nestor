@@ -211,10 +211,14 @@ app.service('AWSComponents', function () {
               ['Label', {label: 'Depends On'}]
             ],
 
+            //you can mention one or more of all targetProperties or sourceProperties
+
+
             //the name of the property on Target to be modified
             targetPropName: 'optional, do not set if it does not apply',
 
             //name of the property on Source which its value needs to be assigned to targetPropName
+            //if the value is 'name' it will set it to the whole object
             targetPropValue: 'optional, do not set if it does not apply',
 
             //how to interpret targetPropValue:  pure/ref/attribute
@@ -227,6 +231,7 @@ app.service('AWSComponents', function () {
             sourcePropName: 'the name of the property on Source to be modified',
 
             //optional, don't set if it doesn't apply
+            //if the value is 'name' it will set it to the whole object
             sourcePropValue: 'name of the property on Target which its value needs to be assigned to sourcePropName',
 
             //optional, defaults to "pure"
@@ -268,6 +273,13 @@ app.service('AWSComponents', function () {
       'AWS::EC2::VPC' : {
         type: 'AWS::EC2::VPC',
         IncomingConnection: {
+          'AWS::EC2::Subnet' : {
+            sourcePropName: 'VpcId',
+            sourcePropValue: 'name',
+            sourcePropValueMethod: 'ref',
+            sourcePolicy: 'assign',
+            isProperty: 'true'
+          }
 
         },
         properties : {
@@ -309,7 +321,8 @@ app.service('AWSComponents', function () {
       },
       'AWS::EC2::Subnet' : {
         type: 'AWS::EC2::Subnet',
-        IncomingConnection: {},
+        IncomingConnection: {
+        },
         properties: {
           required: [
             {
