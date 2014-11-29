@@ -234,42 +234,11 @@ angular.module('nestorApp')
 
         var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
-
-        var finalTarget;
-        var connectionHappened;
-
-        // If this connection needs to update Target
-        if (incomingProperies.isProperty === 'true') {
-          finalTarget = targetObject.Properties;
-        }
-        else {
-          finalTarget = targetObject;
-        }
-
-        connectionHappened = ConnectionUtils.connectObjectsThroughProps(incomingProperies.targetPropName, incomingProperies.targetPropValue,
-          incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
-          finalTarget, sourceObject, sourceName);
-
-
-        // If this connection needs to update Source
-        if (incomingProperies.isProperty === 'true') {
-          finalTarget = sourceObject.Properties;
-        }
-        else {
-          finalTarget = sourceObject;
-        }
-
-        connectionHappened = connectionHappened || ConnectionUtils.connectObjectsThroughProps(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
-          incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
-          finalTarget, targetObject, targetName);
-
-
-        if (connectionHappened) {
+        var result = CFTemplate.establishConnection(sourceName, sourceObject, targetName, targetObject, incomingProperies);
+        if (result.length > 0) {
           $scope.$digest();
-          return incomingProperies.overlays;
         }
-
-        return [];
+        return result;
       };
 
       $scope.connectionDetached = function (sourceName, targetName) {

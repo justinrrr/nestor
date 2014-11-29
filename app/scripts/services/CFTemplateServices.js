@@ -6,7 +6,7 @@
 
 var app = angular.module('nestorApp.services');
 
-app.service('CFTemplate', function () {
+app.service('CFTemplate', ['UIComponents', 'ConnectionUtils', function (UIComponents, ConnectionUtils) {
 
     // the Cloud Formation Template
     var cfTemplate;
@@ -147,5 +147,41 @@ app.service('CFTemplate', function () {
       return index;
     };
 
-  }
+    this.establishConnection = function(sourceName, sourceObject, targetName, targetObject, incomingProperies) {
+      var finalTarget;
+      var connectionHappened;
+
+      // If this connection needs to update Target
+      if (incomingProperies.isProperty === 'true') {
+        finalTarget = targetObject.Properties;
+      }
+      else {
+        finalTarget = targetObject;
+      }
+
+      connectionHappened = ConnectionUtils.connectObjectsThroughProps(incomingProperies.targetPropName, incomingProperies.targetPropValue,
+        incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
+        finalTarget, sourceObject, sourceName);
+
+
+      // If this connection needs to update Source
+      if (incomingProperies.isProperty === 'true') {
+        finalTarget = sourceObject.Properties;
+      }
+      else {
+        finalTarget = sourceObject;
+      }
+
+      connectionHappened = connectionHappened || ConnectionUtils.connectObjectsThroughProps(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
+        incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
+        finalTarget, targetObject, targetName);
+
+
+      if (connectionHappened && incomingProperies.overlays) {
+        return incomingProperies.overlays;
+      }
+
+      return [];
+    }
+  }]
 );
