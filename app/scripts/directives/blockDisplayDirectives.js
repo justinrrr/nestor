@@ -11,7 +11,8 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
     restrict: 'A',
     scope: {
       componentBlockType: '@',
-      componentType: '@'
+      componentType: '@',
+      inCaseOfDropInsideContainer: '&'
     },
     link: function postLink(scope, elem /*, attrs*/) {
 
@@ -31,9 +32,9 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
           drop: function (event, ui) {
             //when something is dropped to a droppable. The dragged object is source and the
             //dropped place is the target
-            var source = ui.draggable[0];
-            var target = elem[0];
-            alert('hell yeah');
+            var itemName = ui.draggable.attr('data-component-name')
+            var containerName = elem.attr('data-component-name');
+            scope.inCaseOfDropInsideContainer({itemName:itemName, containerName: containerName});
           },
           out: function (/*event, ui*/) {
           },

@@ -15,6 +15,7 @@ angular.module('nestorApp')
       $scope.privateTemplate = CFTemplate.getPrivateTemplate();
       $scope.addedComponents = {};
       $scope.connections = [];
+      $scope.containments = [];
 
       //add initial DS
       $scope.componentNameCounters = {};
@@ -235,6 +236,18 @@ angular.module('nestorApp')
         var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
         var result = CFTemplate.establishConnection(sourceName, sourceObject, targetName, targetObject, incomingProperies);
+        $scope.$digest();
+        return result;
+      };
+
+      $scope.itemGotDroppedInsideContainer = function(itemName, containerName) {
+
+        var sourceObject = CFTemplate.getResource(itemName);
+        var targetObject = CFTemplate.getResource(containerName);
+
+        var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
+
+        var result = CFTemplate.establishConnection(itemName, sourceObject, containerName, targetObject, incomingProperies);
         $scope.$digest();
         return result;
       };
