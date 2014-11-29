@@ -182,6 +182,6 @@ app.service('CFTemplate', ['UIComponents', 'ConnectionUtils', function (UICompon
       }
 
       return [];
-    }
+    };
   }]
 );
