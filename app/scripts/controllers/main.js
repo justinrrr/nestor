@@ -235,9 +235,7 @@ angular.module('nestorApp')
         var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
         var result = CFTemplate.establishConnection(sourceName, sourceObject, targetName, targetObject, incomingProperies);
-        if (result.length > 0) {
-          $scope.$digest();
-        }
+        $scope.$digest();
         return result;
       };
 
