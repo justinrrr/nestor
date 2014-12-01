@@ -32,8 +32,6 @@ app.directive('plumbListeners', function () {
         _.each(overlays, function (overlay) {
           connection.addOverlay(overlay);
         });
-        connection.addOverlay();
-        //connection.addOverlay();
       });
 
       jsPlumb.bind('connectionDetached', function (info) {
@@ -100,6 +98,8 @@ app.directive('plumbItem', ['PlumbStyles', function (PlumbStyles) {
       console.log('Add plumbing for the item element');
 
 
+      //containers are only targets when something is droped so from the plumb sense
+      //they can never be targets
       if ($attrs.componentBlockType !== 'container') {
 
         jsPlumb.makeTarget(element, {

@@ -1429,7 +1429,7 @@ section#support .media:hover i {
   z-index: 1;
 }
 #mid-container #middle-panel .container-hover {
-  background-color: green !important;
+  background-color: rgba(111, 123, 145, 0.3) !important;
 }
 .draggable {
   width: 100px;

@@ -15,6 +15,7 @@ angular.module('nestorApp')
       $scope.privateTemplate = CFTemplate.getPrivateTemplate();
       $scope.addedComponents = {};
       $scope.connections = [];
+      $scope.containments = [];
 
       //add initial DS
       $scope.componentNameCounters = {};
@@ -234,42 +235,21 @@ angular.module('nestorApp')
 
         var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
+        var result = CFTemplate.establishConnection(sourceName, sourceObject, targetName, targetObject, incomingProperies);
+        $scope.$digest();
+        return result;
+      };
 
-        var finalTarget;
-        var connectionHappened;
+      $scope.itemGotDroppedInsideContainer = function(itemName, containerName) {
 
-        // If this connection needs to update Target
-        if (incomingProperies.isProperty === 'true') {
-          finalTarget = targetObject.Properties;
-        }
-        else {
-          finalTarget = targetObject;
-        }
+        var sourceObject = CFTemplate.getResource(itemName);
+        var targetObject = CFTemplate.getResource(containerName);
 
-        connectionHappened = ConnectionUtils.connectObjectsThroughProps(incomingProperies.targetPropName, incomingProperies.targetPropValue,
-          incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
-          finalTarget, sourceObject, sourceName);
+        var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
-
-        // If this connection needs to update Source
-        if (incomingProperies.isProperty === 'true') {
-          finalTarget = sourceObject.Properties;
-        }
-        else {
-          finalTarget = sourceObject;
-        }
-
-        connectionHappened = connectionHappened || ConnectionUtils.connectObjectsThroughProps(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
-          incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
-          finalTarget, targetObject, targetName);
-
-
-        if (connectionHappened) {
-          $scope.$digest();
-          return incomingProperies.overlays;
-        }
-
-        return [];
+        var result = CFTemplate.establishConnection(itemName, sourceObject, containerName, targetObject, incomingProperies);
+        $scope.$digest();
+        return result;
       };
 
       $scope.connectionDetached = function (sourceName, targetName) {
