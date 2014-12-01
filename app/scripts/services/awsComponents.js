@@ -23,9 +23,9 @@ app.service('AWSComponents', function () {
       {
         name: 'Simple web server with database access',
         image: 'images/aws/customtask.jpg',
-        //template: {"AWSTemplateFormatVersion":"2010-09-09","Description":"Created By Nestor","Parameters":{},"Mappings":{},"Conditions":{},"Resources":{"DynamoDb-1":{"Type":"AWS::DynamoDB::Table","Properties":{}},"EC2-2":{"Type":"AWS::EC2::Instance","Properties":{"BlockDeviceMappings":[{}],"SecurityGroups":[{"Ref":"SecurityGroup-3"}]}},"SecurityGroup-3":{"Type":"AWS::EC2::SecurityGroup","Properties":{}},"EIP-5":{"Type":"AWS::EC2::EIP","Properties":{"InstanceId":{"Ref":"EC2-2"}}},"Route53-6":{"Type":"AWS::Route53::RecordSet","Properties":{}}},"Outputs":{"DynamoDb-1-TableName":{"Description":"Name of the created DynamoDb Table","Value":{"Ref":"DynamoDb-1"}},"EC2-2-ImageId":{"Description":"Name of the EC2 instance","Value":{"Ref":"EC2-2"}},"SecurityGroup-3-security group identifier":{"Description":"the security group name (for EC2-classic) or the security group ID (for EC2-VPC)","Value":{"Ref":"SecurityGroup-3"}},"EIP-5-Public IP":{"Description":"returns the value of the PublicIp for the EC2 instance","Value":{"Ref":"EIP-5"}}}},
-        //components: {"DynamoDb-1":{"id":"DynamoDb-1","type":"DynamoDb","name":"DynamoDb-1","description":"NoSQL database service","image":"images/aws/dynamo.png","x":581,"y":523,"required":[{"name":"TableName","description":"name of the table","type":"String"},{"name":"AttributeDefinitions","type":"AttributeDefinitions"},{"name":"KeySchema","type":"KeySchema"},{"name":"ProvisionedThroughput","type":"ProvisionedThroughput"}],"optional":[{"name":"GlobalSecondaryIndexes","type":"GlobalSecondaryIndexes"},{"name":"LocalSecondaryIndexes","type":"LocalSecondaryIndexes"}],"parent":""},"EC2-2":{"id":"EC2-2","type":"EC2","name":"EC2-2","description":"Resizable compute machines","image":"images/aws/ec2.png","x":592,"y":282,"required":[{"name":"ImageId","type":"String","description":"Name of the EC2 instance","allowableValues":[{"ami-77581047":"Stewie"},{"ami-67334857":"Jenkins"},{"ami-67334857":"MyCustomAmi"},{"dummy":"---Standard AMIs---"},{"ami-b5a7ea85":"Amazon Linux AMI 2014.09.1 (HVM)"},{"ami-99bef1a9":"Red Hat Enterprise Linux 7.0 (HVM)"},{"ami-d7450be7":"SuSE Linux Enterprise Server 12 (HVM)"},{"ami-3d50120d":"Ubuntu Server 14.04 LTS (HVM)"},{"ami-21f0bc11":"Microsoft Windows Server 2012 R2 Base"}]}],"optional":[{"name":"BlockDeviceMappings","type":"BlockDeviceMappings","description":"tooltip??"},{"name":"NetworkInterfaces","type":"NetworkInterfaces","description":"A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance"},{"name":"SecurityGroupIds","type":"StringList","description":"A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property"},{"name":"SecurityGroups","type":"StringList","description":"Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template"},{"name":"Tags","type":"Tags","description":"tooltip??"},{"name":"Volumes","type":"Volumes","description":"tooltip??"},{"name":"AvailabilityZone","type":"String","description":"Specifies the name of the Availability Zone in which the instance is located","allowableValues":[{"ap-northeast-1":"Asia Pacific (Tokyo)"},{"ap-southeast-1":"Asia Pacific (Singapore)"},{"ap-southeast-2":"Asia Pacific (Sydney)"},{"eu-central-1":"EU (Frankfurt)"},{"eu-west-1":"EU (Ireland)"},{"sa-east-1":"South America (Sao Paulo)"},{"us-east-1":"US East (N. Virginia)"},{"us-west-1":"US West (N. California)"},{"us-west-2":"US West (Oregon)"}]},{"name":"DisableApiTermination","type":"Boolean","description":"Description for tooltip"},{"name":"EbsOptimized","type":"Boolean","description":"Description for tooltip"},{"name":"IamInstanceProfile","type":"String","description":"Description for tooltip"},{"name":"InstanceInitiatedShutdownBehavior","type":"String","description":"Description for tooltip"},{"name":"InstanceType","type":"String","description":"Description for tooltip","allowableValues":[{"t2.micro":"t2.micro"},{"t2.small":"t2.small"},{"t2.medium":"t2.medium"},{"m3.medium":"m3.medium"},{"m3.large":"m3.large"},{"m3.xlarge":"m3.xlarge"},{"m3.2xlarge":"m3.2xlarge"},{"c3.large":"c3.large"},{"c3.xlarge":"c3.xlarge"},{"c3.2xlarge":"c3.2xlarge"},{"c3.4xlarge":"c3.4xlarge"},{"c3.8xlarge":" c3.8xlarge"},{"r3.large":"r3.large"},{"r3.xlarge":"r3.xlarge"},{"r3.2xlarge":"r3.2xlarge"},{"r3.4xlarge":"r3.4xlarge"},{"r3.8xlarge":"r3.8xlarge"},{"i2.xlarge":"i2.xlarge"},{"i2.2xlarge":"i2.2xlarge"},{"i2.4xlarge":"i2.4xlarge"},{"i2.8xlarge":"i2.8xlarge"},{"hs1.8xlarge":"hs1.8xlarge"},{"g2.2xlarge":"g2.2xlarge"}]},{"name":"KernelId","type":"String","description":"Description for tooltip"},{"name":"KeyName","type":"String","description":"Description for tooltip"},{"name":"Monitoring","type":"Boolean","description":"Description for tooltip"},{"name":"PlacementGroupName","type":"String","description":"Description for tooltip"},{"name":"PrivateIpAddress","type":"String","description":"Description for tooltip"},{"name":"RamdiskId","type":"String","description":"Description for tooltip"},{"name":"SourceDestCheck","type":"Boolean","description":"Description for tooltip"},{"name":"SubnetId","type":"String","description":"Description for tooltip"},{"name":"Tenancy","type":"String","description":"Description for tooltip","allowableValues":[{"default":"default"},{"dedicated":"dedicated"}]},{"name":"UserData","type":"String","description":"Description for tooltip"}],"parent":""},"SecurityGroup-3":{"id":"SecurityGroup-3","type":"SecurityGroup","name":"SecurityGroup-3","description":"Creates an Amazon EC2 security group","image":"images/aws/securityGroup.png","x":475,"y":82,"required":[{"name":"GroupDescription","type":"String","description":"Description of the security group"}],"optional":[{"name":"SecurityGroupEgress","type":"SecurityGroupEgress","description":"A list of Amazon EC2 security group outgoing connection rules"},{"name":"SecurityGroupIngress","type":"SecurityGroupIngress","description":"A list of Amazon EC2 security group incoming connection rules"},{"name":"Tags","type":"Tags","description":"The tags that you want to attach to the resource"}],"parent":""},"BlockDeviceMappings-4":{"id":"BlockDeviceMappings-4","type":"BlockDeviceMappings","name":"BlockDeviceMappings-4","image":"images/aws/blockDeviceMapping.png","x":737,"y":129,"required":[{"name":"AvailabilityZone","type":"String","description":""}],"optional":[{"name":"Encrypted","type":"Boolean","description":""},{"name":"Iops","type":"Number","description":""},{"name":"Size","type":"String","description":""},{"name":"SnapshotId","type":"String","description":""},{"name":"Tags","type":"Tags","description":"An arbitrary set of tags (key–value pairs) for this volume."},{"name":"VolumeType","type":"String","description":""}],"parent":"EC2-2","isDerived":true},"EIP-5":{"id":"EIP-5","type":"EIP","name":"EIP-5","description":"Elastic(Static) IP address that are dynamically allocated","image":"images/aws/eip.png","x":288,"y":288,"required":[{"name":"InstanceId","type":"String","description":"The Instance ID of the Amazon EC2 instance that you want to associate with this Elastic IP address"}],"optional":[{"name":"Domain","type":"String","description":"Set to vpc to allocate the address to your Virtual Private Cloud (VPC). No other values are supported"}],"parent":""},"Route53-6":{"id":"Route53-6","type":"Route53","name":"Route53-6","description":"highly available and scalable Domain Name System (DNS)","image":"images/aws/route53.png","x":49,"y":238,"required":[{"name":"HostedZoneName","type":"String","description":"The name of the domain for the hosted zone where you want to add the record set"},{"name":"Type","type":"String","description":"The type of records to add"},{"name":"Name","type":"String","description":"The name of the domain. This must be a fully specified domain, ending with a period as the last label indication. If you omit the final period, Amazon Route 53 assumes the domain is relative to the root"}],"optional":[{"name":"TTL","type":"String","description":"The resource record cache time to live (TTL), in seconds"},{"name":"ResourceRecords","type":"StringList","description":"List of resource records to add. Each record should be in the format appropriate for the record type specified by the Type property"},{"name":"Comment","type":"String","description":"Any comments you want to include about the hosted zone"}],"parent":""}},
-        //connections: [{"source":"DynamoDb-1","target":"EC2-2"},{"source":"EC2-2","target":"BlockDeviceMappings-4"},{"source":"EC2-2","target":"SecurityGroup-3"},{"source":"Route53-6","target":"EIP-5"},{"source":"EIP-5","target":"EC2-2"}],
+        template: {"AWSTemplateFormatVersion":"2010-09-09","Description":"Created By Nestor","Parameters":{},"Mappings":{},"Conditions":{},"Resources":{"DynamoDb-1":{"Type":"AWS::DynamoDB::Table","Properties":{}},"EC2-2":{"Type":"AWS::EC2::Instance","Properties":{"BlockDeviceMappings":[{}],"SecurityGroups":[{"Ref":"SecurityGroup-3"}]}},"SecurityGroup-3":{"Type":"AWS::EC2::SecurityGroup","Properties":{}},"EIP-5":{"Type":"AWS::EC2::EIP","Properties":{"InstanceId":{"Ref":"EC2-2"}}},"Route53-6":{"Type":"AWS::Route53::RecordSet","Properties":{}}},"Outputs":{"DynamoDb-1-TableName":{"Description":"Name of the created DynamoDb Table","Value":{"Ref":"DynamoDb-1"}},"EC2-2-ImageId":{"Description":"Name of the EC2 instance","Value":{"Ref":"EC2-2"}},"SecurityGroup-3-security group identifier":{"Description":"the security group name (for EC2-classic) or the security group ID (for EC2-VPC)","Value":{"Ref":"SecurityGroup-3"}},"EIP-5-Public IP":{"Description":"returns the value of the PublicIp for the EC2 instance","Value":{"Ref":"EIP-5"}}}},
+        components: {"DynamoDb-1":{"id":"DynamoDb-1","type":"DynamoDb","name":"DynamoDb-1","description":"NoSQL database service","image":"images/aws/dynamo.png","x":581,"y":523,"required":[{"name":"TableName","description":"name of the table","type":"String"},{"name":"AttributeDefinitions","type":"AttributeDefinitions"},{"name":"KeySchema","type":"KeySchema"},{"name":"ProvisionedThroughput","type":"ProvisionedThroughput"}],"optional":[{"name":"GlobalSecondaryIndexes","type":"GlobalSecondaryIndexes"},{"name":"LocalSecondaryIndexes","type":"LocalSecondaryIndexes"}],"parent":""},"EC2-2":{"id":"EC2-2","type":"EC2","name":"EC2-2","description":"Resizable compute machines","image":"images/aws/ec2.png","x":592,"y":282,"required":[{"name":"ImageId","type":"String","description":"Name of the EC2 instance","allowableValues":[{"ami-77581047":"Stewie"},{"ami-67334857":"Jenkins"},{"ami-67334857":"MyCustomAmi"},{"dummy":"---Standard AMIs---"},{"ami-b5a7ea85":"Amazon Linux AMI 2014.09.1 (HVM)"},{"ami-99bef1a9":"Red Hat Enterprise Linux 7.0 (HVM)"},{"ami-d7450be7":"SuSE Linux Enterprise Server 12 (HVM)"},{"ami-3d50120d":"Ubuntu Server 14.04 LTS (HVM)"},{"ami-21f0bc11":"Microsoft Windows Server 2012 R2 Base"}]}],"optional":[{"name":"BlockDeviceMappings","type":"BlockDeviceMappings","description":"tooltip??"},{"name":"NetworkInterfaces","type":"NetworkInterfaces","description":"A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance"},{"name":"SecurityGroupIds","type":"StringList","description":"A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property"},{"name":"SecurityGroups","type":"StringList","description":"Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template"},{"name":"Tags","type":"Tags","description":"tooltip??"},{"name":"Volumes","type":"Volumes","description":"tooltip??"},{"name":"AvailabilityZone","type":"String","description":"Specifies the name of the Availability Zone in which the instance is located","allowableValues":[{"ap-northeast-1":"Asia Pacific (Tokyo)"},{"ap-southeast-1":"Asia Pacific (Singapore)"},{"ap-southeast-2":"Asia Pacific (Sydney)"},{"eu-central-1":"EU (Frankfurt)"},{"eu-west-1":"EU (Ireland)"},{"sa-east-1":"South America (Sao Paulo)"},{"us-east-1":"US East (N. Virginia)"},{"us-west-1":"US West (N. California)"},{"us-west-2":"US West (Oregon)"}]},{"name":"DisableApiTermination","type":"Boolean","description":"Description for tooltip"},{"name":"EbsOptimized","type":"Boolean","description":"Description for tooltip"},{"name":"IamInstanceProfile","type":"String","description":"Description for tooltip"},{"name":"InstanceInitiatedShutdownBehavior","type":"String","description":"Description for tooltip"},{"name":"InstanceType","type":"String","description":"Description for tooltip","allowableValues":[{"t2.micro":"t2.micro"},{"t2.small":"t2.small"},{"t2.medium":"t2.medium"},{"m3.medium":"m3.medium"},{"m3.large":"m3.large"},{"m3.xlarge":"m3.xlarge"},{"m3.2xlarge":"m3.2xlarge"},{"c3.large":"c3.large"},{"c3.xlarge":"c3.xlarge"},{"c3.2xlarge":"c3.2xlarge"},{"c3.4xlarge":"c3.4xlarge"},{"c3.8xlarge":" c3.8xlarge"},{"r3.large":"r3.large"},{"r3.xlarge":"r3.xlarge"},{"r3.2xlarge":"r3.2xlarge"},{"r3.4xlarge":"r3.4xlarge"},{"r3.8xlarge":"r3.8xlarge"},{"i2.xlarge":"i2.xlarge"},{"i2.2xlarge":"i2.2xlarge"},{"i2.4xlarge":"i2.4xlarge"},{"i2.8xlarge":"i2.8xlarge"},{"hs1.8xlarge":"hs1.8xlarge"},{"g2.2xlarge":"g2.2xlarge"}]},{"name":"KernelId","type":"String","description":"Description for tooltip"},{"name":"KeyName","type":"String","description":"Description for tooltip"},{"name":"Monitoring","type":"Boolean","description":"Description for tooltip"},{"name":"PlacementGroupName","type":"String","description":"Description for tooltip"},{"name":"PrivateIpAddress","type":"String","description":"Description for tooltip"},{"name":"RamdiskId","type":"String","description":"Description for tooltip"},{"name":"SourceDestCheck","type":"Boolean","description":"Description for tooltip"},{"name":"SubnetId","type":"String","description":"Description for tooltip"},{"name":"Tenancy","type":"String","description":"Description for tooltip","allowableValues":[{"default":"default"},{"dedicated":"dedicated"}]},{"name":"UserData","type":"String","description":"Description for tooltip"}],"parent":""},"SecurityGroup-3":{"id":"SecurityGroup-3","type":"SecurityGroup","name":"SecurityGroup-3","description":"Creates an Amazon EC2 security group","image":"images/aws/securityGroup.png","x":475,"y":82,"required":[{"name":"GroupDescription","type":"String","description":"Description of the security group"}],"optional":[{"name":"SecurityGroupEgress","type":"SecurityGroupEgress","description":"A list of Amazon EC2 security group outgoing connection rules"},{"name":"SecurityGroupIngress","type":"SecurityGroupIngress","description":"A list of Amazon EC2 security group incoming connection rules"},{"name":"Tags","type":"Tags","description":"The tags that you want to attach to the resource"}],"parent":""},"BlockDeviceMappings-4":{"id":"BlockDeviceMappings-4","type":"BlockDeviceMappings","name":"BlockDeviceMappings-4","image":"images/aws/blockDeviceMapping.png","x":737,"y":129,"required":[{"name":"AvailabilityZone","type":"String","description":""}],"optional":[{"name":"Encrypted","type":"Boolean","description":""},{"name":"Iops","type":"Number","description":""},{"name":"Size","type":"String","description":""},{"name":"SnapshotId","type":"String","description":""},{"name":"Tags","type":"Tags","description":"An arbitrary set of tags (key–value pairs) for this volume."},{"name":"VolumeType","type":"String","description":""}],"parent":"EC2-2","isDerived":true},"EIP-5":{"id":"EIP-5","type":"EIP","name":"EIP-5","description":"Elastic(Static) IP address that are dynamically allocated","image":"images/aws/eip.png","x":288,"y":288,"required":[{"name":"InstanceId","type":"String","description":"The Instance ID of the Amazon EC2 instance that you want to associate with this Elastic IP address"}],"optional":[{"name":"Domain","type":"String","description":"Set to vpc to allocate the address to your Virtual Private Cloud (VPC). No other values are supported"}],"parent":""},"Route53-6":{"id":"Route53-6","type":"Route53","name":"Route53-6","description":"highly available and scalable Domain Name System (DNS)","image":"images/aws/route53.png","x":49,"y":238,"required":[{"name":"HostedZoneName","type":"String","description":"The name of the domain for the hosted zone where you want to add the record set"},{"name":"Type","type":"String","description":"The type of records to add"},{"name":"Name","type":"String","description":"The name of the domain. This must be a fully specified domain, ending with a period as the last label indication. If you omit the final period, Amazon Route 53 assumes the domain is relative to the root"}],"optional":[{"name":"TTL","type":"String","description":"The resource record cache time to live (TTL), in seconds"},{"name":"ResourceRecords","type":"StringList","description":"List of resource records to add. Each record should be in the format appropriate for the record type specified by the Type property"},{"name":"Comment","type":"String","description":"Any comments you want to include about the hosted zone"}],"parent":""}},
+        connections: [{"source":"DynamoDb-1","target":"EC2-2"},{"source":"EC2-2","target":"BlockDeviceMappings-4"},{"source":"EC2-2","target":"SecurityGroup-3"},{"source":"Route53-6","target":"EIP-5"},{"source":"EIP-5","target":"EC2-2"}],
         type: 'task'
       },
       {
@@ -108,7 +108,7 @@ app.service('AWSComponents', function () {
         name: 'ELB',
         image: 'images/aws/elb.png',
         description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
-        type: 'resource',
+        type: 'AWS::ElasticLoadBalancing::LoadBalancer',
         blockType: 'box'
       },
       {
@@ -873,7 +873,108 @@ app.service('AWSComponents', function () {
             description: 'returns the value of the PublicIp for the EC2 instance'
           }
         ]
+      },
+
+      'AWS::ElasticLoadBalancing::LoadBalancer': {
+        type: 'AWS::ElasticLoadBalancing::LoadBalancer',
+        // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
+        IncomingConnection: {
+
+          'SourceComponentName': {    // e.g. EC2, DynamoDB
+            overlays: [
+              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
+              ['Label', {label: 'Depends On'}]
+            ],
+
+            //the name of the property on Target to be modified
+            targetPropName: 'optional, do not set if it does not apply',
+
+            //name of the property on Source which its value needs to be assigned to targetPropName
+            targetPropValue: 'optional, do not set if it does not apply',
+
+            //how to interpret targetPropValue:  pure/ref/attribute
+            targetPropValueMethod: 'optional, do not set if it does not apply',
+
+            // how to update targetPropName with targetPropValue
+            targetPolicy: 'assign/append',
+
+            //optional, don't set if it doesn't apply
+            sourcePropName: 'the name of the property on Source to be modified',
+
+            //optional, don't set if it doesn't apply
+            sourcePropValue: 'name of the property on Target which its value needs to be assigned to sourcePropName',
+
+            //optional, defaults to "pure"
+            sourcePropValueMethod: 'how to interpret sourcePropValue:  pure/ref/attribute',
+
+            // how to update sourcePropName with sourcePropValue
+            sourcePolicy: 'assign/append',
+
+            // should the new value be added under "Properties" or be a new field on the affected object
+            isProperty: 'true/false'
+          }
+        },
+        properties: {
+          optional: [
+            {
+              name: 'AccessLoggingPolicy',
+              type: 'AccessLoggingPolicy',
+              description: 'Captures detailed information for all requests made to your load balancer, such as the time a request was received, client’s IP address, latencies, request path, and server responses.'
+            },
+//            {
+//              name: 'AppCookieStickinessPolicy',
+//              type: 'AppCookieStickinessPolicy',
+//              description: 'Generates one or more stickiness policies with sticky session lifetimes that follow that of an application-generated cookie. These policies can be associated only with HTTP/HTTPS listeners.'
+//            },
+            {
+              name: 'AvailabilityZones',
+              type: 'AvailabilityZones',
+              description:'The Availability Zones in which to create the load balancer. You can specify either AvailabilityZones or Subnets, but not both.'
+            }
+            /*
+            ,
+            {
+              name: '',
+              type: '',
+              description:''
+            },
+            {
+              name: '',
+              type: '',
+              description:''
+            },
+            {
+              name: '',
+              type: '',
+              description:''
+            },
+            {
+              name: '',
+              type: '',
+              description:''
+            },
+            {
+              name: '',
+              type: '',
+              description:''
+            },
+            {
+              name: '',
+              type: '',
+              description:''
+            }
+            */
+          ]
+        },
+        outputs: [
+          {
+            type: 'acceptable values are Ref and GetAtt',
+            name: 'userFriendlyNameOfOutput',
+            description: 'userFriendlyDescriptionOfOutput'
+          }
+        ]
       }
+
     };
 
     this.propertyTypes = {
@@ -920,6 +1021,95 @@ app.service('AWSComponents', function () {
           }
         },
 
+        AvailabilityZones: {
+
+          //how to show this in UI
+          Display: {
+            type: 'list',
+            //the number of items that the table can possibly have
+            maxSize: -1
+          },
+          Description: 'The Availability Zones in which to create the load balancer.',
+          types: {
+            required: [
+              {
+                name: 'pick an item',
+                type: 'String',
+                description: 'a certain region',
+                // a list of allowable values
+                allowableValues: [
+                  {
+                    'ap-northeast-1b': 'Asia Pacific (Tokyo)'
+                  },
+                  {
+                    'ap-southeast-1b': 'Asia Pacific (Singapore)'
+                  },
+                  {
+                    'ap-southeast-2b': 'Asia Pacific (Sydney)'
+                  },
+                  {
+                    'eu-central-1b': 'EU (Frankfurt)'
+                  },
+                  {
+                    'eu-west-1b': 'EU (Ireland)'
+                  },
+                  {
+                    'sa-east-1b': 'South America (Sao Paulo)'
+                  },
+                  {
+                    'us-east-1b': 'US East (N. Virginia)'
+                  },
+                  {
+                    'us-west-1b': 'US West (N. California)'
+                  },
+                  {
+                    'us-west-2b': 'US West (Oregon)'
+                  }
+                ]
+              }
+            ]
+          }
+        },
+
+        AccessLoggingPolicy: {
+          //how to show this in UI
+          Display: {
+            type: 'table',
+            //the number of items that the table can possibly have
+            maxSize: 1
+          },
+          Description: 'where and how access logs are stored for the AWS::ElasticLoadBalancing::LoadBalancer resource',
+          types: {
+            required: [
+              {
+                name: 'Enabled',
+                type: 'Boolean',
+                description: 'Whether logging is enabled for the load balancer',
+                //the limit for the input
+                limit: {min: 5, max: 60}
+              },
+              {
+                name: 'S3BucketName',
+                type: 'String',
+                description: 'The name of an Amazon S3 bucket where access log files are stored.'
+              }
+            ],
+            optional: [
+              {
+                name: 'EmitInterval',
+                type: 'Integer',
+                description: 'The interval for publishing access logs in minutes. You can specify an interval of either 5 minutes or 60 minutes.',
+                //the limit for the input
+                limit: {min: 5, max: 60}
+              },
+              {
+                name: 'S3BucketPrefix',
+                type: 'String',
+                description: 'A prefix for the all log object keys, such as my-load-balancer-logs/prod. If you store log files from multiple sources in a single bucket, you can use a prefix to distinguish each log file and its source.'
+              }
+            ]
+          }
+        },
 
         Tags: {
           Display: {type: 'table', maxSize: -1},

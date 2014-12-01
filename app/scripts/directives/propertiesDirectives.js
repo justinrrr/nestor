@@ -47,6 +47,10 @@ app.directive('componentProperties', ['AWSComponents', function (AWSComponents) 
         return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'table';
       };
 
+      scope.isList = function (prop){
+        return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'list';
+      };
+
       scope.isPrimitive = function (prop) {
         return prop.type === 'String' || prop.type === 'Integer' || prop.type === 'Boolean';
       };
@@ -245,3 +249,90 @@ app.directive('dragProperty', [function () {
     }
   };
 }]);
+
+
+app.directive('listProperty', [ function () {
+  return {
+    replace: true,
+    restrict: 'E',
+    transclude: true,
+    scope: {
+      property: '=',
+      propertyTypes: '=',
+      propertyModel: '=',
+      componentName: '='
+    },
+    templateUrl: '../../templates/list_properties.html',
+    link: function (scope) {
+
+      scope.propertyHeadings = {
+        required: scope.propertyTypes.types.required,
+        optional: scope.propertyTypes.types.optional
+      };
+
+
+      scope.loadAllowableValues = function (item) {
+        item.valueMap = [];
+        _.each(item.allowableValues, function (valueObj) {
+          _.each(valueObj, function (value, key) {
+            item.valueMap.push({name: value, value: key});
+          });
+        });
+      };
+
+      scope.isSingleCellTable = function() {
+        return scope.propertyTypes.Display.maxSize === 1;
+      };
+
+      scope.AddToTable = function (listToAddTo, componentName, neededFields) {
+
+        var allFields = neededFields.required || [];
+//        if (neededFields.optional) {
+//          allFields.concat(neededFields.optional);
+//        }
+
+        //for now we assume there is only one field for list properties
+        var item = {};
+        _.each(allFields, function (property) {
+          item = property.name;
+        });
+
+        //the maximum size of the table is either 1 or more than 1.
+        //in the case that the maximum size is 1 we shouldn't add values anymore
+        //and should not add the value to a list
+        if (scope.isSingleCellTable()) {
+          listToAddTo[componentName] = item;
+        } else {
+          if (!listToAddTo[componentName]) {
+            listToAddTo[componentName] = [];
+          }
+          listToAddTo[componentName].push(item);
+        }
+      };
+
+      scope.saveEntry = function ($data, $index) {
+
+        _.each($data, function (enteredValue) {
+          if (enteredValue && enteredValue.value) {
+
+            if (scope.isSingleCellTable() ) {
+              scope.propertyModel[scope.property.name] = enteredValue.value;
+            } else {
+              scope.propertyModel[scope.property.name][$index] = enteredValue.value;
+            }
+          }
+        });
+      };
+
+      scope.removeRow = function ($index) {
+        if(scope.isSingleCellTable) {
+          delete scope.propertyModel[scope.property.name];
+        } else {
+          scope.propertyModel[scope.property.name].splice($index, 1);
+        }
+      };
+
+    }
+  };
+}]);
+
