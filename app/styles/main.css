@@ -1445,3 +1445,9 @@ section#support .media:hover i {
   float: left;
   margin: 10px;
 }
+.AWS-EC2-VPC {
+  z-index: 1 !important;
+}
+.AWS-EC2-Subnet {
+  z-index: 2 !important;
+}

@@ -12,7 +12,8 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
     scope: {
       componentBlockType: '@',
       componentType: '@',
-      inCaseOfDropInsideContainer: '&'
+      inCaseOfDropInsideContainer: '&',
+      isDropInsideContainer: '&'
     },
     link: function postLink(scope, elem /*, attrs*/) {
 
@@ -32,9 +33,9 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
           drop: function (event, ui) {
             //when something is dropped to a droppable. The dragged object is source and the
             //dropped place is the target
-            var itemName = ui.draggable.attr('data-component-name')
+            var itemName = ui.draggable.attr('data-component-name');
             var containerName = elem.attr('data-component-name');
-            scope.inCaseOfDropInsideContainer({itemName:itemName, containerName: containerName});
+            scope.inCaseOfDropInsideContainer({itemName: itemName, containerName: containerName});
           },
           out: function (/*event, ui*/) {
           },
@@ -49,6 +50,14 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
               target: elem[0],
               targetId: targetId
             };
+
+            //if the block is already inside the other don't accept
+            //incoming connections
+            var itemName = draggable.attr('data-component-name');
+            var containerName = elem.attr('data-component-name');
+            if (scope.isDropInsideContainer({containerName: containerName, itemName: itemName})) {
+              return false;
+            }
             return UIComponents.validateConnection(info);
           },
           activeClass: 'container-not-accept-hover'

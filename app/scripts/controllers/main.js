@@ -10,14 +10,13 @@ angular.module('nestorApp')
 
       UIComponents.setupJSPlumb($scope);
 
-      //create the main data model variables
+      //create the main data model variables. All of these must be serialized
+      //and deserialized for saving of an item
       $scope.templateString = CFTemplate.getStringFormat();
       $scope.privateTemplate = CFTemplate.getPrivateTemplate();
       $scope.addedComponents = {};
       $scope.connections = [];
       $scope.containments = [];
-
-      //add initial DS
       $scope.componentNameCounters = {};
 
       // some aliases for UI representation of the data model
@@ -240,16 +239,35 @@ angular.module('nestorApp')
         return result;
       };
 
+      //This function gets called when it has already been validated that
+      //the droped item is legit for the container
       $scope.itemGotDroppedInsideContainer = function(itemName, containerName) {
 
         var sourceObject = CFTemplate.getResource(itemName);
         var targetObject = CFTemplate.getResource(containerName);
 
         var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
-
         var result = CFTemplate.establishConnection(itemName, sourceObject, containerName, targetObject, incomingProperies);
+
+        //add the bookkeeping containment DS
+        //lazy initialize
+        if (!$scope.containments.containerName) {
+          $scope.containments.containerName = [];
+        }
+        $scope.containments.containerName.push(itemName);
+
+
+        //add the containment information to the
         $scope.$digest();
+
         return result;
+      };
+
+      $scope.isDropInsideContainer = function(containerName, itemName)  {
+        if ($scope.containments.containerName && $scope.containments.containerName.indexOf(itemName) !== -1) {
+          return true;
+        }
+        return false;
       };
 
       $scope.connectionDetached = function (sourceName, targetName) {
