@@ -13,7 +13,7 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
       componentBlockType: '@',
       componentType: '@',
       inCaseOfDropInsideContainer: '&',
-      isDropInsideContainer: '&'
+      inCaseOfDropOutsideContainer: '&'
     },
     link: function postLink(scope, elem /*, attrs*/) {
 
@@ -37,7 +37,10 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
             var containerName = elem.attr('data-component-name');
             scope.inCaseOfDropInsideContainer({itemName: itemName, containerName: containerName});
           },
-          out: function (/*event, ui*/) {
+          out: function (event, ui) {
+            var itemName = ui.draggable.attr('data-component-name');
+            var containerName = elem.attr('data-component-name');
+            scope.inCaseOfDropOutsideContainer({itemName: itemName, containerName: containerName});
           },
           hoverClass: 'container-hover',
           tolerance: 'touch',
@@ -51,13 +54,6 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
               targetId: targetId
             };
 
-            //if the block is already inside the other don't accept
-            //incoming connections
-            var itemName = draggable.attr('data-component-name');
-            var containerName = elem.attr('data-component-name');
-            if (scope.isDropInsideContainer({containerName: containerName, itemName: itemName})) {
-              return false;
-            }
             return UIComponents.validateConnection(info);
           },
           activeClass: 'container-not-accept-hover'

@@ -124,7 +124,7 @@
     <div plumb-item
          block-display
          in-case-of-drop-inside-container="itemGotDroppedInsideContainer(itemName, containerName)"
-         is-drop-inside-container = "isDropInsideContainer(componentName, itemName)"
+         in-case-of-drop-outside-container= "itemGotDroppedOutsideContainer(itemName, containerName)"
          ng-repeat="component in addedComponents"
          plumb-block-type="{{component.blockType}}"
          component-block-type="{{component.blockType}}"
