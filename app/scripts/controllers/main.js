@@ -10,14 +10,13 @@ angular.module('nestorApp')
 
       UIComponents.setupJSPlumb($scope);
 
-      //create the main data model variables
+      //create the main data model variables. All of these must be serialized
+      //and deserialized for saving of an item
       $scope.templateString = CFTemplate.getStringFormat();
       $scope.privateTemplate = CFTemplate.getPrivateTemplate();
       $scope.addedComponents = {};
       $scope.connections = [];
       $scope.containments = [];
-
-      //add initial DS
       $scope.componentNameCounters = {};
 
       // some aliases for UI representation of the data model
@@ -197,7 +196,9 @@ angular.module('nestorApp')
        1) remove all the connections from UI
        2) remove the component from the UI
        3) update model to remove the component's data and all the references to the deleted component
-       4) update the final CloudFormation Template */
+       4) update the final CloudFormation Template
+
+       */
       $scope.deleteClicked = function (component) {
 
         if ($scope.selectedComponent === component) {
@@ -210,6 +211,10 @@ angular.module('nestorApp')
 
         // find the UI element
         var toBeDeletedElem = angular.element('[data-identifier =' + component.id + ']')[0];
+
+
+        //these two plumb connection detachment will send a connectionDetached event that will actually cause the actual
+        //json to get updated with removal of the connection
 
         // call "detach" on all the connections to/from this element to safely drop them (update the model)
         jsPlumb.detachAllConnections(toBeDeletedElem.id);
@@ -240,6 +245,8 @@ angular.module('nestorApp')
         return result;
       };
 
+      //This function gets called when it has already been validated that
+      //the droped item is legit for the container
       $scope.itemGotDroppedInsideContainer = function(itemName, containerName) {
 
         var sourceObject = CFTemplate.getResource(itemName);
@@ -248,9 +255,60 @@ angular.module('nestorApp')
         var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
         var result = CFTemplate.establishConnection(itemName, sourceObject, containerName, targetObject, incomingProperies);
+
+        //add the bookkeeping containment DS
+        //lazy initialize
+        if (!$scope.containments[containerName]) {
+          $scope.containments[containerName] = [];
+        }
+
+        //well, there is a possibility that we push an item inside this array
+        //twice. This method does not gaurantee that so we are pretty much
+        //counting on the UI logic to keep this clean (which to me (ali) sounds right)
+        $scope.containments[containerName].push(itemName);
+
         $scope.$digest();
+
         return result;
       };
+
+      $scope.itemGotDroppedOutsideContainer = function(itemName, containerName) {
+
+        //first remove it from the container DS here
+        if ($scope.containments[containerName]) {
+          var index = $scope.containments[containerName].indexOf(itemName);
+          if (index !== -1) {
+            $scope.containments[containerName].splice(index, 1);
+          }
+        }
+
+        //now remove it from template
+        $scope.connectionDetached(itemName, containerName);
+
+      };
+
+      $scope.containerDragged = function(containerName, offset) {
+
+        if ($scope.containments[containerName]) {
+          _.each($scope.containments[containerName], function(insideItem){
+            if($scope.addedComponents[insideItem]) {
+              //console.log('curX: '  + $scope.addedComponents[insideItem].x + ' - CurY: ' + $scope.addedComponents[insideItem].y);
+              $scope.addedComponents[insideItem].x = offset.x;
+              $scope.addedComponents[insideItem].y = offset.y;
+              //console.log('later: '  + $scope.addedComponents[insideItem].x + ' - laterY: ' + $scope.addedComponents[insideItem].y);
+              //recursively move everything within that insideItem
+              if ($scope.addedComponents[insideItem].blockType === 'container') {
+                $scope.containerDragged(insideItem, offset);
+              }
+            }
+          });
+        }
+
+        $scope.$digest();
+
+      };
+
+
 
       $scope.connectionDetached = function (sourceName, targetName) {
         var sourceObject = CFTemplate.getResource(sourceName);
@@ -390,6 +448,9 @@ angular.module('nestorApp')
           return CFTemplate.getStringFormat();
         },
         function (newValue) {
+          //TODO Farzad, I think there is a bug here. What if the
+          //string is not a valid json ? This will mess up the whole thing
+          //we should capture the exception and eat it ?
           $scope.templateString = newValue;
         }, true);
 

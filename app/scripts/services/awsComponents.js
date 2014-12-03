@@ -8,7 +8,7 @@
 var app = angular.module('nestorApp.services');
 app.service('AWSComponents', function () {
 
-
+    /* jshint ignore:start */
     this.tasks = [
       {
         name: 'Simple static website',
@@ -192,7 +192,7 @@ app.service('AWSComponents', function () {
       }
 
     ];
-
+    /* jshint ignore:end */
     this.components = [
       {
         name: 'Autoscaling Group',
@@ -404,7 +404,7 @@ app.service('AWSComponents', function () {
             {
               name: 'CidrBlock',
               type: 'String',
-              description: 'The CIDR block you want the VPC to cover. For example: "10.0.0.0/16'
+              description: 'The CIDR block you want the VPC to cover. For example: 10.0.0.0/16'
             }
 
           ],
@@ -450,7 +450,7 @@ app.service('AWSComponents', function () {
             {
               name: 'CidrBlock',
               type: 'String',
-              description: 'The CIDR block you want the subnet to cover. For example: "10.0.0.0/16'
+              description: 'The CIDR block you want the subnet to cover. For example: 10.0.0.0/16'
             }
           ],
           optional: [

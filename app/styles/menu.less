@@ -4,12 +4,11 @@
 #left-panel {
   z-index: 0;
   overflow-y: scroll;
+  height: 100%;
   position: absolute;
-  top: 0;
+  top: 52px;
   bottom: 0;
   left: 0 /* 200 + 6*/;
-  overflow: hidden;
-
   //Close Toggle button
   .toggleleft {
     float: right;
@@ -31,7 +30,6 @@
     background-color: #191d24;
     padding-top: 67px;
     padding-left: 23px;
-    top: 52px;
     .options {
       height: 30px;
       margin-bottom: 20px;
@@ -115,6 +113,7 @@
 #right-panel-resizer {
   background-color: #666;
   position: absolute;
+  height: 100%;
   top: 52px;
   bottom: 0;
   width: 6px;
@@ -126,7 +125,7 @@
 /* ----------- All Windows ----------*/
 .base-panel {
   //  -webkit-transition:all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
-  transition: all cubic-bezier(.55, 0, .1, 1) 0.5s;
+//  transition: all cubic-bezier(.55, 0, .1, 1) 0.5s;
   animation: bounce 0.01s cubic-bezier(.55, 0, .1, 1);
 }
 

@@ -12,7 +12,9 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
     scope: {
       componentBlockType: '@',
       componentType: '@',
-      inCaseOfDropInsideContainer: '&'
+      inCaseOfDropInsideContainer: '&',
+      inCaseOfDropOutsideContainer: '&',
+      inCaseOfContainerDrag: '&'
     },
     link: function postLink(scope, elem /*, attrs*/) {
 
@@ -20,10 +22,23 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
       //-. And also add the component type to the class because of the stupid ng-class limitiations
       var componentType = scope.componentType.replace(/::/g, '-');
       elem.addClass(componentType);
-      elem.draggable();
       elem.addClass('draggable');
       elem.addClass('ui-widget-content');
       if (scope.componentBlockType === 'container') {
+
+        //If the item is a container we should listen to its drag options
+        elem.draggable({
+          drag: function (event, ui) {
+            var containerName = elem.attr('data-component-name');
+
+            var offset = {
+              x: ui.position.left,
+              y: ui.position.top
+            };
+
+            scope.inCaseOfContainerDrag({containerName: containerName, offset: offset});
+          }
+        });
 
         elem.resizable({handles: 'all'});
         elem.addClass('droppable');
@@ -32,11 +47,14 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
           drop: function (event, ui) {
             //when something is dropped to a droppable. The dragged object is source and the
             //dropped place is the target
-            var itemName = ui.draggable.attr('data-component-name')
+            var itemName = ui.draggable.attr('data-component-name');
             var containerName = elem.attr('data-component-name');
-            scope.inCaseOfDropInsideContainer({itemName:itemName, containerName: containerName});
+            scope.inCaseOfDropInsideContainer({itemName: itemName, containerName: containerName});
           },
-          out: function (/*event, ui*/) {
+          out: function (event, ui) {
+            var itemName = ui.draggable.attr('data-component-name');
+            var containerName = elem.attr('data-component-name');
+            scope.inCaseOfDropOutsideContainer({itemName: itemName, containerName: containerName});
           },
           hoverClass: 'container-hover',
           tolerance: 'touch',
@@ -49,6 +67,7 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
               target: elem[0],
               targetId: targetId
             };
+
             return UIComponents.validateConnection(info);
           },
           activeClass: 'container-not-accept-hover'
