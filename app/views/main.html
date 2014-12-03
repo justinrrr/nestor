@@ -126,6 +126,7 @@
          in-case-of-drop-inside-container="itemGotDroppedInsideContainer(itemName, containerName)"
          in-case-of-drop-outside-container= "itemGotDroppedOutsideContainer(itemName, containerName)"
          in-case-of-container-drag ="containerDragged(containerName, offset)"
+         in-case-of-container-cordinate-change="containerPositionChanged(containerName, newPosition)"
          ng-repeat="component in addedComponents"
          plumb-block-type="{{component.blockType}}"
          component-block-type="{{component.blockType}}"
