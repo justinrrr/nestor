@@ -1,6 +1,5 @@
 /* Sub-Menu Style */
 #left-panel > .optionsmenu {
-  top: 52px;
   //      Search Input
   .searchbox {
     display: inline-flex;
@@ -9,24 +8,29 @@
       position: absolute;
       left: 13px;
       top: 38px;
-      color: rgba(112, 100, 130, 0.78);
+      color: #A3A6AB;
     }
+    input::-webkit-input-placeholder {
+      color: #A3A6AB;
+    }
+
     input:focus::-webkit-input-placeholder {
       color: transparent;
     }
     .search {
       padding: 8px 15px 8px 34px;
       background-color: transparent;
-      color: rgba(112, 100, 130, 0.78);
+      color: #A3A6AB;
       border: 1px solid transparent;
       font-weight: 500;
       outline: none;
       width: 97.2%;
-      margin-left: 4px;
-      margin-top: 6px;
+      margin: 6px 4px;
       &:focus {
-        border: 1px solid #61708C;
-        color: @ambiance;
+        box-shadow: none;
+        border: 1px solid @darkfield;
+        outline: none;
+        color: #A3A6AB;
       }
     }
     .button {
@@ -71,7 +75,6 @@
       color: white;
     }
   }
-
 
   /* ----------- Component, Solution stack, and Property draggable items ----------*/
   .tab-content {
@@ -137,7 +140,7 @@
   .empty-container.property {
     width: 229px;
     left: 0px;
-    border-bottom:1px solid rgba(29, 35, 45, 0.4);
+    border-bottom: 1px solid rgba(29, 35, 45, 0.4);
   }
   .component-item {
     display: table-cell;
@@ -186,7 +189,9 @@
     .pdiv {
       width: 82.5% !important;
       padding-top: 1px !important;
-      p {color: #6f7b91;}
+      p {
+        color: #6f7b91;
+      }
     }
     .imgdiv {
       padding-top: 10px !important;
@@ -239,7 +244,7 @@
       left: 0;
       background: linear-gradient(top, #222 0%, #45484d 100%);
       border-radius: 4px;
-      box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,.4);
+      box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.5), 0px 1px 0px rgba(255, 255, 255, .4);
       &:after {
         content: '';
         width: 9px;
@@ -270,7 +275,6 @@
   #components {
     z-index: 1;
   }
-
 
   /* ----------- Solutions-Stack specific styles ----------*/
   .task-item {
@@ -304,7 +308,6 @@
     }
   }
 
-
   /* ----------- Properties specific styles ----------*/
   #properties {
     z-index: 1;
@@ -313,7 +316,6 @@
     .left-column-bottom {
       background-color: white;
       width: 100%;
-
 
       //  Title header section
       .propertiesHeader {
@@ -349,11 +351,8 @@
       // Name of the property
       .propertyname {
         padding: 10px 0px 5px 0px;
-        span {
-          font-size: 12px;
-        }
+        font-size: 12px;
       }
-
 
       /* ----------- All styles for accordion and any content within it ----------*/
       .propertiesaccordion {
@@ -472,8 +471,8 @@
           margin-right: 20px;
           color: #2E85AB;
           &:hover {
-          color: #2e6da4;
-        }
+            color: #2e6da4;
+          }
         }
       }
       .btn-danger.delete {

@@ -44,10 +44,14 @@ body {
   transition-duration: 300ms;
   transition-timing-function: ease;
 }
-.appnavbar .navbar-collapse > .navbar-right input.button:hover,
-.appnavbar .navbar-collapse > .navbar-right input.button:focus {
+.appnavbar .navbar-collapse > .navbar-right input.button:hover {
   background: #17bcb8;
-  color: #ffffff;
+  color: #fff;
+}
+.appnavbar .navbar-collapse > .navbar-right input.button:focus {
+  outline: none;
+  /* transition the background-color over 1s with a linear animation */
+  background-color: #202a36;
 }
 .modal-backdrop.fade.in {
   opacity: 0.8;
@@ -184,6 +188,7 @@ body {
 }
 #mid-container > #middle-panel {
   top: 52px;
+  height: 100%;
 }
 #mid-container > #middle-panel .canvasbtns {
   padding: 10px;
@@ -383,7 +388,6 @@ body {
 }
 /* Sub-Menu Style */
 #left-panel > .optionsmenu {
-  top: 52px;
   /* ----------- Component, Solution stack, and Property draggable items ----------*/
   /* ----------- Component specific styles ----------*/
   /* ----------- Solutions-Stack specific styles ----------*/
@@ -397,7 +401,10 @@ body {
   position: absolute;
   left: 13px;
   top: 38px;
-  color: rgba(112, 100, 130, 0.78);
+  color: #A3A6AB;
+}
+#left-panel > .optionsmenu .searchbox input::-webkit-input-placeholder {
+  color: #A3A6AB;
 }
 #left-panel > .optionsmenu .searchbox input:focus::-webkit-input-placeholder {
   color: transparent;
@@ -405,17 +412,18 @@ body {
 #left-panel > .optionsmenu .searchbox .search {
   padding: 8px 15px 8px 34px;
   background-color: transparent;
-  color: rgba(112, 100, 130, 0.78);
+  color: #A3A6AB;
   border: 1px solid transparent;
   font-weight: 500;
   outline: none;
   width: 97.2%;
-  margin-left: 4px;
-  margin-top: 6px;
+  margin: 6px 4px;
 }
 #left-panel > .optionsmenu .searchbox .search:focus {
-  border: 1px solid #61708C;
-  color: #2b3743;
+  box-shadow: none;
+  border: 1px solid rgba(122, 122, 147, 0.64);
+  outline: none;
+  color: #A3A6AB;
 }
 #left-panel > .optionsmenu .searchbox .button {
   position: relative;
@@ -710,8 +718,6 @@ body {
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertyname {
   padding: 10px 0px 5px 0px;
-}
-#left-panel > .optionsmenu #properties .left-column-bottom .propertyname span {
   font-size: 12px;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertiesaccordion .panel-group {
@@ -1314,11 +1320,11 @@ section#support .media:hover i {
 #left-panel {
   z-index: 0;
   overflow-y: scroll;
+  height: 100%;
   position: absolute;
-  top: 0;
+  top: 52px;
   bottom: 0;
   left: 0 /* 200 + 6*/;
-  overflow: hidden;
 }
 #left-panel .toggleleft {
   float: right;
@@ -1339,7 +1345,6 @@ section#support .media:hover i {
   background-color: #191d24;
   padding-top: 67px;
   padding-left: 23px;
-  top: 52px;
 }
 #left-panel .mainmenu .options {
   height: 30px;
@@ -1405,6 +1410,7 @@ section#support .media:hover i {
 #right-panel-resizer {
   background-color: #666;
   position: absolute;
+  height: 100%;
   top: 52px;
   bottom: 0;
   width: 6px;
@@ -1414,7 +1420,6 @@ section#support .media:hover i {
 }
 /* ----------- All Windows ----------*/
 .base-panel {
-  transition: all cubic-bezier(0.55, 0, 0.1, 1) 0.5s;
   animation: bounce 0.01s cubic-bezier(0.55, 0, 0.1, 1);
 }
 #sidebar-resizer:hover,
