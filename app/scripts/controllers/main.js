@@ -287,6 +287,29 @@ angular.module('nestorApp')
 
       };
 
+      $scope.containerDragged = function(containerName, offset) {
+
+        if ($scope.containments[containerName]) {
+          _.each($scope.containments[containerName], function(insideItem){
+            if($scope.addedComponents[insideItem]) {
+              //console.log('curX: '  + $scope.addedComponents[insideItem].x + ' - CurY: ' + $scope.addedComponents[insideItem].y);
+              $scope.addedComponents[insideItem].x = offset.x;
+              $scope.addedComponents[insideItem].y = offset.y;
+              //console.log('later: '  + $scope.addedComponents[insideItem].x + ' - laterY: ' + $scope.addedComponents[insideItem].y);
+              //recursively move everything within that insideItem
+              if ($scope.addedComponents[insideItem].blockType === 'container') {
+                $scope.containerDragged(insideItem, offset);
+              }
+            }
+          });
+        }
+
+        $scope.$digest();
+
+      };
+
+
+
       $scope.connectionDetached = function (sourceName, targetName) {
         var sourceObject = CFTemplate.getResource(sourceName);
         var targetObject = CFTemplate.getResource(targetName);

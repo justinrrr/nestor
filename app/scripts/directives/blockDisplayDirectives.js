@@ -13,7 +13,8 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
       componentBlockType: '@',
       componentType: '@',
       inCaseOfDropInsideContainer: '&',
-      inCaseOfDropOutsideContainer: '&'
+      inCaseOfDropOutsideContainer: '&',
+      inCaseOfContainerDrag: '&'
     },
     link: function postLink(scope, elem /*, attrs*/) {
 
@@ -21,10 +22,23 @@ app.directive('blockDisplay', ['UIComponents', function (UIComponents) {
       //-. And also add the component type to the class because of the stupid ng-class limitiations
       var componentType = scope.componentType.replace(/::/g, '-');
       elem.addClass(componentType);
-      elem.draggable();
       elem.addClass('draggable');
       elem.addClass('ui-widget-content');
       if (scope.componentBlockType === 'container') {
+
+        //If the item is a container we should listen to its drag options
+        elem.draggable({
+          drag: function (event, ui) {
+            var containerName = elem.attr('data-component-name');
+
+            var offset = {
+              x: ui.position.left,
+              y: ui.position.top
+            };
+
+            scope.inCaseOfContainerDrag({containerName: containerName, offset: offset});
+          }
+        });
 
         elem.resizable({handles: 'all'});
         elem.addClass('droppable');
