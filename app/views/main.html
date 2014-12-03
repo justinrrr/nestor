@@ -96,6 +96,7 @@
         <div ng-if="selectedComponent !== undefined">
           <properties
             component="selectedComponent"
+            template="privateTemplate"
             on-property-drag="propertyDidDrag(data, event)"
             ></properties>
         </div>
@@ -122,6 +123,8 @@
     <!-- The actual components on the canvas -->
     <div plumb-item
          block-display
+         in-case-of-drop-inside-container="itemGotDroppedInsideContainer(itemName, containerName)"
+         in-case-of-drop-outside-container= "itemGotDroppedOutsideContainer(itemName, containerName)"
          ng-repeat="component in addedComponents"
          plumb-block-type="{{component.blockType}}"
          component-block-type="{{component.blockType}}"

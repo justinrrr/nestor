@@ -1437,7 +1437,7 @@ section#support .media:hover i {
   z-index: 1;
 }
 #mid-container #middle-panel .container-hover {
-  background-color: green !important;
+  background-color: rgba(111, 123, 145, 0.3) !important;
 }
 .draggable {
   width: 100px;
@@ -1452,4 +1452,10 @@ section#support .media:hover i {
   padding: 0.5em;
   float: left;
   margin: 10px;
+}
+.AWS-EC2-VPC {
+  z-index: 1 !important;
+}
+.AWS-EC2-Subnet {
+  z-index: 2 !important;
 }

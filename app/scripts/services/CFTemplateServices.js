@@ -6,7 +6,7 @@
 
 var app = angular.module('nestorApp.services');
 
-app.service('CFTemplate', function () {
+app.service('CFTemplate', ['UIComponents', 'ConnectionUtils', function (UIComponents, ConnectionUtils) {
 
     // the Cloud Formation Template
     var cfTemplate;
@@ -44,7 +44,7 @@ app.service('CFTemplate', function () {
     };
 
     this.getPropertyForResource = function (propertyName, resourceName) {
-      if (!propertyName || !resourceName){
+      if (!propertyName || !resourceName) {
         return;
       }
       return cfTemplate.Resources[resourceName].Properties[propertyName];
@@ -55,15 +55,16 @@ app.service('CFTemplate', function () {
     };
 
     /* This method returns the string version of our Cloud Formation Template*/
-    var getStringForm = function getStringForm() {
+    this.getStringFormat = function () {
       if (cfTemplate === undefined) {
         cfTemplate = createInitialTemplate();
       }
       return angular.toJson(cfTemplate, true);
     };
 
-    this.getStringFormat = getStringForm;
-
+    this.getPrivateTemplate = function() {
+      return cfTemplate;
+    };
 
     /* this method replaces the internal Cloud Formation Template
      * this is especially useful when the user selects a preconfigured solution (i.e. task) */
@@ -146,5 +147,41 @@ app.service('CFTemplate', function () {
       return index;
     };
 
-  }
+    this.establishConnection = function(sourceName, sourceObject, targetName, targetObject, incomingProperies) {
+      var finalTarget;
+      var connectionHappened;
+
+      // If this connection needs to update Target
+      if (incomingProperies.isProperty === 'true') {
+        finalTarget = targetObject.Properties;
+      }
+      else {
+        finalTarget = targetObject;
+      }
+
+      connectionHappened = ConnectionUtils.connectObjectsThroughProps(incomingProperies.targetPropName, incomingProperies.targetPropValue,
+        incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
+        finalTarget, sourceObject, sourceName);
+
+
+      // If this connection needs to update Source
+      if (incomingProperies.isProperty === 'true') {
+        finalTarget = sourceObject.Properties;
+      }
+      else {
+        finalTarget = sourceObject;
+      }
+
+      connectionHappened = connectionHappened || ConnectionUtils.connectObjectsThroughProps(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
+        incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
+        finalTarget, targetObject, targetName);
+
+
+      if (connectionHappened && incomingProperies.overlays) {
+        return incomingProperies.overlays;
+      }
+
+      return [];
+    };
+  }]
 );

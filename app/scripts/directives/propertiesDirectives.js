@@ -11,6 +11,7 @@ app.directive('properties', [function () {
     restrict: 'E',
     scope: {
       component: '=',
+      template: '=',
       onPropertyDrag: '&'
     },
     templateUrl: 'templates/properties.html',
@@ -22,19 +23,18 @@ app.directive('properties', [function () {
   };
 }]);
 
-app.directive('componentProperties', ['AWSComponents','CFTemplate', function (AWSComponents,CFTemplate) {
+app.directive('componentProperties', ['AWSComponents', function (AWSComponents) {
   return {
     replace: true,
     restrict: 'E',
     scope: {
       componentName: '=',
       componentProperties: '=',
+      componentModel: '=',
       onPropertyDrag: '&'
     },
     templateUrl: 'templates/component_properties.html',
     link: function (scope) {
-      scope.componentModel = CFTemplate.getPropertiesForResource(scope.componentName);
-
       scope.types = AWSComponents.propertyTypes;
 
 
@@ -45,6 +45,10 @@ app.directive('componentProperties', ['AWSComponents','CFTemplate', function (AW
 
       scope.isTable = function (prop) {
         return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'table';
+      };
+
+      scope.isList = function (prop){
+        return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'list';
       };
 
       scope.isPrimitive = function (prop) {
@@ -60,19 +64,18 @@ app.directive('componentProperties', ['AWSComponents','CFTemplate', function (AW
 }]);
 
 
-app.directive('derivedProperties', ['AWSComponents','CFTemplate',
-  function (AWSComponents,CFTemplate) {
+app.directive('derivedProperties', ['AWSComponents',
+  function (AWSComponents) {
     return {
       replace: true,
       restrict: 'E',
       scope: {
         component: '=',
-        componentProperties: '='
+        componentProperties: '=',
+        componentModel: '='
       },
       templateUrl: 'templates/derived_properties.html',
       link: function (scope) {
-        scope.componentModel = CFTemplate.getPropertyForResource(scope.component.type,scope.component.parent);
-
         scope.types = AWSComponents.propertyTypes;
 
         scope.model = scope.componentModel[scope.component.index];
@@ -90,7 +93,7 @@ app.directive('derivedProperties', ['AWSComponents','CFTemplate',
 
   }]);
 
-app.directive('primitiveProperty', [function () {
+app.directive('primitiveProperty', [ function () {
   return {
     replace: true,
     restrict: 'E',
@@ -112,6 +115,7 @@ app.directive('primitiveProperty', [function () {
       }
       if (!scope.model && scope.property.default) {
         scope.model = scope.property.default[0];
+//        scope.model[scope.property.name] = scope.property.default[0];
       }
 
 
@@ -133,19 +137,22 @@ app.directive('primitiveProperty', [function () {
 
       scope.itemSelected = function (selectedItem) {
         scope.model = selectedItem;
+//        scope.model[scope.property.name] = selectedItem;
       };
+
     }
   };
 }]);
 
-app.directive('tableProperty', [function () {
+app.directive('tableProperty', [ function () {
   return {
     replace: true,
     restrict: 'E',
     scope: {
       property: '=',
       propertyTypes: '=',
-      propertyModel: '='
+      propertyModel: '=',
+      componentName: '='
     },
     templateUrl: '../../templates/table_properties.html',
     link: function (scope) {
@@ -242,3 +249,90 @@ app.directive('dragProperty', [function () {
     }
   };
 }]);
+
+
+app.directive('listProperty', [ function () {
+  return {
+    replace: true,
+    restrict: 'E',
+    transclude: true,
+    scope: {
+      property: '=',
+      propertyTypes: '=',
+      propertyModel: '=',
+      componentName: '='
+    },
+    templateUrl: '../../templates/list_properties.html',
+    link: function (scope) {
+
+      scope.propertyHeadings = {
+        required: scope.propertyTypes.types.required,
+        optional: scope.propertyTypes.types.optional
+      };
+
+
+      scope.loadAllowableValues = function (item) {
+        item.valueMap = [];
+        _.each(item.allowableValues, function (valueObj) {
+          _.each(valueObj, function (value, key) {
+            item.valueMap.push({name: value, value: key});
+          });
+        });
+      };
+
+      scope.isSingleCellTable = function() {
+        return scope.propertyTypes.Display.maxSize === 1;
+      };
+
+      scope.AddToTable = function (listToAddTo, componentName, neededFields) {
+
+        var allFields = neededFields.required || [];
+//        if (neededFields.optional) {
+//          allFields.concat(neededFields.optional);
+//        }
+
+        //for now we assume there is only one field for list properties
+        var item = {};
+        _.each(allFields, function (property) {
+          item = property.name;
+        });
+
+        //the maximum size of the table is either 1 or more than 1.
+        //in the case that the maximum size is 1 we shouldn't add values anymore
+        //and should not add the value to a list
+        if (scope.isSingleCellTable()) {
+          listToAddTo[componentName] = item;
+        } else {
+          if (!listToAddTo[componentName]) {
+            listToAddTo[componentName] = [];
+          }
+          listToAddTo[componentName].push(item);
+        }
+      };
+
+      scope.saveEntry = function ($data, $index) {
+
+        _.each($data, function (enteredValue) {
+          if (enteredValue && enteredValue.value) {
+
+            if (scope.isSingleCellTable() ) {
+              scope.propertyModel[scope.property.name] = enteredValue.value;
+            } else {
+              scope.propertyModel[scope.property.name][$index] = enteredValue.value;
+            }
+          }
+        });
+      };
+
+      scope.removeRow = function ($index) {
+        if(scope.isSingleCellTable) {
+          delete scope.propertyModel[scope.property.name];
+        } else {
+          scope.propertyModel[scope.property.name].splice($index, 1);
+        }
+      };
+
+    }
+  };
+}]);
+
