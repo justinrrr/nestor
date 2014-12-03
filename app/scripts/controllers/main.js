@@ -245,6 +245,13 @@ angular.module('nestorApp')
         return result;
       };
 
+      $scope.containerPositionChanged = function(containerName, newPosition) {
+        if($scope.addedComponents[containerName]) {
+
+          $scope.addedComponents[containerName].x = newPosition.left;
+          $scope.addedComponents[containerName].y = newPosition.top;
+        }
+      };
       //This function gets called when it has already been validated that
       //the droped item is legit for the container
       $scope.itemGotDroppedInsideContainer = function(itemName, containerName) {
@@ -262,10 +269,16 @@ angular.module('nestorApp')
           $scope.containments[containerName] = [];
         }
 
-        //well, there is a possibility that we push an item inside this array
-        //twice. This method does not gaurantee that so we are pretty much
-        //counting on the UI logic to keep this clean (which to me (ali) sounds right)
-        $scope.containments[containerName].push(itemName);
+        //again because of the jquery ui library an item that is inside
+        //a container can be moved within it. When that happens,there could be
+        //two events fired for this method (I couldn't find a way to prevent this
+        //inside the jquery UI so its here ) . don't add a new containment if
+        //anything exists. + LessonLearned : Each piece of code should not expect
+        //the other piece of code that interacts with an unknown library to
+        //behave a certain way. I literally spent 2 hours on this bug.
+        if ($scope.containments[containerName].indexOf(itemName) === -1) {
+          $scope.containments[containerName].push(itemName);
+        }
 
         $scope.$digest();
 
@@ -286,6 +299,27 @@ angular.module('nestorApp')
         $scope.connectionDetached(itemName, containerName);
 
       };
+
+      $scope.containerDragged = function(containerName, offset) {
+
+        if ($scope.containments[containerName]) {
+          _.each($scope.containments[containerName], function(insideItem){
+            if($scope.addedComponents[insideItem]) {
+              $scope.addedComponents[insideItem].x += offset.dx;
+              $scope.addedComponents[insideItem].y += offset.dy;
+              //recursively move everything within that insideItem
+              if ($scope.addedComponents[insideItem].blockType === 'container') {
+                $scope.containerDragged(insideItem, offset);
+              }
+            }
+          });
+        }
+
+        $scope.$digest();
+
+      };
+
+
 
       $scope.connectionDetached = function (sourceName, targetName) {
         var sourceObject = CFTemplate.getResource(sourceName);

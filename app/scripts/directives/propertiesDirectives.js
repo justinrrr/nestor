@@ -47,7 +47,7 @@ app.directive('componentProperties', ['AWSComponents', function (AWSComponents) 
         return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'table';
       };
 
-      scope.isList = function (prop){
+      scope.isList = function (prop) {
         return scope.types.complex[prop.type] && scope.types.complex[prop.type].Display.type === 'list';
       };
 
@@ -62,7 +62,6 @@ app.directive('componentProperties', ['AWSComponents', function (AWSComponents) 
   };
 
 }]);
-
 
 app.directive('derivedProperties', ['AWSComponents',
   function (AWSComponents) {
@@ -172,7 +171,7 @@ app.directive('tableProperty', [ function () {
         });
       };
 
-      scope.isSingleCellTable = function() {
+      scope.isSingleCellTable = function () {
         return scope.propertyTypes.Display.maxSize === 1;
       };
 
@@ -215,7 +214,7 @@ app.directive('tableProperty', [ function () {
       };
 
       scope.removeRow = function ($index) {
-        if(scope.isSingleCellTable) {
+        if (scope.isSingleCellTable) {
           delete scope.propertyModel[scope.property.name];
         } else {
           scope.propertyModel[scope.property.name].splice($index, 1);
@@ -250,7 +249,7 @@ app.directive('dragProperty', [function () {
   };
 }]);
 
-
+// a "listProperty" is a list of "primitive" properties such as String, Integer, ...
 app.directive('listProperty', [ function () {
   return {
     replace: true,
@@ -265,11 +264,7 @@ app.directive('listProperty', [ function () {
     templateUrl: '../../templates/list_properties.html',
     link: function (scope) {
 
-      scope.propertyHeadings = {
-        required: scope.propertyTypes.types.required,
-        optional: scope.propertyTypes.types.optional
-      };
-
+      scope.propertyHeadings = scope.propertyTypes.types;
 
       scope.loadAllowableValues = function (item) {
         item.valueMap = [];
@@ -280,56 +275,30 @@ app.directive('listProperty', [ function () {
         });
       };
 
-      scope.isSingleCellTable = function() {
-        return scope.propertyTypes.Display.maxSize === 1;
-      };
+      scope.AddToTable = function (propertyDataModel, componentName, neededFields) {
 
-      scope.AddToTable = function (listToAddTo, componentName, neededFields) {
-
-        var allFields = neededFields.required || [];
-//        if (neededFields.optional) {
-//          allFields.concat(neededFields.optional);
-//        }
-
-        //for now we assume there is only one field for list properties
-        var item = {};
-        _.each(allFields, function (property) {
-          item = property.name;
-        });
-
-        //the maximum size of the table is either 1 or more than 1.
-        //in the case that the maximum size is 1 we shouldn't add values anymore
-        //and should not add the value to a list
-        if (scope.isSingleCellTable()) {
-          listToAddTo[componentName] = item;
-        } else {
-          if (!listToAddTo[componentName]) {
-            listToAddTo[componentName] = [];
-          }
-          listToAddTo[componentName].push(item);
+        if (!propertyDataModel[componentName]) {
+          propertyDataModel[componentName] = [];
         }
+        propertyDataModel[componentName].push(neededFields.name);
       };
 
       scope.saveEntry = function ($data, $index) {
 
-        _.each($data, function (enteredValue) {
-          if (enteredValue && enteredValue.value) {
-
-            if (scope.isSingleCellTable() ) {
-              scope.propertyModel[scope.property.name] = enteredValue.value;
-            } else {
-              scope.propertyModel[scope.property.name][$index] = enteredValue.value;
-            }
-          }
-        });
+        var selectedItem = $data['inputValue'];
+        if (selectedItem && selectedItem['value']) {
+          scope.propertyModel[scope.property.name][$index] = selectedItem['value'];
+        }
+//        _.each($data, function (enteredValue) {
+//          if (enteredValue && enteredValue.value) {
+//
+//            scope.propertyModel[scope.property.name][$index] = enteredValue.value;
+//          }
+//        });
       };
 
       scope.removeRow = function ($index) {
-        if(scope.isSingleCellTable) {
-          delete scope.propertyModel[scope.property.name];
-        } else {
-          scope.propertyModel[scope.property.name].splice($index, 1);
-        }
+        scope.propertyModel[scope.property.name].splice($index, 1);
       };
 
     }

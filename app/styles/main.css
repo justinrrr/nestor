@@ -1454,6 +1454,8 @@ section#support .media:hover i {
 }
 .AWS-EC2-VPC {
   z-index: 1 !important;
+  width: 450px;
+  height: 450px;
 }
 .AWS-EC2-Subnet {
   z-index: 2 !important;
