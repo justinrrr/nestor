@@ -708,6 +708,7 @@ body {
   font-size: 12px;
   margin-top: 10px;
   color: #ffffff;
+  word-break: break-all;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .requiredORoptional {
   padding: 10px 10px 15px 15px;
@@ -719,6 +720,7 @@ body {
 #left-panel > .optionsmenu #properties .left-column-bottom .propertyname {
   padding: 10px 0px 5px 0px;
   font-size: 12px;
+  word-break: break-all;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertiesaccordion .panel-group {
   margin-bottom: 0px;
