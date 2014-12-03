@@ -13,6 +13,7 @@ body {
 .appnavbar {
   border-radius: 0px;
   background-color: #394a57;
+  z-index: 999999;
 }
 .appnavbar .brand {
   position: absolute;
@@ -163,16 +164,17 @@ body {
   background-color: rgba(252, 113, 105, 0.72);
 }
 #right-panel.ace-twilight {
-  top: 52px;
   height: 100%;
   background-color: #191d24;
 }
 #right-panel.ace-twilight .ace_gutter {
+  padding-top: 60px;
   background-color: #202a36;
   color: #5C6A74;
 }
 #right-panel.ace-twilight .ace_scroller > .ace_content {
   background-color: #191d24;
+  padding-top: 60px;
 }
 #right-panel.ace-twilight .ace_scroller > .ace_content .ace_layer.ace_text-layer > .ace_line .ace_variable {
   color: #9AABC8;
@@ -187,7 +189,6 @@ body {
   background: rgba(161, 169, 182, 0.22);
 }
 #mid-container > #middle-panel {
-  top: 52px;
   height: 100%;
 }
 #mid-container > #middle-panel .canvasbtns {
@@ -284,7 +285,7 @@ body {
   color: #17bcb8;
 }
 #mid-container > #middle-panel .selectedComponent {
-  background-color: rgba(170, 185, 192, 0.12);
+  background-color: rgba(239, 239, 239, 0.92);
   border: 1px solid rgba(106, 126, 163, 0.34);
   border-radius: 0;
 }
@@ -302,14 +303,6 @@ body {
 }
 #mid-container > #middle-panel .selectedComponent .title {
   color: #2e2633;
-}
-#mid-container > #middle-panel .AWS-EC2-EIP > img {
-  height: 20px;
-  margin-top: 40px;
-}
-#mid-container > #middle-panel .AWS-EC2-EIP.selectedComponent > img {
-  height: 20px;
-  margin-top: 20px;
 }
 #mid-container > #middle-panel div[resizable] {
   border: 1px solid Black;
@@ -1324,8 +1317,8 @@ section#support .media:hover i {
   overflow-y: scroll;
   height: 100%;
   position: absolute;
-  top: 52px;
   bottom: 0;
+  padding-top: 52px;
   left: 0 /* 200 + 6*/;
 }
 #left-panel .toggleleft {
@@ -1413,7 +1406,6 @@ section#support .media:hover i {
   background-color: #666;
   position: absolute;
   height: 100%;
-  top: 52px;
   bottom: 0;
   width: 6px;
   right: 20%;
@@ -1428,15 +1420,36 @@ section#support .media:hover i {
 #preview-resizer:hover {
   background-color: #AAA;
 }
-#mid-container #middle-panel .block-style-container {
+/* -----------  Styles for specific components on canvas  ----------*/
+#mid-container > #middle-panel .block-style-container {
   background-color: transparent;
   text-align: start;
   box-shadow: none;
-  border: 5px dashed black;
+  border: 3px dashed #373A3F;
   z-index: 1;
 }
-#mid-container #middle-panel .container-hover {
-  background-color: rgba(111, 123, 145, 0.3) !important;
+#mid-container > #middle-panel .container-hover {
+  background-color: #e2e2e2 !important;
+}
+#mid-container > #middle-panel .AWS-EC2-EIP > img {
+  height: 20px;
+  margin-top: 40px;
+}
+#mid-container > #middle-panel .AWS-EC2-EIP.selectedComponent > img {
+  height: 20px;
+  margin-top: 20px;
+}
+#mid-container > #middle-panel .AWS-EC2-VPC {
+  z-index: 1 !important;
+  height: 400px;
+  width: 500px;
+}
+#mid-container > #middle-panel .AWS-EC2-VPC.selectedComponent {
+  height: 400px;
+  width: 500px;
+}
+#mid-container > #middle-panel .AWS-EC2-Subnet {
+  z-index: 2 !important;
 }
 .draggable {
   width: 100px;
@@ -1451,12 +1464,4 @@ section#support .media:hover i {
   padding: 0.5em;
   float: left;
   margin: 10px;
-}
-.AWS-EC2-VPC {
-  z-index: 1 !important;
-  width: 450px;
-  height: 450px;
-}
-.AWS-EC2-Subnet {
-  z-index: 2 !important;
 }
