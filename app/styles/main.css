@@ -718,8 +718,6 @@ body {
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertyname {
   padding: 10px 0px 5px 0px;
-}
-#left-panel > .optionsmenu #properties .left-column-bottom .propertyname span {
   font-size: 12px;
 }
 #left-panel > .optionsmenu #properties .left-column-bottom .propertiesaccordion .panel-group {
@@ -1422,7 +1420,6 @@ section#support .media:hover i {
 }
 /* ----------- All Windows ----------*/
 .base-panel {
-  transition: all cubic-bezier(0.55, 0, 0.1, 1) 0.5s;
   animation: bounce 0.01s cubic-bezier(0.55, 0, 0.1, 1);
 }
 #sidebar-resizer:hover,
