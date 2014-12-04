@@ -40,7 +40,11 @@
         </p>
         <input ng-model="searchText" type="text" placeholder="Search..." required class="search"></form>
       <tabset justified="true">
-        <pre ng-show="debug">{{addedComponents}}</pre>
+        <h1>connections</h1>
+        <pre ng-show="debug">{{canvasModel.connections | json}}</pre>
+
+        <h1>Added Components</h1>
+        <pre ng-show="debug">{{canvasModel.Components | json}}</pre>
         <tab heading="Components" class="components-tab">
           <div ng-repeat="comp in components | filter:searchText">
             <div
@@ -129,7 +133,7 @@
          in-case-of-container-drag ="containerDragged(containerName, offset)"
          in-case-of-container-cordinate-change="containerPositionChanged(containerName, newPosition)"
          in-case-of-item-cordinate-change = "itemPositionChanged(itemName, newPosition)"
-         ng-repeat="component in addedComponents"
+         ng-repeat="component in canvasModel.addedComponents"
          plumb-block-type="{{component.blockType}}"
          component-block-type="{{component.blockType}}"
          component-type="{{component.type}}"

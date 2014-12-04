@@ -1,24 +1,28 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$modal', 'AWSComponents', 'CFTemplate', 'UIComponents', 'ConnectionUtils', '$window','$analytics',
-    function ($scope, $rootScope, $modal, AWSComponents, CFTemplate, UIComponents, ConnectionUtils, $window,$analytics) {
+  .controller('MainCtrl',
+  ['$scope', '$rootScope', '$modal', 'AWSComponents', 'CFTemplate', 'UIComponents',
+    'ConnectionUtils', '$window', '$analytics',
+    'CanvasModel',
+    function ($scope, $rootScope, $modal, AWSComponents,
+              CFTemplate, UIComponents, ConnectionUtils, $window, $analytics, CanvasModel) {
 
-      $scope.debug = false;
+      $scope.debug = true;
       $scope.isBottomLeftOpen = false;
       $scope.isLeftOpen = false;
       $scope.isPropertiesShowing = false;
 
       UIComponents.setupJSPlumb($scope);
+      $scope.canvasModel = CanvasModel;
 
       //create the main data model variables. All of these must be serialized
       //and deserialized for saving of an item
       $scope.templateString = CFTemplate.getStringFormat();
       $scope.privateTemplate = CFTemplate.getPrivateTemplate();
-      $scope.addedComponents = {};
-      $scope.connections = [];
-      $scope.containments = [];
-      $scope.componentNameCounters = {};
+
+
+
 
       // some aliases for UI representation of the data model
       $scope.components = AWSComponents.components;
@@ -43,11 +47,11 @@ angular.module('nestorApp')
       // Helpers functions
       //--------------------------------------
       function generateComponentName(type) {
-        if (!$scope.componentNameCounters.type) {
-          $scope.componentNameCounters.type = 1;
+        if (!CanvasModel.componentNameCounters.type) {
+          CanvasModel.componentNameCounters.type = 1;
         }
-        var counter = $scope.componentNameCounters.type;
-        $scope.componentNameCounters.type++;
+        var counter = CanvasModel.componentNameCounters.type;
+        CanvasModel.componentNameCounters.type++;
         return type + counter;
       }
 
@@ -72,7 +76,7 @@ angular.module('nestorApp')
           posY);
 
         c.blockType = blueprint.blockType;
-        $scope.addedComponents[c.name] = c;
+        CanvasModel.addedComponents[c.name] = c;
 
         var aMetadata = $scope.componentMetadata[blueprint.type];
         CFTemplate.addResource(c.name, aMetadata.type, aMetadata.outputs);
@@ -146,16 +150,18 @@ angular.module('nestorApp')
 
         addComponent($data, $event.x - rightPanelWidth - 85, $event.y - 50);
 
-        $analytics.eventTrack('dragged',{ componentName: $data.type } );
+        $analytics.eventTrack('dragged', {componentName: $data.type});
       };
 
       $scope.taskSelected = function (task) {
         CFTemplate.setTemplate(task.template);
-        $scope.addedComponents = task.components;
-        $scope.connections = task.connections;
+        CanvasModel.addedComponents = task.components;
+        CanvasModel.connections = task.connections;
 
-        _.each($scope.connections, function (connection) {
-          UIComponents.connectComponents(connection.source, connection.target, false);
+        _.each(CanvasModel.connections, function (targets, sourceName) {
+          _.each(targets, function (targetName) {
+            UIComponents.connectComponents(sourceName, targetName, false);
+          });
         });
 
         $analytics.eventTrack('solutionPicked');
@@ -195,7 +201,7 @@ angular.module('nestorApp')
           }
         }
 
-        $analytics.eventTrack('propertiesClicked',{ componentName: component.name } );
+        $analytics.eventTrack('propertiesClicked', {componentName: component.name});
 
       };
 
@@ -231,7 +237,7 @@ angular.module('nestorApp')
         jsPlumb.removeAllEndpoints(toBeDeletedElem.id);
 
         // remove the component's data from the list of all components
-        delete $scope.addedComponents[component.name];
+        delete CanvasModel.addedComponents[component.name];
 
         // update the Cloud Formation Tempalte
         CFTemplate.removeResource(component.name);
@@ -240,9 +246,16 @@ angular.module('nestorApp')
       };
 
       $scope.connectionEstablished = function (sourceName, targetName) {
-        $analytics.eventTrack('connectionEstab',{ source: sourceName, target: targetName } );
 
-        $scope.connections.push({source: sourceName, target: targetName});
+
+        $analytics.eventTrack('connectionEstab', {source: sourceName, target: targetName});
+
+        //Lazility instantiate the connections object
+        if (!CanvasModel.connections[sourceName]) {
+          CanvasModel.connections[sourceName] = {};
+        }
+
+        CanvasModel.connections[sourceName][targetName] = targetName;
 
         var sourceObject = CFTemplate.getResource(sourceName);
         var targetObject = CFTemplate.getResource(targetName);
@@ -254,28 +267,28 @@ angular.module('nestorApp')
         return result;
       };
 
-      $scope.containerPositionChanged = function(containerName, newPosition) {
-        if($scope.addedComponents[containerName]) {
+      $scope.containerPositionChanged = function (containerName, newPosition) {
+        if (CanvasModel.addedComponents[containerName]) {
 
-          $scope.addedComponents[containerName].x = newPosition.left;
-          $scope.addedComponents[containerName].y = newPosition.top;
+          CanvasModel.addedComponents[containerName].x = newPosition.left;
+          CanvasModel.addedComponents[containerName].y = newPosition.top;
         }
       };
 
 
-      $scope.itemPositionChanged = function(itemName, newPosition) {
+      $scope.itemPositionChanged = function (itemName, newPosition) {
 
-        if($scope.addedComponents[itemName]) {
+        if (CanvasModel.addedComponents[itemName]) {
 
-          $scope.addedComponents[itemName].x = newPosition.left;
-          $scope.addedComponents[itemName].y = newPosition.top;
+          CanvasModel.addedComponents[itemName].x = newPosition.left;
+          CanvasModel.addedComponents[itemName].y = newPosition.top;
         }
       };
       //This function gets called when it has already been validated that
       //the droped item is legit for the container
-      $scope.itemGotDroppedInsideContainer = function(itemName, containerName) {
+      $scope.itemGotDroppedInsideContainer = function (itemName, containerName) {
 
-        $analytics.eventTrack('dropInContainer',{ item: itemName, container: containerName} );
+        $analytics.eventTrack('dropInContainer', {item: itemName, container: containerName});
 
         var sourceObject = CFTemplate.getResource(itemName);
         var targetObject = CFTemplate.getResource(containerName);
@@ -286,8 +299,8 @@ angular.module('nestorApp')
 
         //add the bookkeeping containment DS
         //lazy initialize
-        if (!$scope.containments[containerName]) {
-          $scope.containments[containerName] = [];
+        if (!CanvasModel.containments[containerName]) {
+          CanvasModel.containments[containerName] = [];
         }
 
         //again because of the jquery ui library an item that is inside
@@ -297,8 +310,8 @@ angular.module('nestorApp')
         //anything exists. + LessonLearned : Each piece of code should not expect
         //the other piece of code that interacts with an unknown library to
         //behave a certain way. I literally spent 2 hours on this bug.
-        if ($scope.containments[containerName].indexOf(itemName) === -1) {
-          $scope.containments[containerName].push(itemName);
+        if (CanvasModel.containments[containerName].indexOf(itemName) === -1) {
+          CanvasModel.containments[containerName].push(itemName);
         }
 
         $scope.$digest();
@@ -306,15 +319,15 @@ angular.module('nestorApp')
         return result;
       };
 
-      $scope.itemGotDroppedOutsideContainer = function(itemName, containerName) {
+      $scope.itemGotDroppedOutsideContainer = function (itemName, containerName) {
 
-        $analytics.eventTrack('dropOutContainer',{ item: itemName, container: containerName} );
+        $analytics.eventTrack('dropOutContainer', {item: itemName, container: containerName});
 
         //first remove it from the container DS here
-        if ($scope.containments[containerName]) {
-          var index = $scope.containments[containerName].indexOf(itemName);
+        if (CanvasModel.containments[containerName]) {
+          var index = CanvasModel.containments[containerName].indexOf(itemName);
           if (index !== -1) {
-            $scope.containments[containerName].splice(index, 1);
+            CanvasModel.containments[containerName].splice(index, 1);
           }
         }
 
@@ -324,18 +337,17 @@ angular.module('nestorApp')
       };
 
 
+      $scope.containerDragged = function (containerName, offset) {
 
-      $scope.containerDragged = function(containerName, offset) {
+        $analytics.eventTrack('containerDragged', {container: containerName});
 
-        $analytics.eventTrack('containerDragged',{ container: containerName} );
-
-        if ($scope.containments[containerName]) {
-          _.each($scope.containments[containerName], function(insideItem){
-            if($scope.addedComponents[insideItem]) {
-              $scope.addedComponents[insideItem].x += offset.dx;
-              $scope.addedComponents[insideItem].y += offset.dy;
+        if (CanvasModel.containments[containerName]) {
+          _.each(CanvasModel.containments[containerName], function (insideItem) {
+            if (CanvasModel.addedComponents[insideItem]) {
+              CanvasModel.addedComponents[insideItem].x += offset.dx;
+              CanvasModel.addedComponents[insideItem].y += offset.dy;
               //recursively move everything within that insideItem
-              if ($scope.addedComponents[insideItem].blockType === 'container') {
+              if (CanvasModel.addedComponents[insideItem].blockType === 'container') {
                 $scope.containerDragged(insideItem, offset);
               }
             }
@@ -349,7 +361,7 @@ angular.module('nestorApp')
 
       $scope.connectionDetached = function (sourceName, targetName) {
 
-        $analytics.eventTrack('connectionDetached',{ source: sourceName, target: targetName} );
+        $analytics.eventTrack('connectionDetached', {source: sourceName, target: targetName});
 
         var sourceObject = CFTemplate.getResource(sourceName);
         var targetObject = CFTemplate.getResource(targetName);
@@ -399,7 +411,7 @@ angular.module('nestorApp')
       };
 
       $scope.propertyDidDrag = function (data, event) {
-        $analytics.eventTrack('complexPropDrag',{ dragPropName: data.name} );
+        $analytics.eventTrack('complexPropDrag', {dragPropName: data.name});
 
 
         var leftPanelWidth = angular.element('#left-panel')[0].clientWidth;
@@ -414,7 +426,7 @@ angular.module('nestorApp')
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,
           data.description,
-            event.x - leftPanelWidth,
+          event.x - leftPanelWidth,
           event.y,
           data.parent
         );
@@ -424,7 +436,7 @@ angular.module('nestorApp')
         c.isDerived = true;
         c.blockType = data.blockType;
 
-        $scope.addedComponents[c.name] = c;
+        CanvasModel.addedComponents[c.name] = c;
 
         c.index = CFTemplate.addComplexPropertyToResource(data.name, data.parent);
 
@@ -437,9 +449,9 @@ angular.module('nestorApp')
 
       $scope.templateStringChanged = function () {
         try {
+          CanvasModel.addedComponents = {};
+          CanvasModel.connections = {};
           CFTemplate.setTemplate(JSON.parse($scope.templateString));
-          $scope.addedComponents = {};
-          $scope.connections = [];
         } catch (err) {
           console.log(err);
         }
@@ -448,7 +460,7 @@ angular.module('nestorApp')
 
         //add any component that is in the json string but not in the addedComponents
         _.each(allResources, function (item) {
-          if (!$scope.addedComponents[item.name]) {
+          if (!CanvasModel.addedComponents[item.name]) {
             var found = false;
             _.each(AWSComponents.components, function (component) {
               if (component.type === item.type) {
@@ -470,7 +482,7 @@ angular.module('nestorApp')
                 c.blockType = blueprint.blockType;
                 itemSelected(c);
 
-                $scope.addedComponents[c.name] = c;
+                CanvasModel.addedComponents[c.name] = c;
               }
             });
           }
