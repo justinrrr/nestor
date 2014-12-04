@@ -1403,15 +1403,17 @@ section#support .media:hover i {
 }
 #mid-container > #middle-panel .AWS-EC2-VPC {
   z-index: 1 !important;
-  height: 400px;
-  width: 500px;
+  height: 500px;
+  width: 600px;
 }
 #mid-container > #middle-panel .AWS-EC2-VPC.selectedComponent {
-  height: 400px;
-  width: 500px;
+  height: 500px;
+  width: 600px;
 }
 #mid-container > #middle-panel .AWS-EC2-Subnet {
   z-index: 2 !important;
+  height: 300px;
+  width: 400px;
 }
 .draggable {
   width: 100px;
