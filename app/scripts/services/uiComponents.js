@@ -23,8 +23,10 @@ app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbSty
   };
 
   var areTypesMatch = function (sourceType, targetType) {
+
+    //in case of
     var targetObj =  AWSComponents.componentMetadata[targetType];
-    if (targetObj && targetObj.IncomingConnection.hasOwnProperty(sourceType)) {
+    if(targetObj && targetObj.IncomingConnection.hasOwnProperty(sourceType)) {
       return true;
     }
     return false;
@@ -39,7 +41,19 @@ app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbSty
 
     var targetType = info.target.attributes.getNamedItem('component-type').value;
 
-    return areTypesMatch(sourceType, targetType);
+    var targetBlockType = info.target.attributes.getNamedItem('component-block-type').value;
+
+    //if we have a container block only the connection from source to target should be matched
+    //i.e you can't drop a container on top of the containee
+    var result = areTypesMatch(sourceType, targetType);
+    if (targetBlockType === 'container') {
+      return result;
+    }
+    //if we have a normal connection then both the action of source attaching to target
+    //and the target attaching to the source has the same meaning
+    else {
+      return result ||  areTypesMatch(targetType, sourceType);
+    }
   };
 
   this.validateConnection = validateConnection;
@@ -63,8 +77,8 @@ app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbSty
     });
 
     jsPlumb.bind('beforeDetach', function (info) {
-      var sourceNominalName = info.source.attributes['data-identifier'].nodeValue;
-      var targetNominalName = info.target.attributes['data-identifier'].nodeValue;
+      var sourceNominalName = info.source.attributes['data-identifier'].value;
+      var targetNominalName = info.target.attributes['data-identifier'].value;
 
       $scope.onConnectionDetached({
         sourceName: sourceNominalName,
