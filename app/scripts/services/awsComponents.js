@@ -439,6 +439,13 @@ app.service('AWSComponents', function () {
       'AWS::EC2::Subnet': {
         type: 'AWS::EC2::Subnet',
         IncomingConnection: {
+          'AWS::EC2::Instance': {
+            sourcePropName: 'SubnetId',
+            sourcePropValue: 'name',
+            sourcePropValueMethod: 'ref',
+            sourcePolicy: 'assign',
+            isProperty: 'true'
+          }
         },
         properties: {
           required: [
