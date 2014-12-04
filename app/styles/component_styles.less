@@ -1,18 +1,46 @@
-#mid-container {
-  //  > #middle-panel .selectedComponent {
-  #middle-panel {
-    .block-style-container {
-      background-color: transparent;
-      text-align: start;
-      box-shadow: none;
-      border: 5px dashed black;
-      z-index: 1;
-    }
-    .container-hover {
-      background-color: @hover-accept !important;
-    }
 
+/* -----------  Styles for specific components on canvas  ----------*/
+
+#mid-container > #middle-panel {
+
+  //The dashed box container
+  .block-style-container {
+    background-color: transparent;
+    text-align: start;
+    box-shadow: none;
+    border: 3px dashed #373A3F;
+    z-index: 1;
   }
+
+  //When a component is being added to the container
+  .container-hover {
+    background-color: @hover-accept !important;
+  }
+
+  //EIP
+  .AWS-EC2-EIP > img {
+    height: 20px;
+    margin-top: 40px;
+  }
+  .AWS-EC2-EIP.selectedComponent > img {
+    height: 20px;
+    margin-top: 20px;
+  }
+
+  //VPC
+  .AWS-EC2-VPC {
+    z-index: 1 !important;
+    height: 400px;
+    width: 500px;
+  }
+  .AWS-EC2-VPC.selectedComponent {
+    height: 400px;
+    width: 500px;
+  }
+  .AWS-EC2-Subnet {
+    z-index: 2 !important;
+  }
+
 }
 
 .draggable {
@@ -32,13 +60,3 @@
 }
 
 
-//VPC is always below everything
-.AWS-EC2-VPC {
-  z-index: 1 !important;
-  width: 450px !important;
-  height: 450px !important;
-}
-
-.AWS-EC2-Subnet {
-  z-index: 2 !important;
-}
