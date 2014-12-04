@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('nestorApp')
-  .controller('MainCtrl', ['$scope', '$rootScope', '$modal', 'AWSComponents', 'CFTemplate', 'UIComponents', 'ConnectionUtils', '$window',
-    function ($scope, $rootScope, $modal, AWSComponents, CFTemplate, UIComponents, ConnectionUtils, $window) {
+  .controller('MainCtrl', ['$scope', '$rootScope', '$modal', 'AWSComponents', 'CFTemplate', 'UIComponents', 'ConnectionUtils', '$window','$analytics',
+    function ($scope, $rootScope, $modal, AWSComponents, CFTemplate, UIComponents, ConnectionUtils, $window,$analytics) {
 
       $scope.isBottomLeftOpen = false;
       $scope.isLeftOpen = false;
@@ -145,6 +145,7 @@ angular.module('nestorApp')
 
         addComponent($data, $event.x - rightPanelWidth - 85, $event.y - 50);
 
+        $analytics.eventTrack('dragged',{ componentName: $data.type } );
       };
 
       $scope.taskSelected = function (task) {
@@ -155,6 +156,9 @@ angular.module('nestorApp')
         _.each($scope.connections, function (connection) {
           UIComponents.connectComponents(connection.source, connection.target, false);
         });
+
+        $analytics.eventTrack('solutionPicked');
+
       };
 
       $scope.showModal = function () {
@@ -189,6 +193,9 @@ angular.module('nestorApp')
             $rootScope.$broadcast('leftmostResizeRequest');
           }
         }
+
+        $analytics.eventTrack('propertiesClicked',{ componentName: component.name } );
+
       };
 
       /* this function is available on the scope so the UI (i.e. html) can call
@@ -232,6 +239,7 @@ angular.module('nestorApp')
       };
 
       $scope.connectionEstablished = function (sourceName, targetName) {
+        $analytics.eventTrack('connectionEstab',{ source: sourceName, target: targetName } );
 
         $scope.connections.push({source: sourceName, target: targetName});
 
@@ -255,6 +263,8 @@ angular.module('nestorApp')
       //This function gets called when it has already been validated that
       //the droped item is legit for the container
       $scope.itemGotDroppedInsideContainer = function(itemName, containerName) {
+
+        $analytics.eventTrack('dropInContainer',{ item: itemName, container: containerName} );
 
         var sourceObject = CFTemplate.getResource(itemName);
         var targetObject = CFTemplate.getResource(containerName);
@@ -287,6 +297,8 @@ angular.module('nestorApp')
 
       $scope.itemGotDroppedOutsideContainer = function(itemName, containerName) {
 
+        $analytics.eventTrack('dropOutContainer',{ item: itemName, container: containerName} );
+
         //first remove it from the container DS here
         if ($scope.containments[containerName]) {
           var index = $scope.containments[containerName].indexOf(itemName);
@@ -301,6 +313,8 @@ angular.module('nestorApp')
       };
 
       $scope.containerDragged = function(containerName, offset) {
+
+        $analytics.eventTrack('containerDragged',{ container: containerName} );
 
         if ($scope.containments[containerName]) {
           _.each($scope.containments[containerName], function(insideItem){
@@ -322,6 +336,9 @@ angular.module('nestorApp')
 
 
       $scope.connectionDetached = function (sourceName, targetName) {
+
+        $analytics.eventTrack('connectionDetached',{ source: sourceName, target: targetName} );
+
         var sourceObject = CFTemplate.getResource(sourceName);
         var targetObject = CFTemplate.getResource(targetName);
 
@@ -370,6 +387,8 @@ angular.module('nestorApp')
       };
 
       $scope.propertyDidDrag = function (data, event) {
+        $analytics.eventTrack('complexPropDrag',{ dragPropName: data.name} );
+
 
         var leftPanelWidth = angular.element('#left-panel')[0].clientWidth;
 
