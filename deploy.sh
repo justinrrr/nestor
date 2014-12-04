@@ -25,10 +25,10 @@ echo
 cd dist/;
 
 #MAC
-sed -i '' 's/MIXPANELTRACKERID/4b216a31948e7cd/g' ./index.html;
+sed -i '' 's/MIXPANELTRACKERID/07bb86769ea655dbe314c6b68dbe7702/g' ./index.html;
 
 #Linux
-#sed -i 's/MIXPANELTRACKERID/14c327e4d058e91bc4b216a31948e7cd/g' ./index.html;
+#sed -i 's/MIXPANELTRACKERID/07bb86769ea655dbe314c6b68dbe7702/g' ./index.html;
 
 echo
 echo ===================================
