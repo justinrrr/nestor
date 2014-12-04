@@ -92,7 +92,7 @@ app.directive('derivedProperties', ['AWSComponents',
 
   }]);
 
-app.directive('primitiveProperty', [ function () {
+app.directive('primitiveProperty', [function () {
   return {
     replace: true,
     restrict: 'E',
@@ -105,13 +105,16 @@ app.directive('primitiveProperty', [ function () {
     templateUrl: '../../templates/primitive_properties.html',
     link: function (scope) {
 
-      if (scope.property.type === 'Boolean') {
-        scope.inputType = 'checkbox';
-      } else if (scope.property.type === 'Integer') {
+      if(scope.property.type === 'Integer')
+      {
         scope.inputType = 'number';
-      } else {
+      }
+      else
+      {
         scope.inputType = 'text';
       }
+
+
       if (!scope.model && scope.property.default) {
         scope.model = scope.property.default[0];
 //        scope.model[scope.property.name] = scope.property.default[0];
@@ -129,7 +132,10 @@ app.directive('primitiveProperty', [ function () {
           });
         });
 
-      } else {
+      }  else if (scope.property.type === 'Boolean') {
+        scope.showCheckbox = true;
+      }
+      else  {
         scope.showSimple = true;
       }
 
@@ -143,7 +149,7 @@ app.directive('primitiveProperty', [ function () {
   };
 }]);
 
-app.directive('tableProperty', [ function () {
+app.directive('tableProperty', [function () {
   return {
     replace: true,
     restrict: 'E',
@@ -250,7 +256,7 @@ app.directive('dragProperty', [function () {
 }]);
 
 // a "listProperty" is a list of "primitive" properties such as String, Integer, ...
-app.directive('listProperty', [ function () {
+app.directive('listProperty', [function () {
   return {
     replace: true,
     restrict: 'E',
