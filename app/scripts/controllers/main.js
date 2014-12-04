@@ -4,6 +4,7 @@ angular.module('nestorApp')
   .controller('MainCtrl', ['$scope', '$rootScope', '$modal', 'AWSComponents', 'CFTemplate', 'UIComponents', 'ConnectionUtils', '$window','$analytics',
     function ($scope, $rootScope, $modal, AWSComponents, CFTemplate, UIComponents, ConnectionUtils, $window,$analytics) {
 
+      $scope.debug = false;
       $scope.isBottomLeftOpen = false;
       $scope.isLeftOpen = false;
       $scope.isPropertiesShowing = false;
@@ -260,6 +261,16 @@ angular.module('nestorApp')
           $scope.addedComponents[containerName].y = newPosition.top;
         }
       };
+
+
+      $scope.itemPositionChanged = function(itemName, newPosition) {
+
+        if($scope.addedComponents[itemName]) {
+
+          $scope.addedComponents[itemName].x = newPosition.left;
+          $scope.addedComponents[itemName].y = newPosition.top;
+        }
+      };
       //This function gets called when it has already been validated that
       //the droped item is legit for the container
       $scope.itemGotDroppedInsideContainer = function(itemName, containerName) {
@@ -312,6 +323,8 @@ angular.module('nestorApp')
 
       };
 
+
+
       $scope.containerDragged = function(containerName, offset) {
 
         $analytics.eventTrack('containerDragged',{ container: containerName} );
@@ -332,7 +345,6 @@ angular.module('nestorApp')
         $scope.$digest();
 
       };
-
 
 
       $scope.connectionDetached = function (sourceName, targetName) {

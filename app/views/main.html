@@ -40,6 +40,7 @@
         </p>
         <input ng-model="searchText" type="text" placeholder="Search..." required class="search"></form>
       <tabset justified="true">
+        <pre ng-show="debug">{{addedComponents}}</pre>
         <tab heading="Components" class="components-tab">
           <div ng-repeat="comp in components | filter:searchText">
             <div
@@ -127,6 +128,7 @@
          in-case-of-drop-outside-container= "itemGotDroppedOutsideContainer(itemName, containerName)"
          in-case-of-container-drag ="containerDragged(containerName, offset)"
          in-case-of-container-cordinate-change="containerPositionChanged(containerName, newPosition)"
+         in-case-of-item-cordinate-change = "itemPositionChanged(itemName, newPosition)"
          ng-repeat="component in addedComponents"
          plumb-block-type="{{component.blockType}}"
          component-block-type="{{component.blockType}}"

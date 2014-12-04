@@ -108,8 +108,15 @@ app.directive('plumbItem', ['PlumbStyles', function (PlumbStyles) {
           paintStyle: PlumbStyles.normalPaintStyle
         });
 
+        //gotta keep track of drag and drop to update the
+        //coordinates
+
         jsPlumb.draggable(element, {
-          containment: 'parent'
+          containment: 'parent',
+          stop: function (event, ui) {
+            var itemName = element.attr('data-component-name');
+            $scope.itemPositionChanged(itemName, ui.position);
+          }
         });
       }
     }
@@ -127,6 +134,7 @@ app.directive('plumbConnect', ['PlumbStyles', function (PlumbStyles) {
         parent: $(element).parent(),
         anchor: PlumbStyles.sourceAnchors,
         connector: PlumbStyles.normalConnectorStyle,
+
         paintStyle: PlumbStyles.normalPaintStyle
       });
     }
