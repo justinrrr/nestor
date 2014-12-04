@@ -29,7 +29,9 @@ var app = angular
     'ui.ace',
     'xeditable',
     'nestorApp.services',
-    'nestorApp.directives'
+    'nestorApp.directives',
+    'angulartics',
+    'angulartics.mixpanel'
   ]);
 
 app.config(function ($routeProvider) {
