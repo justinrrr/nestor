@@ -5,7 +5,7 @@
 
 var app = angular.module('nestorApp.services');
 
-app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbStyles, AWSComponents) {
+app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , 'CanvasModel', function (PlumbStyles, AWSComponents, CanvasModel) {
   //The draggable component on the canvas
   //only set parent name if its a draggable property
   this.Component = function (id, type, name, image, requiredMetadata, optionalMetadata, description, x, y, parentName) {
@@ -22,8 +22,14 @@ app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbSty
     this.parent = parentName || '';
   };
 
-  var isNewConnection = function(sourceName, targetName, connections) {
-
+  var isNewConnection = function(sourceName, targetName) {
+    if (CanvasModel.connections[sourceName] && CanvasModel.connections[sourceName][targetName]) {
+      return false;
+    }
+    if (CanvasModel.connections[targetName] && CanvasModel.connections[targetName][sourceName]) {
+      return false;
+    }
+    return true;
   };
 
   var areTypesMatch = function (sourceType, targetType) {
@@ -59,7 +65,10 @@ app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbSty
     //also we should only make connection on new connections not existing ones (so we dont have
     //duplicate connections)
     else {
-      return (isNewConnection()) && result ||  areTypesMatch(targetType, sourceType);
+
+      var sourceName =  info.source.attributes['data-component-name'].value;
+      var targetName = info.target.attributes['data-component-name'].value;
+      return (isNewConnection(sourceName, targetName)) && (result ||  areTypesMatch(targetType, sourceType));
     }
   };
 
