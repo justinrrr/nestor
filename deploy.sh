@@ -25,7 +25,7 @@ echo
 cd dist/;
 
 #MAC
-sed -i '' 's/MIXPANELTRACKERID/14c327e4d058e91bc4b216a31948e7cd/g' ./index.html;
+sed -i '' 's/MIXPANELTRACKERID/4b216a31948e7cd/g' ./index.html;
 
 #Linux
 #sed -i 's/MIXPANELTRACKERID/14c327e4d058e91bc4b216a31948e7cd/g' ./index.html;
@@ -52,8 +52,8 @@ echo Cleaning up the old code from S3
 echo =================================
 echo
 
-s3cmd del s3://zyring.com/**/*;
-s3cmd del s3://zyring.com/*;
+s3cmd del s3://alpha.pdestal.com/**/*;
+s3cmd del s3://alpha.pdestal.com/*;
 
 
 echo
@@ -61,8 +61,8 @@ echo ===================================
 echo Synching the zipped files
 echo =================================
 echo
-s3cmd sync --add-header 'Content-Encoding:gzip' ./scripts s3://zyring.com;
-s3cmd sync --add-header 'Content-Encoding:gzip' ./styles s3://zyring.com;
+s3cmd sync --add-header 'Content-Encoding:gzip' ./scripts s3://alpha.pdestal.com;
+s3cmd sync --add-header 'Content-Encoding:gzip' ./styles s3://alpha.pdestal.com;
 
 
 echo
@@ -71,7 +71,7 @@ echo Synching the rest of files
 echo =================================
 echo
 
-s3cmd sync . s3://zyring.com;
+s3cmd sync . s3://alpha.pdestal.com;
 
 
 echo
