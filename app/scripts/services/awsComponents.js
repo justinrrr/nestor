@@ -13,12 +13,14 @@ app.service('AWSComponents', function () {
       {
         name: 'Simple static website',
         image: 'images/aws/customtask.jpg',
-        type: 'task'
+        type: 'task',
+        isActive: false
       },
       {
         name: 'A group of servers that scale automatically',
         image: 'images/aws/customtask.jpg',
-        type: 'task'
+        type: 'task',
+        isActive: false
       },
       {
         name: 'Simple web server with database access',

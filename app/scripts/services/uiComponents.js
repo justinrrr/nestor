@@ -22,6 +22,10 @@ app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbSty
     this.parent = parentName || '';
   };
 
+  var isNewConnection = function(sourceName, targetName, connections) {
+
+  };
+
   var areTypesMatch = function (sourceType, targetType) {
 
     //in case of
@@ -33,6 +37,7 @@ app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbSty
   };
 
   var validateConnection = function (info) {
+
     if (info.sourceId === info.targetId) {
       return false;
     }
@@ -51,8 +56,10 @@ app.service('UIComponents', ['PlumbStyles', 'AWSComponents' , function (PlumbSty
     }
     //if we have a normal connection then both the action of source attaching to target
     //and the target attaching to the source has the same meaning
+    //also we should only make connection on new connections not existing ones (so we dont have
+    //duplicate connections)
     else {
-      return result ||  areTypesMatch(targetType, sourceType);
+      return (isNewConnection()) && result ||  areTypesMatch(targetType, sourceType);
     }
   };
 

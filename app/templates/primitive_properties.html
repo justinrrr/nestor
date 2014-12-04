@@ -14,7 +14,7 @@
             ng-selected="model === value.value">
       {{value.name}}
     </option>
-    </select>
+  </select>
 
   <div ng-show="showSimple">
     <input
@@ -23,5 +23,16 @@
       value="{{property.default[0]}}"
       ng-model="model"
       class="propertyinput"/>
-    <br></div>
+    <br>
+  </div>
+
+  <div ng-show="showCheckbox">
+    <input
+      type="checkbox"
+      ng-model="model"
+      ng-true-value="true" ng-false-value="false"
+      class="propertyinput"/>
+  </div>
 </div>
+
+
