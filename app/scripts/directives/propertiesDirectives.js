@@ -285,9 +285,9 @@ app.directive('listProperty', [ function () {
 
       scope.saveEntry = function ($data, $index) {
 
-        var selectedItem = $data['inputValue'];
-        if (selectedItem && selectedItem['value']) {
-          scope.propertyModel[scope.property.name][$index] = selectedItem['value'];
+        var selectedItem = $data.inputValue;
+        if (selectedItem && selectedItem.value) {
+          scope.propertyModel[scope.property.name][$index] = selectedItem.value;
         }
 //        _.each($data, function (enteredValue) {
 //          if (enteredValue && enteredValue.value) {
