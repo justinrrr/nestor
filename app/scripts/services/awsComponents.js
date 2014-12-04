@@ -1161,7 +1161,7 @@ app.service('AWSComponents', function () {
           },
           Description: 'The Availability Zones in which to create the load balancer.',
           types: {
-            name: 'inputValue',
+            name: 'Region',
             type: 'String',
             description: 'a certain region',
             // a list of allowable values
