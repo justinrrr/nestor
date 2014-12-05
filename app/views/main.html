@@ -40,10 +40,10 @@
         </p>
         <input ng-model="searchText" type="text" placeholder="Search..." required class="search"></form>
       <tabset justified="true">
-        <h1>connections</h1>
-        <pre ng-show="debug">{{canvasModel.connections | json}}</pre>
+        <!--<h1>connections</h1>-->
+        <!--<pre ng-show="debug">{{canvasModel.connections | json}}</pre>-->
 
-        <h1>Added Components</h1>
+        <!--<h1>Added Components</h1>-->
         <!--<pre ng-show="debug">{{canvasModel.addedComponents | json}}</pre>-->
         <tab heading="Components" class="components-tab">
           <div ng-repeat="comp in components | filter:searchText">
