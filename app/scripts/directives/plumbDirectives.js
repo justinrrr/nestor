@@ -37,12 +37,16 @@ app.directive('plumbListeners', function () {
       jsPlumb.bind('connectionDetached', function (info) {
 
         var sourceName = info.source.attributes.getNamedItem('data-component-name').value;
-        var targetName = info.target.attributes.getNamedItem('data-component-name').value;
 
-        $scope.onConnectionDetached({
-          sourceName: sourceName,
-          targetName: targetName
-        });
+        var targetObject = info.target.attributes.getNamedItem('data-component-name');
+        if (targetObject) {
+          var targetName = targetObject.value;
+          $scope.onConnectionDetached({
+            sourceName: sourceName,
+            targetName: targetName
+          });
+        }
+
       });
 
       jsPlumb.bind('connectionMoved', function (info) {
