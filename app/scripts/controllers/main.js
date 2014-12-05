@@ -233,6 +233,16 @@ angular.module('nestorApp')
         // call "detach" on all the connections to/from this element to safely drop them (update the model)
         jsPlumb.detachAllConnections(toBeDeletedElem.id);
 
+        //in case of a container we have to manually delete its connections and not count on the jsplumb event of
+        //connection detached
+
+        if (component.blockType === 'container') {
+          _.each(CanvasModel.containments[component.name], function(targetName) {
+              $scope.connectionDetached(component.name, targetName);
+            }
+          );
+        }
+
         // now remove all the connections to/from this element on the UI
         jsPlumb.removeAllEndpoints(toBeDeletedElem.id);
 
@@ -260,9 +270,9 @@ angular.module('nestorApp')
         var sourceObject = CFTemplate.getResource(sourceName);
         var targetObject = CFTemplate.getResource(targetName);
 
-        var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
+        var incomingProperties = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
-        var result = CFTemplate.establishConnection(sourceName, sourceObject, targetName, targetObject, incomingProperies);
+        var result = CFTemplate.establishConnection(sourceName, sourceObject, targetName, targetObject, incomingProperties);
         $scope.$digest();
         return result;
       };
@@ -293,9 +303,9 @@ angular.module('nestorApp')
         var sourceObject = CFTemplate.getResource(itemName);
         var targetObject = CFTemplate.getResource(containerName);
 
-        var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
+        var incomingProperties = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
-        var result = CFTemplate.establishConnection(itemName, sourceObject, containerName, targetObject, incomingProperies);
+        var result = CFTemplate.establishConnection(itemName, sourceObject, containerName, targetObject, incomingProperties);
 
         //add the bookkeeping containment DS
         //lazy initialize
@@ -359,6 +369,36 @@ angular.module('nestorApp')
       };
 
 
+      var deleteConnections = function(sourceObject, targetObject, sourceName, targetName, incomingProperties) {
+
+        var finalTarget;
+
+        // If this connection needs to update Target
+        if (incomingProperties.isProperty === 'true') {
+          finalTarget = targetObject.Properties;
+        }
+        else {
+          finalTarget = targetObject;
+        }
+
+        ConnectionUtils.deleteBinding(incomingProperties.targetPropName, incomingProperties.targetPropValue,
+          incomingProperties.targetPropValueMethod, incomingProperties.targetPolicy,
+          finalTarget, sourceObject, sourceName);
+
+
+        // If this connection needs to update Source
+        if (incomingProperties.isProperty === 'true') {
+          finalTarget = sourceObject.Properties;
+        }
+        else {
+          finalTarget = sourceObject;
+        }
+
+        ConnectionUtils.deleteBinding(incomingProperties.sourcePropName, incomingProperties.sourcePropValue,
+          incomingProperties.sourcePropValueMethod, incomingProperties.sourcePolicy,
+          finalTarget, targetObject, targetName);
+      };
+
       $scope.connectionDetached = function (sourceName, targetName) {
 
         $analytics.eventTrack('connectionDetached', {source: sourceName, target: targetName});
@@ -366,34 +406,19 @@ angular.module('nestorApp')
         var sourceObject = CFTemplate.getResource(sourceName);
         var targetObject = CFTemplate.getResource(targetName);
 
-        var incomingProperies = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
+        var incomingProperties = $scope.componentMetadata[targetObject.Type].IncomingConnection[sourceObject.Type];
 
-        var finalTarget;
-
-        // If this connection needs to update Target
-        if (incomingProperies.isProperty === 'true') {
-          finalTarget = targetObject.Properties;
-        }
-        else {
-          finalTarget = targetObject;
+        //based on the preferences the incoming properties can be declared both in the source object or
+        //target object. Instead of applying a rule that the writer needs to remember we just apply it
+        //here
+        if (incomingProperties) {
+          deleteConnections(sourceObject, targetObject, sourceName, targetName, incomingProperties);
         }
 
-        ConnectionUtils.deleteBinding(incomingProperies.targetPropName, incomingProperies.targetPropValue,
-          incomingProperies.targetPropValueMethod, incomingProperies.targetPolicy,
-          finalTarget, sourceObject, sourceName);
-
-
-        // If this connection needs to update Source
-        if (incomingProperies.isProperty === 'true') {
-          finalTarget = sourceObject.Properties;
+        incomingProperties = $scope.componentMetadata[sourceObject.Type].IncomingConnection[targetObject.Type];
+        if (incomingProperties) {
+          deleteConnections(sourceObject, targetObject, sourceName, targetName, incomingProperties);
         }
-        else {
-          finalTarget = sourceObject;
-        }
-
-        ConnectionUtils.deleteBinding(incomingProperies.sourcePropName, incomingProperies.sourcePropValue,
-          incomingProperies.sourcePropValueMethod, incomingProperies.sourcePolicy,
-          finalTarget, targetObject, targetName);
 
 
         $scope.$digest();
