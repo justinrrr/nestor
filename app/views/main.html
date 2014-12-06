@@ -11,6 +11,11 @@
                    data-action-text="Downloading..." value="Download"></li>
         <li><input class="button" type="submit" ng-click="showModal()"
                    value="Contact us"></li>
+        <li>   <div>
+          <button ng-click="zoomIn()">+</button>
+          <button ng-click="zoomOut()">-</button>
+          <p style="color: white">{{zoomFactor}}</p>
+        </div></li>
       </ul>
     </div>
     </div>
@@ -34,11 +39,7 @@
 
     <!--Components-->
     <div id="components" ng-show="showComponents">
-      <div>
-        <button ng-click="zoomIn()">+</button>
-        <button ng-click="zoomOut()">-</button>
-        <p style="color: white">{{zoomFactor}}</p>
-      </div>
+
       <form id="searchbox" class="searchbox">
         <p class="fieldset">
           <label class="glyphicon glyphicon-search"></label>
@@ -118,6 +119,7 @@
 <div id="mid-container">
   <div
     id="middle-panel"
+    style="background-color: darkseagreen"
     class="base-panel center-column"
     ng-class="isLeftOpen ? 'middle-panel-smaller' : 'middle-panel-bigger'"
     ng-drop="true"
