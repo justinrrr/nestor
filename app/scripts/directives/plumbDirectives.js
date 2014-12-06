@@ -19,6 +19,7 @@ app.directive('plumbListeners', function () {
     link: function ($scope) {
 
       console.log('Listening for connections so that connections dont get depressed');
+      jsPlumb.setContainer('middle-panel');
 
       jsPlumb.bind('connection', function (info) {
         var sourceName = info.source.attributes.getNamedItem('data-component-name').value;

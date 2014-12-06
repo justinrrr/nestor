@@ -34,6 +34,11 @@
 
     <!--Components-->
     <div id="components" ng-show="showComponents">
+      <div>
+        <button ng-click="zoomIn()">+</button>
+        <button ng-click="zoomOut()">-</button>
+        <p style="color: white">{{zoomFactor}}</p>
+      </div>
       <form id="searchbox" class="searchbox">
         <p class="fieldset">
           <label class="glyphicon glyphicon-search"></label>
@@ -113,17 +118,16 @@
 <div id="mid-container">
   <div
     id="middle-panel"
-    class="base-panel"
+    class="base-panel center-column"
     ng-class="isLeftOpen ? 'middle-panel-smaller' : 'middle-panel-bigger'"
     ng-drop="true"
     ng-drop-success="onDropComplete($data,$event)"
-    id="container"
     plumb-listeners
     on-connection-established="connectionEstablished(sourceName, targetName)"
     on-connection-detached="connectionDetached(sourceName, targetName)"
     on-connection-moved-from-source="connectionMovedFromSource(originalSourceName, newSourceName, targetName)"
     on-connection-moved-from-target="connectionMovedFromTarget(sourceName, originalTargetName, newTargetName)"
-    class="center-column">
+    >
 
     <!-- The actual components on the canvas -->
     <div plumb-item

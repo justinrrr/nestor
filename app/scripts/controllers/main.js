@@ -8,6 +8,7 @@ angular.module('nestorApp')
     function ($scope, $rootScope, $modal, AWSComponents,
               CFTemplate, UIComponents, ConnectionUtils, $window, $analytics, CanvasModel) {
 
+      $scope.zoomFactor = 1;
       $scope.debug = true;
       $scope.isBottomLeftOpen = false;
       $scope.isLeftOpen = false;
@@ -90,9 +91,36 @@ angular.module('nestorApp')
       // UI Events
       //--------------------------------------
 
+      $scope.zoomIn = function() {
+        $scope.zoomFactor = $scope.zoomFactor + 0.2;
+        setZoom();
+      };
+
+      $scope.zoomOut = function() {
+
+        $scope.zoomFactor = $scope.zoomFactor - 0.2;
+        if ($scope.zoomFactor < 0) { $scope.zoomFactor = 0.1};
+      };
+
+      function setZoom() {
+        var el = jsPlumb.getContainer();
+        var p = [ "webkit", "moz", "ms", "o" ],
+          s = "scale(" + $scope.zoomFactor + ")";
+
+        for (var i = 0; i < p.length; i++) {
+          el.style[p[i] + "Transform"] = s;
+        }
+
+        el.style["transform"] = s;
+
+        jsPlumb.setZoom($scope.zoomFactor);
+        jsPlumb.repaintEverything();
+      }
+
       $scope.linkActivated = function (option) {
         //when someone closes the submenu, we want the active state to disappear
         $scope.selectedOption = option.name;
+
 
 
       };
