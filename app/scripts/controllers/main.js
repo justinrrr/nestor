@@ -204,11 +204,14 @@ angular.module('nestorApp')
         });
       };
 
-      $scope.optimizePressed = function() {
+      $scope.optimizePressed = function(component) {
         $modal.open({
           templateUrl: '../templates/modal_view_optimize.html',
-          controller: '',
-          size: 'lg'
+          controller: 'OptimizeCtrl',
+          size: 'lg',
+          resolve: function() {
+            return component;
+          }
         });
       };
       $scope.clickCallback = function (component) {
@@ -576,6 +579,7 @@ angular.module('nestorApp')
       };
 
       function selectElementInEditor(elementName) {
+        return;
         window.setTimeout(function () {
           //get some of the regex magic going on to detect the correct part
           var regex = '"' + elementName + '"(\\s)*:(\\s)*';

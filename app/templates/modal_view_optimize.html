@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h2 class="modal-title">Optimize {{componentName}}</h2>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-lg-12 row2 text-center">
+      <canvas id="line" class="chart chart-line" data="data"
+              labels="labels" legend="true" series="series"
+              click="onClick">
+      </canvas>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="cancel()">Got it</button>
+</div>
+
