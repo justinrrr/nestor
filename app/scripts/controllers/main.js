@@ -23,8 +23,6 @@ angular.module('nestorApp')
       $scope.privateTemplate = CFTemplate.getPrivateTemplate();
 
 
-
-
       // some aliases for UI representation of the data model
       $scope.components = AWSComponents.components;
 
@@ -91,21 +89,23 @@ angular.module('nestorApp')
       // UI Events
       //--------------------------------------
 
-      $scope.zoomIn = function() {
+      $scope.zoomIn = function () {
         $scope.zoomFactor = $scope.zoomFactor + 0.2;
         setZoom();
       };
 
-      $scope.zoomOut = function() {
+      $scope.zoomOut = function () {
 
         $scope.zoomFactor = $scope.zoomFactor - 0.2;
-        if ($scope.zoomFactor < 0) { $scope.zoomFactor = 0.1;}
+        if ($scope.zoomFactor < 0) {
+          $scope.zoomFactor = 0.1;
+        }
         setZoom();
       };
 
       function setZoom() {
         var el = jsPlumb.getContainer();
-        var p = [ 'webkit', 'moz', 'ms', 'o' ],
+        var p = ['webkit', 'moz', 'ms', 'o'],
           s = 'scale(' + $scope.zoomFactor + ')';
 
         for (var i = 0; i < p.length; i++) {
@@ -120,7 +120,6 @@ angular.module('nestorApp')
       $scope.linkActivated = function (option) {
         //when someone closes the submenu, we want the active state to disappear
         $scope.selectedOption = option.name;
-
 
 
       };
@@ -204,13 +203,15 @@ angular.module('nestorApp')
         });
       };
 
-      $scope.optimizePressed = function(component) {
+      $scope.optimizePressed = function (component) {
         $modal.open({
           templateUrl: '../templates/modal_view_optimize.html',
           controller: 'OptimizeCtrl',
           size: 'lg',
-          resolve: function() {
-            return component;
+          resolve: {
+            component: function () {
+              return component;
+            }
           }
         });
       };
@@ -275,7 +276,7 @@ angular.module('nestorApp')
         //connection detached
 
         if (component.blockType === 'container') {
-          _.each(CanvasModel.containments[component.name], function(targetName) {
+          _.each(CanvasModel.containments[component.name], function (targetName) {
               $scope.connectionDetached(component.name, targetName);
             }
           );
@@ -407,7 +408,7 @@ angular.module('nestorApp')
       };
 
 
-      var deleteConnections = function(sourceObject, targetObject, sourceName, targetName, incomingProperties) {
+      var deleteConnections = function (sourceObject, targetObject, sourceName, targetName, incomingProperties) {
 
         var finalTarget;
 
