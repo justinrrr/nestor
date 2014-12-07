@@ -4,29 +4,25 @@
 'use strict';
 
 var app = angular.module('nestorApp');
-  app.controller('CodeGenCtrl', ['$scope', '$rootScope','$modalInstance', '$timeout',
-    function ($scope, $rootScope, $modalInstance, $timeout) {
-
-      $scope.downloadReady = false;
-      $scope.ok = function () {
-
-        if ($scope.downloadReady) {
-          $modalInstance.close();
-        }
-        else {
-          $timeout(function(){
-            $scope.downloadReady = true;
-          }, 1000);
-        }
-      };
-
-      $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-      };
-    }]);
 
 
-app.controller('CodeGenCtrl', ['$scope', '$rootScope','$modalInstance', '$timeout',
+app.controller('LoadInfrastructure', ['$scope', '$rootScope', '$modalInstance', '$timeout',
+  function ($scope, $rootScope, $modalInstance, $timeout) {
+
+    $scope.loadInfraFromAWS = function () {
+      $timeout(function () {
+        $modalInstance.close('load');
+      }, 1500);
+    };
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    };
+
+  }]);
+
+
+app.controller('CodeGenCtrl', ['$scope', '$rootScope', '$modalInstance', '$timeout',
   function ($scope, $rootScope, $modalInstance, $timeout) {
 
     $scope.downloadReady = false;
@@ -36,7 +32,7 @@ app.controller('CodeGenCtrl', ['$scope', '$rootScope','$modalInstance', '$timeou
         $modalInstance.close();
       }
       else {
-        $timeout(function(){
+        $timeout(function () {
           $scope.downloadReady = true;
         }, 1000);
       }
