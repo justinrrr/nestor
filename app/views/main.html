@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
         <li><input class="button" type="submit" ng-click="download()" data-default-text="Download"
-                   data-action-text="Downloading..." value="Download"></li>
+                   data-action-text="Downloading..." value="Load Infrastructure"></li>
         <li><input class="button" type="submit" ng-click="showModal()"
                    value="Contact us"></li>
         <li>
@@ -173,22 +173,6 @@
         ></div>
     </div>
   </div>
-</div>
-
-<div ui-ace="{theme:'twilight', mode: 'json', onChange: templateStringChanged, onLoad : aceEditorLoaded}"
-     ng-model="templateString"
-     id="right-panel">
-</div>
-
-<div id="right-panel-resizer"
-     resizer="vertical"
-     resizer-width="0"
-     resizer-left="#middle-panel"
-     resizer-right="#right-panel"
-     resizer-leftmost="#left-panel"
-     open-close-difference="16"
-     resizer-max="750"
-  >
 </div>
 
 <!--This is the visual of the component card while its being dragged-->
