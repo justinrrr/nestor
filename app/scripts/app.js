@@ -31,7 +31,8 @@ var app = angular
     'nestorApp.services',
     'nestorApp.directives',
     'angulartics',
-    'angulartics.mixpanel'
+    'angulartics.mixpanel',
+    'chart.js'
   ]);
 
 app.config(function ($routeProvider) {

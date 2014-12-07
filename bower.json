@@ -22,7 +22,8 @@
     "underscore": "~1.7.0",
     "angular-xeditable": "~0.1.8",
     "angulartics": "0.17.1",
-    "ace-builds": "~1.1.8"
+    "ace-builds": "~1.1.8",
+    "angular-chart.js": "~0.3.9"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.26",
