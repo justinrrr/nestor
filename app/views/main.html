@@ -157,8 +157,9 @@
       <!--</div>-->
       <!--ng-class="{'selectedComponent' : component.id === selectedComponent.id}"-->
       <div class="animate-show" align="left" ng-show="selectedComponent == component">
-        <button ng-click="deleteClicked(component)" class="deletecomponent" type="button"><i class="fa fa-trash"></i></button>
+        <!--<button ng-click="deleteClicked(component)" class="deletecomponent" type="button"><i class="fa fa-trash"></i></button>-->
         <button ng-click="propertiesClicked(component)" class="propertycanvas" type="button"><img src="../images/properties.png"> </button>
+        <button ng-click="optimizeClicked(component)" class="propertycanvas" type="button"><img src="../images/optimize.png"> </button>
       </div>
       <img ng-src="{{component.image}}"/>
 
