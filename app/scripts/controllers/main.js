@@ -99,20 +99,20 @@ angular.module('nestorApp')
       $scope.zoomOut = function() {
 
         $scope.zoomFactor = $scope.zoomFactor - 0.2;
-        if ($scope.zoomFactor < 0) { $scope.zoomFactor = 0.1};
+        if ($scope.zoomFactor < 0) { $scope.zoomFactor = 0.1;}
         setZoom();
       };
 
       function setZoom() {
         var el = jsPlumb.getContainer();
-        var p = [ "webkit", "moz", "ms", "o" ],
-          s = "scale(" + $scope.zoomFactor + ")";
+        var p = [ 'webkit', 'moz', 'ms', 'o' ],
+          s = 'scale(' + $scope.zoomFactor + ')';
 
         for (var i = 0; i < p.length; i++) {
-          el.style[p[i] + "Transform"] = s;
+          el.style[p[i] + 'Transform'] = s;
         }
 
-        el.style["transform"] = s;
+        el.style.transform = s;
 
         jsPlumb.setZoom($scope.zoomFactor);
       }
@@ -204,6 +204,13 @@ angular.module('nestorApp')
         });
       };
 
+      $scope.optimizePressed = function() {
+        $modal.open({
+          templateUrl: '../templates/modal_view_optimize.html',
+          controller: '',
+          size: 'lg'
+        });
+      };
       $scope.clickCallback = function (component) {
         itemSelected(component);
       };
