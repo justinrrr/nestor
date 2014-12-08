@@ -75,7 +75,13 @@ angular.module('nestorApp')
           posY);
 
         c.blockType = blueprint.blockType;
+        c.price = blueprint.price;
         CanvasModel.addedComponents[c.name] = c;
+
+        var totalPriceInt = parseFloat($scope.totalPrice);
+        var currentPriceInt = parseFloat(blueprint.price);
+        $scope.totalPrice = totalPriceInt + currentPriceInt;
+
 
         var aMetadata = $scope.componentMetadata[blueprint.type];
         CFTemplate.addResource(c.name, aMetadata.type, aMetadata.outputs);
@@ -512,6 +518,11 @@ angular.module('nestorApp')
           data.parent
         );
 
+        c.price = AWSComponents.propertyTypes.complex[data.name].Display.price;
+
+        var totalPriceInt = parseFloat($scope.totalPrice);
+        var currentPriceInt = parseFloat(c.price);
+        $scope.totalPrice = totalPriceInt + currentPriceInt;
 
         //determines whether the component is standalone or derived
         c.isDerived = true;
