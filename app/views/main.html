@@ -24,6 +24,7 @@
     </div>
 </nav>
 
+
 <div class="row base-panel" id="left-panel"
      ng-class="isLeftOpen ? 'left-panel-open' : 'left-panel-close'">
 
@@ -132,6 +133,7 @@
     on-connection-moved-from-source="connectionMovedFromSource(originalSourceName, newSourceName, targetName)"
     on-connection-moved-from-target="connectionMovedFromTarget(sourceName, originalTargetName, newTargetName)"
     >
+    <div class="price-card"><h3>Total Price: ${{totalPrice}}</h3></div>
 
     <!-- The actual components on the canvas -->
     <div plumb-item

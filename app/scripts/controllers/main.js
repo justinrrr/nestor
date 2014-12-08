@@ -8,6 +8,7 @@ angular.module('nestorApp')
     function ($scope, $rootScope, $modal, AWSComponents, CFTemplate, UIComponents, ConnectionUtils, $window, $analytics, CanvasModel) {
 
       $scope.zoomFactor = 1;
+      $scope.totalPrice = 0;
       $scope.debug = true;
       $scope.isBottomLeftOpen = false;
       $scope.isLeftOpen = false;
@@ -203,6 +204,7 @@ angular.module('nestorApp')
 
         modalInstance.result.then(
           function (returnedItem) {
+            $scope.totalPrice = 306.6 + 15 + 18.25;
             CanvasModel.addedComponents = returnedItem.components;
             CFTemplate.setTemplate(returnedItem.template);
             CanvasModel.connections = returnedItem.connections;
