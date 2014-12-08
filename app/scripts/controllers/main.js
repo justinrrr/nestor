@@ -100,6 +100,7 @@ angular.module('nestorApp')
 
         $scope.zoomFactor = $scope.zoomFactor - 0.2;
         if ($scope.zoomFactor < 0) { $scope.zoomFactor = 0.1};
+        setZoom();
       };
 
       function setZoom() {
@@ -114,7 +115,6 @@ angular.module('nestorApp')
         el.style["transform"] = s;
 
         jsPlumb.setZoom($scope.zoomFactor);
-        jsPlumb.repaintEverything();
       }
 
       $scope.linkActivated = function (option) {
