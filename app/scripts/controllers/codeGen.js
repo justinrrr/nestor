@@ -47,7 +47,7 @@ app.controller('OptimizeCtrl', ['$scope', '$rootScope', '$modalInstance', '$time
   function ($scope, $rootScope, $modalInstance, $timeout, component) {
 
     //using an object to avoid ng-repeats scope creation of another variable
-    $scope.activeReserved = {selectedIndex : -1}
+    $scope.activeReserved = {selectedIndex: 'none', selectedMonth: 12};
     $scope.shouldShowDiagram = false;
     $scope.componentName = component.name;
     $scope.labels = ['11/8', '11/9', '11/10', '11/11', '11/12', '11/13', '11/14', '11/15', '11/16', '11/17', '11/18', '11/19', '11/20', '11/21', '11/22', '11/23', '11/24', '11/25', '11/26', '11/27', '11/28', '11/29', '11/30', '12/1', '12/2', '12/3', '12/4', '12/5', '12/6', '12/7', '12/8'];
@@ -136,17 +136,53 @@ app.controller('OptimizeCtrl', ['$scope', '$rootScope', '$modalInstance', '$time
     $scope.compareData = [$scope.t2MediumPrices, $scope.currentModelPrices];
     $scope.compareSeries = ['On-Demand', 'Reserved'];
 
+    $scope.compareColors = [
+      {
+        fillColor: 'rgba(236, 240, 241,0.0)',
+        pointColor: 'rgba(44, 62, 80,1.0)',
+        pointHighlightStroke: '#34495e',
+        strokeColor: 'rgba(44, 62, 80,1.0)'
+      },
+      {
+        fillColor: 'rgba(23, 188, 184, 0.0)',
+        strokeColor: '#17BCB8'
+      }
+    ];
+
     $scope.reservedSelected = function (instance) {
 
       //each month is around 730 hors
-      var prepaid =  instance.upfront;
+      var prepaid = instance.upfront;
       var currentModelPriceBase = instance.hourly * 730;
       $scope.currentModelPrices = _.map(_.range(1, 13), function (num) {
         return prepaid + num * currentModelPriceBase;
       });
 
+      var intersection = findIntersection(0, 1, $scope.t2MediumPrices[0], $scope.t2MediumPrices[1],
+        0,1, $scope.currentModelPrices[0],$scope.currentModelPrices[1]);
+
+      $scope.intersectionPoint = Math.ceil(intersection * 30);
+
       $scope.compareData[1] = $scope.currentModelPrices;
+
+      $scope.calculateSavings();
     };
+
+    $scope.calculateSavings = function() {
+
+      $scope.activeReserved.totalSavings = Math.ceil($scope.t2MediumPrices[$scope.activeReserved.selectedMonth - 1] - $scope.currentModelPrices[$scope.activeReserved.selectedMonth - 1]);
+      $scope.activeReserved.saveLose = $scope.activeReserved.totalSavings >= 0 ? 'save' : 'lose';
+      $scope.activeReserved.totalSavings = Math.abs( $scope.activeReserved.totalSavings);
+    }
+
+    //finds the x interestction of two lines given four points
+    function findIntersection(x1, x2, y1, y2, xx1, xx2, yy1, yy2) {
+
+      var m = (y2 - y1) / (x2 - x1);
+      var mm = (yy2 - yy1) / (xx2 - xx1);
+      //I did the math on the paper :D
+      return ( (m * x1) - y1 - (mm * xx1) + yy1) / (m - mm);
+    }
 
     $scope.onClick = function (points, evt) {
       console.log(points, evt);

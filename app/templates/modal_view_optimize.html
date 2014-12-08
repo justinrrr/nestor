@@ -96,10 +96,14 @@
         </tr>
       </table>
 
-      <input type="radio" ng-model="activeReserved.selectedIndex" value="-1"> I don't want to use reserved instances
-      <div ng-if="activeReserved.selectedIndex !== -1" class="col-lg-12 row2 text-center">
+      <input type="radio" ng-model="activeReserved.selectedIndex" value="none"> I don't want to use reserved instances
+      <div ng-if="activeReserved.selectedIndex !== 'none'" class="col-lg-12 row2 text-center">
+        <h4>For this reserved instance to be cheaper than on demand, you have to use it for at least <strong>{{intersectionPoint}}</strong> days</h4>
+        <br>
+        <h4>If you use this instance for <input type="number" ng-model="activeReserved.selectedMonth" ng-change="calculateSavings()" min="1" max="12"> months, you will <strong>{{activeReserved.saveLose}} ${{activeReserved.totalSavings}} </strong></h4>
+
         <canvas id="final-line-2" class="chart chart-line" data="compareData"
-                labels="monthsOfYear" legend="true" series="compareSeries"
+                labels="monthsOfYear" legend="true" series="compareSeries" colours="compareColors"
                 click="onClick">
         </canvas>
       </div>
