@@ -5,8 +5,7 @@ angular.module('nestorApp')
   ['$scope', '$rootScope', '$modal', 'AWSComponents', 'CFTemplate', 'UIComponents',
     'ConnectionUtils', '$window', '$analytics',
     'CanvasModel',
-    function ($scope, $rootScope, $modal, AWSComponents,
-              CFTemplate, UIComponents, ConnectionUtils, $window, $analytics, CanvasModel) {
+    function ($scope, $rootScope, $modal, AWSComponents, CFTemplate, UIComponents, ConnectionUtils, $window, $analytics, CanvasModel) {
 
       $scope.zoomFactor = 1;
       $scope.debug = true;
@@ -196,11 +195,1162 @@ angular.module('nestorApp')
       };
 
       $scope.showModal = function () {
-        $modal.open({
+        var modalInstance = $modal.open({
           templateUrl: '../templates/modal_view.html',
-          controller: 'CodeGenCtrl',
+          controller: 'LoadInfrastructure',
           size: 'lg'
         });
+
+        modalInstance.result.then(
+          function () {
+            CanvasModel.addedComponents = {
+                "EC21": {
+                  "id": "EC21",
+                  "type": "AWS::EC2::Instance",
+                  "name": "EC21",
+                  "description": "Resizable compute machines",
+                  "image": "images/aws/ec2.png",
+                  "x": 147,
+                  "y": 307,
+                  "required": [
+                    {
+                      "name": "ImageId",
+                      "type": "String",
+                      "description": "Name of the EC2 instance",
+                      "allowableValues": [
+                        {
+                          "ami-77581047": "Stewie"
+                        },
+                        {
+                          "ami-67334857": "Jenkins"
+                        },
+                        {
+                          "ami-67334857": "MyCustomAmi"
+                        },
+                        {
+                          "dummy": "---Standard AMIs---"
+                        },
+                        {
+                          "ami-b5a7ea85": "Amazon Linux AMI 2014.09.1 (HVM)"
+                        },
+                        {
+                          "ami-99bef1a9": "Red Hat Enterprise Linux 7.0 (HVM)"
+                        },
+                        {
+                          "ami-d7450be7": "SuSE Linux Enterprise Server 12 (HVM)"
+                        },
+                        {
+                          "ami-3d50120d": "Ubuntu Server 14.04 LTS (HVM)"
+                        },
+                        {
+                          "ami-21f0bc11": "Microsoft Windows Server 2012 R2 Base"
+                        }
+                      ]
+                    }
+                  ],
+                  "optional": [
+                    {
+                      "name": "BlockDeviceMappings",
+                      "type": "BlockDeviceMappings",
+                      "description": "tooltip??"
+                    },
+                    {
+                      "name": "NetworkInterfaces",
+                      "type": "NetworkInterfaces",
+                      "description": "A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance"
+                    },
+                    {
+                      "name": "SecurityGroupIds",
+                      "type": "StringList",
+                      "description": "A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property"
+                    },
+                    {
+                      "name": "SecurityGroups",
+                      "type": "StringList",
+                      "description": "Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template"
+                    },
+                    {
+                      "name": "Tags",
+                      "type": "Tags",
+                      "description": "tooltip??"
+                    },
+                    {
+                      "name": "Volumes",
+                      "type": "Volumes",
+                      "description": "tooltip??"
+                    },
+                    {
+                      "name": "AvailabilityZone",
+                      "type": "String",
+                      "description": "Specifies the name of the Availability Zone in which the instance is located",
+                      "allowableValues": [
+                        {
+                          "ap-northeast-1b": "Asia Pacific (Tokyo)"
+                        },
+                        {
+                          "ap-southeast-1b": "Asia Pacific (Singapore)"
+                        },
+                        {
+                          "ap-southeast-2b": "Asia Pacific (Sydney)"
+                        },
+                        {
+                          "eu-central-1b": "EU (Frankfurt)"
+                        },
+                        {
+                          "eu-west-1b": "EU (Ireland)"
+                        },
+                        {
+                          "sa-east-1b": "South America (Sao Paulo)"
+                        },
+                        {
+                          "us-east-1b": "US East (N. Virginia)"
+                        },
+                        {
+                          "us-west-1b": "US West (N. California)"
+                        },
+                        {
+                          "us-west-2b": "US West (Oregon)"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "InstanceType",
+                      "type": "String",
+                      "description": "Description for tooltip",
+                      "allowableValues": [
+                        {
+                          "t2.micro": "t2.micro"
+                        },
+                        {
+                          "t2.small": "t2.small"
+                        },
+                        {
+                          "t2.medium": "t2.medium"
+                        },
+                        {
+                          "m3.medium": "m3.medium"
+                        },
+                        {
+                          "m3.large": "m3.large"
+                        },
+                        {
+                          "m3.xlarge": "m3.xlarge"
+                        },
+                        {
+                          "m3.2xlarge": "m3.2xlarge"
+                        },
+                        {
+                          "c3.large": "c3.large"
+                        },
+                        {
+                          "c3.xlarge": "c3.xlarge"
+                        },
+                        {
+                          "c3.2xlarge": "c3.2xlarge"
+                        },
+                        {
+                          "c3.4xlarge": "c3.4xlarge"
+                        },
+                        {
+                          "c3.8xlarge": " c3.8xlarge"
+                        },
+                        {
+                          "r3.large": "r3.large"
+                        },
+                        {
+                          "r3.xlarge": "r3.xlarge"
+                        },
+                        {
+                          "r3.2xlarge": "r3.2xlarge"
+                        },
+                        {
+                          "r3.4xlarge": "r3.4xlarge"
+                        },
+                        {
+                          "r3.8xlarge": "r3.8xlarge"
+                        },
+                        {
+                          "i2.xlarge": "i2.xlarge"
+                        },
+                        {
+                          "i2.2xlarge": "i2.2xlarge"
+                        },
+                        {
+                          "i2.4xlarge": "i2.4xlarge"
+                        },
+                        {
+                          "i2.8xlarge": "i2.8xlarge"
+                        },
+                        {
+                          "hs1.8xlarge": "hs1.8xlarge"
+                        },
+                        {
+                          "g2.2xlarge": "g2.2xlarge"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "KeyName",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "EbsOptimized",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "IamInstanceProfile",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "DisableApiTermination",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "KernelId",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "Monitoring",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "InstanceInitiatedShutdownBehavior",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "PlacementGroupName",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "PrivateIpAddress",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "RamdiskId",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "SourceDestCheck",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "SubnetId",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "Tenancy",
+                      "type": "String",
+                      "description": "Description for tooltip",
+                      "allowableValues": [
+                        {
+                          "default": "default"
+                        },
+                        {
+                          "dedicated": "dedicated"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "UserData",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    }
+                  ],
+                  "parent": "",
+                  "blockType": "box"
+                },
+                "EC22": {
+                  "id": "EC22",
+                  "type": "AWS::EC2::Instance",
+                  "name": "EC22",
+                  "description": "Resizable compute machines",
+                  "image": "images/aws/ec2.png",
+                  "x": 383,
+                  "y": 298,
+                  "required": [
+                    {
+                      "name": "ImageId",
+                      "type": "String",
+                      "description": "Name of the EC2 instance",
+                      "allowableValues": [
+                        {
+                          "ami-77581047": "Stewie"
+                        },
+                        {
+                          "ami-67334857": "Jenkins"
+                        },
+                        {
+                          "ami-67334857": "MyCustomAmi"
+                        },
+                        {
+                          "dummy": "---Standard AMIs---"
+                        },
+                        {
+                          "ami-b5a7ea85": "Amazon Linux AMI 2014.09.1 (HVM)"
+                        },
+                        {
+                          "ami-99bef1a9": "Red Hat Enterprise Linux 7.0 (HVM)"
+                        },
+                        {
+                          "ami-d7450be7": "SuSE Linux Enterprise Server 12 (HVM)"
+                        },
+                        {
+                          "ami-3d50120d": "Ubuntu Server 14.04 LTS (HVM)"
+                        },
+                        {
+                          "ami-21f0bc11": "Microsoft Windows Server 2012 R2 Base"
+                        }
+                      ]
+                    }
+                  ],
+                  "optional": [
+                    {
+                      "name": "BlockDeviceMappings",
+                      "type": "BlockDeviceMappings",
+                      "description": "tooltip??"
+                    },
+                    {
+                      "name": "NetworkInterfaces",
+                      "type": "NetworkInterfaces",
+                      "description": "A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance"
+                    },
+                    {
+                      "name": "SecurityGroupIds",
+                      "type": "StringList",
+                      "description": "A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property"
+                    },
+                    {
+                      "name": "SecurityGroups",
+                      "type": "StringList",
+                      "description": "Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template"
+                    },
+                    {
+                      "name": "Tags",
+                      "type": "Tags",
+                      "description": "tooltip??"
+                    },
+                    {
+                      "name": "Volumes",
+                      "type": "Volumes",
+                      "description": "tooltip??"
+                    },
+                    {
+                      "name": "AvailabilityZone",
+                      "type": "String",
+                      "description": "Specifies the name of the Availability Zone in which the instance is located",
+                      "allowableValues": [
+                        {
+                          "ap-northeast-1b": "Asia Pacific (Tokyo)"
+                        },
+                        {
+                          "ap-southeast-1b": "Asia Pacific (Singapore)"
+                        },
+                        {
+                          "ap-southeast-2b": "Asia Pacific (Sydney)"
+                        },
+                        {
+                          "eu-central-1b": "EU (Frankfurt)"
+                        },
+                        {
+                          "eu-west-1b": "EU (Ireland)"
+                        },
+                        {
+                          "sa-east-1b": "South America (Sao Paulo)"
+                        },
+                        {
+                          "us-east-1b": "US East (N. Virginia)"
+                        },
+                        {
+                          "us-west-1b": "US West (N. California)"
+                        },
+                        {
+                          "us-west-2b": "US West (Oregon)"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "InstanceType",
+                      "type": "String",
+                      "description": "Description for tooltip",
+                      "allowableValues": [
+                        {
+                          "t2.micro": "t2.micro"
+                        },
+                        {
+                          "t2.small": "t2.small"
+                        },
+                        {
+                          "t2.medium": "t2.medium"
+                        },
+                        {
+                          "m3.medium": "m3.medium"
+                        },
+                        {
+                          "m3.large": "m3.large"
+                        },
+                        {
+                          "m3.xlarge": "m3.xlarge"
+                        },
+                        {
+                          "m3.2xlarge": "m3.2xlarge"
+                        },
+                        {
+                          "c3.large": "c3.large"
+                        },
+                        {
+                          "c3.xlarge": "c3.xlarge"
+                        },
+                        {
+                          "c3.2xlarge": "c3.2xlarge"
+                        },
+                        {
+                          "c3.4xlarge": "c3.4xlarge"
+                        },
+                        {
+                          "c3.8xlarge": " c3.8xlarge"
+                        },
+                        {
+                          "r3.large": "r3.large"
+                        },
+                        {
+                          "r3.xlarge": "r3.xlarge"
+                        },
+                        {
+                          "r3.2xlarge": "r3.2xlarge"
+                        },
+                        {
+                          "r3.4xlarge": "r3.4xlarge"
+                        },
+                        {
+                          "r3.8xlarge": "r3.8xlarge"
+                        },
+                        {
+                          "i2.xlarge": "i2.xlarge"
+                        },
+                        {
+                          "i2.2xlarge": "i2.2xlarge"
+                        },
+                        {
+                          "i2.4xlarge": "i2.4xlarge"
+                        },
+                        {
+                          "i2.8xlarge": "i2.8xlarge"
+                        },
+                        {
+                          "hs1.8xlarge": "hs1.8xlarge"
+                        },
+                        {
+                          "g2.2xlarge": "g2.2xlarge"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "KeyName",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "EbsOptimized",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "IamInstanceProfile",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "DisableApiTermination",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "KernelId",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "Monitoring",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "InstanceInitiatedShutdownBehavior",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "PlacementGroupName",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "PrivateIpAddress",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "RamdiskId",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "SourceDestCheck",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "SubnetId",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "Tenancy",
+                      "type": "String",
+                      "description": "Description for tooltip",
+                      "allowableValues": [
+                        {
+                          "default": "default"
+                        },
+                        {
+                          "dedicated": "dedicated"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "UserData",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    }
+                  ],
+                  "parent": "",
+                  "blockType": "box"
+                },
+                "EC23": {
+                  "id": "EC23",
+                  "type": "AWS::EC2::Instance",
+                  "name": "EC23",
+                  "description": "Resizable compute machines",
+                  "image": "images/aws/ec2.png",
+                  "x": 646,
+                  "y": 287,
+                  "required": [
+                    {
+                      "name": "ImageId",
+                      "type": "String",
+                      "description": "Name of the EC2 instance",
+                      "allowableValues": [
+                        {
+                          "ami-77581047": "Stewie"
+                        },
+                        {
+                          "ami-67334857": "Jenkins"
+                        },
+                        {
+                          "ami-67334857": "MyCustomAmi"
+                        },
+                        {
+                          "dummy": "---Standard AMIs---"
+                        },
+                        {
+                          "ami-b5a7ea85": "Amazon Linux AMI 2014.09.1 (HVM)"
+                        },
+                        {
+                          "ami-99bef1a9": "Red Hat Enterprise Linux 7.0 (HVM)"
+                        },
+                        {
+                          "ami-d7450be7": "SuSE Linux Enterprise Server 12 (HVM)"
+                        },
+                        {
+                          "ami-3d50120d": "Ubuntu Server 14.04 LTS (HVM)"
+                        },
+                        {
+                          "ami-21f0bc11": "Microsoft Windows Server 2012 R2 Base"
+                        }
+                      ]
+                    }
+                  ],
+                  "optional": [
+                    {
+                      "name": "BlockDeviceMappings",
+                      "type": "BlockDeviceMappings",
+                      "description": "tooltip??"
+                    },
+                    {
+                      "name": "NetworkInterfaces",
+                      "type": "NetworkInterfaces",
+                      "description": "A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance"
+                    },
+                    {
+                      "name": "SecurityGroupIds",
+                      "type": "StringList",
+                      "description": "A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property"
+                    },
+                    {
+                      "name": "SecurityGroups",
+                      "type": "StringList",
+                      "description": "Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template"
+                    },
+                    {
+                      "name": "Tags",
+                      "type": "Tags",
+                      "description": "tooltip??"
+                    },
+                    {
+                      "name": "Volumes",
+                      "type": "Volumes",
+                      "description": "tooltip??"
+                    },
+                    {
+                      "name": "AvailabilityZone",
+                      "type": "String",
+                      "description": "Specifies the name of the Availability Zone in which the instance is located",
+                      "allowableValues": [
+                        {
+                          "ap-northeast-1b": "Asia Pacific (Tokyo)"
+                        },
+                        {
+                          "ap-southeast-1b": "Asia Pacific (Singapore)"
+                        },
+                        {
+                          "ap-southeast-2b": "Asia Pacific (Sydney)"
+                        },
+                        {
+                          "eu-central-1b": "EU (Frankfurt)"
+                        },
+                        {
+                          "eu-west-1b": "EU (Ireland)"
+                        },
+                        {
+                          "sa-east-1b": "South America (Sao Paulo)"
+                        },
+                        {
+                          "us-east-1b": "US East (N. Virginia)"
+                        },
+                        {
+                          "us-west-1b": "US West (N. California)"
+                        },
+                        {
+                          "us-west-2b": "US West (Oregon)"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "InstanceType",
+                      "type": "String",
+                      "description": "Description for tooltip",
+                      "allowableValues": [
+                        {
+                          "t2.micro": "t2.micro"
+                        },
+                        {
+                          "t2.small": "t2.small"
+                        },
+                        {
+                          "t2.medium": "t2.medium"
+                        },
+                        {
+                          "m3.medium": "m3.medium"
+                        },
+                        {
+                          "m3.large": "m3.large"
+                        },
+                        {
+                          "m3.xlarge": "m3.xlarge"
+                        },
+                        {
+                          "m3.2xlarge": "m3.2xlarge"
+                        },
+                        {
+                          "c3.large": "c3.large"
+                        },
+                        {
+                          "c3.xlarge": "c3.xlarge"
+                        },
+                        {
+                          "c3.2xlarge": "c3.2xlarge"
+                        },
+                        {
+                          "c3.4xlarge": "c3.4xlarge"
+                        },
+                        {
+                          "c3.8xlarge": " c3.8xlarge"
+                        },
+                        {
+                          "r3.large": "r3.large"
+                        },
+                        {
+                          "r3.xlarge": "r3.xlarge"
+                        },
+                        {
+                          "r3.2xlarge": "r3.2xlarge"
+                        },
+                        {
+                          "r3.4xlarge": "r3.4xlarge"
+                        },
+                        {
+                          "r3.8xlarge": "r3.8xlarge"
+                        },
+                        {
+                          "i2.xlarge": "i2.xlarge"
+                        },
+                        {
+                          "i2.2xlarge": "i2.2xlarge"
+                        },
+                        {
+                          "i2.4xlarge": "i2.4xlarge"
+                        },
+                        {
+                          "i2.8xlarge": "i2.8xlarge"
+                        },
+                        {
+                          "hs1.8xlarge": "hs1.8xlarge"
+                        },
+                        {
+                          "g2.2xlarge": "g2.2xlarge"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "KeyName",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "EbsOptimized",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "IamInstanceProfile",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "DisableApiTermination",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "KernelId",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "Monitoring",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "InstanceInitiatedShutdownBehavior",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "PlacementGroupName",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "PrivateIpAddress",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "RamdiskId",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "SourceDestCheck",
+                      "type": "Boolean",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "SubnetId",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    },
+                    {
+                      "name": "Tenancy",
+                      "type": "String",
+                      "description": "Description for tooltip",
+                      "allowableValues": [
+                        {
+                          "default": "default"
+                        },
+                        {
+                          "dedicated": "dedicated"
+                        }
+                      ]
+                    },
+                    {
+                      "name": "UserData",
+                      "type": "String",
+                      "description": "Description for tooltip"
+                    }
+                  ],
+                  "parent": "",
+                  "blockType": "box"
+                },
+                "ELB4": {
+                  "id": "ELB4",
+                  "type": "AWS::ElasticLoadBalancing::LoadBalancer",
+                  "name": "ELB4",
+                  "description": "Automatically distributes incoming application traffic across multiple EC2 instances",
+                  "image": "images/aws/elb.png",
+                  "x": 365,
+                  "y": 93,
+                  "optional": [
+                    {
+                      "name": "AccessLoggingPolicy",
+                      "type": "AccessLoggingPolicy",
+                      "description": "Captures detailed information for all requests made to your load balancer, such as the time a request was received, client’s IP address, latencies, request path, and server responses."
+                    },
+                    {
+                      "name": "AvailabilityZones",
+                      "type": "AvailabilityZones",
+                      "description": "The Availability Zones in which to create the load balancer. You can specify either AvailabilityZones or Subnets, but not both."
+                    }
+                  ],
+                  "parent": "",
+                  "blockType": "box"
+                },
+                "BlockDeviceMappings5": {
+                  "id": "BlockDeviceMappings5",
+                  "type": "BlockDeviceMappings",
+                  "name": "BlockDeviceMappings5",
+                  "image": "images/aws/blockDeviceMapping.png",
+                  "x": 72,
+                  "y": 565,
+                  "required": [
+                    {
+                      "name": "AvailabilityZone",
+                      "type": "String",
+                      "description": "",
+                      "allowableValues": [
+                        {
+                          "ap-northeast-1": "Asia Pacific (Tokyo)"
+                        },
+                        {
+                          "ap-southeast-1": "Asia Pacific (Singapore)"
+                        },
+                        {
+                          "ap-southeast-2": "Asia Pacific (Sydney)"
+                        },
+                        {
+                          "eu-central-1": "EU (Frankfurt)"
+                        },
+                        {
+                          "eu-west-1": "EU (Ireland)"
+                        },
+                        {
+                          "sa-east-1": "South America (Sao Paulo)"
+                        },
+                        {
+                          "us-east-1": "US East (N. Virginia)"
+                        },
+                        {
+                          "us-west-1": "US West (N. California)"
+                        },
+                        {
+                          "us-west-2": "US West (Oregon)"
+                        }
+                      ]
+                    }
+                  ],
+                  "optional": [
+                    {
+                      "name": "Encrypted",
+                      "type": "Boolean",
+                      "description": ""
+                    },
+                    {
+                      "name": "Iops",
+                      "type": "Number",
+                      "description": ""
+                    },
+                    {
+                      "name": "Size",
+                      "type": "String",
+                      "description": ""
+                    },
+                    {
+                      "name": "SnapshotId",
+                      "type": "String",
+                      "description": ""
+                    },
+                    {
+                      "name": "Tags",
+                      "type": "Tags",
+                      "description": "An arbitrary set of tags (key–value pairs) for this volume."
+                    },
+                    {
+                      "name": "VolumeType",
+                      "type": "String",
+                      "description": ""
+                    }
+                  ],
+                  "parent": "EC21",
+                  "isDerived": true,
+                  "blockType": "drag",
+                  "index": 0
+                },
+                "BlockDeviceMappings6": {
+                  "id": "BlockDeviceMappings6",
+                  "type": "BlockDeviceMappings",
+                  "name": "BlockDeviceMappings6",
+                  "image": "images/aws/blockDeviceMapping.png",
+                  "x": 331,
+                  "y": 569,
+                  "required": [
+                    {
+                      "name": "AvailabilityZone",
+                      "type": "String",
+                      "description": "",
+                      "allowableValues": [
+                        {
+                          "ap-northeast-1": "Asia Pacific (Tokyo)"
+                        },
+                        {
+                          "ap-southeast-1": "Asia Pacific (Singapore)"
+                        },
+                        {
+                          "ap-southeast-2": "Asia Pacific (Sydney)"
+                        },
+                        {
+                          "eu-central-1": "EU (Frankfurt)"
+                        },
+                        {
+                          "eu-west-1": "EU (Ireland)"
+                        },
+                        {
+                          "sa-east-1": "South America (Sao Paulo)"
+                        },
+                        {
+                          "us-east-1": "US East (N. Virginia)"
+                        },
+                        {
+                          "us-west-1": "US West (N. California)"
+                        },
+                        {
+                          "us-west-2": "US West (Oregon)"
+                        }
+                      ]
+                    }
+                  ],
+                  "optional": [
+                    {
+                      "name": "Encrypted",
+                      "type": "Boolean",
+                      "description": ""
+                    },
+                    {
+                      "name": "Iops",
+                      "type": "Number",
+                      "description": ""
+                    },
+                    {
+                      "name": "Size",
+                      "type": "String",
+                      "description": ""
+                    },
+                    {
+                      "name": "SnapshotId",
+                      "type": "String",
+                      "description": ""
+                    },
+                    {
+                      "name": "Tags",
+                      "type": "Tags",
+                      "description": "An arbitrary set of tags (key–value pairs) for this volume."
+                    },
+                    {
+                      "name": "VolumeType",
+                      "type": "String",
+                      "description": ""
+                    }
+                  ],
+                  "parent": "EC22",
+                  "isDerived": true,
+                  "blockType": "drag",
+                  "index": 0
+                },
+                "BlockDeviceMappings7": {
+                  "id": "BlockDeviceMappings7",
+                  "type": "BlockDeviceMappings",
+                  "name": "BlockDeviceMappings7",
+                  "image": "images/aws/blockDeviceMapping.png",
+                  "x": 553,
+                  "y": 570,
+                  "required": [
+                    {
+                      "name": "AvailabilityZone",
+                      "type": "String",
+                      "description": "",
+                      "allowableValues": [
+                        {
+                          "ap-northeast-1": "Asia Pacific (Tokyo)"
+                        },
+                        {
+                          "ap-southeast-1": "Asia Pacific (Singapore)"
+                        },
+                        {
+                          "ap-southeast-2": "Asia Pacific (Sydney)"
+                        },
+                        {
+                          "eu-central-1": "EU (Frankfurt)"
+                        },
+                        {
+                          "eu-west-1": "EU (Ireland)"
+                        },
+                        {
+                          "sa-east-1": "South America (Sao Paulo)"
+                        },
+                        {
+                          "us-east-1": "US East (N. Virginia)"
+                        },
+                        {
+                          "us-west-1": "US West (N. California)"
+                        },
+                        {
+                          "us-west-2": "US West (Oregon)"
+                        }
+                      ]
+                    }
+                  ],
+                  "optional": [
+                    {
+                      "name": "Encrypted",
+                      "type": "Boolean",
+                      "description": ""
+                    },
+                    {
+                      "name": "Iops",
+                      "type": "Number",
+                      "description": ""
+                    },
+                    {
+                      "name": "Size",
+                      "type": "String",
+                      "description": ""
+                    },
+                    {
+                      "name": "SnapshotId",
+                      "type": "String",
+                      "description": ""
+                    },
+                    {
+                      "name": "Tags",
+                      "type": "Tags",
+                      "description": "An arbitrary set of tags (key–value pairs) for this volume."
+                    },
+                    {
+                      "name": "VolumeType",
+                      "type": "String",
+                      "description": ""
+                    }
+                  ],
+                  "parent": "EC23",
+                  "isDerived": true,
+                  "blockType": "drag",
+                  "index": 0
+                }
+              };
+            CFTemplate.setTemplate({
+              "AWSTemplateFormatVersion": "2010-09-09",
+              "Description": "Created By pdestal",
+              "Parameters": {},
+              "Mappings": {},
+              "Conditions": {},
+              "Resources": {
+                "EC21": {
+                  "Type": "AWS::EC2::Instance",
+                  "Properties": {
+                    "BlockDeviceMappings": [
+                      {}
+                    ]
+                  }
+                },
+                "EC22": {
+                  "Type": "AWS::EC2::Instance",
+                  "Properties": {
+                    "BlockDeviceMappings": [
+                      {}
+                    ]
+                  }
+                },
+                "EC23": {
+                  "Type": "AWS::EC2::Instance",
+                  "Properties": {
+                    "BlockDeviceMappings": [
+                      {}
+                    ]
+                  }
+                },
+                "ELB4": {
+                  "Type": "AWS::ElasticLoadBalancing::LoadBalancer",
+                  "Properties": {}
+                }
+              },
+              "Outputs": {
+                "EC21ImageId": {
+                  "Description": "Name of the EC2 instance",
+                  "Value": {
+                    "Ref": "EC21"
+                  }
+                },
+                "EC22ImageId": {
+                  "Description": "Name of the EC2 instance",
+                  "Value": {
+                    "Ref": "EC22"
+                  }
+                },
+                "EC23ImageId": {
+                  "Description": "Name of the EC2 instance",
+                  "Value": {
+                    "Ref": "EC23"
+                  }
+                }
+              }
+            });
+            CanvasModel.connections = {
+              "EC21": {
+                "ELB4": "ELB4",
+                "BlockDeviceMappings5": "BlockDeviceMappings5"
+              },
+              "EC22": {
+                "ELB4": "ELB4",
+                "BlockDeviceMappings6": "BlockDeviceMappings6"
+              },
+              "EC23": {
+                "ELB4": "ELB4",
+                "BlockDeviceMappings7": "BlockDeviceMappings7"
+              }
+            };
+
+            _.each(CanvasModel.connections, function (targets, sourceName) {
+              _.each(targets, function (targetName) {
+                UIComponents.connectComponents(sourceName, targetName, false);
+              });
+            });
+
+
+          }, function () {
+
+          });
       };
 
       $scope.optimizePressed = function (component) {
@@ -490,7 +1640,7 @@ angular.module('nestorApp')
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,
           data.description,
-          event.x - leftPanelWidth,
+            event.x - leftPanelWidth,
           event.y,
           data.parent
         );
@@ -555,7 +1705,13 @@ angular.module('nestorApp')
       };
 
       $scope.download = function () {
-        $window.open('data:text/text;charset=utf-8,' + encodeURIComponent($scope.templateString));
+        $window.open('data:text/text;charset=utf-8,' + encodeURIComponent(
+            'FAFAcomponents:' + angular.toJson($scope.canvasModel.addedComponents, true) +
+            'FAFAtemplate:' + angular.toJson($scope.privateTemplate, true) +
+            'FAFAconnections:' + angular.toJson($scope.canvasModel.connections, true)
+        ));
+
+
       };
 
       //-----------------------------------------------------

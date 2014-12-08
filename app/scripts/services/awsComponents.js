@@ -274,12 +274,6 @@ app.service('AWSComponents', function () {
       //  description: 'Service to set up, manage, and scale a custom search solution'
       //},
       //{
-      //  name: 'EBS',
-      //  image: 'images/aws/ebs.png',
-      //  description: 'Persistent block level storage volumes for EC2 instances'
-      //
-      //},
-      //{
       //  name: 'Elasticache',
       //  image: 'images/aws/elasticache.png',
       //  description: 'Deploy, operate, and scale an in-memory cache'
@@ -1019,38 +1013,34 @@ app.service('AWSComponents', function () {
         // When the user drags a link from another object (Source) to connect it to this component (Target) use the following rules
         IncomingConnection: {
 
-          'SourceComponentName': {    // e.g. EC2, DynamoDB
-            overlays: [
-              ['PlainArrow', {direction: -1, location: 0, width: 10, length: 10}],
-              ['Label', {label: 'Depends On'}]
-            ],
+          'AWS::EC2::Instance': {    // e.g. EC2, DynamoDB
 
             //the name of the property on Target to be modified
-            targetPropName: 'optional, do not set if it does not apply',
+            targetPropName: 'alakiName',
 
             //name of the property on Source which its value needs to be assigned to targetPropName
-            targetPropValue: 'optional, do not set if it does not apply',
+            targetPropValue: 'testtiii',
 
             //how to interpret targetPropValue:  pure/ref/attribute
-            targetPropValueMethod: 'optional, do not set if it does not apply',
+            targetPropValueMethod: 'pure',
 
             // how to update targetPropName with targetPropValue
-            targetPolicy: 'assign/append',
+            targetPolicy: 'assign',
 
             //optional, don't set if it doesn't apply
-            sourcePropName: 'the name of the property on Source to be modified',
+//            sourcePropName: 'the name of the property on Source to be modified',
 
             //optional, don't set if it doesn't apply
-            sourcePropValue: 'name of the property on Target which its value needs to be assigned to sourcePropName',
+//            sourcePropValue: 'name of the property on Target which its value needs to be assigned to sourcePropName',
 
             //optional, defaults to "pure"
-            sourcePropValueMethod: 'how to interpret sourcePropValue:  pure/ref/attribute',
+//            sourcePropValueMethod: 'how to interpret sourcePropValue:  pure/ref/attribute',
 
             // how to update sourcePropName with sourcePropValue
-            sourcePolicy: 'assign/append',
+//            sourcePolicy: 'assign/append',
 
             // should the new value be added under "Properties" or be a new field on the affected object
-            isProperty: 'true/false'
+            isProperty: 'true'
           }
         },
         properties: {
