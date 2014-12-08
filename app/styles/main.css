@@ -348,6 +348,13 @@ body {
   width: 10%;
   background-color: darkgray;
 }
+.component-price {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 13px;
+  color: blue;
+}
 /* Sub-Menu Style */
 #left-panel > .optionsmenu {
   /* ----------- Component, Solution stack, and Property draggable items ----------*/
