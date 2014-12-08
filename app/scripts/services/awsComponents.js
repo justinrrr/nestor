@@ -774,43 +774,8 @@ app.service('AWSComponents', function () {
         properties: {
           required: [
             {
-              name: 'ImageId',
-              type: 'String',
-              description: 'Name of the EC2 instance',
-              allowableValues: [
-                {'ami-77581047': 'Stewie'},
-                {'ami-67334857': 'Jenkins'},
-                {'ami-67334857': 'MyCustomAmi'},
-                {'dummy': '---Standard AMIs---'},
-                {'ami-b5a7ea85': 'Amazon Linux AMI 2014.09.1 (HVM)'},
-                {'ami-99bef1a9': 'Red Hat Enterprise Linux 7.0 (HVM)'},
-                {'ami-d7450be7': 'SuSE Linux Enterprise Server 12 (HVM)'},
-                {'ami-3d50120d': 'Ubuntu Server 14.04 LTS (HVM)'},
-                {'ami-21f0bc11': 'Microsoft Windows Server 2012 R2 Base'}
-              ]
-            }
-          ],
-          optional: [
-
-            {name: 'BlockDeviceMappings', type: 'BlockDeviceMappings', description: 'tooltip??'},
-            {
-              name: 'NetworkInterfaces',
-              type: 'NetworkInterfaces',
-              description: 'A list of NetworkInterface embedded objects that describe the network interfaces to associate with this instance'
+              name: 'BlockDeviceMappings', type: 'BlockDeviceMappings', description: ''
             },
-            {
-              name: 'SecurityGroupIds',
-              type: 'StringList',
-              description: 'A list that contains the security group IDs for VPC security groups to assign to the Amazon EC2 instance. If you specified the NetworkInterfaces property, do not specify this property'
-            },
-            {
-              name: 'SecurityGroups',
-              type: 'StringList',
-              description: 'Valid only for Amazon EC2 security groups. A list that contains the Amazon EC2 security groups to assign to the Amazon EC2 instance. The list can contain both the name of existing Amazon EC2 security groups or references to AWS::EC2::SecurityGroup resources created in the template'
-            },
-            {name: 'Tags', type: 'Tags', description: 'tooltip??'},
-            {name: 'Volumes', type: 'Volumes', description: 'tooltip??'},
-
             {
               name: 'AvailabilityZone',
               type: 'String',
@@ -923,32 +888,6 @@ app.service('AWSComponents', function () {
                 }
               ]
             },
-            {name: 'KeyName', type: 'String', description: 'Description for tooltip'},
-            {name: 'EbsOptimized', type: 'Boolean', description: 'Description for tooltip'},
-            {name: 'IamInstanceProfile', type: 'String', description: 'Description for tooltip'},
-            {name: 'DisableApiTermination', type: 'Boolean', description: 'Description for tooltip'},
-            {name: 'KernelId', type: 'String', description: 'Description for tooltip'},
-            {name: 'Monitoring', type: 'Boolean', description: 'Description for tooltip'},
-            {name: 'InstanceInitiatedShutdownBehavior', type: 'String', description: 'Description for tooltip'},
-            {name: 'PlacementGroupName', type: 'String', description: 'Description for tooltip'},
-            {name: 'PrivateIpAddress', type: 'String', description: 'Description for tooltip'},
-            {name: 'RamdiskId', type: 'String', description: 'Description for tooltip'},
-            {name: 'SourceDestCheck', type: 'Boolean', description: 'Description for tooltip'},
-            {name: 'SubnetId', type: 'String', description: 'Description for tooltip'},
-            {
-              name: 'Tenancy',
-              type: 'String',
-              description: 'Description for tooltip',
-              allowableValues: [
-                {
-                  'default': 'default'
-                },
-                {
-                  'dedicated': 'dedicated'
-                }
-              ]
-            },
-            {name: 'UserData', type: 'String', description: 'Description for tooltip'}
           ]
         },
         outputs: [
