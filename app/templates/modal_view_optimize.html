@@ -1,19 +1,117 @@
 <div class="modal-header">
-  <h2 class="modal-title">Optimize {{componenetName}}</h2>
+  <h2 class="modal-title">Optimize {{componentName}}</h2>
 </div>
 <div class="modal-body">
   <div class="row">
     <div class="col-lg-12 row2 text-center">
-      <canvas id="line" class="chart chart-line" data="data"
+      <p>Current instance type: <strong>m3.large</strong></p>
+
+      <p>Current CPUs: <strong> 6.5 ECU</strong></p>
+
+      <p>Current Memory: <strong> 7.5 GB</strong></p>
+
+      <p>Current price: <strong> $0.140 per Hour</strong></p>
+      <br>
+      <hr>
+
+      <p>Suggested Optimization: <strong> t2.medium</strong></p>
+
+      <p>Suggested CPUs: <strong> Variable </strong></p>
+
+      <p>Suggested Memory: <strong> 4.0 GB </strong></p>
+
+      <p>Suggested Price: <strong> $0.052 per Hour</strong></p>
+
+      <br>
+      <hr>
+
+      <h3>Savings : $0.088 per Hour = $66 per Month</h3>
+      <br>
+      <hr>
+      <h4>Detailed Info:</h4>
+      <ul style="text-align: left">
+        <li>You are utilizing less CPU than you have provisioned. CPU is 30% underutilized.</li>
+        <li>Your CPU usage is bursty. You have peaks of high CPU usage followed by valleys of low CPU usage.</li>
+        <li>You are less memory than you have provisioned. Memory is 53% underutilized in the best case scenarios.</li>
+      </ul>
+      <p>The best machine is <strong>t2. medium</strong> T2 instances are Burstable Performance Instances that provide a
+        baseline level of CPU performance with the ability to burst above the baseline. </p>
+
+    </div>
+    <div class="col-lg-12 row2 text-center">
+      <h3>CPU Utilization</h3>
+      <canvas id="line" class="chart chart-line" data="dataCpu"
               labels="labels" legend="true" series="series" colours="colours"
               click="onClick">
       </canvas>
+
+      <br>
+      <br>
+
+      <h3>Memory Usage(from NewRelic)</h3>
+      <canvas id="line2" class="chart chart-line" data="dataRam"
+              labels="labels" legend="true" series="ramSeries" colours="ramColours"
+              click="onClick">
+      </canvas>
+    </div>
+    <div class="col-lg-12 row2">
+      <h2>Reserved Instances</h2>
+
+      <p>Reserved Instances provide you with a significant discount. You have to
+        pay some amount of money upfront and use the reserved instance for 1 or 3 year terms. You can always sell your
+        reserved instance on AWS marketplace</p>
+
+      <hr>
+      <p>Based on a search on AWS Marketplace we found the following instances will best suit your needs:</p>
+      <button type="button" class="btn btn-info">Search Again</button>
+      <br>
+      <br>
+
+      <table class="table table-striped">
+
+        <tr>
+          <th></th>
+          <th>Instance Type</th>
+          <th>Offering</th>
+          <th>Term</th>
+          <th>Effective Rate</th>
+          <th>Hourly Rate</th>
+          <th>Upfront Price</th>
+          <th>Provider</th>
+        </tr>
+        <tr ng-repeat="instance in reservedInstances">
+          <td>
+            <input type="radio"
+                   ng-model="activeReserved.selectedIndex"
+                   ng-change="reservedSelected(instance)"
+                   ng-value="$index">
+          </td>
+          <td>{{instance.type}}</td>
+          <td>{{instance.offering}}</td>
+          <td>{{instance.term}}</td>
+          <td>${{instance.effective}}</td>
+          <td>${{instance.hourly}}</td>
+          <td>${{instance.upfront}}</td>
+          <td>{{instance.provider}}</td>
+        </tr>
+      </table>
+
+      <input type="radio" ng-model="activeReserved.selectedIndex" value="-1"> I don't want to use reserved instances
+      <div ng-if="activeReserved.selectedIndex !== -1" class="col-lg-12 row2 text-center">
+        <canvas id="final-line-2" class="chart chart-line" data="compareData"
+                labels="monthsOfYear" legend="true" series="compareSeries"
+                click="onClick">
+        </canvas>
+      </div>
+    </div>
+    <div class="col-lg-12 row2 text-center">
+      <h2>Spot Instances</h2>
     </div>
   </div>
 </div>
 
 
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="cancel()">Got it</button>
+  <button class="btn btn-primary" ng-click="cancel()">Optimize it</button>
 </div>
 
