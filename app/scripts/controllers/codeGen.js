@@ -8,6 +8,7 @@ var app = angular.module('nestorApp');
 app.controller('LoadInfrastructure', ['$scope', '$rootScope', '$modalInstance', '$timeout',
   function ($scope, $rootScope, $modalInstance, $timeout) {
 
+    /* jshint ignore:start */
     var infra = {
       components: {
         "EC21": {
@@ -166,9 +167,10 @@ app.controller('LoadInfrastructure', ['$scope', '$rootScope', '$modalInstance', 
         }
       }
     };
+    /* jshint ignore:end */
 
     $scope.loadInfraFromAWS = function () {
-      $timeout(function () {
+      $timeout(function (infra) {
         $modalInstance.close(infra);
       }, 1500);
     };
@@ -332,7 +334,7 @@ app.controller('OptimizeCtrl', ['$scope', '$rootScope', '$modalInstance', '$time
       $scope.activeReserved.totalSavings = Math.ceil($scope.t2MediumPrices[$scope.activeReserved.selectedMonth - 1] - $scope.currentModelPrices[$scope.activeReserved.selectedMonth - 1]);
       $scope.activeReserved.saveLose = $scope.activeReserved.totalSavings >= 0 ? 'save' : 'lose';
       $scope.activeReserved.totalSavings = Math.abs( $scope.activeReserved.totalSavings);
-    }
+    };
 
     //finds the x interestction of two lines given four points
     function findIntersection(x1, x2, y1, y2, xx1, xx2, yy1, yy2) {

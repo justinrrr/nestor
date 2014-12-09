@@ -1,6 +1,8 @@
 /**
  * Created by Fathalian on 12/8/14.
  */
+'use strict'
+
 var app = angular.module('nestorApp.services');
 
 app.service('EC2Pricings', function () {
@@ -31,5 +33,5 @@ app.service('EC2Pricings', function () {
       'm3.2xlarge' : 0.616 * 730
     },
     'us-west-2b': {}
-  }
+  };
 });
