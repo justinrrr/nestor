@@ -445,12 +445,42 @@ body {
   width: 10%;
   background-color: darkgray;
 }
+.price-card .panel {
+  border-radius: 0px;
+  border-color: #C3CFCE;
+}
+.price-card .panel-heading {
+  padding: 0px;
+  background-color: #17bcb8;
+  border-color: #17bcb8;
+  border-radius: 0px;
+}
+.price-card .status .panel-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  color: #fff;
+  line-height: 25px;
+  padding-top: 20px;
+  letter-spacing: -0.8px;
+}
+.price-card .panel-body {
+  padding: 2px;
+}
+.price-card strong {
+  font-size: 12px;
+}
 .component-price {
   position: absolute;
+  background-color: #17bcb8;
   top: 5px;
   right: 5px;
   font-size: 13px;
-  color: blue;
+  color: #fff;
+  border-radius: 3px 0 3px 3px;
+  padding-right: 2px;
+  padding-left: 2px;
+  height: 16px;
 }
 /* Sub-Menu Style */
 #left-panel > .optionsmenu {

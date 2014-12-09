@@ -210,12 +210,42 @@
   margin-left: 2%;
   width: 10%;
   background-color: darkgray;
+  .panel {
+    border-radius: 0px;
+    border-color: #C3CFCE;
+  }
+  .panel-heading {
+    padding: 0px;
+    background-color: @light-teal;
+    border-color: @light-teal;
+    border-radius: 0px;
+  }
+  .status .panel-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #fff;
+    line-height: 25px;
+    padding-top: 20px;
+    letter-spacing: -0.8px;
+  }
+  .panel-body {
+    padding: 2px;
+  } strong {
+    font-size: 12px;
+  }
+
 }
 
 .component-price {
   position: absolute;
+  background-color: @light-teal;
   top: 5px;
   right: 5px;
   font-size: 13px;
-  color: blue;
+  color: #fff;
+  border-radius: 3px 0 3px 3px;
+  padding-right: 2px;
+  padding-left: 2px;
+  height: 16px;
 }
