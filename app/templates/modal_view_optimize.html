@@ -2,82 +2,102 @@
   <h2 class="modal-title">Optimize {{componentName}}</h2>
 </div>
 <div class="modal-body">
-  <div class="row">
-    <div class="col-lg-12 row2 text-center">
-      <p>Current instance type: <strong>m3.large</strong></p>
-
-      <p>Current CPUs: <strong> 6.5 ECU</strong></p>
-
-      <p>Current Memory: <strong> 7.5 GB</strong></p>
-
-      <p>Current price: <strong> $0.140 per Hour</strong></p>
-      <br>
-      <hr>
-
-      <p>Suggested Optimization: <strong> t2.medium</strong></p>
-
-      <p>Suggested CPUs: <strong> Variable </strong></p>
-
-      <p>Suggested Memory: <strong> 4.0 GB </strong></p>
-
-      <p>Suggested Price: <strong> $0.052 per Hour</strong></p>
-
-      <br>
-      <hr>
-
-      <h3>Savings : $0.088 per Hour = $66 per Month</h3>
-      <br>
-      <hr>
-      <h4>Detailed Info:</h4>
-      <ul style="text-align: left">
-        <li>You are utilizing less CPU than you have provisioned. CPU is 30% underutilized.</li>
-        <li>Your CPU usage is bursty. You have peaks of high CPU usage followed by valleys of low CPU usage.</li>
-        <li>You are less memory than you have provisioned. Memory is 53% underutilized in the best case scenarios.</li>
-      </ul>
+  <tabset>
+    <tab heading="Infrastructure State">
+      <table class="table table-striped">
+        <tr>
+          <th class="heading"></th>
+          <th class="heading">Current State</th>
+          <th class="heading">Recommended Optimizations</th>
+        </tr>
+       <tr>
+         <td class="rowheading">
+           Instance Type:
+         </td>
+         <td  class="current">
+           m3.large
+         </td>
+         <td  class="suggested">
+           t2.medium
+         </td>
+        </tr>
+        <tr>
+          <td class="rowheading">
+            CPUs:
+          </td>
+          <td  class="current">
+            6.5 ECU
+          </td>
+          <td class="suggested">
+            Variable
+          </td>
+        </tr>
+        <tr>
+          <td class="rowheading">
+            Memory:
+          </td>
+          <td  class="current">
+            7.5 GB
+          </td>
+          <td class="suggested">
+            4.0 GB
+          </td>
+        </tr>
+        <tr>
+          <td class="rowheading">
+             Price:
+          </td>
+          <td  class="current">
+            $0.140 per Hour
+          </td>
+          <td class="suggested">
+            $0.052 per Hour
+          </td>
+        </tr>
+      </table>
+      <h4>Recommendation Details</h4>
       <p>The best machine is <strong>t2. medium</strong> T2 instances are Burstable Performance Instances that provide a
         baseline level of CPU performance with the ability to burst above the baseline. </p>
+      <p>Savings : $0.088 per Hour = $66 per Month</p>
+    </tab>
 
-    </div>
-    <div class="col-lg-12 row2 text-center">
-      <h3>CPU Utilization</h3>
+    <tab heading="CPU Utilization">
+      <ul>
+      <li>You are utilizing less CPU than you have provisioned. CPU is 30% underutilized.</li>
+      <li>Your CPU usage is bursty. You have peaks of high CPU usage followed by valleys of low CPU usage.</li>
+      </ul>
       <canvas id="line" class="chart chart-line" data="dataCpu"
               labels="labels" legend="true" series="series" colours="colours"
               click="onClick">
       </canvas>
+      </tab>
 
-      <br>
-      <br>
-
-      <h3>Memory Usage(from NewRelic)</h3>
+    <tab heading="Memory Usage">
+      <ul>
+        <li>You are less memory than you have provisioned. Memory is 53% underutilized in the best case scenarios.</li>
+      </ul>
       <canvas id="line2" class="chart chart-line" data="dataRam"
               labels="labels" legend="true" series="ramSeries" colours="ramColours"
               click="onClick">
       </canvas>
-    </div>
-    <div class="col-lg-12 row2">
-      <h2>Reserved Instances</h2>
+    </tab>
 
+    <tab heading="Reserved Instances">
       <p>Reserved Instances provide you with a significant discount. You have to
         pay some amount of money upfront and use the reserved instance for 1 or 3 year terms. You can always sell your
         reserved instance on AWS marketplace</p>
-
-      <hr>
       <p>Based on a search on AWS Marketplace we found the following instances will best suit your needs:</p>
-      <button type="button" class="btn btn-info">Search Again</button>
-      <br>
-      <br>
-
-      <table class="table table-striped">
-
+      <button type="button" class="btn btn-default search">Search Again</button>
+      <table class="table table-striped instancestable">
         <tr>
-          <th></th>
-          <th>Instance Type</th>
-          <th>Offering</th>
-          <th>Term</th>
-          <th>Effective Rate</th>
-          <th>Hourly Rate</th>
-          <th>Upfront Price</th>
-          <th>Provider</th>
+          <th class="heading"></th>
+          <th class="heading">Instance Type</th>
+          <th class="heading">Offering</th>
+          <th class="heading">Term</th>
+          <th class="heading">Effective Rate</th>
+          <th class="heading">Hourly Rate</th>
+          <th class="heading">Upfront Price</th>
+          <th class="heading">Provider</th>
         </tr>
         <tr ng-repeat="instance in reservedInstances">
           <td>
@@ -95,8 +115,8 @@
           <td>{{instance.provider}}</td>
         </tr>
       </table>
-
       <input type="radio" ng-model="activeReserved.selectedIndex" value="none"> I don't want to use reserved instances
+
       <div ng-if="activeReserved.selectedIndex !== 'none'" class="col-lg-12 row2 text-center">
         <h4>For this reserved instance to be cheaper than on demand, you have to use it for at least <strong>{{intersectionPoint}}</strong> days</h4>
         <br>
@@ -107,8 +127,8 @@
                 click="onClick">
         </canvas>
       </div>
-    </div>
-  </div>
+    </tab>
+  </tabset>
 </div>
 
 
