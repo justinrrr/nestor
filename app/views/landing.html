@@ -17,8 +17,10 @@
                  style="transform: translate3d(0px, 0px, 0px); opacity: 1;">
               <p>
 
-                <a href="#sign-up" id="video-play" class="button filled" scroll-to="sign-up">Sign Up</a>
-                <a href="#demo" class="button" scroll-to="demo">View Demo</a>
+                <a href="#sign-up" id="video-play" class="button filled" scroll-to="sign-up" analytics-on="click"
+                   analytics-event="WantsToSignup">Sign Up</a>
+                <a href="#demo" class="button" scroll-to="demo" analytics-on="click" analytics-event="WantsToViewDemo">View
+                  Demo</a>
               </p>
             </div>
             <br class="clearboth">
@@ -102,7 +104,8 @@
           </div>
         </header>
         <article>
-          <p>Simulate different configuration scenarios to select a performant configuration that saves you the most money.</p>
+          <p>Simulate different configuration scenarios to select a performant configuration that saves you the most
+            money.</p>
         </article>
       </div>
       <div class="benefit-image" data-parallaxify-range-x="50"
@@ -150,11 +153,12 @@
         <div class="form">
           <form id="sign-up-form" class="email-form" method="post">
             <div class="option-group">
-              <div class="input">
-                <input id="email" name="email" placeholder="Email Address" type="text">
+              <div class="input" ng-if="!hasSignedUp">
+                <input id="email" name="email" ng-model="info.email" placeholder="Email Address" type="text">
               </div>
               <div class="buttons">
-                <input class="button" type="submit" value="Sign up">
+                <input class="button" type="submit" value="{{signupText}}"
+                       ng-class="{'sign-up-did-Signup' : hasSignedUp}" ng-click="signUpPressed()">
               </div>
             </div>
           </form>

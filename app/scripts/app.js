@@ -43,7 +43,8 @@ app.config(function ($routeProvider) {
       controller: 'MainCtrl'
     })
     .when('/', {
-      templateUrl: 'views/landing.html'
+      templateUrl: 'views/landing.html',
+      controller: 'LandingCtrl'
     })
     .when('/home', {
       templateUrl: 'views/landing.html'
