@@ -833,6 +833,13 @@ app.controller('OptimizeCtrl', ['$scope', '$rootScope', '$modalInstance', '$time
       }
     ];
 
+    $scope.memoryInit = function() {
+      $scope.showMemory = true;
+    }
+    $scope.cpuInit = function() {
+      $scope.showCPU = true;
+    };
+
     $scope.reservedInstances = [
       {
         type: 't2.medium',

@@ -10,22 +10,22 @@
           <th class="heading">Current State</th>
           <th class="heading">Recommended Optimizations</th>
         </tr>
-       <tr>
-         <td class="rowheading">
-           Instance Type:
-         </td>
-         <td  class="current">
-           m3.large
-         </td>
-         <td  class="suggested">
-           t2.medium
-         </td>
+        <tr>
+          <td class="rowheading">
+            Instance Type:
+          </td>
+          <td class="current">
+            m3.large
+          </td>
+          <td class="suggested">
+            t2.medium
+          </td>
         </tr>
         <tr>
           <td class="rowheading">
             CPUs:
           </td>
-          <td  class="current">
+          <td class="current">
             6.5 ECU
           </td>
           <td class="suggested">
@@ -36,7 +36,7 @@
           <td class="rowheading">
             Memory:
           </td>
-          <td  class="current">
+          <td class="current">
             7.5 GB
           </td>
           <td class="suggested">
@@ -45,9 +45,9 @@
         </tr>
         <tr>
           <td class="rowheading">
-             Price:
+            Price:
           </td>
-          <td  class="current">
+          <td class="current">
             $0.140 per Hour
           </td>
           <td class="suggested">
@@ -56,36 +56,41 @@
         </tr>
       </table>
       <h4>Recommendation Details</h4>
+
       <p>The best machine is <strong>t2. medium</strong> T2 instances are Burstable Performance Instances that provide a
         baseline level of CPU performance with the ability to burst above the baseline. </p>
+
       <p>Savings : $0.088 per Hour = $66 per Month</p>
     </tab>
 
-    <tab heading="CPU Utilization">
+    <tab heading="CPU Utilization" select="cpuInit()">
       <ul>
-      <li>You are utilizing less CPU than you have provisioned. CPU is 30% underutilized.</li>
-      <li>Your CPU usage is bursty. You have peaks of high CPU usage followed by valleys of low CPU usage.</li>
+        <li>You are utilizing less CPU than you have provisioned. CPU is 30% underutilized.</li>
+        <li>Your CPU usage is bursty. You have peaks of high CPU usage followed by valleys of low CPU usage.</li>
       </ul>
-      <canvas id="line" class="chart chart-line" data="dataCpu"
-              labels="labels" legend="true" series="series" colours="colours"
-              click="onClick">
-      </canvas>
-      </tab>
 
-    <tab heading="Memory Usage">
-      <ul>
-        <li>You are less memory than you have provisioned. Memory is 53% underutilized in the best case scenarios.</li>
-      </ul>
-      <canvas id="line2" class="chart chart-line" data="dataRam"
-              labels="labels" legend="true" series="ramSeries" colours="ramColours"
-              click="onClick">
+      <canvas ng-if="showCPU" id="line" class="chart chart-line" data="dataCpu"
+              labels="labels" legend="true" series="series" colours="colours"
+        >
       </canvas>
+    </tab>
+
+    <tab heading="Memory Usage" select="memoryInit()">
+        <ul>
+          <li>You are less memory than you have provisioned. Memory is 53% underutilized in the best case scenarios.
+          </li>
+        </ul>
+        <canvas ng-if="showMemory" id="line2" class="chart chart-line" data="dataRam"
+                labels="labels" legend="true" series="ramSeries" colours="ramColours"
+                click="onClick">
+        </canvas>
     </tab>
 
     <tab heading="Reserved Instances">
       <p>Reserved Instances provide you with a significant discount. You have to
         pay some amount of money upfront and use the reserved instance for 1 or 3 year terms. You can always sell your
         reserved instance on AWS marketplace</p>
+
       <p>Based on a search on AWS Marketplace we found the following instances will best suit your needs:</p>
       <button type="button" class="btn btn-default search">Search Again</button>
       <table class="table table-striped instancestable">
@@ -115,15 +120,18 @@
           <td>{{instance.provider}}</td>
         </tr>
         <tr>
-          <td> <input type="radio" ng-model="activeReserved.selectedIndex" value="none" class="decline"></td>
-           <td colspan="7" class="colspan"> I don't want to use reserved instances</td>
+          <td><input type="radio" ng-model="activeReserved.selectedIndex" value="none" class="decline"></td>
+          <td colspan="7" class="colspan"> I don't want to use reserved instances</td>
         </tr>
       </table>
 
 
       <div ng-if="activeReserved.selectedIndex !== 'none'" class="col-lg-12 row2 text-center chart">
-        <h5>For this reserved instance to be cheaper than on demand, you have to use it for at least <strong>{{intersectionPoint}}</strong> days</h5>
-        <h5>If you use this instance for <input type="number" ng-model="activeReserved.selectedMonth" ng-change="calculateSavings()" min="1" max="12"> months, you will <strong>{{activeReserved.saveLose}} ${{activeReserved.totalSavings}} </strong></h5>
+        <h5>For this reserved instance to be cheaper than on demand, you have to use it for at least <strong>{{intersectionPoint}}</strong>
+          days</h5>
+        <h5>If you use this instance for <input type="number" ng-model="activeReserved.selectedMonth"
+                                                ng-change="calculateSavings()" min="1" max="12"> months, you will
+          <strong>{{activeReserved.saveLose}} ${{activeReserved.totalSavings}} </strong></h5>
 
         <canvas id="final-line-2" class="chart chart-line" data="compareData"
                 labels="monthsOfYear" legend="true" series="compareSeries" colours="compareColors"
