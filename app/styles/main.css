@@ -249,6 +249,7 @@ body {
 }
 #mid-container > #middle-panel {
   height: 100%;
+  width: 100%;
 }
 #mid-container > #middle-panel .canvasbtns {
   padding: 10px;
@@ -437,6 +438,19 @@ body {
 #mid-container > #middle-panel svg path {
   stroke: rgba(213, 50, 43, 0.29) !important;
   stroke-width: 1.5px;
+}
+.price-card {
+  margin-top: 4%;
+  margin-left: 2%;
+  width: 10%;
+  background-color: darkgray;
+}
+.component-price {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  font-size: 13px;
+  color: blue;
 }
 /* Sub-Menu Style */
 #left-panel > .optionsmenu {

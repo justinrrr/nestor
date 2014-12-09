@@ -10,727 +10,157 @@ app.controller('LoadInfrastructure', ['$scope', '$rootScope', '$modalInstance', 
 
     var infra = {
       components: {
-        'EC21': {
-          'id': 'EC21',
-          'type': 'AWS::EC2::Instance',
-          'name': 'EC21',
-          'description': 'Resizable compute machines',
-          'image': 'images/aws/ec2.png',
-          'x': 143,
-          'y': 288,
-          'required': [
+        "EC21": {
+          "id": "EC21",
+          "type": "AWS::EC2::Instance",
+          "name": "EC21",
+          "description": "Resizable compute machines",
+          "image": "images/aws/ec2.png",
+          "x": 312,
+          "y": 188,
+          "required": [
             {
-              'name': 'BlockDeviceMappings',
-              'type': 'BlockDeviceMappings',
-              'description': ''
+              "name": "BlockDeviceMappings",
+              "type": "BlockDeviceMappings",
+              "description": ""
             },
             {
-              'name': 'AvailabilityZone',
-              'type': 'String',
-              'description': 'Specifies the name of the Availability Zone in which the instance is located',
-              'allowableValues': [
+              "name": "AvailabilityZone",
+              "type": "String",
+              "description": "Specifies the name of the Availability Zone in which the instance is located",
+              "allowableValues": [
                 {
-                  'ap-northeast-1b': 'Asia Pacific (Tokyo)'
+                  "ap-northeast-1b": "Asia Pacific (Tokyo)"
                 },
                 {
-                  'ap-southeast-1b': 'Asia Pacific (Singapore)'
+                  "ap-southeast-1b": "Asia Pacific (Singapore)"
                 },
                 {
-                  'ap-southeast-2b': 'Asia Pacific (Sydney)'
+                  "ap-southeast-2b": "Asia Pacific (Sydney)"
                 },
                 {
-                  'eu-central-1b': 'EU (Frankfurt)'
+                  "eu-central-1b": "EU (Frankfurt)"
                 },
                 {
-                  'eu-west-1b': 'EU (Ireland)'
+                  "eu-west-1b": "EU (Ireland)"
                 },
                 {
-                  'sa-east-1b': 'South America (Sao Paulo)'
+                  "sa-east-1b": "South America (Sao Paulo)"
                 },
                 {
-                  'us-east-1b': 'US East (N. Virginia)'
+                  "us-east-1b": "US East (N. Virginia)"
                 },
                 {
-                  'us-west-1b': 'US West (N. California)'
+                  "us-west-1b": "US West (N. California)"
                 },
                 {
-                  'us-west-2b': 'US West (Oregon)'
+                  "us-west-2b": "US West (Oregon)"
                 }
               ]
             },
             {
-              'name': 'InstanceType',
-              'type': 'String',
-              'description': 'Description for tooltip',
-              'allowableValues': [
+              "name": "InstanceType",
+              "type": "String",
+              "description": "Description for tooltip",
+              "allowableValues": [
                 {
-                  't2.micro': 't2.micro'
+                  "t2.micro": "t2.micro"
                 },
                 {
-                  't2.small': 't2.small'
+                  "t2.small": "t2.small"
                 },
                 {
-                  't2.medium': 't2.medium'
+                  "t2.medium": "t2.medium"
                 },
                 {
-                  'm3.medium': 'm3.medium'
+                  "m3.medium": "m3.medium"
                 },
                 {
-                  'm3.large': 'm3.large'
+                  "m3.large": "m3.large"
                 },
                 {
-                  'm3.xlarge': 'm3.xlarge'
+                  "m3.xlarge": "m3.xlarge"
                 },
                 {
-                  'm3.2xlarge': 'm3.2xlarge'
+                  "m3.2xlarge": "m3.2xlarge"
                 },
                 {
-                  'c3.large': 'c3.large'
+                  "c3.large": "c3.large"
                 },
                 {
-                  'c3.xlarge': 'c3.xlarge'
+                  "c3.xlarge": "c3.xlarge"
                 },
                 {
-                  'c3.2xlarge': 'c3.2xlarge'
+                  "c3.2xlarge": "c3.2xlarge"
                 },
                 {
-                  'c3.4xlarge': 'c3.4xlarge'
+                  "c3.4xlarge": "c3.4xlarge"
                 },
                 {
-                  'c3.8xlarge': ' c3.8xlarge'
+                  "c3.8xlarge": " c3.8xlarge"
                 },
                 {
-                  'r3.large': 'r3.large'
+                  "r3.large": "r3.large"
                 },
                 {
-                  'r3.xlarge': 'r3.xlarge'
+                  "r3.xlarge": "r3.xlarge"
                 },
                 {
-                  'r3.2xlarge': 'r3.2xlarge'
+                  "r3.2xlarge": "r3.2xlarge"
                 },
                 {
-                  'r3.4xlarge': 'r3.4xlarge'
+                  "r3.4xlarge": "r3.4xlarge"
                 },
                 {
-                  'r3.8xlarge': 'r3.8xlarge'
+                  "r3.8xlarge": "r3.8xlarge"
                 },
                 {
-                  'i2.xlarge': 'i2.xlarge'
+                  "i2.xlarge": "i2.xlarge"
                 },
                 {
-                  'i2.2xlarge': 'i2.2xlarge'
+                  "i2.2xlarge": "i2.2xlarge"
                 },
                 {
-                  'i2.4xlarge': 'i2.4xlarge'
+                  "i2.4xlarge": "i2.4xlarge"
                 },
                 {
-                  'i2.8xlarge': 'i2.8xlarge'
+                  "i2.8xlarge": "i2.8xlarge"
                 },
                 {
-                  'hs1.8xlarge': 'hs1.8xlarge'
+                  "hs1.8xlarge": "hs1.8xlarge"
                 },
                 {
-                  'g2.2xlarge': 'g2.2xlarge'
+                  "g2.2xlarge": "g2.2xlarge"
                 }
               ]
             }
           ],
-          'parent': '',
-          'blockType': 'box'
-        },
-        'EC22': {
-          'id': 'EC22',
-          'type': 'AWS::EC2::Instance',
-          'name': 'EC22',
-          'description': 'Resizable compute machines',
-          'image': 'images/aws/ec2.png',
-          'x': 371,
-          'y': 287,
-          'required': [
-            {
-              'name': 'BlockDeviceMappings',
-              'type': 'BlockDeviceMappings',
-              'description': ''
-            },
-            {
-              'name': 'AvailabilityZone',
-              'type': 'String',
-              'description': 'Specifies the name of the Availability Zone in which the instance is located',
-              'allowableValues': [
-                {
-                  'ap-northeast-1b': 'Asia Pacific (Tokyo)'
-                },
-                {
-                  'ap-southeast-1b': 'Asia Pacific (Singapore)'
-                },
-                {
-                  'ap-southeast-2b': 'Asia Pacific (Sydney)'
-                },
-                {
-                  'eu-central-1b': 'EU (Frankfurt)'
-                },
-                {
-                  'eu-west-1b': 'EU (Ireland)'
-                },
-                {
-                  'sa-east-1b': 'South America (Sao Paulo)'
-                },
-                {
-                  'us-east-1b': 'US East (N. Virginia)'
-                },
-                {
-                  'us-west-1b': 'US West (N. California)'
-                },
-                {
-                  'us-west-2b': 'US West (Oregon)'
-                }
-              ]
-            },
-            {
-              'name': 'InstanceType',
-              'type': 'String',
-              'description': 'Description for tooltip',
-              'allowableValues': [
-                {
-                  't2.micro': 't2.micro'
-                },
-                {
-                  't2.small': 't2.small'
-                },
-                {
-                  't2.medium': 't2.medium'
-                },
-                {
-                  'm3.medium': 'm3.medium'
-                },
-                {
-                  'm3.large': 'm3.large'
-                },
-                {
-                  'm3.xlarge': 'm3.xlarge'
-                },
-                {
-                  'm3.2xlarge': 'm3.2xlarge'
-                },
-                {
-                  'c3.large': 'c3.large'
-                },
-                {
-                  'c3.xlarge': 'c3.xlarge'
-                },
-                {
-                  'c3.2xlarge': 'c3.2xlarge'
-                },
-                {
-                  'c3.4xlarge': 'c3.4xlarge'
-                },
-                {
-                  'c3.8xlarge': ' c3.8xlarge'
-                },
-                {
-                  'r3.large': 'r3.large'
-                },
-                {
-                  'r3.xlarge': 'r3.xlarge'
-                },
-                {
-                  'r3.2xlarge': 'r3.2xlarge'
-                },
-                {
-                  'r3.4xlarge': 'r3.4xlarge'
-                },
-                {
-                  'r3.8xlarge': 'r3.8xlarge'
-                },
-                {
-                  'i2.xlarge': 'i2.xlarge'
-                },
-                {
-                  'i2.2xlarge': 'i2.2xlarge'
-                },
-                {
-                  'i2.4xlarge': 'i2.4xlarge'
-                },
-                {
-                  'i2.8xlarge': 'i2.8xlarge'
-                },
-                {
-                  'hs1.8xlarge': 'hs1.8xlarge'
-                },
-                {
-                  'g2.2xlarge': 'g2.2xlarge'
-                }
-              ]
-            }
-          ],
-          'parent': '',
-          'blockType': 'box'
-        },
-        'EC23': {
-          'id': 'EC23',
-          'type': 'AWS::EC2::Instance',
-          'name': 'EC23',
-          'description': 'Resizable compute machines',
-          'image': 'images/aws/ec2.png',
-          'x': 591,
-          'y': 291,
-          'required': [
-            {
-              'name': 'BlockDeviceMappings',
-              'type': 'BlockDeviceMappings',
-              'description': ''
-            },
-            {
-              'name': 'AvailabilityZone',
-              'type': 'String',
-              'description': 'Specifies the name of the Availability Zone in which the instance is located',
-              'allowableValues': [
-                {
-                  'ap-northeast-1b': 'Asia Pacific (Tokyo)'
-                },
-                {
-                  'ap-southeast-1b': 'Asia Pacific (Singapore)'
-                },
-                {
-                  'ap-southeast-2b': 'Asia Pacific (Sydney)'
-                },
-                {
-                  'eu-central-1b': 'EU (Frankfurt)'
-                },
-                {
-                  'eu-west-1b': 'EU (Ireland)'
-                },
-                {
-                  'sa-east-1b': 'South America (Sao Paulo)'
-                },
-                {
-                  'us-east-1b': 'US East (N. Virginia)'
-                },
-                {
-                  'us-west-1b': 'US West (N. California)'
-                },
-                {
-                  'us-west-2b': 'US West (Oregon)'
-                }
-              ]
-            },
-            {
-              'name': 'InstanceType',
-              'type': 'String',
-              'description': 'Description for tooltip',
-              'allowableValues': [
-                {
-                  't2.micro': 't2.micro'
-                },
-                {
-                  't2.small': 't2.small'
-                },
-                {
-                  't2.medium': 't2.medium'
-                },
-                {
-                  'm3.medium': 'm3.medium'
-                },
-                {
-                  'm3.large': 'm3.large'
-                },
-                {
-                  'm3.xlarge': 'm3.xlarge'
-                },
-                {
-                  'm3.2xlarge': 'm3.2xlarge'
-                },
-                {
-                  'c3.large': 'c3.large'
-                },
-                {
-                  'c3.xlarge': 'c3.xlarge'
-                },
-                {
-                  'c3.2xlarge': 'c3.2xlarge'
-                },
-                {
-                  'c3.4xlarge': 'c3.4xlarge'
-                },
-                {
-                  'c3.8xlarge': ' c3.8xlarge'
-                },
-                {
-                  'r3.large': 'r3.large'
-                },
-                {
-                  'r3.xlarge': 'r3.xlarge'
-                },
-                {
-                  'r3.2xlarge': 'r3.2xlarge'
-                },
-                {
-                  'r3.4xlarge': 'r3.4xlarge'
-                },
-                {
-                  'r3.8xlarge': 'r3.8xlarge'
-                },
-                {
-                  'i2.xlarge': 'i2.xlarge'
-                },
-                {
-                  'i2.2xlarge': 'i2.2xlarge'
-                },
-                {
-                  'i2.4xlarge': 'i2.4xlarge'
-                },
-                {
-                  'i2.8xlarge': 'i2.8xlarge'
-                },
-                {
-                  'hs1.8xlarge': 'hs1.8xlarge'
-                },
-                {
-                  'g2.2xlarge': 'g2.2xlarge'
-                }
-              ]
-            }
-          ],
-          'parent': '',
-          'blockType': 'box'
-        },
-        'BlockDeviceMappings4': {
-          'id': 'BlockDeviceMappings4',
-          'type': 'BlockDeviceMappings',
-          'name': 'BlockDeviceMappings4',
-          'image': 'images/aws/blockDeviceMapping.png',
-          'x': 207,
-          'y': 500,
-          'required': [
-            {
-              'name': 'AvailabilityZone',
-              'type': 'String',
-              'description': '',
-              'allowableValues': [
-                {
-                  'ap-northeast-1': 'Asia Pacific (Tokyo)'
-                },
-                {
-                  'ap-southeast-1': 'Asia Pacific (Singapore)'
-                },
-                {
-                  'ap-southeast-2': 'Asia Pacific (Sydney)'
-                },
-                {
-                  'eu-central-1': 'EU (Frankfurt)'
-                },
-                {
-                  'eu-west-1': 'EU (Ireland)'
-                },
-                {
-                  'sa-east-1': 'South America (Sao Paulo)'
-                },
-                {
-                  'us-east-1': 'US East (N. Virginia)'
-                },
-                {
-                  'us-west-1': 'US West (N. California)'
-                },
-                {
-                  'us-west-2': 'US West (Oregon)'
-                }
-              ]
-            }
-          ],
-          'optional': [
-            {
-              'name': 'Encrypted',
-              'type': 'Boolean',
-              'description': ''
-            },
-            {
-              'name': 'Iops',
-              'type': 'Number',
-              'description': ''
-            },
-            {
-              'name': 'Size',
-              'type': 'String',
-              'description': ''
-            },
-            {
-              'name': 'SnapshotId',
-              'type': 'String',
-              'description': ''
-            },
-            {
-              'name': 'Tags',
-              'type': 'Tags',
-              'description': 'An arbitrary set of tags (key–value pairs) for this volume.'
-            },
-            {
-              'name': 'VolumeType',
-              'type': 'String',
-              'description': ''
-            }
-          ],
-          'parent': 'EC21',
-          'isDerived': true,
-          'blockType': 'drag',
-          'index': 0
-        },
-        'BlockDeviceMappings5': {
-          'id': 'BlockDeviceMappings5',
-          'type': 'BlockDeviceMappings',
-          'name': 'BlockDeviceMappings5',
-          'image': 'images/aws/blockDeviceMapping.png',
-          'x': 471,
-          'y': 528,
-          'required': [
-            {
-              'name': 'AvailabilityZone',
-              'type': 'String',
-              'description': '',
-              'allowableValues': [
-                {
-                  'ap-northeast-1': 'Asia Pacific (Tokyo)'
-                },
-                {
-                  'ap-southeast-1': 'Asia Pacific (Singapore)'
-                },
-                {
-                  'ap-southeast-2': 'Asia Pacific (Sydney)'
-                },
-                {
-                  'eu-central-1': 'EU (Frankfurt)'
-                },
-                {
-                  'eu-west-1': 'EU (Ireland)'
-                },
-                {
-                  'sa-east-1': 'South America (Sao Paulo)'
-                },
-                {
-                  'us-east-1': 'US East (N. Virginia)'
-                },
-                {
-                  'us-west-1': 'US West (N. California)'
-                },
-                {
-                  'us-west-2': 'US West (Oregon)'
-                }
-              ]
-            }
-          ],
-          'optional': [
-            {
-              'name': 'Encrypted',
-              'type': 'Boolean',
-              'description': ''
-            },
-            {
-              'name': 'Iops',
-              'type': 'Number',
-              'description': ''
-            },
-            {
-              'name': 'Size',
-              'type': 'String',
-              'description': ''
-            },
-            {
-              'name': 'SnapshotId',
-              'type': 'String',
-              'description': ''
-            },
-            {
-              'name': 'Tags',
-              'type': 'Tags',
-              'description': 'An arbitrary set of tags (key–value pairs) for this volume.'
-            },
-            {
-              'name': 'VolumeType',
-              'type': 'String',
-              'description': ''
-            }
-          ],
-          'parent': 'EC22',
-          'isDerived': true,
-          'blockType': 'drag',
-          'index': 0
-        },
-        'BlockDeviceMappings6': {
-          'id': 'BlockDeviceMappings6',
-          'type': 'BlockDeviceMappings',
-          'name': 'BlockDeviceMappings6',
-          'image': 'images/aws/blockDeviceMapping.png',
-          'x': 768,
-          'y': 528,
-          'required': [
-            {
-              'name': 'AvailabilityZone',
-              'type': 'String',
-              'description': '',
-              'allowableValues': [
-                {
-                  'ap-northeast-1': 'Asia Pacific (Tokyo)'
-                },
-                {
-                  'ap-southeast-1': 'Asia Pacific (Singapore)'
-                },
-                {
-                  'ap-southeast-2': 'Asia Pacific (Sydney)'
-                },
-                {
-                  'eu-central-1': 'EU (Frankfurt)'
-                },
-                {
-                  'eu-west-1': 'EU (Ireland)'
-                },
-                {
-                  'sa-east-1': 'South America (Sao Paulo)'
-                },
-                {
-                  'us-east-1': 'US East (N. Virginia)'
-                },
-                {
-                  'us-west-1': 'US West (N. California)'
-                },
-                {
-                  'us-west-2': 'US West (Oregon)'
-                }
-              ]
-            }
-          ],
-          'optional': [
-            {
-              'name': 'Encrypted',
-              'type': 'Boolean',
-              'description': ''
-            },
-            {
-              'name': 'Iops',
-              'type': 'Number',
-              'description': ''
-            },
-            {
-              'name': 'Size',
-              'type': 'String',
-              'description': ''
-            },
-            {
-              'name': 'SnapshotId',
-              'type': 'String',
-              'description': ''
-            },
-            {
-              'name': 'Tags',
-              'type': 'Tags',
-              'description': 'An arbitrary set of tags (key–value pairs) for this volume.'
-            },
-            {
-              'name': 'VolumeType',
-              'type': 'String',
-              'description': ''
-            }
-          ],
-          'parent': 'EC23',
-          'isDerived': true,
-          'blockType': 'drag',
-          'index': 0
-        },
-        'ELB7': {
-          'id': 'ELB7',
-          'type': 'AWS::ElasticLoadBalancing::LoadBalancer',
-          'name': 'ELB7',
-          'description': 'Automatically distributes incoming application traffic across multiple EC2 instances',
-          'image': 'images/aws/elb.png',
-          'x': 354,
-          'y': 91,
-          'optional': [
-            {
-              'name': 'AccessLoggingPolicy',
-              'type': 'AccessLoggingPolicy',
-              'description': 'Captures detailed information for all requests made to your load balancer, such as the time a request was received, client’s IP address, latencies, request path, and server responses.'
-            },
-            {
-              'name': 'AvailabilityZones',
-              'type': 'AvailabilityZones',
-              'description': 'The Availability Zones in which to create the load balancer. You can specify either AvailabilityZones or Subnets, but not both.'
-            }
-          ],
-          'parent': '',
-          'blockType': 'box'
+          "parent": "",
+          "blockType": "box",
+          "price": "9.5"
         }
       },
-      connections: {
-        'EC21': {
-          'BlockDeviceMappings4': 'BlockDeviceMappings4',
-          'ELB7': 'ELB7'
-        },
-        'EC22': {
-          'BlockDeviceMappings5': 'BlockDeviceMappings5',
-          'ELB7': 'ELB7'
-        },
-        'EC23': {
-          'BlockDeviceMappings6': 'BlockDeviceMappings6',
-          'ELB7': 'ELB7'
-        }
-      },
+      connections: {},
       template: {
-        'AWSTemplateFormatVersion': '2010-09-09',
-        'Description': 'Created By pdestal',
-        'Parameters': {},
-        'Mappings': {},
-        'Conditions': {},
-        'Resources': {
-          'EC21': {
-            'Type': 'AWS::EC2::Instance',
-            'Properties': {
-              'AvailabilityZone': 'ap-southeast-1b',
-              'InstanceType': 'm3.medium',
-              'BlockDeviceMappings': [
-                {}
-              ]
+        "AWSTemplateFormatVersion": "2010-09-09",
+        "Description": "Created By pdestal",
+        "Parameters": {},
+        "Mappings": {},
+        "Conditions": {},
+        "Resources": {
+          "EC21": {
+            "Type": "AWS::EC2::Instance",
+            "Properties": {
+              "AvailabilityZone": "us-east-1b",
+              "InstanceType": "t2.medium"
             }
-          },
-          'EC22': {
-            'Type': 'AWS::EC2::Instance',
-            'Properties': {
-              'AvailabilityZone': 'eu-west-1b',
-              'InstanceType': 'm3.medium',
-              'BlockDeviceMappings': [
-                {}
-              ]
-            }
-          },
-          'EC23': {
-            'Type': 'AWS::EC2::Instance',
-            'Properties': {
-              'AvailabilityZone': 'us-west-2b',
-              'InstanceType': 'm3.large',
-              'BlockDeviceMappings': [
-                {}
-              ]
-            }
-          },
-          'ELB7': {
-            'Type': 'AWS::ElasticLoadBalancing::LoadBalancer',
-            'Properties': {}
           }
         },
-        'Outputs': {
-          'EC21ImageId': {
-            'Description': 'Name of the EC2 instance',
-            'Value': {
-              'Ref': 'EC21'
-            }
-          },
-          'EC22ImageId': {
-            'Description': 'Name of the EC2 instance',
-            'Value': {
-              'Ref': 'EC22'
-            }
-          },
-          'EC23ImageId': {
-            'Description': 'Name of the EC2 instance',
-            'Value': {
-              'Ref': 'EC23'
+        "Outputs": {
+          "EC21ImageId": {
+            "Description": "Name of the EC2 instance",
+            "Value": {
+              "Ref": "EC21"
             }
           }
         }

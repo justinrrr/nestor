@@ -133,6 +133,7 @@
     on-connection-moved-from-source="connectionMovedFromSource(originalSourceName, newSourceName, targetName)"
     on-connection-moved-from-target="connectionMovedFromTarget(sourceName, originalTargetName, newTargetName)"
     >
+    <div class="price-card"><h3>Total Price: ${{totalPrice}}</h3></div>
 
     <!-- The actual components on the canvas -->
     <div plumb-item
@@ -162,6 +163,9 @@
         <!--<button ng-click="deleteClicked(component)" class="deletecomponent" type="button"><i class="fa fa-trash"></i></button>-->
         <button ng-click="propertiesClicked(component)" class="propertycanvas" type="button"><img src="../images/properties.png"> </button>
         <button ng-click="optimizePressed(component)" class="propertycanvas" type="button"><img src="../images/optimize.png"> </button>
+      </div>
+      <div class="animate-show component-price" align="right">
+        <p>{{component.price}}</p>
       </div>
       <img ng-src="{{component.image}}"/>
 

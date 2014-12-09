@@ -221,14 +221,16 @@ app.service('AWSComponents', function () {
         image: 'images/aws/ec2.png',
         description: 'Resizable compute machines',
         type: 'AWS::EC2::Instance',
-        blockType: 'box'
+        blockType: 'box',
+        price: '9.5'
       },
       {
         name: 'ELB',
         image: 'images/aws/elb.png',
         description: 'Automatically distributes incoming application traffic across multiple EC2 instances',
         type: 'AWS::ElasticLoadBalancing::LoadBalancer',
-        blockType: 'box'
+        blockType: 'box',
+        price: '18.25'
       },
       {
         name: 'Route53',
@@ -1345,7 +1347,7 @@ app.service('AWSComponents', function () {
         },
 
         BlockDeviceMappings: {
-          Display: {type: 'drag', image: 'images/aws/blockDeviceMapping.png', blockType: 'drag'},
+          Display: {type: 'drag', image: 'images/aws/blockDeviceMapping.png', blockType: 'drag', price: '5'},
           Description: 'Amazon Elastic Block Store volume. You can choose to retain the volume, to delete the volume, or to create a snapshot of the volume.',
           types: {
             required: [
