@@ -213,6 +213,7 @@ angular.module('nestorApp')
             $scope.totalPrice = 306.6 + 15 + 18.25;
             CanvasModel.addedComponents = returnedItem.components;
             CFTemplate.setTemplate(returnedItem.template);
+            $scope.privateTemplate = returnedItem.template;
             CanvasModel.connections = returnedItem.connections;
 
             _.each(CanvasModel.connections, function (targets, sourceName) {
@@ -584,9 +585,9 @@ angular.module('nestorApp')
 
       $scope.download = function () {
         $window.open('data:text/text;charset=utf-8,' + encodeURIComponent(
-            'FAFAcomponents:' + angular.toJson($scope.canvasModel.addedComponents, true) +
-            'FAFAtemplate:' + angular.toJson($scope.privateTemplate, true) +
-            'FAFAconnections:' + angular.toJson($scope.canvasModel.connections, true)
+            '\ncomponents:' + angular.toJson($scope.canvasModel.addedComponents, true) +
+            ',\ntemplate:' + angular.toJson($scope.privateTemplate, true) +
+            ',\nconnections:' + angular.toJson($scope.canvasModel.connections, true)
         ));
 
 
@@ -615,15 +616,15 @@ angular.module('nestorApp')
 
       function selectElementInEditor(elementName) {
         return;
-        window.setTimeout(function () {
-          //get some of the regex magic going on to detect the correct part
-          var regex = '"' + elementName + '"(\\s)*:(\\s)*';
-          editor.find(regex, {regExp: true}, true);
-          //editor.addSelectionMarker(range);
-          editor.focus();
-          editor.setHighlightGutterLine(true);
-          editor.centerSelection();
-        }, 100);
+        //window.setTimeout(function () {
+        //  //get some of the regex magic going on to detect the correct part
+        //  var regex = '"' + elementName + '"(\\s)*:(\\s)*';
+        //  editor.find(regex, {regExp: true}, true);
+        //  //editor.addSelectionMarker(range);
+        //  editor.focus();
+        //  editor.setHighlightGutterLine(true);
+        //  editor.centerSelection();
+        //}, 100);
       }
 
     }]);
