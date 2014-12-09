@@ -451,8 +451,8 @@ body {
 }
 .price-card .panel-heading {
   padding: 0px;
-  background-color: #17bcb8;
-  border-color: #17bcb8;
+  background-color: #58A8D2;
+  border-color: #58A8D2;
   border-radius: 0px;
 }
 .price-card .status .panel-title {
@@ -472,7 +472,7 @@ body {
 }
 .component-price {
   position: absolute;
-  background-color: #17bcb8;
+  background-color: #58A8D2;
   top: 5px;
   right: 5px;
   font-size: 13px;
