@@ -4,8 +4,8 @@ angular.module('nestorApp')
   .controller('MainCtrl',
   ['$scope', '$rootScope', '$modal', 'AWSComponents', 'CFTemplate', 'UIComponents',
     'ConnectionUtils', '$window', '$analytics',
-    'CanvasModel',
-    function ($scope, $rootScope, $modal, AWSComponents, CFTemplate, UIComponents, ConnectionUtils, $window, $analytics, CanvasModel) {
+    'CanvasModel', 'EC2Pricings',
+    function ($scope, $rootScope, $modal, AWSComponents, CFTemplate, UIComponents, ConnectionUtils, $window, $analytics, CanvasModel, EC2Pricings) {
 
       $scope.zoomFactor = 1;
       $scope.totalPrice = 0;
@@ -514,7 +514,7 @@ angular.module('nestorApp')
           $scope.types.complex[data.name].types.required,
           $scope.types.complex[data.name].types.optional,
           data.description,
-            event.x - leftPanelWidth,
+          event.x - leftPanelWidth,
           event.y,
           data.parent
         );
@@ -585,9 +585,9 @@ angular.module('nestorApp')
 
       $scope.download = function () {
         $window.open('data:text/text;charset=utf-8,' + encodeURIComponent(
-            '\ncomponents:' + angular.toJson($scope.canvasModel.addedComponents, true) +
-            ',\ntemplate:' + angular.toJson($scope.privateTemplate, true) +
-            ',\nconnections:' + angular.toJson($scope.canvasModel.connections, true)
+          '\ncomponents:' + angular.toJson($scope.canvasModel.addedComponents, true) +
+          ',\ntemplate:' + angular.toJson($scope.privateTemplate, true) +
+          ',\nconnections:' + angular.toJson($scope.canvasModel.connections, true)
         ));
 
 
@@ -626,5 +626,22 @@ angular.module('nestorApp')
         //  editor.centerSelection();
         //}, 100);
       }
+
+
+      //event listeners
+      $scope.$on('PossiblePriceChange', function (event, attrs) {
+        var instanceType = CFTemplate.getPropertyForResource('InstanceType', attrs.componentName);
+        var region = CFTemplate.getPropertyForResource('AvailabilityZone', attrs.componentName);
+        if (instanceType && region) {
+
+          var newPrice = parseFloat(EC2Pricings.prices[region][instanceType]);
+          var currentPrice = parseFloat(CanvasModel.addedComponents[attrs.componentName].price);
+          var priceChange = newPrice - currentPrice;
+          CanvasModel.addedComponents[attrs.componentName].price = newPrice;
+          var totalCurrentPrice = parseFloat($scope.totalPrice);
+          $scope.totalPrice = totalCurrentPrice + priceChange;
+        }
+
+      });
 
     }]);

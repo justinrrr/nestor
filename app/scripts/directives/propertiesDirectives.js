@@ -92,7 +92,7 @@ app.directive('derivedProperties', ['AWSComponents',
 
   }]);
 
-app.directive('primitiveProperty', [function () {
+app.directive('primitiveProperty', ['$rootScope', '$timeout', function ($rootScope, $timeout) {
   return {
     replace: true,
     restrict: 'E',
@@ -105,12 +105,10 @@ app.directive('primitiveProperty', [function () {
     templateUrl: '../../templates/primitive_properties.html',
     link: function (scope) {
 
-      if(scope.property.type === 'Integer')
-      {
+      if (scope.property.type === 'Integer') {
         scope.inputType = 'number';
       }
-      else
-      {
+      else {
         scope.inputType = 'text';
       }
 
@@ -132,15 +130,29 @@ app.directive('primitiveProperty', [function () {
           });
         });
 
-      }  else if (scope.property.type === 'Boolean') {
+      } else if (scope.property.type === 'Boolean') {
         scope.showCheckbox = true;
       }
-      else  {
+      else {
         scope.showSimple = true;
       }
 
 
       scope.itemSelected = function (selectedItem) {
+
+        //hackery hacket hack
+        if (scope.property.name === 'AvailabilityZone' || scope.property.name === 'InstanceType') {
+          //we need to put this in a timeout so that by the time the
+          //event fires all the values in the template are set. This is very
+          //hacky and I am very ashamed of this. A.F
+          $timeout(function () {
+            $rootScope.$broadcast('PossiblePriceChange', {
+              componentName: scope.componentName,
+              property: scope.property.name,
+              propertyValue: selectedItem
+            });
+          }, 10);
+        }
         scope.model = selectedItem;
 //        scope.model[scope.property.name] = selectedItem;
       };
