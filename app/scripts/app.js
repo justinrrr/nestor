@@ -32,7 +32,8 @@ var app = angular
     'nestorApp.directives',
     'angulartics',
     'angulartics.mixpanel',
-    'chart.js'
+    'chart.js',
+    'smoothScroll'
   ]);
 
 app.config(function ($routeProvider) {
