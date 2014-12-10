@@ -8,6 +8,24 @@ app.controller('LandingCtrl', ['$scope', '$analytics', function ($scope, $analyt
   $scope.info = {};
   $scope.signupText = 'Sign me up';
   $scope.hasSignedUp = false;
+
+  var iframe = $('#pPlayer')[0];
+  var player = $f(iframe);
+
+  player.addEvent('ready', function() {
+    player.addEvent('play', onPlay);
+    player.addEvent('finish', onFinish);
+  });
+
+  function onPlay(id) {
+
+    $analytics.eventTrack('StartedVideo');
+  }
+
+  function onFinish(id) {
+    $analytics.eventTrack('FinishedVideo');
+  }
+
   $scope.signUpPressed = function() {
     $scope.signupText = 'Thank You!';
     $analytics.eventTrack('DidSignUp', {
