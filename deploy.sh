@@ -25,7 +25,7 @@ echo
 cd dist/;
 
 #MAC
-sed -i '' 's/MIXPANELTRACKERID/07bb86769ea655dbe314c6b68dbe7702/g' ./index.html;
+sed -i '' 's/MIXPANELTRACKERID/1ec25d242000ba6070f0ac23235f330b/g' ./index.html;
 
 #Linux
 #sed -i 's/MIXPANELTRACKERID/07bb86769ea655dbe314c6b68dbe7702/g' ./index.html;
@@ -52,8 +52,8 @@ echo Cleaning up the old code from S3
 echo =================================
 echo
 
-s3cmd del s3://alpha.pdestal.com/**/*;
-s3cmd del s3://alpha.pdestal.com/*;
+s3cmd del s3://cost.pdestal.com/**/*;
+s3cmd del s3://cost.pdestal.com/*;
 
 
 echo
@@ -61,8 +61,8 @@ echo ===================================
 echo Synching the zipped files
 echo =================================
 echo
-s3cmd sync --add-header 'Content-Encoding:gzip' ./scripts s3://alpha.pdestal.com;
-s3cmd sync --add-header 'Content-Encoding:gzip' ./styles s3://alpha.pdestal.com;
+s3cmd sync --add-header 'Content-Encoding:gzip' ./scripts s3://cost.pdestal.com;
+s3cmd sync --add-header 'Content-Encoding:gzip' ./styles s3://cost.pdestal.com;
 
 
 echo
@@ -71,7 +71,7 @@ echo Synching the rest of files
 echo =================================
 echo
 
-s3cmd sync . s3://alpha.pdestal.com;
+s3cmd sync . s3://cost.pdestal.com;
 
 
 echo
