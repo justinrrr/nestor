@@ -38,10 +38,10 @@ var app = angular
 
 app.config(function ($routeProvider) {
   $routeProvider
-    //.when('/cost', {
-    //  templateUrl: 'views/main.html',
-    //  controller: 'MainCtrl'
-    //})
+    .when('/cost', {
+      templateUrl: 'views/main.html',
+      controller: 'MainCtrl'
+    })
     .when('/', {
       templateUrl: 'views/landing.html',
       controller: 'LandingCtrl'
