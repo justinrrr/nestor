@@ -8,6 +8,7 @@ var app = angular.module('nestorApp');
 app.controller('LoadInfrastructure', ['$scope', '$rootScope', '$modalInstance', '$timeout',
   function ($scope, $rootScope, $modalInstance, $timeout) {
 
+      
     var infra = {
       components: {
         "EC21": {
