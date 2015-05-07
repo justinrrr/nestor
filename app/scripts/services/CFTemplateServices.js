@@ -111,9 +111,33 @@ app.service('CFTemplate', ['UIComponents', 'ConnectionUtils', function (UICompon
 
     };
 
-    /*
-     * resourceName:  the name of the item to be removed from Resources in Cloud Formation Template
-     * */
+        // this function takes an object and a property name
+        // returns true if the obj contains the property directly or indirectly (via its children)
+        // otherwise, returns false
+        var doesObjectContainProperty = function (obj, propName) {
+
+            if (obj === undefined) {
+                return false;
+            }
+
+            for (var prop in obj) {
+                if (obj.hasOwnProperty(prop)) {
+                    if (propName === prop) {
+                        return true;
+                    } else if ( doesObjectContainProperty(prop,propName) === true ) {
+                        return true;
+                    }
+                }
+            }
+
+
+            return false;
+        };
+
+
+        /*
+         * resourceName:  the name of the item to be removed from Resources in Cloud Formation Template
+         * */
     this.removeResource = function (resourceName) {
 
       // if the current template is not initialized we are done
@@ -124,7 +148,17 @@ app.service('CFTemplate', ['UIComponents', 'ConnectionUtils', function (UICompon
       // TODO: what if the to-be-deleted component wasn't a "Resource"?
       delete cfTemplate.Resources[resourceName];
 
-      // update the "Output" secion in Cloud Formation Template
+        for (var otherResourceName in cfTemplate.Resources) {
+            if (cfTemplate.Resources.hasOwnProperty(otherResourceName)) {
+                if (otherResourceName.properties !== undefined) {
+                    if (doesObjectContainProperty(otherResourceName.properties),resourceName) {
+                        delete cfTemplate.Resources[otherResourceName].Properties;
+                    }
+                }
+            }
+        }
+
+        // update the "Output" secion in Cloud Formation Template
       var allOutputs = Object.keys(cfTemplate.Outputs);
 
       for (var i = 0; i < allOutputs.length; i += 1) {
